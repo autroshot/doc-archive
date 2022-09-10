@@ -46,6 +46,12 @@ const config = {
         },
       }),
     ],
+    [
+      'docusaurus-preset-shiki-twoslash',
+      {
+        themes: ['min-light', 'nord'],
+      },
+    ],
   ],
 
   themeConfig:

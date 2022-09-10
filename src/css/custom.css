@@ -33,3 +33,11 @@ html,
 body {
   font-family: 'Malgun Gothic', sans-serif;
 }
+
+[data-theme='light'] .shiki.nord {
+  display: none;
+}
+
+[data-theme='dark'] .shiki.min-light {
+  display: none;
+}
