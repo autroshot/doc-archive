@@ -9,14 +9,16 @@ sidebar_position: 3
 ```jsx
 export async function getStaticProps(context) {
   return {
-    props: {}, // 페이지 컴포넌트에 props로 전달됩니다.
+    props: {}, // 페이지 컴포넌트에 프랍으로 전달됩니다.
   };
 }
 ```
 
-> **참고**
->
-> 렌더링 방식에 관계없이 모든 `props`는 페이지 컴포넌트로 전달되고 초기 HTML의 클라이언트 측에서 볼 수 있습니다. 이것은 페이지의 올바른 수화를 위한 것입니다. 클라이언트에 있으면 안 되는 민감한 정보는 `props`로 전달하면 안 됩니다.
+:::note 참고
+
+렌더링 방식에 관계없이 모든 `props`는 페이지 컴포넌트로 전달되고 초기 HTML의 클라이언트 측에서 볼 수 있습니다. 이것은 페이지의 올바른 수화를 위한 것입니다. 클라이언트에 있으면 안 되는 민감한 정보는 `props`로 전달하면 안 됩니다.
+
+:::
 
 ## getStaticProps는 언제 사용해야 하나요
 
@@ -24,7 +26,7 @@ export async function getStaticProps(context) {
 
 - 페이지를 렌더링하는 데 필요한 데이터가 사용자의 요청에 앞서 빌드 타임에 얻을 수 있음
 - 데이터를 헤드리스 CMS에서 가져옴
-- 페이지는 SEO를 위해 사전 렌더링되어야 하며 매우 빨라야 함. `getStaticProps`는 `HTML`과 `JSON`파일을 생성하며, 둘 다 성능을 위해 CDN에 캐시될 수 있음
+- 페이지는 SEO를 위해 사전 렌더링되어야 하며 매우 빨라야 함. `getStaticProps`는 `HTML`과 `JSON` 파일을 생성하며, 둘 다 성능을 위해 CDN에 캐시될 수 있음
 - 데이터가 공개적으로 캐시될 수 있음(사용자 테이터가 아님). 이 조건은 미들웨어를 사용하여 경로를 다시 작성하는 특정 상황에서 우회가 가능함
 
 ## getStaticProps는 언제 실행되나요
@@ -37,7 +39,7 @@ export async function getStaticProps(context) {
 - `getStaticProps`는 `revalidate`를 사용할 때 백그라운드에서 실행됨
 - `getStaticProps`는 [`revalidate()`](#)을 사용할 때 백그라운드에서 주문형으로 실행됨
 
-[점진적인 정적 재생성](#)과 함께 사용하면, `getStaticProps`는 오래된 페이지의 유효성을 다시 검사하고 새 페이지가 브라우저에 제공되는 동안 백그라운드에서 실행됩니다.
+[점진적인 정적 재생성](./점진적인-정적-재생성.md)과 함께 사용하면, `getStaticProps`는 오래된 페이지의 유효성을 다시 검사하고 새 페이지가 브라우저에 제공되는 동안 백그라운드에서 실행됩니다.
 
 `getStaticProps`는 정적 HTML을 생성하므로 들어오는 요청(쿼리 매개변수나 HTTP 헤더)에 접근할 수 없습니다. 페이지 요청에 접근해야 하는 경우에는 `getStaticProps`에 추가로 [미들웨어](https://nextjs.org/docs/advanced-features/middleware)를 사용하는 것을 고려해야 합니다.
 
@@ -87,10 +89,8 @@ export default Blog;
 
 다음 예시에서 API 경로는 CMS에서 일부 데이터를 가져오는 데 사용됩니다. 그러면 해당 API 경로가 `getStaticProps`에서 직접 호출됩니다. 이 방식은 추가적인 호출이 발생하여 성능이 저하됩니다. 대신 CMS에서 데이터를 가져오는 논리를 `lib/` 디렉토리에서 `getStaticProps`에 공유할 수 있습니다.
 
-```jsx
-// lib/load-posts.js
-
-// 다음 함수는 `lib/` 디렉토리에서
+```jsx title="lib/load-posts.js"
+// 다음 함수는 'lib/' 디렉토리에서
 // getStaticProps와 API 경로에 공유됩니다.
 export async function loadPosts() {
   // posts를 얻기 위해 외부 API 엔드포인트를 호출합니다.
@@ -99,17 +99,18 @@ export async function loadPosts() {
 
   return data;
 }
+```
 
-// pages/blog.js
+```jsx title="pages/blog.js"
 import { loadPosts } from '../lib/load-posts';
 
 // 이 함수는 서버 측에서만 실행됩니다.
 export async function getStaticProps() {
-  // `/api` 경로를 가져오는 대신 getStaticProps에서 직접
+  // '/api' 경로를 가져오는 대신 getStaticProps에서 직접
   // 동일한 함수를 호출할 수 있습니다.
   const posts = await loadPosts();
 
-  // 반환되는 props는 페이지 컴포넌트에 전달됩니다.
+  // 반환되는 프랍은 페이지 컴포넌트에 전달됩니다.
   return { props: { posts } };
 }
 ```
@@ -132,9 +133,11 @@ JSON 파일은 [`next/link`](https://nextjs.org/docs/api-reference/next/link)이
 
 또한 `getStaticProps`는 독립된 함수로 내보내야 합니다. `getStaticProps`를 페이지 컴포넌트의 프로퍼티로 추가하면 작동하지 않습니다.
 
-> **참고**
->
-> [커스텀 앱](https://nextjs.org/docs/advanced-features/custom-app)을 만든 경우에는 `pageProps`를 링크 문서에 설명된 대로 페이지 컴포넌트에 전달하고 있는지 확인인해야 합니다. 그렇지 않으면 프랍이 비어 있을 것입니다.
+:::note 참고
+
+[커스텀 앱](https://nextjs.org/docs/advanced-features/custom-app)을 만든 경우에는 `pageProps`를 링크 문서에 설명된 대로 페이지 컴포넌트에 전달하고 있는지 확인인해야 합니다. 그렇지 않으면 프랍이 비어 있을 것입니다.
+
+:::
 
 ## 개발 중에는 모든 요청에 대해 실행됩니다
 

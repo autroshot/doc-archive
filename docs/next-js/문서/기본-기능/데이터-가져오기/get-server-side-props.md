@@ -66,16 +66,16 @@ export async function getServerSideProps(context) {
 
 ```jsx
 function Page({ data }) {
-  // 'data'를 렌더링합니다...
+  // data를 렌더링합니다...
 }
 
 // 이 함수는 매 요청마다 호출됩니다.
 export async function getServerSideProps() {
-  // 외부 API에서 'data'를 가져옵니다.
+  // 외부 API에서 data를 가져옵니다.
   const res = await fetch(`https://.../data`);
   const data = await res.json();
 
-  // 'data'를 페이지에 프랍으로 전달합니다.
+  // data를 페이지에 프랍으로 전달합니다.
   return { props: { data } };
 }
 

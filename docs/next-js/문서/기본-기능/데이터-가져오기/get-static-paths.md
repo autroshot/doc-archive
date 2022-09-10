@@ -13,11 +13,11 @@ sidebar_position: 2
 export async function getStaticPaths() {
   return {
     paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
-    fallback: false, // 'true'나 'blocking'이 올 수 있습니다.
+    fallback: false, // true나 'blocking'이 올 수 있습니다.
   };
 }
 
-// 'getStaticPaths'는 'getStaticProps'이 필요합니다.
+// getStaticPaths는 getStaticProps이 필요합니다.
 export async function getStaticProps(context) {
   return {
     // 페이지 컴포넌트에 프랍으로 전달됩니다.
@@ -26,7 +26,7 @@ export async function getStaticProps(context) {
 }
 
 export default function Post({ post }) {
-  // 'post'를 렌더링합니다...
+  // post를 렌더링합니다...
 }
 ```
 
@@ -74,7 +74,7 @@ export default function Post({ post }) {
 
 ```jsx title="pages/posts/[id].js"
 export async function getStaticPaths() {
-  // 이것이 'true'이면(미리보기 환경에서는 'true'임)
+  // 이것이 true이면(미리보기 환경에서는 true임)
   // 정적 페이지를 사전 렌더링하지 않습니다.
   // 빌드가 빨라지고 첫 페이지 로딩이 느려집니다.
   if (process.env.SKIP_BUILD_STATIC_GENERATION) {
@@ -84,18 +84,18 @@ export async function getStaticPaths() {
     };
   }
 
-  // 'posts'를 얻기 위해 외부 API 엔드포인트를 호출합니다.
+  // posts를 얻기 위해 외부 API 엔드포인트를 호출합니다.
   const res = await fetch('https://.../posts');
   const posts = await res.json();
 
-  // 'posts'에 기반해 사전 렌더링하고 싶은 'paths'을 얻습니다.
+  // posts에 기반해 사전 렌더링하고 싶은 paths을 얻습니다.
   // 프로덕션 환경에서는 모든 페이지를 사전 렌더링합니다.
   // 빌드는 느려지고 첫 페이지 로딩이 빨라집니다.
   const paths = posts.map((post) => ({
     params: { id: post.id },
   }));
 
-  // '{ fallback: false }'는 'paths' 이외의 경로가 404가 된다는 것을 의미합니다.
+  // { fallback: false }는 paths 이외의 경로가 404가 된다는 것을 의미합니다.
   return { paths, fallback: false };
 }
 ```
