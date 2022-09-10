@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # 내장 CSS 지원
 
 넥스트를 사용하면 자바스크립트 파일에서 CSS 파일을 가져올 수 있습니다. 이것은 넥스트가 자바스크립트를 넘어 [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)의 개념을 확장하기 때문에 가능합니다.
@@ -21,11 +25,11 @@ body {
 [`pages/_app.js` 파일](https://nextjs.org/docs/advanced-features/custom-app)이 없으면 새로 만듭니다. 그리고 `styles.css`를 `import`합니다.
 
 ```jsx
-import '../styles.css'
+import '../styles.css';
 
 // 이 default export는 새 `pages/_app.js` 파일에서 필요하다.
 export default function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 ```
 
@@ -46,10 +50,10 @@ export default function MyApp({ Component, pageProps }) {
 ```jsx
 // pages/_app.js
 
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 ```
 
@@ -60,15 +64,15 @@ export default function MyApp({ Component, pageProps }) {
 ```jsx
 // components/ExampleDialog.js
 
-import { useState } from 'react'
-import { Dialog } from '@reach/dialog'
-import VisuallyHidden from '@reach/visually-hidden'
-import '@reach/dialog/styles.css'
+import { useState } from 'react';
+import { Dialog } from '@reach/dialog';
+import VisuallyHidden from '@reach/visually-hidden';
+import '@reach/dialog/styles.css';
 
 function ExampleDialog(props) {
-  const [showDialog, setShowDialog] = useState(false)
-  const open = () => setShowDialog(true)
-  const close = () => setShowDialog(false)
+  const [showDialog, setShowDialog] = useState(false);
+  const open = () => setShowDialog(true);
+  const close = () => setShowDialog(false);
 
   return (
     <div>
@@ -81,7 +85,7 @@ function ExampleDialog(props) {
         <p>Hello there. I am a dialog</p>
       </Dialog>
     </div>
-  )
+  );
 }
 ```
 
@@ -110,7 +114,7 @@ CSS 모듈은 고유한 클래스 이름을 자동으로 생성하여 로컬에�
 이제 `components/Button.js`을 만들고, 위의 CSS 파일을 가져와서 사용합니다.
 
 ```jsx
-import styles from './Button.module.css'
+import styles from './Button.module.css';
 
 export function Button() {
   return (
@@ -121,7 +125,7 @@ export function Button() {
     >
       Destroy
     </button>
-  )
+  );
 }
 ```
 
@@ -154,13 +158,13 @@ Sass 컴파일러를 설정하려면 `next.config.js`의 `sassOptions`을 사용
 예를 들어 `includePaths`를 추가하려면 다음과 같이 작성합니다.
 
 ```js
-const path = require('path')
+const path = require('path');
 
 module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-}
+};
 ```
 
 ### Sass 변수
@@ -182,14 +186,14 @@ $primary-color: #64ff00;
 ```tsx
 // pages/_app.js
 
-import variables from '../styles/variables.module.scss'
+import variables from '../styles/variables.module.scss';
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <Layout color={variables.primaryColor}>
       <Component {...pageProps} />
     </Layout>
-  )
+  );
 }
 ```
 
@@ -198,4 +202,3 @@ export default function MyApp({ Component, pageProps }) {
 ### 자바스크립트를 비활성화해도 CSS가 작동할까
 
 작동합니다. 자바스크립트를 비활성화해도 CSS가 프로덕션 빌드( `next start`)에서 여전히 로드됩니다. 하지만 개발 중에 [빠른 새로고침](https://nextjs.org/blog/next-9-4#fast-refresh) 기능을 사용하려면 자바스크립트 활성화가 필요합니다.
-
