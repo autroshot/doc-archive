@@ -10,6 +10,7 @@ const config = {
   tagline: '개인적으로 번역하거나 정리한 문서들을 모아 놓은 곳입니다.',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
+  staticDirectories: ['static'],
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -59,7 +60,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'next-js/README',
             position: 'left',
             label: 'Next.js',
           },
