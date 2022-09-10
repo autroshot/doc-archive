@@ -4,22 +4,20 @@ sidebar_position: 2
 
 # getStaticPaths
 
-페이지에 [동적 경로](#)가 있고 `getStaticProps`를 사용하는 경우 정적으로 생성할 경로 목록을 정의해야 합니다.
+페이지에 [동적 경로](../../라우팅/동적-경로.md)가 있고 `getStaticProps`를 사용하는 경우 정적으로 생성할 경로 목록을 정의해야 합니다.
 
 동적 경로를 사용하는 페이지에서 `getStaticPaths`(정적 사이트 생성)라는 함수를 내보낼 때, 넥스트는 `getStaticPaths`에서 지정한 모든 경로를 정적으로 미리 렌더링합니다.
 
-```jsx
-// pages/posts/[id].js
-
-// /posts/1과 /posts/2을 생성합니다.
+```jsx title="pages/posts/[id].js"
+// '/posts/1'과 '/posts/2'을 생성합니다.
 export async function getStaticPaths() {
   return {
     paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
-    fallback: false, // true나 'blocking'이 올 수 있습니다.
+    fallback: false, // 'true'나 'blocking'이 올 수 있습니다.
   };
 }
 
-// getStaticPaths는 getStaticProps을 필요로 합니다.
+// 'getStaticPaths'는 'getStaticProps'이 필요합니다.
 export async function getStaticProps(context) {
   return {
     // 페이지 컴포넌트에 프랍으로 전달됩니다.
@@ -28,7 +26,7 @@ export async function getStaticProps(context) {
 }
 
 export default function Post({ post }) {
-  // post를 렌더링합니다...
+  // 'post'를 렌더링합니다...
 }
 ```
 
@@ -57,8 +55,8 @@ export default function Post({ post }) {
 ## getStaticPaths는 어디에서 사용할 수 있나요
 
 - `getStaticPaths`는 반드시 `getStaticProps`와 함께 사용해야 함
-- `getStaticPaths`는 [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props)와 함께 사용할 수 없음
-- `getStaticProps`도 사용하는 [동적 경로](#)에서 `getStaticPaths`를 내보낼 수 있음
+- `getStaticPaths`는 [`getServerSideProps`](./get-server-side-props.md)와 함께 사용할 수 없음
+- `getStaticProps`도 사용하는 [동적 경로](../../라우팅/동적-경로.md)에서 `getStaticPaths`를 내보낼 수 있음
 - 페이지가 아닌 파일(예: `components` 폴더)에서 `getStaticPaths`를 내보낼 수 없음
 - `getStaticPaths`를 페이지 컴포넌트의 프로퍼티가 아닌 독립된 함수로 내보내야 함
 
@@ -74,11 +72,9 @@ export default function Post({ post }) {
 
 예를 들어 미리 보기(프로덕션 빌드는 제외)를 위해 주문형으로 모든 페이지를 생성하여 빌드 속도를 높일 수 있습니다. 이것은 수백에서 수천 개의 정적 페이지가 있는 사이트에 유용합니다.
 
-```jsx
-// pages/posts/[id].js
-
+```jsx title="pages/posts/[id].js"
 export async function getStaticPaths() {
-  // 이것이 true이면(미리보기 환경에서는 true임)
+  // 이것이 'true'이면(미리보기 환경에서는 'true'임)
   // 정적 페이지를 사전 렌더링하지 않습니다.
   // 빌드가 빨라지고 첫 페이지 로딩이 느려집니다.
   if (process.env.SKIP_BUILD_STATIC_GENERATION) {
@@ -88,18 +84,18 @@ export async function getStaticPaths() {
     };
   }
 
-  // posts를 얻기 위해 외부 API 엔드포인트를 호출합니다.
+  // 'posts'를 얻기 위해 외부 API 엔드포인트를 호출합니다.
   const res = await fetch('https://.../posts');
   const posts = await res.json();
 
-  // posts에 기반해 사전 렌더링하고 싶은 paths을 얻습니다.
+  // 'posts'에 기반해 사전 렌더링하고 싶은 'paths'을 얻습니다.
   // 프로덕션 환경에서는 모든 페이지를 사전 렌더링합니다.
   // 빌드는 느려지고 첫 페이지 로딩이 빨라집니다.
   const paths = posts.map((post) => ({
     params: { id: post.id },
   }));
 
-  // { fallback: false }는 paths 이외의 경로가 404가 된다는 것을 의미합니다.
+  // '{ fallback: false }'는 'paths' 이외의 경로가 404가 된다는 것을 의미합니다.
   return { paths, fallback: false };
 }
 ```
