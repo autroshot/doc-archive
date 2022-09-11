@@ -81,6 +81,11 @@ const config = {
             position: 'left',
             items: [
               { type: 'doc', label: 'Yup', docId: 'miscellaneous/yup/README' },
+              {
+                type: 'doc',
+                label: 'Emmet',
+                docId: 'miscellaneous/emmet/README',
+              },
             ],
           },
           {
@@ -104,6 +109,10 @@ const config = {
               {
                 label: 'Yup',
                 to: '/docs/miscellaneous/yup',
+              },
+              {
+                label: 'Emmet',
+                to: '/docs/miscellaneous/emmet',
               },
             ],
           },
