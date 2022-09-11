@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
 
 :::
 
-## getServerSideProps는 언제 실행되나요
+## `getServerSideProps`는 언제 실행되나요
 
 `getServerSideProps`는 서버 측에서만 실행되고 브라우저에서는 실행되지 않습니다. 페이지에서 `getServerSideProps`를 사용하면 다음의 작업이 수행됩니다.
 
@@ -37,13 +37,13 @@ export async function getServerSideProps(context) {
 
 [`getServerSideProps` API 레퍼런스](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props)는 `getServerSideProps`에서 사용할 수 있는 모든 매개변수와 프랍을 다룹니다.
 
-## getServerSideProps는 언제 사용해야 하나요
+## `getServerSideProps`는 언제 사용해야 하나요
 
 요청 타임에 데이터를 가져와야 하는 페이지를 렌더링해야 하는 경우에만 `getServerSideProps`를 사용합니다. 이는 요청의 데이터나 프로퍼티의 근본적 특성 때문일 수 있습니다. 그 예로는 `authorization` 헤더 또는 지리적 위치가 있습니다. `getServerSideProps`를 사용하는 페이지는 요청 타임에 서버 측에서 렌더링되며 [캐시 제어 헤더가 설정된](https://nextjs.org/docs/going-to-production#caching) 경우에만 캐시됩니다.
 
 요청에서 데이터를 렌더링할 필요가 없는 경우에는 [클라이언트 측](./get-server-side-props.md/#클라이언트-측에서-데이터-가져오기)이나 [`getStaticProps`](./get-static-props.md)에서 데이터를 가져오는 것을 고려할 필요가 있습니다.
 
-### getServerSideProps 또는 API 경로
+### `getServerSideProps` 또는 API 경로
 
 서버에서 데이터를 가져올 때 [API 경로](../../api-경로/소개.md)를 사용하고 싶다면 `getServerSideProps`에서 해당 API 경로를 호출하면 됩니다. 하지만 이는 `getServerSideProps`와 서버에서 실행되는 API 경로를 둘 다 요청하는 불필요하고 비효율적인 접근 방식입니다.
 
@@ -60,7 +60,7 @@ export async function getServerSideProps(context) {
 
 이 접근 방식은 사용자 대시보드 페이지에 적합합니다. 대시보드는 사용자별 비공개 페이지이므로 SEO는 관련이 없으며 페이지를 미리 렌더링할 필요가 없습니다. 데이터가 자주 업데이트되므로 요청 타임에 데이터 가져오기를 해야 합니다.
 
-## getServerSideProps를 사용하여 요청 타임에 데이터 가져오기
+## `getServerSideProps`를 사용하여 요청 타임에 데이터 가져오기
 
 다음 예시는 요청 타임에 데이터를 가져오고 결과를 미리 렌더링하는 방법을 보여줍니다.
 
@@ -107,6 +107,6 @@ export async function getServerSideProps({ req, res }) {
 
 [캐싱](https://nextjs.org/docs/going-to-production#caching)에서 자세한 내용을 확인하세요.
 
-## getServerSideProps가 오류 페이지를 렌더링하나요
+## `getServerSideProps`가 오류 페이지를 렌더링하나요
 
 `getServerSideProps` 내부에서 오류가 발생하면 `pages/500.js` 파일이 표시됩니다. 해당 파일을 만드는 방법은 [500 페이지](https://nextjs.org/docs/advanced-features/custom-error-page#500-page) 문서를 확인하세요. 개발 중에는 이 파일이 사용되지 않고 대신 개발 오버레이가 표시됩니다.

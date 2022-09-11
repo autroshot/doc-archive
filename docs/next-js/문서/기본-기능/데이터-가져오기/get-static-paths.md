@@ -32,7 +32,7 @@ export default function Post({ post }) {
 
 [`getStaticPaths` API 레퍼런스](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths)는 `getStaticPaths`에서 사용할 수 있는 모든 매개변수와 프랍을 다룹니다.
 
-## getStaticPaths는 언제 사용해야 하나요
+## `getStaticPaths`는 언제 사용해야 하나요
 
 `getStaticPaths`는 동적 경로와 다음을 사용하는 페이지를 정적으로 사전 렌더링하는 경우에 사용해야 합니다.
 
@@ -42,17 +42,17 @@ export default function Post({ post }) {
 - 데이터를 공개적으로 캐시할 수 있음(사용자 데이터가 아님)
 - 페이지는 SEO를 위해 사전 렌더링되어야 하며 매우 빨라야 함. `getStaticProps`는 `HTML`과 `JSON`파일을 생성하며, 둘 다 성능을 위해 CDN에 캐시될 수 있음
 
-## getStaticPaths는 언제 실행되나요
+## `getStaticPaths`는 언제 실행되나요
 
 `getStaticPaths`는 프로덕션에서 빌드하는 동안에만 실행되며 런타임에는 호출되지 않습니다. 이 [도구](https://next-code-elimination.vercel.app/)를 사용하여 `getStaticPaths` 내부에 작성된 코드가 클라이언트 측 번들에서 제거되었는지 확인할 수 있습니다.
 
-### getStaticProps는 getStaticPaths와 관련하여 어떻게 실행되나요
+### `getStaticProps`는 `getStaticPaths`와 관련하여 어떻게 실행되나요
 
 - `getStaticProps`는 빌드 중에 반환된 모든 `paths`에 대해 `next build` 동안 실행됨
 - `getStaticProps`는 `fallback: true`를 사용할 때 백그라운드에서 실행됨
 - `getStaticProps`는 `fallback: blocking`을 사용할 때 초기 렌더링 전에 호출됨
 
-## getStaticPaths는 어디에서 사용할 수 있나요
+## `getStaticPaths`는 어디에서 사용할 수 있나요
 
 - `getStaticPaths`는 반드시 `getStaticProps`와 함께 사용해야 함
 - `getStaticPaths`는 [`getServerSideProps`](./get-server-side-props.md)와 함께 사용할 수 없음

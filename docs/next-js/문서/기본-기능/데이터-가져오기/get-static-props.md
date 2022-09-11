@@ -20,7 +20,7 @@ export async function getStaticProps(context) {
 
 :::
 
-## getStaticProps는 언제 사용해야 하나요
+## `getStaticProps`는 언제 사용해야 하나요
 
 다음의 경우에 `getStaticProps`을 사용해야 합니다.
 
@@ -29,7 +29,7 @@ export async function getStaticProps(context) {
 - 페이지는 SEO를 위해 사전 렌더링되어야 하며 매우 빨라야 함. `getStaticProps`는 `HTML`과 `JSON` 파일을 생성하며, 둘 다 성능을 위해 CDN에 캐시될 수 있음
 - 데이터가 공개적으로 캐시될 수 있음(사용자 테이터가 아님). 이 조건은 미들웨어를 사용하여 경로를 다시 작성하는 특정 상황에서 우회가 가능함
 
-## getStaticProps는 언제 실행되나요
+## `getStaticProps`는 언제 실행되나요
 
 `getStaticProps`는 항상 서버에서 실행되고 클라이언트에서는 실행되지 않습니다. 이 [도구](https://next-code-elimination.vercel.app/)를 사용하여 `getStaticProps` 내부에 작성된 코드가 클라이언트 측 번들에서 제거되었는지 확인할 수 있습니다.
 
@@ -43,7 +43,7 @@ export async function getStaticProps(context) {
 
 `getStaticProps`는 정적 HTML을 생성하므로 들어오는 요청(쿼리 매개변수나 HTTP 헤더)에 접근할 수 없습니다. 페이지 요청에 접근해야 하는 경우에는 `getStaticProps`에 추가로 [미들웨어](https://nextjs.org/docs/advanced-features/middleware)를 사용하는 것을 고려해야 합니다.
 
-## getStaticProps를 사용하여 CMS에서 데이터 가져오기
+## `getStaticProps`를 사용하여 CMS에서 데이터 가져오기
 
 다음 예시는 CMS에서 블로그 게시물 목록을 가져오는 방법을 보여줍니다.
 
@@ -125,7 +125,7 @@ export async function getStaticProps() {
 
 JSON 파일은 [`next/link`](https://nextjs.org/docs/api-reference/next/link)이나 [`next/router`](https://nextjs.org/docs/api-reference/next/router)를 통한 클라이언트 측 라우팅에 사용됩니다. `getStaticProps`를 사용하여 미리 렌더링된 페이지로 이동하면 넥스트가 이 JSON 파일(빌드 타임에 미리 계산됨)을 가져와 페이지 컴포넌트의 프랍으로 사용합니다. 즉, 클라이언트 측 페이지 전환은 내보내진 JSON만 사용하고 `getStaticProps` 자체를 호출하지는 않습니다.
 
-## getStaticProps는 어디에서 사용할 수 있나요
+## `getStaticProps`는 어디에서 사용할 수 있나요
 
 `getStaticProps`는 **페이지**에서만 내보낼 수 있습니다. 페이지가 아닌 파일, `_app`, `_document`, `_error`에서는 내보낼 수 없습니다.
 

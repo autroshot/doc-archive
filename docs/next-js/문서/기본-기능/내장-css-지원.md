@@ -27,19 +27,19 @@ body {
 ```jsx
 import '../styles.css';
 
-// 이 default export는 새 `pages/_app.js` 파일에서 필요하다.
+// 이 default export는 새 'pages/_app.js' 파일에서 필요합니다.
 export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
 ```
 
-이러한 스타일(`styles.css`)은 앱의 모든 페이지와 컴포넌트에 적용됩니다. 스타일시트의 전역적 특성, 그리고 충돌을 피하기 위해 `pages/_app.js` 내부에서만 가져오는 것이 가능합니다.
+이러한 스타일(`styles.css`)은 앱의 모든 페이지와 컴포넌트에 적용됩니다. 스타일시트의 전역적 특성 때문에, 그리고 충돌 방지를 위해 `pages/_app.js` 내부에서만 가져오는 것이 가능합니다.
 
 개발 단계에서 스타일시트를 이런 식으로 표현하면 스타일을 편집할 때 즉시 다시 로드할 수 있습니다. 즉, 앱의 상태를 최신으로 유지할 수 있습니다.
 
 프로덕션에서 모든 CSS 파일은 자동으로 하나의 축소된 `.css` 파일로 연결됩니다.
 
-### node_modules에서 스타일 가져오기
+### `node_modules`에서 스타일 가져오기
 
 넥스트 9.5.4 버전부터 `node_modules`에서 CSS 파일을 가져오는 것이 앱의 모든 위치에서 허용됩니다.
 
@@ -47,9 +47,7 @@ export default function MyApp({ Component, pageProps }) {
 
 예시:
 
-```jsx
-// pages/_app.js
-
+```jsx title="pages/_app.js"
 import 'bootstrap/dist/css/bootstrap.css';
 
 export default function MyApp({ Component, pageProps }) {
@@ -61,9 +59,7 @@ export default function MyApp({ Component, pageProps }) {
 
 예시:
 
-```jsx
-// components/ExampleDialog.js
-
+```jsx title="components/ExampleDialog.js"
 import { useState } from 'react';
 import { Dialog } from '@reach/dialog';
 import VisuallyHidden from '@reach/visually-hidden';
@@ -103,7 +99,7 @@ CSS 모듈은 고유한 클래스 이름을 자동으로 생성하여 로컬에�
 
 ```css
 /*
-`.error {}`가 다른 `.css`나 `.module.css` 파일과 충돌하는 것을 걱정할 필요가 없습니다.
+'.error {}'가 다른 '.css' 또는 '.module.css' 파일과 충돌하는 것을 걱정할 필요가 없습니다.
 */
 .error {
   color: white;
@@ -145,11 +141,13 @@ npm install --save-dev sass
 
 Sass 지원에는 앞에서 설명한 내장 CSS 지원과 동일한 이점과 제한이 적용됩니다.
 
-> **참고**
->
-> Sass는 각각 고유한 확장자를 가진 [두 가지 다른 문법](https://sass-lang.com/documentation/syntax)을 지원합니다. `.scss` 확장자를 사용하려면 [SCSS 문법](https://sass-lang.com/documentation/syntax#scss)을 사용해야 하는 반면 `.sass` 확장자를 사용하려면 [들여쓰기 문법("Sass")](https://sass-lang.com/documentation/syntax#the-indented-syntax)을 사용해야 합니다.
->
-> 어떤 것을 선택해야 할지 잘 모르겠다면 들여쓰기 문법("Sass")이 필요 없고 CSS의 상위 집합인 `.scss` 확장으로 시작하면 됩니다.
+:::note 참고
+
+Sass는 각각 고유한 확장자를 가진 [두 가지 다른 문법](https://sass-lang.com/documentation/syntax)을 지원합니다. `.scss` 확장자를 사용하려면 [SCSS 문법](https://sass-lang.com/documentation/syntax#scss)을 사용해야 하는 반면 `.sass` 확장자를 사용하려면 [들여쓰기 문법(Sass)](https://sass-lang.com/documentation/syntax#the-indented-syntax)을 사용해야 합니다.
+
+어떤 것을 선택해야 할지 잘 모르겠다면 들여쓰기 문법(Sass)이 필요 없고 CSS의 상위 집합인 `.scss` 확장으로 시작하면 됩니다.
+
+:::
 
 ### Sass 옵션 사용자 정의하기
 
@@ -173,9 +171,7 @@ module.exports = {
 
 다음은 내보낸 `primaryColor` Sass 변수를 사용하는 예시입니다.
 
-```scss
-/* variables.module.scss */
-
+```scss title="variables.module.scss"
 $primary-color: #64ff00;
 
 :export {
@@ -183,9 +179,7 @@ $primary-color: #64ff00;
 }
 ```
 
-```tsx
-// pages/_app.js
-
+```tsx title="pages/_app.js"
 import variables from '../styles/variables.module.scss';
 
 export default function MyApp({ Component, pageProps }) {
@@ -199,6 +193,6 @@ export default function MyApp({ Component, pageProps }) {
 
 ## 자주 묻는 질문
 
-### 자바스크립트를 비활성화해도 CSS가 작동할까
+### 자바스크립트를 비활성화해도 CSS가 작동하나요
 
 작동합니다. 자바스크립트를 비활성화해도 CSS가 프로덕션 빌드( `next start`)에서 여전히 로드됩니다. 하지만 개발 중에 [빠른 새로고침](https://nextjs.org/blog/next-9-4#fast-refresh) 기능을 사용하려면 자바스크립트 활성화가 필요합니다.
