@@ -104,7 +104,7 @@ string()
   .validate('no'); // ValidationError
 ```
 
-변환과 마찬가지로 테스트를 즉석에서 커스터마이징할 수 있습니다.
+변환과 마찬가지로 테스트를 즉석에서 커스터마이즈할 수 있습니다.
 
 ```typescript
 const jamesSchema = string().test(
@@ -124,11 +124,11 @@ jamesSchema.validateSync('Jane'); // ValidationError "this is not James"
 
 :::
 
-#### 오류 커스터마이징하기
+#### 오류 커스터마이징
 
 가장 간단한 경우, 테스트 함수는 검사의 통과 여부에 따라 `true`나 `false`를 반환합니다. 테스트가 실패하면 엽은 해당 테스트에 대한 (기본) 메시지와 함께 [`ValidationError`](https://github.com/jquense/yup#validationerrorerrors-string--arraystring-value-any-path-string)를 던집니다. `ValidationErrors`에는 테스트 이름, 호출된 인수 (존재하는 경우), 중첩 유효성 검사의 경우에는 실패한 필드의 경로 등 테스트에 대한 많은 메타데이터가 포함되어 있습니다.
 
-오류 메시지는 스키마 실패 방식을 커스터마이징하기 위해 즉석에서 만드는 것도 가능합니다.
+오류 메시지는 스키마 실패 방식을 커스터마이즈하기 위해 즉석에서 만드는 것도 가능합니다.
 
 ```typescript
 const order = object({
@@ -276,7 +276,7 @@ string().append('~~~~').cast('hi'); // 'hi~~~~'
 
 ## 오류 메시지 커스터마이징
 
-기본 오류 메시지는 유효성 검사 테스트에 제공된 메시지가 없을 때 커스터마이징할 수 있습니다. 커스텀 사전에 메시지가 누락된 경우 오류 메시지는 기본적으로 엽의 것으로 표시됩니다.
+기본 오류 메시지는 유효성 검사 테스트에 제공된 메시지가 없을 때 커스터마이즈할 수 있습니다. 커스텀 사전에 메시지가 누락된 경우 오류 메시지는 기본적으로 엽의 것으로 표시됩니다.
 
 ```typescript
 import { setLocale } from 'yup';
