@@ -76,6 +76,14 @@ const config = {
             label: 'Next.js',
           },
           {
+            type: 'dropdown',
+            label: '기타',
+            position: 'left',
+            items: [
+              { type: 'doc', label: 'Yup', docId: 'miscellaneous/yup/intro' },
+            ],
+          },
+          {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
             position: 'right',
