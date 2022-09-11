@@ -80,7 +80,7 @@ const config = {
             label: '기타',
             position: 'left',
             items: [
-              { type: 'doc', label: 'Yup', docId: 'miscellaneous/yup/intro' },
+              { type: 'doc', label: 'Yup', docId: 'miscellaneous/yup/README' },
             ],
           },
           {
@@ -101,15 +101,15 @@ const config = {
                 label: 'Next.js',
                 to: '/docs/next-js',
               },
+              {
+                label: 'Yup',
+                to: '/docs/miscellaneous/yup',
+              },
             ],
           },
           {
             title: 'More',
             items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
               {
                 label: 'GitHub',
                 href: 'https://github.com/facebook/docusaurus',
