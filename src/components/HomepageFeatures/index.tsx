@@ -23,6 +23,9 @@ export default function HomepageMain(): JSX.Element {
               <li>
                 <Link to={'https://github.com/jquense/yup'}>Yup</Link>
               </li>
+              <li>
+                <Link to={'https://docs.emmet.io/'}>Emmet</Link>
+              </li>
             </ul>
           </li>
         </ul>
