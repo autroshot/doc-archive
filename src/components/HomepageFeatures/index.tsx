@@ -18,6 +18,9 @@ export default function HomepageMain(): JSX.Element {
             <Link to={'https://nextjs.org/'}>Next.js</Link>
           </li>
           <li>
+            <Link to={'https://docs.cypress.io/'}>Cypress</Link>
+          </li>
+          <li>
             기타{' '}
             <ul>
               <li>

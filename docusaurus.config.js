@@ -76,6 +76,12 @@ const config = {
             label: 'Next.js',
           },
           {
+            type: 'doc',
+            docId: 'cypress/README',
+            position: 'left',
+            label: 'Cypress',
+          },
+          {
             type: 'dropdown',
             label: '기타',
             position: 'left',
@@ -105,6 +111,10 @@ const config = {
               {
                 label: 'Next.js',
                 to: '/docs/next-js',
+              },
+              {
+                label: 'Cypress',
+                to: '/docs/cypress',
               },
               {
                 label: 'Yup',
