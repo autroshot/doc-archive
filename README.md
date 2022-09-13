@@ -8,7 +8,7 @@
 
 잘못된 번역이나 빠진 내용이 존재할 수 있으므로 정확한 내용은 원문을 확인해 주세요.
 
-문서의 목록과 원문 URL은 다음과 같습니다.
+문서의 목록과 원문 URL 및 출처는 다음과 같습니다.
 
 - [Next.js](https://nextjs.org/)
 - [Cypress](https://docs.cypress.io/)
