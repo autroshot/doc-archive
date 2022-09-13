@@ -1,41 +1,18 @@
-# Website
+# 문서 저장소
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+개인적으로 번역하거나 정리한 문서들을 모아 놓은 곳입니다.
 
-### Installation
+[도큐사우루스](https://docusaurus.io/)로 제작되었습니다.
 
-```
-$ yarn
-```
+## 문서
 
-### Local Development
+잘못된 번역이나 빠진 내용이 존재할 수 있으므로 정확한 내용은 원문을 확인해 주세요.
 
-```
-$ yarn start
-```
+문서의 목록과 원문 URL은 다음과 같습니다.
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+- [Next.js](https://nextjs.org/)
+- [Cypress](https://docs.cypress.io/)
+- 기타
+  - [Emmet](https://docs.emmet.io/)
+  - [Yup](https://github.com/jquense/yup)
+  - 정규 표현식 - 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트
