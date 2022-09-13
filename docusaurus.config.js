@@ -86,11 +86,16 @@ const config = {
             label: '기타',
             position: 'left',
             items: [
-              { type: 'doc', label: 'Yup', docId: 'miscellaneous/yup/README' },
               {
                 type: 'doc',
                 label: 'Emmet',
                 docId: 'miscellaneous/emmet/README',
+              },
+              { type: 'doc', label: 'Yup', docId: 'miscellaneous/yup/README' },
+              {
+                type: 'doc',
+                label: '정규 표현식',
+                docId: 'miscellaneous/regular-expression/README',
               },
             ],
           },
@@ -117,12 +122,16 @@ const config = {
                 to: '/docs/cypress',
               },
               {
+                label: 'Emmet',
+                to: '/docs/miscellaneous/emmet',
+              },
+              {
                 label: 'Yup',
                 to: '/docs/miscellaneous/yup',
               },
               {
-                label: 'Emmet',
-                to: '/docs/miscellaneous/emmet',
+                label: '정규 표현식',
+                to: '/docs/miscellaneous/regular-expression',
               },
             ],
           },

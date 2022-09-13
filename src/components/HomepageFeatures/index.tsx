@@ -24,10 +24,13 @@ export default function HomepageMain(): JSX.Element {
             기타{' '}
             <ul>
               <li>
+                <Link to={'https://docs.emmet.io/'}>Emmet</Link>
+              </li>
+              <li>
                 <Link to={'https://github.com/jquense/yup'}>Yup</Link>
               </li>
               <li>
-                <Link to={'https://docs.emmet.io/'}>Emmet</Link>
+                정규 표현식 - 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트
               </li>
             </ul>
           </li>
