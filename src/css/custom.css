@@ -41,3 +41,13 @@ body {
 [data-theme='dark'] .shiki.min-light {
   display: none;
 }
+
+.markdown a {
+  text-decoration: underline;
+}
+[data-theme='light'] .markdown a:hover {
+  color: rgb(46, 133, 85, 0.7);
+}
+[data-theme='dark'] .markdown a:hover {
+  color: rgb(37, 194, 160, 0.7);
+}
