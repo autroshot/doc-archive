@@ -1,9 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageMain from '@site/src/components/HomepageFeatures';
+// @ts-ignore
+import MarkDown from './_markdown.md';
 
 import styles from './index.module.css';
 
@@ -23,12 +23,14 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={`${siteConfig.title} 홈페이지`}
       description="Description will go into a meta tag in <head />"
     >
       <HomepageHeader />
-      <main>
-        <HomepageMain />
+      <main className="container">
+        <div className={styles.main}>
+          <MarkDown />
+        </div>
       </main>
     </Layout>
   );
