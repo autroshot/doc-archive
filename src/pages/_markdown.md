@@ -4,8 +4,8 @@
 
 | 문서                                    | 원문 URL 또는 출처                              |
 | --------------------------------------- | ----------------------------------------------- |
-| [Next.js](../../docs/next-js/시작하기.md) | https://nextjs.org/                             |
-| Cypress                                 | https://docs.cypress.io/                        |
-| Emmet                                   | https://docs.emmet.io/                          |
-| Yup                                     | https://github.com/jquense/yup                  |
-| 정규 표현식                             | 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트 |
+| [Next.js](https://autroshot.github.io/docs-repository/docs/next-js) | https://nextjs.org/                             |
+| [Cypress](https://autroshot.github.io/docs-repository/docs/cypress)                                 | https://docs.cypress.io/                        |
+| [Emmet](https://autroshot.github.io/docs-repository/docs/miscellaneous/emmet)                                   | https://docs.emmet.io/                          |
+| [Yup](https://autroshot.github.io/docs-repository/docs/miscellaneous/yup)                                     | https://github.com/jquense/yup                  |
+| [정규 표현식](https://autroshot.github.io/docs-repository/docs/miscellaneous/regular-expression)                             | 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트 |
