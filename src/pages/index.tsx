@@ -24,7 +24,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`${siteConfig.title} 홈페이지`}
-      description="Description will go into a meta tag in <head />"
+      description="개인적으로 번역하거나 정리한 문서들을 모아 놓은 곳입니다."
     >
       <HomepageHeader />
       <main className="container">
