@@ -19,7 +19,7 @@ export default function handler(req, res) {
 
 ### 인덱스 경로와 동적 API 경로
 
-매우 일반적인 레스트풀(RESTful) 패턴은 경로를 다음과 같이 설정하는 것입니다.
+매우 일반적인 RESTful 패턴은 경로를 다음과 같이 설정하는 것입니다.
 
 - `GET api/posts` - 페이지가 매겨진 게시물 목록을 얻음
 - `GET api/posts/12345`- 아이디가 12345인 게시물을 얻음
