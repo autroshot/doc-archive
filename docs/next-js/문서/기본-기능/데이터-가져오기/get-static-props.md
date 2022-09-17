@@ -135,7 +135,7 @@ JSON 파일은 [`next/link`](https://nextjs.org/docs/api-reference/next/link)이
 
 :::note 참고
 
-[커스텀 앱](https://nextjs.org/docs/advanced-features/custom-app)을 만든 경우에는 `pageProps`를 링크 문서에 설명된 대로 페이지 컴포넌트에 전달하고 있는지 확인인해야 합니다. 그렇지 않으면 프랍이 비어 있을 것입니다.
+[사용자 정의 앱](https://nextjs.org/docs/advanced-features/custom-app)을 만든 경우에는 `pageProps`를 링크 문서에 설명된 대로 페이지 컴포넌트에 전달하고 있는지 확인인해야 합니다. 그렇지 않으면 프랍이 비어 있을 것입니다.
 
 :::
 

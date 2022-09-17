@@ -77,7 +77,7 @@ const obj = object({
   .cast('{"first_name": "jAnE "}'); // { firstName: 'jane' }
 ```
 
-커스텀 변환을 추가하는 것도 가능합니다.
+사용자 정의 변환을 추가하는 것도 가능합니다.
 
 ```typescript
 const reversedString = string()
@@ -104,7 +104,7 @@ string()
   .validate('no'); // ValidationError
 ```
 
-변환과 마찬가지로 테스트를 즉석에서 커스터마이즈할 수 있습니다.
+변환과 마찬가지로 테스트를 즉석에서 사용자 정의할 수 있습니다.
 
 ```typescript
 const jamesSchema = string().test(
@@ -120,15 +120,15 @@ jamesSchema.validateSync('Jane'); // ValidationError "this is not James"
 
 :::note 참고
 
-변환과 달리 커스텀 테스트의 `value`는 올바른 타입(이 경우 선택적 문자열)이 보장됩니다. 이 값은 스키마에 따라 `undefined`나 `null`이 될 수 있으며, 변환이 존재 관련 단언을 하지 않는 한 존재하지 않는 값에 대해 `true`를 반환할 수 있습니다.
+변환과 달리 사용자 정의 테스트의 `value`는 올바른 타입(이 경우 선택적 문자열)이 보장됩니다. 이 값은 스키마에 따라 `undefined`나 `null`이 될 수 있으며, 변환이 존재 관련 단언을 하지 않는 한 존재하지 않는 값에 대해 `true`를 반환할 수 있습니다.
 
 :::
 
-#### 오류 커스터마이징
+#### 오류 사용자 정의하기
 
 가장 간단한 경우, 테스트 함수는 검사의 통과 여부에 따라 `true`나 `false`를 반환합니다. 테스트가 실패하면 엽은 해당 테스트에 대한 (기본) 메시지와 함께 [`ValidationError`](https://github.com/jquense/yup#validationerrorerrors-string--arraystring-value-any-path-string)를 던집니다. `ValidationErrors`에는 테스트 이름, 호출된 인수 (존재하는 경우), 중첩 유효성 검사의 경우에는 실패한 필드의 경로 등 테스트에 대한 많은 메타데이터가 포함되어 있습니다.
 
-오류 메시지는 스키마 실패 방식을 커스터마이즈하기 위해 즉석에서 만드는 것도 가능합니다.
+오류 메시지는 스키마 실패 방식을 사용자 정의하기 위해 즉석에서 만드는 것도 가능합니다.
 
 ```typescript
 const order = object({
@@ -274,9 +274,9 @@ string().append('~~~~').cast('hi'); // 'hi~~~~'
 
 이득은 다양할 수 있지만, 이 검사가 실제 버그를 많이 방지하지는 못하면서 앱에서 번거로운 명시적 타입 캐스팅의 양을 증가시키는 것으로 보입니다.
 
-## 오류 메시지 커스터마이징
+## 오류 메시지 사용자 정의하기
 
-기본 오류 메시지는 유효성 검사 테스트에 제공된 메시지가 없을 때 커스터마이즈할 수 있습니다. 커스텀 사전에 메시지가 누락된 경우 오류 메시지는 기본적으로 엽의 것으로 표시됩니다.
+기본 오류 메시지는 유효성 검사 테스트에 제공된 메시지가 없을 때 사용자 정의할 수 있습니다. 사용자 정의 사전에 메시지가 누락된 경우 오류 메시지는 기본적으로 엽의 것으로 표시됩니다.
 
 ```typescript
 import { setLocale } from 'yup';
@@ -290,7 +290,7 @@ setLocale({
   },
 });
 
-// 이제 커스텀 사전을 정의한 후에 엽 스키마를 사용한다.
+// 이제 사용자 정의 사전을 정의한 후에 엽 스키마를 사용한다.
 let schema = yup.object().shape({
   name: yup.string(),
   age: yup.number().min(18),
