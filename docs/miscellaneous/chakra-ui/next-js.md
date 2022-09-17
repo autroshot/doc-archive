@@ -130,7 +130,7 @@ export default class Document extends NextDocument {
 }
 ```
 
-#### 타입스크립트에 대한 참고 사항 🚨
+#### 타입스크립트 참고 사항 🚨
 
 타입스크립트 프로젝트에 차크라 UI를 추가할 때 타입스크립트 버전은 최소 4.1.0이 필요합니다.
 
