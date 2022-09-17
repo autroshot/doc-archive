@@ -98,7 +98,7 @@ export default MyApp;
 
 :::note 참고
 
-색상 모드를 처음 설정할 때 `ColorModeScript`를 테마에 설정으로 추가하고 이를 참조하는 것을 권장합니다.
+초기 색상 모드를 설정할 때는 이를 테마에 추가하고 `ColorModeScript`에서 참조하는 것이 좋습니다.
 
 :::
 
