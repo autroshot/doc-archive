@@ -2,10 +2,11 @@
 
 문서의 목록과 원문 URL 또는 출처는 다음과 같습니다.
 
-| 문서                                    | 원문 URL 또는 출처                              |
-| --------------------------------------- | ----------------------------------------------- |
+| 문서                                                         | 원문 URL 또는 출처                              |
+| ------------------------------------------------------------ | ----------------------------------------------- |
 | [Next.js](https://autroshot.github.io/docs-repository/docs/next-js) | https://nextjs.org/                             |
-| [Cypress](https://autroshot.github.io/docs-repository/docs/cypress)                                 | https://docs.cypress.io/                        |
-| [Emmet](https://autroshot.github.io/docs-repository/docs/miscellaneous/emmet)                                   | https://docs.emmet.io/                          |
-| [Yup](https://autroshot.github.io/docs-repository/docs/miscellaneous/yup)                                     | https://github.com/jquense/yup                  |
-| [정규 표현식](https://autroshot.github.io/docs-repository/docs/miscellaneous/regular-expression)                             | 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트 |
+| [Cypress](https://autroshot.github.io/docs-repository/docs/cypress) | https://docs.cypress.io/                        |
+| [Chakra UI](https://autroshot.github.io/docs-repository/docs/miscellaneous/chakra-ui) | https://chakra-ui.com/                          |
+| [Emmet](https://autroshot.github.io/docs-repository/docs/miscellaneous/emmet) | https://docs.emmet.io/                          |
+| [Yup](https://autroshot.github.io/docs-repository/docs/miscellaneous/yup) | https://github.com/jquense/yup                  |
+| [정규 표현식](https://autroshot.github.io/docs-repository/docs/miscellaneous/regular-expression) | 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트 |
