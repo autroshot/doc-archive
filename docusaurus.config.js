@@ -96,6 +96,11 @@ const config = {
             items: [
               {
                 type: 'doc',
+                label: 'Chakra UI',
+                docId: 'miscellaneous/chakra-ui/README',
+              },
+              {
+                type: 'doc',
                 label: 'Emmet',
                 docId: 'miscellaneous/emmet/README',
               },
@@ -128,6 +133,10 @@ const config = {
               {
                 label: 'Cypress',
                 to: '/docs/cypress',
+              },
+              {
+                label: 'Chakra UI',
+                to: '/docs/miscellaneous/chakra-ui',
               },
               {
                 label: 'Emmet',
