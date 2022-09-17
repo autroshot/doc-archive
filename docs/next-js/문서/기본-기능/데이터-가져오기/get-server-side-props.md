@@ -9,7 +9,7 @@ sidebar_position: 1
 ```jsx
 export async function getServerSideProps(context) {
   return {
-    props: {}, // 페이지 컴포넌트에 프랍으로 전달됩니다.
+    props: {}, // 페이지 컴포넌트에 프롭으로 전달됩니다.
   };
 }
 ```
@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
 
 `getServerSideProps`는 서버 측에서만 실행되고 브라우저에서는 실행되지 않습니다. 페이지에서 `getServerSideProps`를 사용하면 다음의 작업이 수행됩니다.
 
-- 해당 페이지를 직접 요청하면 `getServerSideProps`가 요청 타임에 실행됩니다. 해당 페이지는 반환된 프랍으로 미리 렌더링됩니다.
+- 해당 페이지를 직접 요청하면 `getServerSideProps`가 요청 타임에 실행됩니다. 해당 페이지는 반환된 프롭으로 미리 렌더링됩니다.
 - [`next/link`](https://nextjs.org/docs/api-reference/next/link)나 [`next/router`](https://nextjs.org/docs/api-reference/next/router)를 통해 클라이언트 측 페이지 전환에서 해당 페이지를 요청하면, 넥스트가 `getServerSideProps`을 실행하는 API 요청을 서버에 보냅니다.
 
 `getServerSideProps`는 페이지를 렌더링하는 데 사용할 JSON을 반환합니다. 이 모든 작업은 넥스트에서 자동으로 처리되므로 `getServerSideProps` 정의 외에는 추가 작업을 수행할 필요가 없습니다.
@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
 
 `getServerSideProps`를 독립된 함수로 내보내야 한다는 점을 유의해야 합니다. `getServerSideProps`를 페이지 컴포넌트의 프로퍼티로 추가하면 작동하지 않습니다.
 
-[`getServerSideProps` API 레퍼런스](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props)는 `getServerSideProps`에서 사용할 수 있는 모든 매개변수와 프랍을 다룹니다.
+[`getServerSideProps` API 레퍼런스](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props)는 `getServerSideProps`에서 사용할 수 있는 모든 매개변수와 프롭을 다룹니다.
 
 ## 사용 시기
 
@@ -75,7 +75,7 @@ export async function getServerSideProps() {
   const res = await fetch(`https://.../data`);
   const data = await res.json();
 
-  // data를 페이지에 프랍으로 전달합니다.
+  // data를 페이지에 프롭으로 전달합니다.
   return { props: { data } };
 }
 

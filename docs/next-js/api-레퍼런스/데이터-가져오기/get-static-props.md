@@ -9,7 +9,7 @@ sidebar_position: 1
 ```jsx
 export async function getStaticProps(context) {
   return {
-    props: {}, // 페이지 컴포넌트에 프랍으로 전달됩니다.
+    props: {}, // 페이지 컴포넌트에 프롭으로 전달됩니다.
   };
 }
 ```

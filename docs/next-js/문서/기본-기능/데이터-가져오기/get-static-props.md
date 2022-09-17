@@ -9,7 +9,7 @@ sidebar_position: 3
 ```jsx
 export async function getStaticProps(context) {
   return {
-    props: {}, // 페이지 컴포넌트에 프랍으로 전달됩니다.
+    props: {}, // 페이지 컴포넌트에 프롭으로 전달됩니다.
   };
 }
 ```
@@ -68,7 +68,7 @@ export async function getStaticProps() {
   const posts = await res.json();
 
   // { props: { posts } }을 반환함으로써, Blog 컴포넌트는
-  // posts를 빌드 타임에 프랍으로 받을 것입니다.
+  // posts를 빌드 타임에 프롭으로 받을 것입니다.
   return {
     props: {
       posts,
@@ -79,7 +79,7 @@ export async function getStaticProps() {
 export default Blog;
 ```
 
-[`getStaticProps` API 레퍼런스](https://nextjs.org/docs/api-reference/data-fetching/get-static-props)는 `getStaticProps`에서 사용할 수 있는 모든 매개변수와 프랍을 다룹니다.
+[`getStaticProps` API 레퍼런스](https://nextjs.org/docs/api-reference/data-fetching/get-static-props)는 `getStaticProps`에서 사용할 수 있는 모든 매개변수와 프롭을 다룹니다.
 
 ## 서버 측 코드 직접 작성하기
 
@@ -110,7 +110,7 @@ export async function getStaticProps() {
   // 동일한 함수를 호출할 수 있습니다.
   const posts = await loadPosts();
 
-  // 반환되는 프랍은 페이지 컴포넌트에 전달됩니다.
+  // 반환되는 프롭은 페이지 컴포넌트에 전달됩니다.
   return { props: { posts } };
 }
 ```
@@ -123,7 +123,7 @@ export async function getStaticProps() {
 
 `getStaticProps`가 포함된 페이지가 빌드 타임에 미리 렌더링되면, 넥스트가 페이지 HTML 파일 외에 `getStaticProps`의 실행 결과를 담은 JSON 파일을 생성합니다.
 
-JSON 파일은 [`next/link`](https://nextjs.org/docs/api-reference/next/link)이나 [`next/router`](https://nextjs.org/docs/api-reference/next/router)를 통한 클라이언트 측 라우팅에 사용됩니다. `getStaticProps`를 사용하여 미리 렌더링된 페이지로 이동하면 넥스트가 이 JSON 파일(빌드 타임에 미리 계산됨)을 가져와 페이지 컴포넌트의 프랍으로 사용합니다. 즉, 클라이언트 측 페이지 전환은 내보내진 JSON만 사용하고 `getStaticProps` 자체를 호출하지는 않습니다.
+JSON 파일은 [`next/link`](https://nextjs.org/docs/api-reference/next/link)이나 [`next/router`](https://nextjs.org/docs/api-reference/next/router)를 통한 클라이언트 측 라우팅에 사용됩니다. `getStaticProps`를 사용하여 미리 렌더링된 페이지로 이동하면 넥스트가 이 JSON 파일(빌드 타임에 미리 계산됨)을 가져와 페이지 컴포넌트의 프롭으로 사용합니다. 즉, 클라이언트 측 페이지 전환은 내보내진 JSON만 사용하고 `getStaticProps` 자체를 호출하지는 않습니다.
 
 ## 사용 위치
 
@@ -135,7 +135,7 @@ JSON 파일은 [`next/link`](https://nextjs.org/docs/api-reference/next/link)이
 
 :::note 참고
 
-[사용자 정의 앱](https://nextjs.org/docs/advanced-features/custom-app)을 만든 경우에는 `pageProps`를 링크 문서에 설명된 대로 페이지 컴포넌트에 전달하고 있는지 확인인해야 합니다. 그렇지 않으면 프랍이 비어 있을 것입니다.
+[사용자 정의 앱](https://nextjs.org/docs/advanced-features/custom-app)을 만든 경우에는 `pageProps`를 링크 문서에 설명된 대로 페이지 컴포넌트에 전달하고 있는지 확인인해야 합니다. 그렇지 않으면 프롭이 비어 있을 것입니다.
 
 :::
 
