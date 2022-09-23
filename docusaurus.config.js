@@ -118,6 +118,11 @@ const config = {
             ],
           },
           {
+            href: 'https://docs-glossary.vercel.app/',
+            label: '용어집',
+            position: 'right',
+          },
+          {
             href: 'https://github.com/autroshot/docs-repository',
             label: 'GitHub',
             position: 'right',
@@ -164,6 +169,10 @@ const config = {
           {
             title: 'More',
             items: [
+              {
+                label: '용어집',
+                href: 'https://docs-glossary.vercel.app/',
+              },
               {
                 label: 'GitHub',
                 href: 'https://github.com/autroshot/docs-repository',
