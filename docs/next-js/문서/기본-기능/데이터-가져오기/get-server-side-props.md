@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
 
 API 경로는 CMS에서 일부 데이터를 가져오는 데 사용됩니다. 그러면 해당 API 경로가 `getServerSideProps`에서 직접 호출됩니다. 이 방식은 추가 호출이 발생하여 성능이 저하됩니다.
 
-대신 API 경로 내부에서 사용되는 로직을 `getServerSideProps`로 직접 옮기는 것이 좋습니다. 이는 `getServerSideProps` 내부에서 직접 CMS, 데이터베이스, 기타 API를 호출하는 것을 의미합니다.
+대신 API 경로 내부에서 사용되는 논리를 `getServerSideProps`로 직접 옮기는 것이 좋습니다. 이는 `getServerSideProps` 내부에서 직접 CMS, 데이터베이스, 기타 API를 호출하는 것을 의미합니다.
 
 ## 클라이언트 측에서 데이터 가져오기
 

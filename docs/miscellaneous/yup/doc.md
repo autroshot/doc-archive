@@ -44,7 +44,7 @@ const parsedUser = userSchema.cast({
 // ✅ { name: 'jimmy', age: 24, createdOn: Date }
 ```
 
-입력 값이 이미 파싱된 상태라면 입력 값의 유효성을 **엄격하게** 확인하고 파싱 로직 실행 비용을 아낄 수 있습니다.
+입력 값이 이미 파싱된 상태라면 입력 값의 유효성을 **엄격하게** 확인하고 파싱 논리 실행 비용을 아낄 수 있습니다.
 
 ```typescript
 // ❌ 유효성 검사 오류 "age is not a number"
