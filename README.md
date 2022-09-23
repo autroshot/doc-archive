@@ -10,12 +10,15 @@ https://autroshot.github.io/docs-repository/
 
 잘못된 번역이나 빠진 내용이 존재할 수 있으므로 정확한 내용은 원문을 확인해 주세요.
 
+번역에 사용된 용어집은 [https://docs-glossary.vercel.app/](https://docs-glossary.vercel.app/)을 확인하세요.
+
 문서의 목록과 원문 URL 또는 출처는 다음과 같습니다.
 
 | 문서                                                         | 원문 URL 또는 출처                              |
 | ------------------------------------------------------------ | ----------------------------------------------- |
 | [Next.js](https://autroshot.github.io/docs-repository/docs/next-js) | https://nextjs.org/                             |
 | [Cypress](https://autroshot.github.io/docs-repository/docs/cypress) | https://docs.cypress.io/                        |
+| [TypeScript](https://autroshot.github.io/docs-repository/docs/typescript) | https://www.typescriptlang.org/                 |
 | [Chakra UI](https://autroshot.github.io/docs-repository/docs/miscellaneous/chakra-ui) | https://chakra-ui.com/                          |
 | [Emmet](https://autroshot.github.io/docs-repository/docs/miscellaneous/emmet) | https://docs.emmet.io/                          |
 | [Yup](https://autroshot.github.io/docs-repository/docs/miscellaneous/yup) | https://github.com/jquense/yup                  |
