@@ -96,6 +96,11 @@ const config = {
             items: [
               {
                 type: 'doc',
+                label: 'TypeScript',
+                docId: 'miscellaneous/typescript/README',
+              },
+              {
+                type: 'doc',
                 label: 'Chakra UI',
                 docId: 'miscellaneous/chakra-ui/README',
               },
@@ -133,6 +138,10 @@ const config = {
               {
                 label: 'Cypress',
                 to: '/docs/cypress',
+              },
+              {
+                label: 'TypeScript',
+                to: '/docs/miscellaneous/typescript',
               },
               {
                 label: 'Chakra UI',
