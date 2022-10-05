@@ -101,6 +101,11 @@ const config = {
               },
               {
                 type: 'doc',
+                label: 'NextAuth.js',
+                docId: 'miscellaneous/next-auth-js/README',
+              },
+              {
+                type: 'doc',
                 label: 'Chakra UI',
                 docId: 'miscellaneous/chakra-ui/README',
               },
@@ -147,6 +152,10 @@ const config = {
               {
                 label: 'TypeScript',
                 to: '/docs/miscellaneous/typescript',
+              },
+              {
+                label: 'NextAuth.js',
+                to: '/docs/miscellaneous/next-auth-js',
               },
               {
                 label: 'Chakra UI',
