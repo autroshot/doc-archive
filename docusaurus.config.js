@@ -186,12 +186,6 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-      algolia: {
-        appId: 'DTB1ZB4N9U',
-        apiKey: 'eb9b7362e0d90ba6b6088870222d203d',
-        indexName: 'docs_repository',
-        contextualSearch: true,
-      },
     }),
   plugins: [['@docusaurus/plugin-ideal-image', { disableInDev: false }]],
 };
