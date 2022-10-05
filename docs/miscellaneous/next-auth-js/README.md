@@ -13,9 +13,9 @@ sidebar_position: 1
 - 모든 OAuth 서비스와 함께 작동하도록 설계되었으며 OAuth 1.0, 1.0A, 2.0 그리고 오픈ID 커넥트(OIDC)를 지원
 - 여러 인기 있는 로그인 서비스를 내장 지원
 - 이메일, 비밀번호가 없는 인증 지원
-- 모든 백엔드(Active Directory, LDAP 등)에서 무상태 인증 지원
+- 모든 백엔드(액티브 디렉터리, LDAP 등)에서 무상태 인증 지원
 - JSON 웹 토큰(JWT) 및 데이터베이스 세션 모두 지원
-- 서버리스용으로 설계되었지만 어디서나 실행 가능 (AWS Lambda, Docker, Heroku 등)
+- 서버리스용으로 설계되었지만 어디서나 실행 가능 (AWS 람다, 도커, 헤로쿠 등)
 
 ### 자체 데이터를 소유
 
@@ -23,7 +23,7 @@ sidebar_position: 1
 
 - 데이터를 계속 제어할 수 있는 오픈 소스 솔루션
 - BYOD(Bring Your Own Database)를 지원하며 모든 데이터베이스와 함께 사용 가능
-- MySQL, MariaDB, Postgres, SQL Server, 몽고DB, SQLite에 대한 내장 지원
+- 마이SQL, 마리아DB, 포스트그레, SQL 서버, 몽고DB, SQL라이트에 대한 내장 지원
 - 인기 있는 호스팅 제공업체의 데이터베이스와 잘 작동함
 - 데이터베이스 없이도 사용 가능 (예: OAuth + JWT)
 
