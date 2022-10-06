@@ -15,19 +15,23 @@ sidebar_position: 1
     email: string
     image: string
   },
-  expires: Date // 이것은 세션 내의 토큰이 아닌 세션의 만료입니다.
+  expires: Date // 세션 내의 토큰의 만료가 아니라 세션 자체의 만료입니다.
 }
 ```
 
-> **팁**
->
-> 클라이언트에 반환된 세션 데이터에는 세션 토큰 또는 OAuth 토큰과 같은 민감한 정보가 포함되어 있지 않다. 여기에는 설명을 위해 로그인한 사용자에 대한 정보(예: 이름, 이메일, 이미지)를 페이지에 표시하는 데 필요한 데이터가 들어 있는 최소한의 페이로드가 포함됩니다.
->
-> 세션 객체에서 추가 데이터를 반환해야 하는 경우 세션 콜백을 사용하여 클라이언트에 반환된 세션 객체를 커스타마이즈할 수 있습니다.
+:::tip
 
-> **참고**
->
-> `expires` 값은 순환됩니다. 즉, 레스트 API에서 세션을 검색할 때마다 이 값도 업데이트되어 세션 만료를 방지합니다.
+클라이언트에 반환된 세션 데이터에는 세션 토큰 또는 OAuth 토큰과 같은 민감한 정보가 포함되어 있지 않다. 여기에는 설명을 위해 로그인한 사용자에 대한 정보(예: 이름, 이메일, 이미지)를 페이지에 표시하는 데 필요한 데이터가 들어 있는 최소한의 페이로드가 포함됩니다.
+
+세션 객체에서 추가 데이터를 반환해야 하는 경우 세션 콜백을 사용하여 클라이언트에 반환된 세션 객체를 커스타마이즈할 수 있습니다.
+
+:::
+
+:::note 참고
+
+`expires` 값은 순환됩니다. 즉, 레스트 API에서 세션을 검색할 때마다 이 값도 업데이트되어 세션 만료를 방지합니다.
+
+:::
 
 ## `useSession()`
 
@@ -62,7 +66,7 @@ export default function Component() {
   - 성공할 경우 `Session`
 - `status` - 가능한 세 가지 세션 상태에 대한 열거형 매핑 `"loading" | "authenticated" | "unauthenticated"`
 
-### 세션 필요
+### 세션이 필요
 
 넥스트의 `getServerSideProps`와 `getInitialProps` 작동 방식 때문에, 모든 보호된 페이지 로드는 세션이 유효한지 확인한 이후에 요청된 페이지(SSR)를 생성하기 위해 서버 측 요청을 해야 합니다. 이렇게 하면 서버 부하가 증가하므로 클라이언트 요청에 능숙하다면 대안이 있습니다. `useSession`을 사용해 항상 유효한 세션이 있는지 확인하는 것입니다.
 
@@ -70,9 +74,7 @@ export default function Component() {
 
 예시:
 
-```jsx
-// pages/protected.jsx
-
+```jsx title="pages/protected.jsx"
 import { useSession } from "next-auth/react"
 
 export default function Admin() {
@@ -95,9 +97,7 @@ export default function Admin() {
 
 넥스트의 `getServerSideProps`와 `getInitialProps` 작동 방식 때문에, 모든 보호된 페이지 로드는 세션이 유효한지 확인한 이후에 요청된 페이지를 생성하기 위해 서버 측 요청을 해야 합니다. 이 대체 솔루션을 사용하면 서버를 확인하고 페이지를 다시 생성할 필요 없이, 초기 확인에서 로드 상태를 표시할 수 있으며 이후의 모든 페이지 전환은 클라이언트 측에서 처리합니다.
 
-```jsx
-// pages/admin.jsx
-
+```jsx title="pages/admin.jsx"
 export default function AdminDashboard() {
   const { data: session } = useSession()
   // 이 페이지 내의 리액트 트리에서는 세션이 항상 null이 아닙니다.
@@ -107,9 +107,7 @@ export default function AdminDashboard() {
 AdminDashboard.auth = true
 ```
 
-```jsx
-// pages/_app.jsx
-
+```jsx title="pages/_app.jsx"
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
@@ -143,9 +141,7 @@ function Auth({ children }) {
 
 예시:
 
-```jsx
-// pages/admin.jsx
-
+```jsx title="pages/admin.jsx"
 AdminDashboard.auth = {
   role: "admin",
   loading: <AdminLoadingSkeleton />,
@@ -153,7 +149,7 @@ AdminDashboard.auth = {
 }
 ```
 
-`_app`의 로직 덕분에 인증이 필요하지 않은 페이지는 `/api/auth/session` 엔드포인트에 불필요하게 연결되지 않습니다.
+`_app`의 논리 덕분에 인증이 필요하지 않은 페이지는 `/api/auth/session` 엔드포인트에 불필요하게 연결되지 않습니다.
 
 자세한 내용은 [깃허브 이슈](https://github.com/nextauthjs/next-auth/issues/1210)에서 확인하세요.
 
@@ -170,9 +166,11 @@ AdminDashboard.auth = {
 
 서버 측에서 `getSession()`을 여전히 사용할 수는 있지만 앞으로는 `unstable_getServerSession`을 사용하는 것을 권장합니다. 이는 서버 측에서의 불필요한 추가 `fetch` 호출을 피하기 위함입니다. 자세한 내용은 [이슈](https://github.com/nextauthjs/next-auth/issues/1535)를 확인하세요.
 
-> **참고**
->
-> API는 향후 변경될 수 있으므로 `unstable_getServerSession`에는 현재 `unstable_` 접두사가 붙어 있습니다. 현재 알려진 버그는 없으며 사용에 문제가 없습니다.
+:::note 참고
+
+API는 향후 변경될 수 있으므로 `unstable_getServerSession`에는 현재 `unstable_` 접두사가 붙어 있습니다. 현재 알려진 버그는 없으며 사용에 문제가 없습니다.
+
+:::
 
 이 헬퍼는 리액트 컨텍스트 외부에서 세션을 읽으려는 경우에 유용합니다.
 
@@ -230,9 +228,7 @@ export default async (req, res) => {
 
 API 경로 예시:
 
-```jsx
-// pages/api/example.js
-
+```jsx title="pages/api/example.js"
 import { getProviders } from "next-auth/react"
 
 export default async (req, res) => {
@@ -242,9 +238,11 @@ export default async (req, res) => {
 }
 ```
 
-> **참고**
->
-> `getCsrfToken()`와 달리, 서버 측에서 `getProviders()`를 호출할 때 클라이언트 측에서 호출하는 것처럼 아무 것도 건네줄 필요가 없습니다.
+:::note 참고
+
+`getCsrfToken()`와 달리, 서버 측에서 `getProviders()`를 호출할 때 클라이언트 측에서 호출하는 것처럼 아무 것도 건네줄 필요가 없습니다.
+
+:::
 
 ## `signIn()`
 
@@ -297,24 +295,39 @@ export default ({ email }) => (
 
 예시:
 
-- `signIn(undefined, { callbackUrl: '/foo' })`
-- `signIn('google', { callbackUrl: 'http://localhost:3000/bar' })`
-- `signIn('email', { email, callbackUrl: 'http://localhost:3000/foo' })`
+```jsx
+signIn(undefined, { callbackUrl: '/foo' })
+```
+
+```jsx
+signIn('google', { callbackUrl: 'http://localhost:3000/bar' })
+```
+
+```jsx
+signIn('email', { email, callbackUrl: 'http://localhost:3000/foo' })
+```
 
 URL은 [리디렉션 콜백 핸들러](https://next-auth.js.org/configuration/callbacks#redirect-callback)에서 유효한 것이어야 합니다. 기본적으로 URL은 동일한 호스트 이름의 절대 URL이거나 `/`로 시작하는 상대 URL이어야 합니다. 일치하지 않으면 홈페이지로 리디렉션됩니다. 다른 URL을 허용하도록 고유한 [리디렉션 콜백](https://next-auth.js.org/configuration/callbacks#redirect-callback)을 정의하는 것도 가능합니다.
 
 ### `redirect: false` 옵션 사용하기
 
-> **참고**
->
-> 리디렉션 옵션은 `credentials`과 `email` 제공자에서만 사용 가능합니다.
+:::note 참고
+
+리디렉션 옵션은 `credentials`과 `email` 제공자에서만 사용 가능합니다.
+
+:::
 
 경우에 따라 동일한 페이지에서 로그인 응답을 처리하고 기본 리디렉션을 비활성화할 수 있습니다. 예를 들어 오류가 발생하는 경우(예: 사용자가 잘못된 자격 증명을 제공) 동일한 페이지에서 오류를 처리할 수 있습니다. 이를 위해 두 번째 매개변수 객체에 `redirect: false`를 전달합니다.
 
 예시:
 
-- `signIn('credentials', { redirect: false, password: 'password' })`
-- `signIn('email', { redirect: false, email: 'bill@fillmurray.com' })`
+```jsx
+signIn('credentials', { redirect: false, password: 'password' })
+```
+
+```jsx
+signIn('email', { redirect: false, email: 'bill@fillmurray.com' })
+```
 
 그러면 `signIn`에서 다음과 같이 이행되는 프라미스를 반환합니다.
 
@@ -348,16 +361,27 @@ URL은 [리디렉션 콜백 핸들러](https://next-auth.js.org/configuration/ca
 
 예시:
 
-- `signIn("identity-server4", null, { prompt: "login" })` - 항상 사용자에게 재인증을 요청
-- `signIn("auth0", null, { login_hint: "info@example.com" })` - 제공자에게 이메일 주소를 알려줌
+```jsx
+// 항상 사용자에게 재인증을 요청
+signIn("identity-server4", null, { prompt: "login" })
+```
 
-> **참고**
->
-> [`provider.authorizationParams`](https://next-auth.js.org/configuration/providers/oauth#options)로 이 매개변수를 설정하는 것도 가능합니다.
+```jsx
+// 제공자에게 이메일 주소를 알려줌
+signIn("auth0", null, { login_hint: "info@example.com" })
+```
 
-> **참고**
->
-> `redirect_uri`, `state` 매개변수는 항상 서버 측에서 재정의됩니다. 
+:::note 참고
+
+[`provider.authorizationParams`](https://next-auth.js.org/configuration/providers/oauth#options)로 이 매개변수를 설정하는 것도 가능합니다.
+
+:::
+
+:::note 참고
+
+`redirect_uri`, `state` 매개변수는 항상 서버 측에서 재정의됩니다.
+
+:::
 
 ## `signOut()`
 
@@ -378,7 +402,11 @@ export default () => <button onClick={() => signOut()}>Sign out</button>
 
 `signIn()` 함수와 동일하게 `callbackUrl` 매개변수를 옵션으로 전달할 수 있습니다.
 
-예시 - `signOut({ callbackUrl: 'http://localhost:3000/foo' })`
+예시:
+
+```jsx
+signOut({ callbackUrl: 'http://localhost:3000/foo' })
+```
 
 URL은 [리디렉션 콜백 핸들러](https://next-auth.js.org/configuration/callbacks#redirect-callback)에서 유효한 것이어야 합니다. 기본적으로 URL은 동일한 호스트 이름의 절대 URL이거나 `/`로 시작하는 상대 URL이어야 합니다. 일치하지 않으면 홈페이지로 리디렉션됩니다. 다른 URL을 허용하도록 고유한 리디렉션 콜백을 정의하는 것도 가능합니다.
 
@@ -386,17 +414,17 @@ URL은 [리디렉션 콜백 핸들러](https://next-auth.js.org/configuration/ca
 
 `signOut`에 `redirect: false`를 전달하면 페이지가 다시 로드되지 않습니다. 세션이 삭제되고 `useSession` 훅에 알림이 전송되어 사용자와 관련된 모든 것이 자동으로 로그아웃됩니다. 이는 사용자에게 매우 만족스러운 경험을 선사합니다.
 
-> **팁**
->
-> 다른 페이지로 리디렉션하면서도 페이지를 다시 로드하지 않으려면 `const data = waitsignOut({redirect: false, callbackUrl: "/foo"})`를 시도해 보세요. 여기서 `data.url`은 넥스트의 `useRouter().push(data.url)`을 사용하여 깜빡임 없이 사용자를 리디렉션할 수 있는 유효한 URL입니다.
+:::tip
+
+다른 페이지로 리디렉션하면서도 페이지를 다시 로드하지 않으려면 `const data = waitsignOut({redirect: false, callbackUrl: "/foo"})`를 시도해 보세요. 여기서 `data.url`은 넥스트의 `useRouter().push(data.url)`을 사용하여 깜빡임 없이 사용자를 리디렉션할 수 있는 유효한 URL입니다.
+
+:::
 
 ## `SessionProvider`
 
 제공된 `<SessionProvider>`를 사용하면 `useSession()`의 인스턴스가 장막 뒤에서 [리액트 컨텍스트](https://reactjs.org/docs/context.html)를 사용해 컴포넌트 간에 세션 객체를 공유합니다. 또한 탭·창 간에 세션을 업데이트하고 동기화되게 관리합니다.
 
-```jsx
-// pages/_app.js
-
+```jsx title="pages/_app.js"
 import { SessionProvider } from "next-auth/react"
 
 export default function App({
@@ -415,9 +443,7 @@ export default function App({
 
 그러나 이는 올바른 `pageProps`를 건네준 페이지에서만 유효합니다. 보통은 다음과 같이 `getInitialProps`나 `getServerSideProps`에서 개별 페이지 단위로 수행됩니다.
 
-```jsx
-// pages/index.js
-
+```jsx title="pages/index.js"
 import { unstable_getServerSession } from "next-auth/next"
 import { authOptions } from './api/auth/[...nextauth]'
 
@@ -442,9 +468,7 @@ export async function getServerSideProps({ req, res }) {
 
 그러나 세션 동작을 커스터마이즈하고 싶거나 짧은 세션 만료 시간을 원한다면, 해당 옵션을 제공자에게 건네줘서 `useSession()` 훅의 동작을 커스터마이즈합니다.
 
-```jsx
-// pages/_app.js
-
+```jsx title="pages/_app.js"
 import { SessionProvider } from "next-auth/react"
 
 export default function App({
@@ -467,13 +491,15 @@ export default function App({
 }
 ```
 
-> **참고**
->
-> 이 옵션은 로그인하지 않은 클라이언트에는 영향을 미치지 않습니다.
->
-> 모든 탭·창은 로컬 세션 상태의 자체 복사본을 유지 관리합니다. 세션은 로컬스토리지나 세션스토리지와 같은 공유 저장소에 저장되지 않습니다. 한 탭·창의 업데이트는 다른 탭·창에 대한 메시지를 트리거하여 자체 세션 상태를 업데이트합니다.
->
-> `refetchInterval`에 작은 값을 사용하면 인증된 클라이언트의 네트워크 트래픽과 부하가 증가하고 호스팅 비용과 성능에 영향을 미칠 수 있습니다.
+:::note 참고
+
+이 옵션은 로그인하지 않은 클라이언트에는 영향을 미치지 않습니다.
+
+모든 탭·창은 로컬 세션 상태의 자체 복사본을 유지 관리합니다. 세션은 로컬스토리지나 세션스토리지와 같은 공유 저장소에 저장되지 않습니다. 한 탭·창의 업데이트는 다른 탭·창에 대한 메시지를 트리거하여 자체 세션 상태를 업데이트합니다.
+
+`refetchInterval`에 작은 값을 사용하면 인증된 클라이언트의 네트워크 트래픽과 부하가 증가하고 호스팅 비용과 성능에 영향을 미칠 수 있습니다.
+
+:::
 
 #### 기본 경로
 
@@ -497,9 +523,11 @@ export default function App({
 
 그러나 `false`로 설정된 경우, 세션 다시 가져오기를 중지하고 컴포넌트는 그대로 유지됩니다.
 
-> **참고**
->
-> 넥스트 앱의 `_app.js`에 대한 자세한 내용은 [넥스트 문서](https://nextjs.org/docs/advanced-features/custom-app)를 참고하세요.
+:::note 참고
+
+넥스트 앱의 `_app.js`에 대한 자세한 내용은 [넥스트 문서](https://nextjs.org/docs/advanced-features/custom-app)를 참고하세요.
+
+:::
 
 ### 커스텀 기본 경로
 
@@ -513,9 +541,7 @@ export default function App({
 NEXTAUTH_URL=https://example.com/custom-route/api/auth
 ```
 
-```jsx
-// pages/_app.js
-
+```jsx title="pages/_app.js"
 import { SessionProvider } from "next-auth/react"
 export default function App({
   Component,
@@ -528,4 +554,3 @@ export default function App({
   )
 }
 ```
-
