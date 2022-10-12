@@ -2,6 +2,10 @@
 sidebar_position: 1
 ---
 
+import Image from '@theme/IdealImage';
+import signInComplex from '/img/docs/next-auth-js/complex-sign-in.png';
+import styles from './자격-증명.module.css';
+
 # 자격 증명
 
 ## 개요
@@ -134,3 +138,5 @@ providers: [
   }),
   /* ... 추가 제공자 ... */
 ```
+
+<Image img={signInComplex} alt={'복잡한 로그인'} className={styles.image} />
