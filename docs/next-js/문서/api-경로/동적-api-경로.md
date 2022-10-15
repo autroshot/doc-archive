@@ -17,7 +17,7 @@ export default function handler(req, res) {
 
 이제 `/api/post/abc`에 대한 요청은 `Post: abc`로 응답합니다.
 
-### 인덱스 경로와 동적 API 경로
+### 색인 경로와 동적 API 경로
 
 매우 일반적인 RESTful 패턴은 경로를 다음과 같이 설정하는 것입니다.
 
