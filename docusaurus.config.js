@@ -201,6 +201,7 @@ const config = {
     [
       require.resolve('docusaurus-lunr-search'),
       {
+        indexBaseUrl: true,
         languages: ['ko', 'en'],
       },
     ],
