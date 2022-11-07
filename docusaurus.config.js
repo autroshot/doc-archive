@@ -134,8 +134,9 @@ const config = {
           },
           {
             href: 'https://github.com/autroshot/docs-repository',
-            label: 'GitHub',
             position: 'right',
+            className: 'header-github-link',
+            'aria-label': '깃허브',
           },
         ],
         hideOnScroll: true,
@@ -192,7 +193,7 @@ const config = {
                 href: 'https://docs-glossary.vercel.app/',
               },
               {
-                label: 'GitHub',
+                label: '깃허브',
                 href: 'https://github.com/autroshot/docs-repository',
               },
             ],
