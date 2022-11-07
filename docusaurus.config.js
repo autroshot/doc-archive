@@ -96,6 +96,11 @@ const config = {
             items: [
               {
                 type: 'doc',
+                label: 'JavaScript',
+                docId: 'miscellaneous/javascript/배열과-메서드',
+              },
+              {
+                type: 'doc',
                 label: 'TypeScript',
                 docId: 'miscellaneous/typescript/README',
               },
@@ -148,6 +153,10 @@ const config = {
               {
                 label: 'Cypress',
                 to: '/docs/cypress',
+              },
+              {
+                label: 'JavaScript',
+                to: '/docs/miscellaneous/javascript/배열과-메서드',
               },
               {
                 label: 'TypeScript',
