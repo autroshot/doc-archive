@@ -347,7 +347,7 @@ signIn('email', { redirect: false, email: 'bill@fillmurray.com' })
   ok: boolean
   /**
    * 오류가 있었다면 null입니다.
-   * 그렇지 않으면 사용자가 리디렉션될 url입니다.
+   * 그러지 않으면 사용자가 리디렉션될 url입니다.
    */
   url: string | null
 }
