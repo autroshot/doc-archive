@@ -116,6 +116,11 @@ const config = {
               },
               {
                 type: 'doc',
+                label: 'Jest',
+                docId: 'miscellaneous/jest/README',
+              },
+              {
+                type: 'doc',
                 label: 'Emmet',
                 docId: 'miscellaneous/emmet/README',
               },
@@ -170,6 +175,10 @@ const config = {
               {
                 label: 'Chakra UI',
                 to: '/docs/miscellaneous/chakra-ui',
+              },
+              {
+                label: 'Jest',
+                to: '/docs/miscellaneous/jest',
               },
               {
                 label: 'Emmet',
