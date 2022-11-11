@@ -217,10 +217,7 @@ const config = {
     }),
   plugins: [
     ['@docusaurus/plugin-ideal-image', { disableInDev: false }],
-    [
-      require.resolve('docusaurus-lunr-search'),
-      { languages: ['en', 'ko'], indexBaseUrl: true },
-    ],
+    [require.resolve('docusaurus-lunr-search'), { languages: ['en', 'ko'] }],
   ],
 };
 
