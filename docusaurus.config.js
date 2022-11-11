@@ -215,7 +215,13 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-  plugins: [['@docusaurus/plugin-ideal-image', { disableInDev: false }]],
+  plugins: [
+    ['@docusaurus/plugin-ideal-image', { disableInDev: false }],
+    [
+      require.resolve('docusaurus-lunr-search'),
+      { languages: ['en', 'ko'], indexBaseUrl: true },
+    ],
+  ],
 };
 
 module.exports = config;
