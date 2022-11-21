@@ -63,7 +63,7 @@ providers: [
     },
     async authorize(credentials, req) {
       // 제공된 자격 증명에서 사용자를 조회하는 논리를 여기에 추가합니다.
-      const user = { id: 1, name: "J Smith", email: "jsmith@example.com" }
+      const user = { id: '1', name: "J Smith", email: "jsmith@example.com" }
 
       if (user) {
         // 반환된 모든 객체는 JWT의 user 프로퍼티에 저장됩니다.
