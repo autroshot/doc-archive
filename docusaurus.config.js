@@ -116,6 +116,11 @@ const config = {
               },
               {
                 type: 'doc',
+                label: 'Prisma',
+                docId: 'miscellaneous/prisma/README',
+              },
+              {
+                type: 'doc',
                 label: 'Jest',
                 docId: 'miscellaneous/jest/README',
               },
@@ -175,6 +180,10 @@ const config = {
               {
                 label: 'Chakra UI',
                 to: '/docs/miscellaneous/chakra-ui',
+              },
+              {
+                label: 'Prisma',
+                to: '/docs/miscellaneous/prisma',
               },
               {
                 label: 'Jest',
