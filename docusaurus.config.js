@@ -230,6 +230,7 @@ const config = {
       /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
+        indexBlog: false,
         // `hashed` is recommended as long-term-cache of index file is possible.
         hashed: true,
         language: ['en', 'ko'],
