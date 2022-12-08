@@ -357,7 +357,7 @@ signIn('email', { redirect: false, email: 'bill@fillmurray.com' })
 
 `signIn()`의 세 번째 인수로 `/authorize` 엔드포인트에 추가 매개변수를 전달할 수 있습니다.
 
-몇 가지 아이디어는 [인증 요청 OIDC 사양](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)을 참고합니다. (이것만이 가능한 것은 아니며 모든 매개변수가 전달됨)
+몇 가지 아이디어는 [인증 요청 OIDC 명세서](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)를 참고합니다. (이것만이 가능한 것은 아니며 모든 매개변수가 전달됨)
 
 예시:
 
