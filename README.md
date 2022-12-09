@@ -28,4 +28,4 @@ https://autroshot.github.io/docs-repository/
 | [Yup](https://autroshot.github.io/docs-repository/docs/miscellaneous/yup) | https://github.com/jquense/yup                               | 0.32  |
 | [정규 표현식](https://autroshot.github.io/docs-repository/docs/miscellaneous/regular-expression) | 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트              | 초판  |
 
-자바스크립트 문서는 자주 찾아본 내용을 정리했습니다.
+자바스크립트 문서는 미번역 문서와 자주 찾아본 내용을 정리했습니다.
