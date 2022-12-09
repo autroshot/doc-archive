@@ -97,7 +97,7 @@ const config = {
               {
                 type: 'doc',
                 label: 'JavaScript',
-                docId: 'miscellaneous/javascript/배열과-메서드',
+                docId: 'miscellaneous/javascript/키보드-keydown과-keyup',
               },
               {
                 type: 'doc',
@@ -167,7 +167,7 @@ const config = {
               },
               {
                 label: 'JavaScript',
-                to: '/docs/miscellaneous/javascript/배열과-메서드',
+                to: '/docs/miscellaneous/javascript/키보드-keydown과-keyup',
               },
               {
                 label: 'TypeScript',
