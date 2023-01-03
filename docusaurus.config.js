@@ -80,14 +80,14 @@ const config = {
           {
             type: 'doc',
             docId: 'next-js/README',
-            position: 'left',
             label: 'Next.js',
+            position: 'left',
           },
           {
             type: 'doc',
             docId: 'cypress/README',
-            position: 'left',
             label: 'Cypress',
+            position: 'left',
           },
           {
             type: 'dropdown',
@@ -96,44 +96,44 @@ const config = {
             items: [
               {
                 type: 'doc',
-                label: 'JavaScript',
                 docId: 'miscellaneous/javascript/키보드-keydown과-keyup',
+                label: 'JavaScript',
               },
               {
                 type: 'doc',
-                label: 'TypeScript',
                 docId: 'miscellaneous/typescript/README',
+                label: 'TypeScript',
               },
               {
                 type: 'doc',
-                label: 'NextAuth.js',
                 docId: 'miscellaneous/next-auth-js/README',
+                label: 'NextAuth.js',
               },
               {
                 type: 'doc',
-                label: 'Chakra UI',
                 docId: 'miscellaneous/chakra-ui/README',
+                label: 'Chakra UI',
               },
               {
                 type: 'doc',
-                label: 'Prisma',
                 docId: 'miscellaneous/prisma/README',
+                label: 'Prisma',
               },
               {
                 type: 'doc',
-                label: 'Jest',
                 docId: 'miscellaneous/jest/README',
+                label: 'Jest',
               },
               {
                 type: 'doc',
-                label: 'Emmet',
                 docId: 'miscellaneous/emmet/README',
+                label: 'Emmet',
               },
-              { type: 'doc', label: 'Yup', docId: 'miscellaneous/yup/README' },
+              { type: 'doc', docId: 'miscellaneous/yup/README', label: 'Yup' },
               {
                 type: 'doc',
-                label: '정규 표현식',
                 docId: 'miscellaneous/regular-expression/README',
+                label: '정규 표현식',
               },
             ],
           },
