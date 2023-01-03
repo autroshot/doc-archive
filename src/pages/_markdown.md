@@ -1,4 +1,4 @@
-잘못된 번역이나 빠진 내용이 존재할 수 있으므로 정확한 내용은 원문을 확인해 주세요.
+잘못된 번역이나 빠진 내용이 존재할 수 있으므로 정확한 내용은 원문을 확인하세요.
 
 번역에 사용된 용어집은 [https://docs-glossary.vercel.app/](https://docs-glossary.vercel.app/)을 확인하세요.
 
