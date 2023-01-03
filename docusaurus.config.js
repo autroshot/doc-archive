@@ -146,6 +146,18 @@ const config = {
             ],
           },
           {
+            type: 'dropdown',
+            label: '개념',
+            position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'concepts/domain-name',
+                label: '도메인 이름',
+              },
+            ],
+          },
+          {
             href: 'https://docs-glossary.vercel.app/',
             label: '용어집',
             position: 'right',
