@@ -79,6 +79,12 @@ const config = {
         items: [
           {
             type: 'doc',
+            docId: 'javascript/키보드-keydown과-keyup',
+            label: 'JavaScript',
+            position: 'left',
+          },
+          {
+            type: 'doc',
             docId: 'next-js/README',
             label: 'Next.js',
             position: 'left',
@@ -94,11 +100,6 @@ const config = {
             label: '기타',
             position: 'left',
             items: [
-              {
-                type: 'doc',
-                docId: 'miscellaneous/javascript/키보드-keydown과-keyup',
-                label: 'JavaScript',
-              },
               {
                 type: 'doc',
                 docId: 'miscellaneous/typescript/README',
