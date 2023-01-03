@@ -85,6 +85,12 @@ const config = {
           },
           {
             type: 'doc',
+            docId: 'typescript/README',
+            label: 'TypeScript',
+            position: 'left',
+          },
+          {
+            type: 'doc',
             docId: 'next-js/README',
             label: 'Next.js',
             position: 'left',
@@ -100,11 +106,6 @@ const config = {
             label: '기타',
             position: 'left',
             items: [
-              {
-                type: 'doc',
-                docId: 'miscellaneous/typescript/README',
-                label: 'TypeScript',
-              },
               {
                 type: 'doc',
                 docId: 'miscellaneous/next-auth-js/README',
@@ -163,16 +164,16 @@ const config = {
                 to: '/docs/javascript/키보드-keydown과-keyup',
               },
               {
+                label: 'TypeScript',
+                to: '/docs/typescript',
+              },
+              {
                 label: 'Next.js',
                 to: '/docs/next-js',
               },
               {
                 label: 'Cypress',
                 to: '/docs/cypress',
-              },
-              {
-                label: 'TypeScript',
-                to: '/docs/miscellaneous/typescript',
               },
               {
                 label: 'NextAuth.js',
