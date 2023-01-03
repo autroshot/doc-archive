@@ -96,10 +96,21 @@ const config = {
             position: 'left',
           },
           {
-            type: 'doc',
-            docId: 'cypress/README',
-            label: 'Cypress',
+            type: 'dropdown',
+            label: '테스트',
             position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'test/jest/README',
+                label: 'Jest',
+              },
+              {
+                type: 'doc',
+                docId: 'test/cypress/README',
+                label: 'Cypress',
+              },
+            ],
           },
           {
             type: 'dropdown',
@@ -120,11 +131,6 @@ const config = {
                 type: 'doc',
                 docId: 'miscellaneous/prisma/README',
                 label: 'Prisma',
-              },
-              {
-                type: 'doc',
-                docId: 'miscellaneous/jest/README',
-                label: 'Jest',
               },
               {
                 type: 'doc',
@@ -172,8 +178,12 @@ const config = {
                 to: '/docs/next-js',
               },
               {
+                label: 'Jest',
+                to: '/docs/test/jest',
+              },
+              {
                 label: 'Cypress',
-                to: '/docs/cypress',
+                to: '/docs/test/cypress',
               },
               {
                 label: 'NextAuth.js',
@@ -186,10 +196,6 @@ const config = {
               {
                 label: 'Prisma',
                 to: '/docs/miscellaneous/prisma',
-              },
-              {
-                label: 'Jest',
-                to: '/docs/miscellaneous/jest',
               },
               {
                 label: 'Emmet',

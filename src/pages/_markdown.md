@@ -9,11 +9,11 @@
 | [JavaScript](https://autroshot.github.io/docs-repository/docs/javascript/키보드-keydown과-keyup) | https://ko.javascript.info/, https://developer.mozilla.org/ko/ | 최신  |
 | [TypeScript](https://autroshot.github.io/docs-repository/docs/miscellaneous/typescript) | https://www.typescriptlang.org/                              | 4.8   |
 | [Next.js](https://autroshot.github.io/docs-repository/docs/next-js) | https://nextjs.org/                                          | 12.2  |
+| [Jest](https://autroshot.github.io/docs-repository/docs/miscellaneous/jest) | https://jestjs.io/                                           | 29.3  |
 | [Cypress](https://autroshot.github.io/docs-repository/docs/cypress) | https://docs.cypress.io/                                     | 10.6  |
 | [NextAuth.js](https://autroshot.github.io/docs-repository/docs/miscellaneous/next-auth-js) | https://next-auth.js.org/                                    | 4     |
 | [Chakra UI](https://autroshot.github.io/docs-repository/docs/miscellaneous/chakra-ui) | https://chakra-ui.com/                                       | 2.3   |
 | [Prisma](https://autroshot.github.io/docs-repository/docs/miscellaneous/prisma) | https://www.prisma.io/                                       | 4.2.1 |
-| [Jest](https://autroshot.github.io/docs-repository/docs/miscellaneous/jest) | https://jestjs.io/                                           | 29.3  |
 | [Emmet](https://autroshot.github.io/docs-repository/docs/miscellaneous/emmet) | https://docs.emmet.io/                                       |       |
 | [Yup](https://autroshot.github.io/docs-repository/docs/miscellaneous/yup) | https://github.com/jquense/yup                               | 0.32  |
 | [정규 표현식](https://autroshot.github.io/docs-repository/docs/miscellaneous/regular-expression) | 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트              | 초판  |
