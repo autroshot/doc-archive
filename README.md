@@ -16,9 +16,9 @@ https://autroshot.github.io/docs-repository/
 
 | 문서                                                         | 원문 URL 또는 출처                                           | 버전  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ----- |
+| [JavaScript](https://autroshot.github.io/docs-repository/docs/javascript/키보드-keydown과-keyup) | https://ko.javascript.info/, https://developer.mozilla.org/ko/ | 최신  |
 | [Next.js](https://autroshot.github.io/docs-repository/docs/next-js) | https://nextjs.org/                                          | 12.2  |
 | [Cypress](https://autroshot.github.io/docs-repository/docs/cypress) | https://docs.cypress.io/                                     | 10.6  |
-| [JavaScript](https://autroshot.github.io/docs-repository/docs/miscellaneous/javascript/키보드-keydown과-keyup) | https://ko.javascript.info/, https://developer.mozilla.org/ko/ | 최신  |
 | [TypeScript](https://autroshot.github.io/docs-repository/docs/miscellaneous/typescript) | https://www.typescriptlang.org/                              | 4.8   |
 | [NextAuth.js](https://autroshot.github.io/docs-repository/docs/miscellaneous/next-auth-js) | https://next-auth.js.org/                                    | 4     |
 | [Chakra UI](https://autroshot.github.io/docs-repository/docs/miscellaneous/chakra-ui) | https://chakra-ui.com/                                       | 2.3   |

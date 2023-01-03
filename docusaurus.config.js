@@ -159,16 +159,16 @@ const config = {
             title: 'Docs',
             items: [
               {
+                label: 'JavaScript',
+                to: '/docs/javascript/키보드-keydown과-keyup',
+              },
+              {
                 label: 'Next.js',
                 to: '/docs/next-js',
               },
               {
                 label: 'Cypress',
                 to: '/docs/cypress',
-              },
-              {
-                label: 'JavaScript',
-                to: '/docs/miscellaneous/javascript/키보드-keydown과-keyup',
               },
               {
                 label: 'TypeScript',
