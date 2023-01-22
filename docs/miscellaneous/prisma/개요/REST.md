@@ -64,7 +64,7 @@ model User {
 
 이제 생성된 [프리즈마 클라이언트 API](https://www.prisma.io/docs/concepts/components/prisma-client)를 사용하여 HTTP 요청이 들어올 때 데이터베이스 작업을 수행하는 경로 컨트롤러(예: Express 사용)를 구현할 수 있습니다.
 
-아래에는 몇 가지 샘플 코드 스니펫이 있습니다. 이 코드 스니펫을 실행하고 싶다면 [REST API 예시](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-express)를 사용할 수 있습니다.
+아래에는 몇 가지 샘플 코드 조각이 있습니다. 이 코드 조각을 실행하고 싶다면 [REST API 예시](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-express)를 사용할 수 있습니다.
 
 #### GET
 
