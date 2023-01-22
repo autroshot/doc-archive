@@ -49,7 +49,7 @@ export default function Post({ post }) {
 ### `getStaticProps`와의 관계
 
 - 빌드 중에 반환된 모든 `paths`에 대해 `next build` 동안 `getStaticProps`가 실행됨
-- `fallback: true`일 때 `getStaticProps`는 백그라운드에서 실행됨
+- `fallback: true`일 때 `getStaticProps`는 뒤에서 실행됨
 - `fallback: blocking`일 때 `getStaticProps`는 초기 렌더링 전에 호출됨
 
 ## 사용 위치
