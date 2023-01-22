@@ -55,7 +55,7 @@ sidebar_position: 1
 
 ## 추가 자료
 
-기본값에 대한 자세한 설명은 커뮤니티 리소스의 다음 문서를 참고하세요.
+기본값에 대한 자세한 설명은 커뮤니티 자원의 다음 문서를 참고하세요.
 
 - [실용적인 리액트 쿼리](https://react-query-v3.tanstack.com/community/tkdodos-blog#1-practical-react-query)
 - [상태 관리자로서의 리액트 쿼리](https://react-query-v3.tanstack.com/community/tkdodos-blog#10-react-query-as-a-state-manager)
