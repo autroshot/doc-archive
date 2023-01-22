@@ -119,6 +119,11 @@ const config = {
             items: [
               {
                 type: 'doc',
+                docId: 'miscellaneous/tanstack-query/README',
+                label: 'TanStack Query',
+              },
+              {
+                type: 'doc',
                 docId: 'miscellaneous/next-auth-js/README',
                 label: 'NextAuth.js',
               },
@@ -190,6 +195,10 @@ const config = {
               {
                 label: 'Cypress',
                 to: '/docs/test/cypress',
+              },
+              {
+                label: 'TanStack Query',
+                to: '/docs/miscellaneous/tanstack-query',
               },
               {
                 label: 'NextAuth.js',
