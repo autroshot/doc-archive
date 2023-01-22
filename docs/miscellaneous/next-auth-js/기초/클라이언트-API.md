@@ -482,7 +482,7 @@ export default function App({
       basePath="cool-app"
       // 5분마다 세션을 다시 가져온다.
       refetchInterval={5 * 60}
-      // 윈도우가 초점을 얻으면 세션을 다시 가져온다.
+      // 창이 초점을 얻으면 세션을 다시 가져온다.
       refetchOnWindowFocus={true}
     >
       <Component {...pageProps} />
