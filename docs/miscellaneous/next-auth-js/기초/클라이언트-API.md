@@ -462,7 +462,7 @@ export async function getServerSideProps({ req, res }) {
 
 ### 옵션
 
-세션 상태는 열려 있는 모든 탭·창에서 자동으로 동기화되며 `refetchOnWindowFocus`가 `true`일 때는 포커스를 얻거나, 잃거나, 상태가 변경될 때(예: 사용자가 로그인 또는 로그아웃)마다 모두 업데이트됩니다.
+세션 상태는 열려 있는 모든 탭·창에서 자동으로 동기화되며 `refetchOnWindowFocus`가 `true`일 때는 초점를 얻거나, 잃거나, 상태가 변경될 때(예: 사용자가 로그인 또는 로그아웃)마다 모두 업데이트됩니다.
 
 세션 만료 시간이 30일(기본값) 이상이라면 제공자의 기본 옵션을 변경할 필요가 없습니다. 필요한 경우 클라이언트 측 함수에서 `getSession()`을 호출하여 모든 탭·창에서 세션 객체의 업데이트를 트리거할 수 있습니다.
 
@@ -482,7 +482,7 @@ export default function App({
       basePath="cool-app"
       // 5분마다 세션을 다시 가져온다.
       refetchInterval={5 * 60}
-      // 윈도우가 포커스되면 세션을 다시 가져온다.
+      // 윈도우가 초점을 얻으면 세션을 다시 가져온다.
       refetchOnWindowFocus={true}
     >
       <Component {...pageProps} />
@@ -515,11 +515,11 @@ export default function App({
 
 `refetchInterval`의 값은 항상 세션의 `maxAge` [세션 옵션](https://next-auth.js.org/configuration/options#session)의 값보다 작아야 합니다.
 
-#### 창이 포커스되면 다시 가져오기
+#### 창이 초점을 얻으면 다시 가져오기
 
-`refetchOnWindowFocus` 옵션을 사용하여 탭·창에서 포커스를 전환할 때의 세션 상태 자동 업데이트를 설정할 수 있습니다.
+`refetchOnWindowFocus` 옵션을 사용하여 탭·창에서 초점을 전환할 때의 세션 상태 자동 업데이트를 설정할 수 있습니다.
 
-`refetchOnWindowFocus`를 `true`(기본값)로 설정하면 탭·창이 포커스를 얻거나 잃을 때 탭·창이 업데이트되고 컴포넌트의 상태가 초기화됩니다.
+`refetchOnWindowFocus`를 `true`(기본값)로 설정하면 탭·창이 초점을 얻거나 잃을 때 탭·창이 업데이트되고 컴포넌트의 상태가 초기화됩니다.
 
 그러나 `false`로 설정된 경우, 세션 다시 가져오기를 중지하고 컴포넌트는 그대로 유지됩니다.
 
