@@ -10,7 +10,7 @@ https://autroshot.github.io/docs-repository/
 
 잘못된 번역이나 빠진 내용이 존재할 수 있으므로 정확한 내용은 원문을 확인하세요.
 
-용어 번역은 [용어집](https://docs-glossary.vercel.app/)에 정리했으니 참고하세요.
+용어 번역은 [용어집](https://docs-glossary.vercel.app/)에 정리되어 있습니다.
 
 문서의 목록과 원문 URL 또는 출처는 다음과 같습니다.
 
