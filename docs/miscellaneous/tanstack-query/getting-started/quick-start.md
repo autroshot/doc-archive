@@ -6,9 +6,9 @@ sidebar_position: 2
 
 이 코드 조각은 리액트 쿼리의 세 가지 핵심 개념을 간략하게 보여줍니다.
 
-- [질의](https://tanstack.com/query/latest/docs/react/guides/queries)
-- [변형](https://tanstack.com/query/latest/docs/react/guides/mutations)
-- [질의 무효화](https://tanstack.com/query/latest/docs/react/guides/query-invalidation)
+- [질의](../guides-and-concepts/queries.md)
+- [변형](../guides-and-concepts/mutations.md)
+- [질의 무효화](../guides-and-concepts/query-invalidation.md)
 
 완전히 작동하는 예시를 원한다면 [simple 코드샌드박스 예시](https://tanstack.com/query/latest/docs/react/examples/react/simple)를 참고하세요.
 

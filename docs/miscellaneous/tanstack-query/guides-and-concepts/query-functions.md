@@ -84,7 +84,7 @@ function fetchTodoList({ queryKey }) {
 
 `QueryFunctionContext`는 각 질의 함수에 전달되는 객체로 다음으로 구성됩니다.
 
-- `queryKey: QueryKey`: [질의 키](https://tanstack.com/query/latest/docs/react/guides/query-keys)
+- `queryKey: QueryKey`: [질의 키](./query-keys.md)
 - `pageParam?: unknown`
    - [무한 질의](https://tanstack.com/query/latest/docs/react/guides/infinite-queries) 전용
    - 현재 페이지를 가져오는 데 사용되는 페이지 매개변수
