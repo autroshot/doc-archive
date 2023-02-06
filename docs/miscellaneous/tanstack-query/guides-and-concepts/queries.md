@@ -25,13 +25,13 @@ function App() {
 
 제공한 **고유 키**는 앱 전체에서 질의를 다시 가져오고, 캐싱하고, 공유하는 데에 내부적으로 사용됩니다.
 
-`useQuery`에서 반환된 질의 결과에는 템플릿 및 기타 데이터 사용에 필요한 질의에 대한 모든 정보가 포함되어 있습니다.
+`useQuery`에서 반환된 질의 결과에는 템플릿 및 기타 데이터 사용에 필요한 모든 정보가 포함되어 있습니다.
 
 ```tsx
 const result = useQuery({ queryKey: ['todos'], queryFn: fetchTodoList })
 ```
 
-`result` 객체에는 생산성을 높이기 위해 알아야 할 매우 중요한 상태가 몇 가지 포함되어 있습니다. 질의는 항상 다음 상태 중 하나만 가능합니다.
+`result` 객체에는 생산성을 높이기 위해 알아야 할 매우 중요한 상태가 몇 가지 포함되어 있습니다. 질의는 항상 다음 상태 중 하나입니다.
 
 - `isLoading` 또는 `status === 'loading'` - 질의에 아직 데이터가 없음
 - `isError` 또는 `status === 'error'` - 질의에 오류가 발생함
@@ -39,8 +39,8 @@ const result = useQuery({ queryKey: ['todos'], queryFn: fetchTodoList })
 
 이러한 주요 상태 외에도 질의 상태에 따라 다음과 같은 추가 정보를 사용할 수 있습니다.
 
-- `error` - 질의가 `isError` 상태이면 `error` 프로퍼티로 오류를 사용할 수 있습니다.
-- `data` - 질의가 `success` 상태이면 `data` 프로퍼티로 데이터를 사용할 수 있습니다.
+- `error` - 질의가 `isError` 상태이면 `error` 프로퍼티로 오류를 사용할 수 있음
+- `data` - 질의가 `success` 상태이면 `data` 프로퍼티로 데이터를 사용할 수 있음
 
 **대부분**의 질의는 `isLoading` 상태를 확인하고, `isError` 상태를 확인하고, 데이터를 사용할 수 있다고 가정하고 성공 상태를 렌더링하는 것으로 충분합니다.
 
@@ -108,18 +108,18 @@ function Todos() {
 - `fetchStatus === 'paused'` - 질의가 가져오려고 했지만 일시 중지됨 (자세한 내용은 [네트워크 모드](https://tanstack.com/query/latest/docs/react/guides/network-mode) 안내서를 참고)
 - `fetchStatus === 'idle'` - 질의가 현재 아무 작업도 수행하지 않음
 
-### 왜 상태가 두 개인가요?
+### 왜 상태가 두 종류인가요?
 
-뒤에서 다시 가져오기 및 `stale-while-revalidate` 논리는 `status` 및 `fetchStatus`에 대한 모든 조합을 가능하게 합니다.
+백그라운드 다시 가져오기 및 `stale-while-revalidate` 논리는 `status` 및 `fetchStatus`에 대한 모든 조합을 가능하게 합니다.
 
 예시:
 
-- `success` 상태의 질의는 일반적으로 `idle` `fetchStatus`이지만, 뒤에서 다시 가져오기가 발생하면 `fetching`일 수도 있습니다.
+- `success` 상태의 질의는 일반적으로 `idle` `fetchStatus`이지만, 백그라운드 다시 가져오기가 발생하면 `fetching`일 수도 있습니다.
 - 마운트되고 데이터가 없는 질의는 일반적으로 `loading` 상태와 `fetching` `fetchStatus`이지만, 네트워크 연결이 없다면 `paused`일 수도 있습니다.
 
-따라서 실제로 데이터를 가져오지 않고도 질의가 `loading` 상태일 수 있음을 주의하세요.
+따라서 실제로 데이터를 가져오지 않고도 질의가 `loading` 상태일 수 있다는 점을 주의하세요.
 
-일반적으로 다음과 같습니다.
+두 상태는 일반적으로 다음과 같습니다.
 
 - `status`는 `data`에 대한 정보(데이터의 유무)를 제공
 - `fetchStatus`는 `queryFn`에 대한 정보(실행 여부)를 제공
