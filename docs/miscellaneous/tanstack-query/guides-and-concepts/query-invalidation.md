@@ -22,11 +22,11 @@ queryClient.invalidateQueries({ queryKey: ['todos'] })
 질의가 `invalidateQueries`로 무효화되면 다음 두 가지 일이 발생합니다.
 
 - 오래된 것으로 표시됩니다. 이 오래된 상태는 `useQuery` 또는 관련 훅에서 사용되는 모든 `staleTime` 설정을 재정의합니다.
-- 질의가 현재 `useQuery` 또는 관련 훅을 통해 렌더링되는 경우, 뒤에서도 다시 가져옵니다.
+- 질의가 현재 `useQuery` 또는 관련 훅을 통해 렌더링되는 경우, 백그라운드에서도 다시 가져옵니다.
 
 ## `invalidateQueries`를 사용한 질의 일치
 
-`invalidateQueries`, `removeQueries`(그리고 부분적인 질의 일치를 지원하는 다른 API)와 같은 API를 사용하면 접두사를 기준으로 여러 질의를 일치시키거나, 매우 구체적인 질의와 일치시킬 수 있습니다. 사용 가능한 필터 유형에 대한 자세한 내용은 [질의 필터](https://tanstack.com/query/latest/docs/react/guides/filters#query-filters)를 참고하세요.
+`invalidateQueries`, `removeQueries` (그리고 부분적인 질의 일치를 지원하는 다른 API)와 같은 API를 사용하면 접두사를 기준으로 여러 질의를 일치시키거나, 매우 구체적인 질의와 일치시킬 수 있습니다. 사용 가능한 필터 유형에 대한 자세한 내용은 [질의 필터](https://tanstack.com/query/latest/docs/react/guides/filters#query-filters)를 참고하세요.
 
 이 예시에서는 `todos` 접두사를 사용하여 질의 키에서 `todos`로 시작하는 모든 질의를 무효화할 수 있습니다.
 

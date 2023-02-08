@@ -37,10 +37,10 @@ const result = useQuery({ queryKey: ['todos'], queryFn: fetchTodoList })
 - `isError` 또는 `status === 'error'` - 질의에 오류가 발생함
 - `isSuccess` 또는 `status === 'success'` - 쿼리가 성공했으며 데이터를 사용할 수 있음
 
-이러한 주요 상태 외에도 질의 상태에 따라 다음과 같은 추가 정보를 사용할 수 있습니다.
+이러한 주요 상태 외에도 질의 상태에 따라 다음의 추가 정보를 사용할 수 있습니다.
 
-- `error` - 질의가 `isError` 상태이면 `error` 프로퍼티로 오류를 사용할 수 있음
-- `data` - 질의가 `success` 상태이면 `data` 프로퍼티로 데이터를 사용할 수 있음
+- `error` - 질의가 `isError` 상태이면, `error` 프로퍼티로 오류를 사용할 수 있음
+- `data` - 질의가 `success` 상태이면, `data` 프로퍼티로 데이터를 사용할 수 있음
 
 **대부분**의 질의는 `isLoading` 상태를 확인하고, `isError` 상태를 확인하고, 데이터를 사용할 수 있다고 가정하고 성공 상태를 렌더링하는 것으로 충분합니다.
 

@@ -42,19 +42,19 @@ function App() {
 }
 ```
 
-변형은 항상 다음 상태 중 하나만 가능합니다.
+변형은 항상 다음 상태 중 하나입니다.
 
 - `isIdle` 또는 `status === 'idle'` - 변형이 현재 유휴 상태이거나 신선하거나 재설정 상태
 - `isLoading` 또는 `status === 'loading'` - 변형이 현재 실행 중
 - `isError` 또는 `status === 'error'` - 변형에서 오류가 발생
 - `isSuccess` 또는 `status === 'success'` - 변형이 성공했으며 변형 데이터를 사용할 수 있음
 
-이러한 주요 상태 외에도 변형 상태에 따라 더 많은 정보를 사용할 수 있습니다.
+이러한 주요 상태 외에도 변형 상태에 따라 다음의 추가 정보를 사용할 수 있습니다.
 
 - `error` - 변형이 `error` 상태이면, `error` 프로퍼티로 오류를 사용할 수 있습니다.
 - `data` - 변형이 `success` 상태이면, `data` 프로퍼티로 데이터를 사용할 수 있습니다.
 
-위의 예시에서 **하나의 변수 또는 객체**로 `mutate` 함수를 호출하여 변수를 변형 함수에 전달할 수 있음을 확인했습니다.
+위의 예시에서, **하나의 변수 또는 객체**로 `mutate` 함수를 호출하여 변수를 변형 함수에 전달할 수 있음을 확인할 수 있습니다.
 
 변수만 사용하면 변형이 그리 특별하지 않지만, `onSuccess` 옵션, [질의 클라이언트의 `invalidateQueries` 메서드](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries), [질의 클라이언트의 `setQueryData` 메서드](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientsetquerydata)와 함께 사용하면 변형이 매우 강력한 도구가 됩니다.
 
@@ -145,7 +145,7 @@ useMutation({
     // 붐 베이비!
   },
   onSettled: (data, error, variables, context) => {
-    // 오류 또는 성공... 상관없습니다!
+    // 오류 또는 성공과 상관없이 실행됩니다!
   },
 })
 ```
@@ -216,8 +216,8 @@ useMutation({
 [('Todo 1', 'Todo 2', 'Todo 3')].forEach((todo) => {
   mutate(todo, {
     onSuccess: (data, error, variables, context) => {
-      // 어떤 변형이 먼저 이행되는지에 관계없이,
-      // 마지막 변형 (Todo 3)에 대해 한 번만 실행됨
+      // 어떤 변형이 먼저 이행되는지와 관계없이,
+      // 마지막 변형(Todo 3)에 대해 한 번만 실행됨
     },
   })
 })
