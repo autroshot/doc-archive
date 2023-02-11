@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # 변형 응답에 의한 갱신
 
-서버에서 객체를 **갱신**하는 변형을 처리할 때, 변형의 응답으로 새 객체가 자동으로 반환되는 것이 일반적입니다. 해당 항목에 대한 질의를 다시 가져오고 이미 가지고 있는 데이터에 대한 네트워크 호출을 낭비하는 대신, 변형 함수가 반환한 객체를 활용할 수 있습니다. [Query Client의 `setQueryData`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientsetquerydata) 메서드를 사용하면 즉시 새 데이터로 기존 질의를 갱신할 수 있습니다.
+서버에서 객체를 **갱신**하는 변형을 처리할 때, 변형의 응답으로 새 객체가 자동으로 반환되는 것이 일반적입니다. 해당 항목에 대한 질의를 다시 가져오고 이미 가지고 있는 데이터에 대한 네트워크 호출을 낭비하는 대신, 변형 함수가 반환한 객체를 활용할 수 있습니다. [질의 클라이언트의 `setQueryData`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientsetquerydata) 메서드를 사용하면 즉시 새 데이터로 기존 질의를 갱신할 수 있습니다.
 
 ```tsx
 const queryClient = useQueryClient()
@@ -36,7 +36,7 @@ const useMutateTodo = () => {
 
   return useMutation({
     mutationFn: editTodo,
-    // 두 번째 인수는 `mutate` 함수가 받는 변수 객체입니다.
+    // 두 번째 인수는 mutate 함수가 받는 변수 객체입니다.
     onSuccess: (data, variables) => {
       queryClient.setQueryData(['todo', { id: variables.id }], data)
     },

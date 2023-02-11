@@ -19,7 +19,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const queryClient = useQueryClient()
 
-// 이 변형이 성공하면 `todos` 또는 `reminders` 질의 키가 있는 모든 질의를 무효화합니다.
+// 이 변형이 성공하면 todos 또는 reminders 질의 키가 있는 모든 질의를 무효화합니다.
 const mutation = useMutation({
   mutationFn: addTodo,
   onSuccess: () => {
