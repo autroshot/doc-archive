@@ -1,0 +1,115 @@
+---
+sidebar_position: 3
+---
+
+# 테스트 실행
+
+단일 테스트, 테스트 세트, 전체 테스트를 실행할 수 있습니다. 테스트는 하나의 브라우저 또는 여러 브라우저에서 실행할 수 있습니다. 기본적으로 테스트는 헤드리스 방식으로 실행되므로 테스트를 실행하는 동안 브라우저 창이 열리지 않고 결과가 터미널에 표시됩니다.
+
+이곳에서 배우는 것은 다음과 같습니다.
+
+- [명령줄에서 테스트를 실행하는 방법](#명령줄)
+- [테스트 디버깅 방법](#테스트-디버깅)
+- [HTML 테스트 보고서 여는 방법](#테스트-보고서)
+
+알림
+
+플레이라이트용 [VS 코드 확장](https://playwright.dev/docs/getting-started-vscode)을 사용하여 더 나은 디버깅 환경에서 테스트를 실행하고, 중단점을 추가하고, VS 코드 편집기에서 바로 테스트를 디버그할 수 있습니다.
+
+## 명령줄
+
+- 전체 테스트 실행
+
+   ```bash
+   npx playwright test
+   ```
+
+- 단일 테스트 파일 실행
+
+   ```bash
+   npx playwright test landing-page.spec.ts
+   ```
+
+- 테스트 파일 세트 실행
+
+   ```bash
+   npx playwright test tests/todo-page/ tests/landing-page/
+   ```
+
+- 파일 이름에 `landing` 또는 `login`이 있는 파일 실행
+
+   ```bash
+   npx playwright test landing login
+   ```
+
+- 특정 제목을 가진 테스트 실행
+
+   ```bash
+   npx playwright test -g "add a todo item"
+   ```
+
+- 헤드 모드에서 테스트 실행
+
+   ```bash
+   npx playwright test landing-page.spec.ts --headed
+   ```
+
+- 특정 프로젝트의 테스트 실행
+
+   ```bash
+   npx playwright test landing-page.ts --project=chromium
+   ```
+
+## 테스트 디버깅
+
+플레이라이트는 노드에서 실행되므로 원하는 디버거를 사용할 수 있습니다. `console.log`를 사용하거나, 원하는 IDE에서, [VS 코드 확장](https://playwright.dev/docs/getting-started-vscode)이 있는 VS 코드에서 직접 디버그할 수 있습니다. 플레이라이트는 플레이라이트 API 호출을 단계별로 확인하고, 디버그 로그를 보고 [탐지기](https://playwright.dev/docs/locators)로 탐색할 수 있는 [플레이라이트 검사기](https://playwright.dev/docs/debug#playwright-inspector)를 제공합니다.
+
+- 전체 테스트 디버깅
+
+   ```bash
+   npx playwright test --debug
+   ```
+
+- 단일 테스트 파일 디버깅
+
+   ```bash
+   npx playwright test example.spec.ts --debug
+   ```
+
+- `test(..`가 정의된 줄 번호에서 테스트 디버깅
+
+   ```bash
+   npx playwright test example.spec.ts:10 --debug
+   ```
+
+![플레이라이트 검사기로 테스트 디버깅](https://user-images.githubusercontent.com/13063165/212744309-4b7e431b-de2a-45ca-b287-6360124adc33.png)
+
+[브라우저 개발자 도구](https://playwright.dev/docs/debug#browser-developer-tools)를 사용한 디버깅이나 [플레이라이트 검사기](https://playwright.dev/docs/debug#playwright-inspector)에 대한 자세한 내용은 [디버깅 안내서](https://playwright.dev/docs/debug)를 확인하세요.
+
+## 테스트 보고서
+
+[HTML 보고서](https://playwright.dev/docs/test-reporters#html-reporter)는 실행된 모든 테스트의 전체 보고서를 보여주는 내장 보고서입니다. 테스트의 이름, 테스트의 줄 번호가 옆에 있는 파일 이름, 각 테스트를 실행하는 데 걸린 시간, 테스트가 실행된 브라우저를 표시합니다. 합격한 테스트, 실패한 테스트, 건너뛴 테스트, 불안정한 테스트를 기준으로 보고서를 필터링할 수 있습니다. 테스트 옆에 있는 브라우저 이름을 클릭하여 브라우저별로 필터링할 수도 있습니다. 검색창을 사용하여 특정 테스트 또는 브라우저를 검색할 수도 있습니다.
+
+보고서를 열려면 먼저 테스트를 실행하세요.
+
+```bash
+npx playwright test
+```
+
+기본적으로 일부 테스트가 실패하면 HTML 보고서가 자동으로 열립니다. 보고서를 수동으로 열어야 한다면 다음 명령을 사용할 수 있습니다.
+
+```bash
+npx playwright show-report
+```
+
+![HTML 보고서 > 테스트 보고서 보기](https://user-images.githubusercontent.com/13063165/212744633-826cce1b-fab1-455a-8ca7-68867c4d4698.png)
+
+테스트 이름을 클릭하면 각 테스트의 상세 보기를 열 수 있습니다. 그런 다음 테스트 오류를 탐색하고 테스트의 각 단계를 확장하여 해당 단계의 코드와 각 단계를 실행하는 데 걸린 시간을 확인할 수 있습니다.
+
+![HTML 보고서 > 테스트 보고서 상세 보기](https://user-images.githubusercontent.com/13063165/212868173-2bf680bb-274a-4aec-932b-d07255adcc74.png)
+
+`create-playwright`로 만든 프로젝트는 HTML 보고서가 기본적으로 활성화됩니다. HTML 보고서를 사용하지 않는 설정이 있거나 `show-report` 명령을 실행해도 보고서가 생성되지 않는다면 `--reporter=html`로 실행할 수 있습니다.
+
+```bash
+npx playwright show-report --reporter=html
+```
