@@ -110,6 +110,11 @@ const config = {
                 docId: 'test/cypress/README',
                 label: 'Cypress',
               },
+              {
+                type: 'doc',
+                docId: 'test/playwright/README',
+                label: 'Playwright',
+              },
             ],
           },
           {
@@ -195,6 +200,10 @@ const config = {
               {
                 label: 'Cypress',
                 to: '/docs/test/cypress',
+              },
+              {
+                label: 'Playwright',
+                to: '/docs/test/playwright',
               },
               {
                 label: 'TanStack Query',
