@@ -12,8 +12,8 @@ sidebar_position: 1
 
 ```ts
 const obj = { width: 10, height: 15 };
-const area = obj.width * obj.heigth;
 // 오류: Property 'heigth' does not exist on type '{ width: number; height: number; }'. Did you mean 'height'?
+const area = obj.width * obj.heigth;
 ```
 
 타입스크립트가 자바스크립트와 어떻게 연관되는지 알아보겠습니다.
@@ -27,8 +27,8 @@ const area = obj.width * obj.heigth;
 예를 들어 다음 코드에는 `)`가 누락되어서 문법 오류가 발생합니다.
 
 ```ts
-let a = (4
 // 오류: ')' expected.
+let a = (4
 ```
 
 타입스크립트가 자바스크립트 코드의 문법 때문에 오류를 발생시키지는 않습니다. 즉, 문제없이 작동하는 자바스크립트 코드를 타입스크립트로 가져올 때 문법 오류를 걱정할 필요가 없습니다.
@@ -48,8 +48,8 @@ console.log(4 / []);
 문법상 가능한 이 프로그램은 `Infinity`를 기록합니다. 그러나 타입스크립트는 숫자를 배열로 나누는 것을 무의미한 작업으로 간주하고 오류를 발생시킵니다.
 
 ```ts
+// 오류: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 console.log(4 / []);
-// The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 ```
 
 어떤 일이 일어나는지 보기 위해 숫자를 배열로 나누는 것이 가능은 합니다. 하지만 대부분의 경우 이는 프로그래밍 실수입니다. 타입스크립트의 타입 검사기는 프로그램에서 일반적인 오류를 가능한 많이 찾아내며 프로그램을 올바르게 만들도록 설계되었습니다. (타입스크립트 검사의 엄격성 정도를 설정하는 방법은 나중에 배울 것입니다.)
