@@ -142,7 +142,7 @@ npx playwright test example.spec.ts:9 --debug
 
 ### CI에서의 디버깅
 
-CI에서 테스트가 실패하면 비디오와 스크린숏 대신 플레이라이트 [추적 뷰어](docs/test/playwright/getting-started/trace-viewer.mdx)를 사용하세요. 추적 뷰어는 쉽게 공유할 수 있는 로컬 PWA(Progressive Web App)로 테스트의 전체 추적을 제공합니다. 추적 뷰어를 사용하면 타임라인을 보고, 개발 도구를 사용하여 각 작업에 대한 DOM 스냅숏을 검사하고, 네트워크 요청 등을 볼 수 있습니다.
+CI에서 테스트가 실패하면 비디오와 스크린숏 대신 플레이라이트 [추적 뷰어](docs/test/playwright/getting-started/trace-viewer.mdx)를 사용하세요. 추적 뷰어는 쉽게 공유할 수 있는 로컬 PWA(Progressive Web App)로 테스트의 전체 추적을 제공합니다. 추적 뷰어를 사용하면 타임라인을 보고, 개발 도구를 사용하여 각 동작에 대한 DOM 스냅숏을 검사하고, 네트워크 요청 등을 볼 수 있습니다.
 
 <Image img={traceViewer} alt={'추적 뷰어'} />
 
@@ -170,7 +170,7 @@ npx playwright show-report
 
 - [VS 코드 확장](docs/test/playwright/getting-started/vs-code.mdx) - 테스트 작성, 실행, 디버깅에서 훌륭한 개발자 경험을 제공합니다.
 - [테스트 생성기](https://playwright.dev/docs/codegen) - 테스트를 생성하고 탐지기를 선택할 수 있습니다.
-- [추적 뷰어](docs/test/playwright/getting-started/trace-viewer.mdx) - 쉽게 공유할 수 있는 로컬 PWA로 테스트의 전체 추적을 제공합니다. 추적 뷰어를 사용하면 타임라인을 보고, 각 작업에 대한 DOM 스냅숏을 검사하고, 네트워크 요청 등을 볼 수 있습니다.
+- [추적 뷰어](docs/test/playwright/getting-started/trace-viewer.mdx) - 쉽게 공유할 수 있는 로컬 PWA로 테스트의 전체 추적을 제공합니다. 추적 뷰어를 사용하면 타임라인을 보고, 각 동작에 대한 DOM 스냅숏을 검사하고, 네트워크 요청 등을 볼 수 있습니다.
 - [타입스크립트](../test/typescript) - 기본적으로 사용 가능하며 더 나은 IDE 통합을 제공합니다. IDE는 할 수 있는 모든 것을 보여주며 뭔가 잘못됐다면 강조 표시할 것입니다. 타입스크립트 경험이 필요하지 않으며 코드가 타입스크립트에 있을 필요가 없다면 테스트를 `.js` 확장자로 생성하면 됩니다.
 
 ## 모든 브라우저에서 테스트하기

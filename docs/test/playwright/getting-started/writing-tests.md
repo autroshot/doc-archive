@@ -6,10 +6,10 @@ sidebar_position: 2
 
 플레이라이트 테스트는 간단합니다.
 
-- **작업을 수행하고**
+- **동작을 수행하고**
 - **기대하는 상태를 단언합니다.**
 
-작업을 수행하기 전에 아무것도 기다릴 필요가 없습니다. 플레이라이트는 각 작업을 수행하기 전에 광범위한 [실행 가능성](https://playwright.dev/docs/actionability) 검사가 통과할 때까지 자동으로 기다립니다.
+동작을 수행하기 전에 아무것도 기다릴 필요가 없습니다. 플레이라이트는 각 동작을 수행하기 전에 광범위한 [실행 가능성](https://playwright.dev/docs/actionability) 검사가 통과할 때까지 자동으로 기다립니다.
 
 또한 검사를 수행할 때 경주 조건을 처리할 필요가 없습니다. 플레이라이트 단언은 궁극적으로 충족되어야 하는 상태를 묘사하는 방식으로 설계되었습니다.
 
@@ -18,7 +18,7 @@ sidebar_position: 2
 이곳에서 배우는 것은 다음과 같습니다.
 
 - [첫 테스트 작성 방법](#첫-테스트)
-- [작업 수행 방법](#작업)
+- [동작 수행 방법](#동작)
 - [단언 사용 방법](#단언)
 - [테스트가 격리되어 실행되는 방식](#테스트-격리)
 - [테스트 훅 사용 방법](#테스트-훅-사용)
@@ -54,7 +54,7 @@ test('get started link', async ({ page }) => {
 
 :::
 
-## 작업
+## 동작
 
 ### 내비게이션
 
@@ -68,7 +68,7 @@ await page.goto('https://playwright.dev/');
 
 ### 상호 작용
 
-작업 수행은 요소를 찾는 것으로 시작됩니다. 플레이라이트는 요소를 찾을 때 [탐지기 API](https://playwright.dev/docs/locators)를 사용합니다. 탐지기로 언제든지 페이지에서 요소를 찾을 수 있습니다. 탐지기의 다양한 유형을 [탐지기 API](https://playwright.dev/docs/locators)에서 확인하세요. 플레이라이트는 작업을 수행하기 전에 요소가 [작업 가능할](https://playwright.dev/docs/actionability) 때까지 기다립니다.
+동작 수행은 요소를 찾는 것부터 시작됩니다. 플레이라이트는 요소를 찾을 때 [탐지기 API](https://playwright.dev/docs/locators)를 사용합니다. 탐지기로 언제든지 페이지에서 요소를 찾을 수 있습니다. 탐지기의 다양한 유형을 [탐지기 API](https://playwright.dev/docs/locators)에서 확인하세요. 플레이라이트는 동작을 수행하기 전에 요소가 [동작 가능할](https://playwright.dev/docs/actionability) 때까지 기다립니다.
 
 ```js
 // 탐지기를 생성합니다.
@@ -83,11 +83,11 @@ await getStarted.click();
 await page.getByRole('link', { name: 'Get started' }).click();
 ```
 
-### 기본 작업
+### 기본 동작
 
-가장 많이 사용하는 플레이라이트 작업 목록입니다. [탐지기 API](https://playwright.dev/docs/api/class-locator) 섹션에서 더 많은 작업을 확인하세요.
+가장 많이 사용하는 플레이라이트 동작 목록입니다. [탐지기 API](https://playwright.dev/docs/api/class-locator) 섹션에서 더 많은 동작을 확인하세요.
 
-| 작업 | 설명 |
+| 동작 | 설명 |
 | ------------------------------------------------------------ | --------------------------------------- |
 | [locator.check()](https://playwright.dev/docs/api/class-locator#locator-check) | 입력 체크박스를 체크하기 |
 | [locator.click()](https://playwright.dev/docs/api/class-locator#locator-click) | 요소 클릭하기 |
