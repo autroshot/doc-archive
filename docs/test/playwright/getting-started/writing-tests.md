@@ -102,7 +102,7 @@ await page.getByRole('link', { name: 'Get started' }).click();
 
 ## 단언
 
-플레이라이트 테스트는 `toEqual`, `toContain`, `toMatch`, `toBe`와 같은 매처를 제공하는 [테스트 단언](https://playwright.dev/docs/test-assertions)에 [`expect`](https://jestjs.io/docs/expect) 라이브러리를 사용합니다. 또한 예상 조건이 충족될 때까지 대기하는 편리한 비동기 매처로 이 라이브러리를 확장합니다. 이러한 매처를 사용하면 테스트를 안정적이고 탄력적으로 만들 수 있습니다.
+플레이라이트 테스트는 `toEqual`, `toContain`, `toMatch`, `toBe`와 같은 매처를 제공하는 [테스트 단언](docs/test/playwright/test/assertions.md)에 [`expect`](https://jestjs.io/docs/expect) 라이브러리를 사용합니다. 또한 예상 조건이 충족될 때까지 대기하는 편리한 비동기 매처로 이 라이브러리를 확장합니다. 이러한 매처를 사용하면 테스트를 안정적이고 탄력적으로 만들 수 있습니다.
 
 예를 들어 이 코드는 페이지가 `Playwright`를 포함하는 제목을 얻을 때까지 기다립니다.
 
@@ -110,7 +110,7 @@ await page.getByRole('link', { name: 'Get started' }).click();
 await expect(page).toHaveTitle(/Playwright/);
 ```
 
-다음은 가장 많이 사용하는 비동기 단언 목록입니다. [테스트 단언](https://playwright.dev/docs/test-assertions)에서 더 많은 단언을 확인하세요.
+다음은 가장 많이 사용하는 비동기 단언 목록입니다. [테스트 단언](docs/test/playwright/test/assertions.md)에서 더 많은 단언을 확인하세요.
 
 | 단언 | 설명 |
 | ------------------------------------------------------------ | --------------------------------- |
