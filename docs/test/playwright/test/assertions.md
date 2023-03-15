@@ -24,7 +24,7 @@ await expect(page.getByTestId('status')).toHaveText('Submitted');
 
 | 단언 | 설명 |
 | ------------------------------------------------------------ | --------------------------------- |
-| [expect(locator).toBeChecked()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-checked) | 체크박스가 선택됨 |
+| [expect(locator).toBeChecked()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-checked) | 확인란이 선택됨 |
 | [expect(locator).toBeDisabled()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-disabled) | 요소가 비활성화됨 |
 | [expect(locator).toBeEditable()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-editable) | 요소가 활성화됨 |
 | [expect(locator).toBeEmpty()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-empty) | 컨테이너가 비어 있음 |

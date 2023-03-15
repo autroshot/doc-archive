@@ -89,9 +89,9 @@ await page.getByRole('link', { name: 'Get started' }).click();
 
 | 동작 | 설명 |
 | ------------------------------------------------------------ | --------------------------------------- |
-| [locator.check()](https://playwright.dev/docs/api/class-locator#locator-check) | 입력 체크박스를 체크하기 |
+| [locator.check()](https://playwright.dev/docs/api/class-locator#locator-check) | 입력 확인란을 선택하기 |
 | [locator.click()](https://playwright.dev/docs/api/class-locator#locator-click) | 요소 클릭하기 |
-| [locator.uncheck()](https://playwright.dev/docs/api/class-locator#locator-uncheck) | 입력 체크박스의 체크 해제하기 |
+| [locator.uncheck()](https://playwright.dev/docs/api/class-locator#locator-uncheck) | 입력 확인란을 선택 취소하기 |
 | [locator.hover()](https://playwright.dev/docs/api/class-locator#locator-hover) | 요소에 마우스 놓기 |
 | [locator.fill()](https://playwright.dev/docs/api/class-locator#locator-fill) | 폼 필드 채우기 (빠름) |
 | [locator.focus()](https://playwright.dev/docs/api/class-locator#locator-focus) | 요소에 초점 맞추기 |
@@ -114,7 +114,7 @@ await expect(page).toHaveTitle(/Playwright/);
 
 | 단언 | 설명 |
 | ------------------------------------------------------------ | --------------------------------- |
-| [expect(locator).toBeChecked()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-checked) | 체크박스가 선택됨 |
+| [expect(locator).toBeChecked()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-checked) | 확인란이 선택됨 |
 | [expect(locator).toBeEnabled()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-enabled) | 제어가 활성화됨 |
 | [expect(locator).toBeVisible()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-visible) | 요소가 보임 |
 | [expect(locator).toContainText()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-contain-text) | 요소의 텍스트에 해당 텍스트가 포함됨 |
