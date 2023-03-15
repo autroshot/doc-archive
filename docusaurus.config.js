@@ -244,6 +244,10 @@ const config = {
             title: 'More',
             items: [
               {
+                to: '/source',
+                label: '출처',
+              },
+              {
                 label: '용어집',
                 href: 'https://docs-glossary.vercel.app/',
               },
