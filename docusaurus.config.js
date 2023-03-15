@@ -162,6 +162,11 @@ const config = {
             position: 'left',
           },
           {
+            to: '/source',
+            label: '출처',
+            position: 'right',
+          },
+          {
             href: 'https://docs-glossary.vercel.app/',
             label: '용어집',
             position: 'right',
