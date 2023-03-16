@@ -48,7 +48,7 @@ type JSONResponse = {
 }
 ```
 
-자세한 내용은 [인터페이스 치트 시트](https://www.typescriptlang.org/ko/cheatsheets)를 참고하세요.
+자세한 내용은 [인터페이스 치트 시트](./interfaces)를 참고하세요.
 
 ## 원시 타입
 
