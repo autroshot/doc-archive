@@ -6,7 +6,7 @@ sidebar_position: 4
 
 :::note 배경 지식
 
-[MDN의 정적 멤버](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/static)
+[정적 멤버](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/static)
 
 :::
 

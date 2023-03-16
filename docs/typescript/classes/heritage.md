@@ -71,7 +71,7 @@ c.y = 10;
 
 :::note 배경 지식
 
-[MDN의 `extends` 키워드](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends)
+[`extends` 키워드](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends)
 
 :::
 
@@ -103,7 +103,7 @@ d.woof(3);
 
 :::note 배경 지식
 
-[MDN의 `super` 키워드](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
+[`super` 키워드](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
 
 :::
 

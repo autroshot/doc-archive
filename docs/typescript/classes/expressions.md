@@ -6,7 +6,7 @@ sidebar_position: 10
 
 :::note 배경 지식
 
-[MDN의 클래스 표현식](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/class)
+[클래스 표현식](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/class)
 
 :::
 

@@ -6,7 +6,7 @@ sidebar_position: 7
 
 :::note 배경 지식
 
-[MDN의 `this` 키워드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this)
+[`this` 키워드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this)
 
 :::
 
@@ -39,7 +39,7 @@ console.log(obj.getName());
 
 :::note 배경 지식
 
-[MDN의 화살표 함수](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+[화살표 함수](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 :::
 

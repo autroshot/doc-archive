@@ -110,7 +110,7 @@ g.name = "also not ok";
 
 :::note 배경 지식
 
-[MDN의 생성자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/constructor)
+[생성자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/constructor)
 
 :::
 
@@ -170,7 +170,7 @@ class Derived extends Base {
 
 :::note 배경 지식
 
-[MDN의 메서드 정의](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Method_definitions)
+[메서드 정의](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Method_definitions)
 
 :::
 
