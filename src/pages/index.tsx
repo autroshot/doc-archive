@@ -3,7 +3,7 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
 // @ts-ignore
-import MarkDown from './_markdown.md';
+import MarkDown from './_index.md';
 
 import styles from './index.module.css';
 
