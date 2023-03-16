@@ -441,7 +441,7 @@ interface BooleanBox {
 }
 ```
 
-그러나 이 방법은 해당 타입으로 작동하는 별개의 함수 또는 함수의 오버로드를 정의해야 합니다.
+그러나 이 방법은 해당 타입으로 작동하는 별개의 함수 또는 함수의 다중 정의를 정의해야 합니다.
 
 ```ts
 function setContents(box: StringBox, newContents: string): void;
@@ -452,7 +452,7 @@ function setContents(box: { contents: any }, newContents: any) {
 }
 ```
 
-보일러플레이트가 너무 많습니다. 게다가 나중에 새로운 타입과 오버로드를 도입해야 할 수도 있습니다. `box`의 타입과 오버로드가 사실상 모두 동일하기 때문에 이 방법은 만족스럽지 않습니다.
+보일러플레이트가 너무 많습니다. 게다가 나중에 새로운 타입과 다중 정의를 도입해야 할 수도 있습니다. `box`의 타입과 다중 정의가 사실상 모두 동일하기 때문에 이 방법은 만족스럽지 않습니다.
 
 대신 **타입 매개변수**를 선언하는 **제네릭** `Box` 타입을 만들 수 있습니다.
 
@@ -502,7 +502,7 @@ interface Apple {
 type AppleBox = Box<Apple>;
 ```
 
-이는 [제네릭 함수](https://www.typescriptlang.org/docs/handbook/2/functions.html#generic-functions)를 사용하여 오버로드를 완전히 피할 수 있다는 것을 의미합니다.
+이는 [제네릭 함수](https://www.typescriptlang.org/docs/handbook/2/functions.html#generic-functions)를 사용하여 다중 정의를 완전히 피할 수 있다는 것을 의미합니다.
 
 ```ts
 function setContents<Type>(box: Box<Type>, newContents: Type) {
