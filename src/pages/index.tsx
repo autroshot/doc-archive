@@ -1,7 +1,7 @@
-import React from 'react';
-import clsx from 'clsx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
+import clsx from 'clsx';
+import React from 'react';
 // @ts-ignore
 import MarkDown from './_markdown.md';
 
@@ -24,7 +24,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`${siteConfig.title} 홈페이지`}
-      description="개인적으로 번역하거나 정리한 문서들을 모아 놓은 곳입니다."
+      description="개인적으로 번역하거나 정리한 문서를 모아 놓은 곳입니다."
     >
       <HomepageHeader />
       <main className="container">
