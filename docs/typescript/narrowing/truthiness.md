@@ -342,4 +342,4 @@ const underWater3: Fish[] = zoo.filter((pet): pet is Fish => {
 });
 ```
 
-추가로 클래스는 [`this is Type`](https://www.typescriptlang.org/docs/handbook/2/classes.html#this-based-type-guards)을 사용해 타입을 좁힐 수 있습니다.
+추가로 클래스는 [`this is Type`](../classes/this-types.md#this-기반-타입-가드)을 사용해 타입을 좁힐 수 있습니다.

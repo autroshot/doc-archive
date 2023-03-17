@@ -111,7 +111,7 @@ interface Apple {
 type AppleBox = Box<Apple>;
 ```
 
-이는 [제네릭 함수](https://www.typescriptlang.org/docs/handbook/2/functions.html#generic-functions)를 사용하여 다중 정의를 완전히 피할 수 있다는 것을 의미합니다.
+이는 [제네릭 함수](../functions/generic.md)를 사용하여 다중 정의를 완전히 피할 수 있다는 것을 의미합니다.
 
 ```ts
 function setContents<Type>(box: Box<Type>, newContents: Type) {
@@ -355,7 +355,7 @@ const b: StringNumberBooleans = ["beautiful", 2, true];
 const c: StringNumberBooleans = ["world", 3, true, false, true, false, true];
 ```
 
-선택적 요소와 나머지 요소가 어디서 유용할까요? 타입스크립트가 매개변수 목록과 튜플을 일치시킬 때 좋습니다. 튜플 타입은 다음과 같이 [나머지 매개변수와 인수](https://www.typescriptlang.org/docs/handbook/2/functions.html#rest-parameters-and-arguments)에 사용될 수 있습니다.
+선택적 요소와 나머지 요소가 어디서 유용할까요? 타입스크립트가 매개변수 목록과 튜플을 일치시킬 때 좋습니다. 튜플 타입은 다음과 같이 [나머지 매개변수와 인수](../functions/rest-parameters-and-arguments.md)에 사용될 수 있습니다.
 
 ```ts
 function readButtonInput(...args: [string, number, ...boolean[]]) {

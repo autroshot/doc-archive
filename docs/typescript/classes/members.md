@@ -261,7 +261,7 @@ class Thing {
 
 ## 색인 시그니처
 
-클래스는 색인 시그니처를 선언할 수 있습니다. 이는 [객체 타입의 색인 시그니처](docs\typescript\object-types\property-modifiers.md#색인-시그니처)와 동일하게 작동합니다.
+클래스는 색인 시그니처를 선언할 수 있습니다. 이는 [객체 타입의 색인 시그니처](../object-types/property-modifiers.md#색인-시그니처)와 동일하게 작동합니다.
 
 ```ts
 class MyClass {
