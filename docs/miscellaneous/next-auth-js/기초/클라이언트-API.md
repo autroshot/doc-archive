@@ -162,7 +162,7 @@ AdminDashboard.auth = {
 - 클라이언트 측 - 예
 - 서버 측 - 아니오 ([`unstable_getServerSession()`](https://next-auth.js.org/configuration/nextjs#unstable_getserversession) 참고)
 
-넥스트인증은 현재 활성 세션을 반환하기 위해 클라이언트 측에서만 사용해야 하는 `getSession()` 헬퍼를 제공합니다.
+넥스트인증은 현재 활성 세션을 반환하기 위해 클라이언트 측에서만 사용해야 하는 `getSession()` 도우미를 제공합니다.
 
 서버 측에서 `getSession()`을 여전히 사용할 수는 있지만 앞으로는 `unstable_getServerSession`을 사용하는 것을 권장합니다. 이는 서버 측에서의 불필요한 추가 `fetch` 호출을 피하기 위함입니다. 자세한 내용은 [이슈](https://github.com/nextauthjs/next-auth/issues/1535)를 확인하세요.
 
@@ -172,7 +172,7 @@ API는 향후 변경될 수 있으므로 `unstable_getServerSession`에는 현�
 
 :::
 
-이 헬퍼는 리액트 컨텍스트 외부에서 세션을 읽으려는 경우에 유용합니다.
+이 도우미는 리액트 컨텍스트 외부에서 세션을 읽으려는 경우에 유용합니다.
 
 `getSession()`은 호출되면 `/api/auth/session`에 요청을 보내고 [세션 객체](https://github.com/nextauthjs/next-auth/blob/main/packages/next-auth/src/core/types.ts#L407-L425)가 있는 프라미스를 반환합니다. 세션이 없으면 `null`을 반환합니다.
 
