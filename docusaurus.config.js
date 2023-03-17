@@ -79,7 +79,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'javascript/키보드-keydown과-keyup',
+            docId: 'javascript/keyboard-keydown-and-keyup',
             label: 'JavaScript',
             position: 'left',
           },
@@ -188,7 +188,7 @@ const config = {
             items: [
               {
                 label: 'JavaScript',
-                to: '/docs/javascript/키보드-keydown과-keyup',
+                to: '/docs/javascript/keyboard-keydown-and-keyup',
               },
               {
                 label: 'TypeScript',

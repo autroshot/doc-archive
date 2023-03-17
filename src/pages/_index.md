@@ -4,7 +4,7 @@
 
 전체 문서의 목록은 다음과 같습니다.
 
-- [JavaScript](https://autroshot.github.io/docs-repository/docs/javascript/키보드-keydown과-keyup)
+- [JavaScript](https://autroshot.github.io/docs-repository/docs/javascript/keyboard-keydown-and-keyup)
 - [TypeScript](https://autroshot.github.io/docs-repository/docs/typescript)
 - [Next.js](https://autroshot.github.io/docs-repository/docs/next-js)
 - [Jest](https://autroshot.github.io/docs-repository/docs/test/jest)
