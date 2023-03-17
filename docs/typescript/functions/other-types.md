@@ -35,7 +35,7 @@ function noop() {
 
 :::
 
-자바스크립트에서 함수 값은 객체입니다. 프로퍼티가 있고, 프로퍼티 체인에 `Object.prototype`가 있으며, 이는 `instanceof Object`와 동일합니다. `Object.keys`도 호출 가능합니다. 따라서 타입스크립트에서 함수 타입은 `object`로 간주됩니다.
+자바스크립트에서 함수 값은 객체입니다. 프로퍼티가 있고, 프로퍼티 사슬에 `Object.prototype`가 있으며, 이는 `instanceof Object`와 동일합니다. `Object.keys`도 호출 가능합니다. 따라서 타입스크립트에서 함수 타입은 `object`로 간주됩니다.
 
 ## `unknown`
 

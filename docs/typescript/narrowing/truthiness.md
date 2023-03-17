@@ -204,7 +204,7 @@ function move(animal: Fish | Bird | Human) {
 
 ## `instanceof`로 좁히기
 
-자바스크립트에는 해당 값이 다른 값의 **인스턴스**인지 확인하는 연산자가 있습니다. 보다 구체적으로 자바스크립트의 `x instanceof Foo`는 `x`의 프로퍼티 체인에 `Foo.prototype`가 포함되는지 확인합니다.
+자바스크립트에는 해당 값이 다른 값의 **인스턴스**인지 확인하는 연산자가 있습니다. 보다 구체적으로 자바스크립트의 `x instanceof Foo`는 `x`의 프로퍼티 사슬에 `Foo.prototype`가 포함되는지 확인합니다.
 
 나중에 클래스에서 자세히 다룰 것이지만 `new`로 만들어지는 대부분의 값에 이 연산자가 유용합니다. 예상했듯이 `instanceof`도 타입 가드이며 타입스크립트는 `instanceof`로 차단되는 분기를 좁힙니다.
 

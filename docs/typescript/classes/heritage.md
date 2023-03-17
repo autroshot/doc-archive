@@ -242,7 +242,7 @@ const d = new Derived();
 
 ES2015에서 객체를 반환하는 생성자는 암시적으로 `super(...)` 호출자를 `this` 값으로 대체합니다. 생성된 생성자 코드는 `super(...)`의 잠재적 반환값을 잡고 `this`로 대체해야 합니다.
 
-그 결과 `Error`, `Array` 등의 하위 클래스가 더 이상 예상대로 작동하지 않을 수 있습니다. 이는 `Error`, `Array` 등의 생성자 함수가 프로토타입 체인을 조정하기 위해 ES6의 `new.target`을 사용하기 때문입니다. 그러나 ES5에서는 생성자를 호출할 때 `new.target`의 값을 보장할 방법이 없습니다. 다른 하위 수준 컴파일러도 기본적으로 동일한 제한을 가집니다.
+그 결과 `Error`, `Array` 등의 하위 클래스가 더 이상 예상대로 작동하지 않을 수 있습니다. 이는 `Error`, `Array` 등의 생성자 함수가 프로토타입 사슬을 조정하기 위해 ES6의 `new.target`을 사용하기 때문입니다. 그러나 ES5에서는 생성자를 호출할 때 `new.target`의 값을 보장할 방법이 없습니다. 다른 하위 수준 컴파일러도 기본적으로 동일한 제한을 가집니다.
 
 다음의 하위 클래스를 살펴보겠습니다.
 
@@ -281,5 +281,5 @@ class MsgError extends Error {
 
 그러나 `MsgError`의 하위 클래스도 프로토타입을 수동으로 설정해야 합니다. [`Object.setPrototypeOf`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)을 지원하지 않는 런타임의 경우에는 [`__proto__`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)를 대신 사용할 수 있습니다.
 
-안타깝게도 [이 해결책은 인터넷 익스플로러 10과 이전 버전에서는 작동하지 않습니다](https://msdn.microsoft.com/en-us/library/s4esdbwz(v=vs.94).aspx). 프로토타입에서 인스턴스 자체로 메서드를 수동으로 복사할 수 있지만 (예: `MsgError.prototype`에서 `this`로) 프로토타입 체인 자체는 수정할 수 없습니다.
+안타깝게도 [이 해결책은 인터넷 익스플로러 10과 이전 버전에서는 작동하지 않습니다](https://msdn.microsoft.com/en-us/library/s4esdbwz(v=vs.94).aspx). 프로토타입에서 인스턴스 자체로 메서드를 수동으로 복사할 수 있지만 (예: `MsgError.prototype`에서 `this`로) 프로토타입 사슬 자체는 수정할 수 없습니다.
 
