@@ -110,7 +110,7 @@ const api: APICall<ArtworkCall> = ...
 api.data.status;
 ```
 
-## 오버로딩
+## 다중 정의
 
 호출 가능한 인터페이스는 다양한 매개변수 세트에 대해 여러 정의를 가질 수 있습니다.
 

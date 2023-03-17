@@ -81,7 +81,7 @@ class User extends Account implements Updatable, Serializable {
   setName(name: string) { this.name = name }
   verifyName = (name: string) => { ... }
   
-  // 2개의 오버로드 정의가 있는 함수
+  // 2개의 다중 정의가 있는 함수
   sync(): Promise<{ ... }>;
   sync(cb: ((result: string) => void)): void;
   sync(cb?: ((result: string) => void)): void | Promise<{ ... }> { ... }
