@@ -262,7 +262,7 @@ describe('Hooks', () => {
 
 :::danger
 
-`after()`나 `afterEach()`를 작성하기 전에 [`after()`나 `afterEach()`로 상태를 정리하는 안티 패턴](../레퍼런스/모범-사례.md/#after나-aftereach-훅-사용하기)을 참고하는 것이 좋습니다.
+`after()`나 `afterEach()`를 작성하기 전에 [`after()`나 `afterEach()`로 상태를 정리하는 안티 패턴](../references/best-practices.md#after나-aftereach-훅-사용하기)을 참고하는 것이 좋습니다.
 
 :::
 
