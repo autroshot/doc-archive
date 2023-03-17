@@ -27,7 +27,7 @@ function draw(circle: Colorful & Circle) {
   console.log(`Radius was ${circle.radius}`);
 }
 
-// 문제 없습니다.
+// 문제없습니다.
 draw({ color: "blue", radius: 42 });
 
 // 오류: Argument of type '{ color: string; raidus: number; }' is not assignable to parameter of type 'Colorful & Circle'.

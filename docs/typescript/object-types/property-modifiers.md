@@ -212,7 +212,7 @@ interface NotOkay {
 interface NumberDictionary {
   [index: string]: number;
 
-  length: number; // 문제 없습니다.
+  length: number; // 문제없습니다.
   // 오류: Property 'name' of type 'string' is not assignable to 'string' index type 'number'.
   name: string;
 }
@@ -223,8 +223,8 @@ interface NumberDictionary {
 ```ts
 interface NumberOrStringDictionary {
   [index: string]: number | string;
-  length: number; // length가 숫자이므로 문제 없습니다.
-  name: string; // name이 문자열이므로 문제 없습니다.
+  length: number; // length가 숫자이므로 문제없습니다.
+  name: string; // name이 문자열이므로 문제없습니다.
 }
 ```
 

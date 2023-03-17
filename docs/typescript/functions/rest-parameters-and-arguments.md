@@ -54,7 +54,7 @@ const angle = Math.atan2(...args);
 ```ts
 // 길이가 2인 튜플로 추론됩니다.
 const args = [8, 5] as const;
-// 문제 없습니다.
+// 문제없습니다.
 const angle = Math.atan2(...args);
 ```
 

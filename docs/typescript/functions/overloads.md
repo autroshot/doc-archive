@@ -90,8 +90,8 @@ function len(x: any) {
 이 함수는 문제가 없습니다. 문자열이나 배열로 호출할 수 있습니다. 그러나 타입스크립트는 함수 호출을 단일 다중 정의로만 해결할 수 있기 때문에 문자열 또는 배열일 수 있는 값으로 호출하는 것은 불가능합니다.
 
 ```ts
-len(""); // 문제 없습니다.
-len([0]); // 문제 없습니다.
+len(""); // 문제없습니다.
+len([0]); // 문제없습니다.
 // 오류: No overload matches this call.
 //   Overload 1 of 2, '(s: string): number', gave the following error.
 //     Argument of type 'number[] | "hello"' is not assignable to parameter of type 'string'.

@@ -43,7 +43,7 @@ function noop() {
 
 ```ts
 function f1(a: any) {
-  a.b(); // 문제 없습니다.
+  a.b(); // 문제없습니다.
 }
 function f2(a: unknown) {
   // 오류: Object is of type 'unknown'.
