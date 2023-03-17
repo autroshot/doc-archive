@@ -11,7 +11,7 @@
 - [Cypress](https://autroshot.github.io/docs-repository/docs/test/cypress)
 - [Playwright](https://autroshot.github.io/docs-repository/docs/test/playwright)
 - [TanStack Query](https://autroshot.github.io/docs-repository/docs/miscellaneous/tanstack-query)
-- [NextAuth.js](https://autroshot.github.io/docs-repository/docs/miscellaneous/next-auth-js)
+- [NextAuth.js](https://autroshot.github.io/docs-repository/docs/miscellaneous/nextauthjs)
 - [Chakra UI](https://autroshot.github.io/docs-repository/docs/miscellaneous/chakra-ui)
 - [Prisma](https://autroshot.github.io/docs-repository/docs/miscellaneous/prisma)
 - [Emmet](https://autroshot.github.io/docs-repository/docs/miscellaneous/emmet)
