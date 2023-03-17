@@ -93,7 +93,7 @@ await page.getByRole('link', { name: 'Get started' }).click();
 | [locator.click()](https://playwright.dev/docs/api/class-locator#locator-click) | 요소 클릭하기 |
 | [locator.uncheck()](https://playwright.dev/docs/api/class-locator#locator-uncheck) | 입력 확인란을 선택 취소하기 |
 | [locator.hover()](https://playwright.dev/docs/api/class-locator#locator-hover) | 요소에 마우스 놓기 |
-| [locator.fill()](https://playwright.dev/docs/api/class-locator#locator-fill) | 폼 필드 채우기 (빠름) |
+| [locator.fill()](https://playwright.dev/docs/api/class-locator#locator-fill) | 양식 필드 채우기 (빠름) |
 | [locator.focus()](https://playwright.dev/docs/api/class-locator#locator-focus) | 요소에 초점 맞추기 |
 | [locator.press()](https://playwright.dev/docs/api/class-locator#locator-press) | 하나의 키 누르기 |
 | [locator.setInputFiles()](https://playwright.dev/docs/api/class-locator#locator-set-input-files) | 업로드할 파일 선택하기 |
