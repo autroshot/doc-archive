@@ -49,7 +49,7 @@ const todoListQuery = useQuery({
 })
 ```
 
-`invalidateQueries` 메소드에 보다 구체적인 질의 키를 전달하여 특정 변수가 있는 질의를 무효화할 수도 있습니다.
+`invalidateQueries` 메서드에 보다 구체적인 질의 키를 전달하여 특정 변수가 있는 질의를 무효화할 수도 있습니다.
 
 ```tsx
 queryClient.invalidateQueries({

@@ -105,7 +105,7 @@ class User extends Account implements Updatable, Serializable {
 
 ## 제네릭
 
-클래스 메소드에서 변경할 수 있는 타입을 선언합니다.
+클래스 메서드에서 변경할 수 있는 타입을 선언합니다.
 
 ```ts
 // Type은 클래스 타입 매개변수입니다.
