@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-sidebar_label: Next JS
+sidebar_label: Next.js
 ---
 
 import Tabs from '@theme/Tabs';
