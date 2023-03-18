@@ -16,13 +16,13 @@ https://autroshot.github.io/docs-repository/
 
 | 문서                                                         | 원문 URL 또는 출처                                           | 버전  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ----- |
-| [JavaScript](https://autroshot.github.io/docs-repository/docs/javascript/키보드-keydown과-keyup) | https://ko.javascript.info/, https://developer.mozilla.org/ko/ | 최신  |
+| [JavaScript](https://autroshot.github.io/docs-repository/docs/javascript/keyboard-keydown-and-keyup) | https://ko.javascript.info/, https://developer.mozilla.org/ko/ | 최신  |
 | [TypeScript](https://autroshot.github.io/docs-repository/docs/miscellaneous/typescript) | https://www.typescriptlang.org/                              | 4.8   |
 | [Next.js](https://autroshot.github.io/docs-repository/docs/next-js) | https://nextjs.org/                                          | 12.2  |
 | [Jest](https://autroshot.github.io/docs-repository/docs/miscellaneous/jest) | https://jestjs.io/                                           | 29.3  |
 | [Cypress](https://autroshot.github.io/docs-repository/docs/cypress) | https://docs.cypress.io/                                     | 10.6  |
 | [TanStack Query](https://autroshot.github.io/docs-repository/docs/miscellaneous/tanstack-query) | https://tanstack.com/query                                   | 4     |
-| [NextAuth.js](https://autroshot.github.io/docs-repository/docs/miscellaneous/next-auth-js) | https://next-auth.js.org/                                    | 4     |
+| [NextAuth.js](https://autroshot.github.io/docs-repository/docs/miscellaneous/nextauthjs) | https://next-auth.js.org/                                    | 4     |
 | [Chakra UI](https://autroshot.github.io/docs-repository/docs/miscellaneous/chakra-ui) | https://chakra-ui.com/                                       | 2.3   |
 | [Prisma](https://autroshot.github.io/docs-repository/docs/miscellaneous/prisma) | https://www.prisma.io/                                       | 4.2.1 |
 | [Emmet](https://autroshot.github.io/docs-repository/docs/miscellaneous/emmet) | https://docs.emmet.io/                                       |       |

@@ -79,7 +79,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'javascript/키보드-keydown과-keyup',
+            docId: 'javascript/keyboard-keydown-and-keyup',
             label: 'JavaScript',
             position: 'left',
           },
@@ -129,7 +129,7 @@ const config = {
               },
               {
                 type: 'doc',
-                docId: 'miscellaneous/next-auth-js/README',
+                docId: 'miscellaneous/nextauthjs/README',
                 label: 'NextAuth.js',
               },
               {
@@ -188,7 +188,7 @@ const config = {
             items: [
               {
                 label: 'JavaScript',
-                to: '/docs/javascript/키보드-keydown과-keyup',
+                to: '/docs/javascript/keyboard-keydown-and-keyup',
               },
               {
                 label: 'TypeScript',
@@ -216,7 +216,7 @@ const config = {
               },
               {
                 label: 'NextAuth.js',
-                to: '/docs/miscellaneous/next-auth-js',
+                to: '/docs/miscellaneous/nextauthjs',
               },
               {
                 label: 'Chakra UI',

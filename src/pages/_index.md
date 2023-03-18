@@ -4,14 +4,14 @@
 
 전체 문서의 목록은 다음과 같습니다.
 
-- [JavaScript](https://autroshot.github.io/docs-repository/docs/javascript/키보드-keydown과-keyup)
+- [JavaScript](https://autroshot.github.io/docs-repository/docs/javascript/keyboard-keydown-and-keyup)
 - [TypeScript](https://autroshot.github.io/docs-repository/docs/typescript)
 - [Next.js](https://autroshot.github.io/docs-repository/docs/next-js)
 - [Jest](https://autroshot.github.io/docs-repository/docs/test/jest)
 - [Cypress](https://autroshot.github.io/docs-repository/docs/test/cypress)
 - [Playwright](https://autroshot.github.io/docs-repository/docs/test/playwright)
 - [TanStack Query](https://autroshot.github.io/docs-repository/docs/miscellaneous/tanstack-query)
-- [NextAuth.js](https://autroshot.github.io/docs-repository/docs/miscellaneous/next-auth-js)
+- [NextAuth.js](https://autroshot.github.io/docs-repository/docs/miscellaneous/nextauthjs)
 - [Chakra UI](https://autroshot.github.io/docs-repository/docs/miscellaneous/chakra-ui)
 - [Prisma](https://autroshot.github.io/docs-repository/docs/miscellaneous/prisma)
 - [Emmet](https://autroshot.github.io/docs-repository/docs/miscellaneous/emmet)
