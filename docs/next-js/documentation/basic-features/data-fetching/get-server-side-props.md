@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
 
 `getServerSideProps`를 독립된 함수로 내보내야 한다는 점을 유의해야 합니다. `getServerSideProps`를 페이지 컴포넌트의 프로퍼티로 추가하면 작동하지 않습니다.
 
-[`getServerSideProps` API 레퍼런스](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props)는 `getServerSideProps`에서 사용할 수 있는 모든 매개변수와 프롭을 다룹니다.
+[`getServerSideProps` API 참고](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props)는 `getServerSideProps`에서 사용할 수 있는 모든 매개변수와 프롭을 다룹니다.
 
 ## 사용 시기
 

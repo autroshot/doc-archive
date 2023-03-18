@@ -121,7 +121,7 @@ const prisma = new PrismaClient()
 
 모든 프리즈마 클라이언트 쿼리는 오래된 순수 자바스크립트 객체를 반환합니다.
 
-[프리즈마 클라이언트 API 레퍼런스](https://www.prisma.io/docs/concepts/components/prisma-client)에서 가능한 작업을 확인할 수 있습니다.
+[프리즈마 클라이언트 API 참고](https://www.prisma.io/docs/concepts/components/prisma-client)에서 가능한 작업을 확인할 수 있습니다.
 
 #### 타입스크립트와 함께 사용하기
 

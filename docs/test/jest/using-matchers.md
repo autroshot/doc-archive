@@ -172,6 +172,6 @@ test('compiling android goes as expected', () => {
 
 ## 기타
 
-지금까지 살펴본 매처는 일부분일 뿐입니다. 매처의 전체 목록은 [레퍼런스 문서](https://jestjs.io/docs/29.1/expect)를 확인하세요.
+지금까지 살펴본 매처는 일부분일 뿐입니다. 매처의 전체 목록은 [참고 문서](https://jestjs.io/docs/29.1/expect)를 확인하세요.
 
 지원 매처를 학습한 후에는 [비동기 코드 테스트](./asynchronous.md)를 확인하는 것을 추천합니다.

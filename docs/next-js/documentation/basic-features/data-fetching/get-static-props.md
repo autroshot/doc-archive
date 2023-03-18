@@ -79,7 +79,7 @@ export async function getStaticProps() {
 export default Blog;
 ```
 
-[`getStaticProps` API 레퍼런스](https://nextjs.org/docs/api-reference/data-fetching/get-static-props)는 `getStaticProps`에서 사용할 수 있는 모든 매개변수와 프롭을 다룹니다.
+[`getStaticProps` API 참고](https://nextjs.org/docs/api-reference/data-fetching/get-static-props)는 `getStaticProps`에서 사용할 수 있는 모든 매개변수와 프롭을 다룹니다.
 
 ## 서버 측 코드 직접 작성하기
 

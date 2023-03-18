@@ -30,7 +30,7 @@ export default function Post({ post }) {
 }
 ```
 
-[`getStaticPaths` API 레퍼런스](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths)는 `getStaticPaths`에서 사용할 수 있는 모든 매개변수와 프롭을 다룹니다.
+[`getStaticPaths` API 참고](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths)는 `getStaticPaths`에서 사용할 수 있는 모든 매개변수와 프롭을 다룹니다.
 
 ## 사용 시기
 
