@@ -112,7 +112,7 @@ $prisma generate
 
 ##### 프리즈마 클라이언트 가져오기 및 인스턴스화
 
-```tsx
+```ts
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 ```

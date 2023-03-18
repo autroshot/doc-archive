@@ -13,7 +13,7 @@ datasource db {
 }
 ```
 
-`prisma init`으로 생성된 기본 스키마는 포스트그레SQL을 `provider`로 사용합니다. 플래닛스케일의 경우 공급자로 `mysql`을 사용하도록 `datasource` 블록을 편집해야 합니다.
+`prisma init`으로 생성된 기본 스키마는 포스트그레SQL을 `provider`로 사용합니다. 플래닛스케일의 경우 제공자로 `mysql`을 사용하도록 `datasource` 블록을 편집해야 합니다.
 
 ```prisma title="prisma/schema.prisma" {1}
 datasource db {
