@@ -91,7 +91,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'next-js/README',
+            docId: 'nextjs/README',
             label: 'Next.js',
             position: 'left',
           },
@@ -196,7 +196,7 @@ const config = {
               },
               {
                 label: 'Next.js',
-                to: '/docs/next-js',
+                to: '/docs/nextjs',
               },
               {
                 label: 'Jest',

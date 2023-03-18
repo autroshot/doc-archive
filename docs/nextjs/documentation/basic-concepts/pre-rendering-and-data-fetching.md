@@ -3,14 +3,14 @@ sidebar_position: 2
 ---
 
 import Image from '@theme/IdealImage';
-import preRendering from '/img/docs/next-js/사전-렌더링과-데이터-가져오기/pre-rendering.png';
-import noPreRendering from '/img/docs/next-js/사전-렌더링과-데이터-가져오기/no-pre-rendering.png';
-import staticGeneration from '/img/docs/next-js/사전-렌더링과-데이터-가져오기/static-generation.png';
-import serverSideRendering from '/img/docs/next-js/사전-렌더링과-데이터-가져오기/server-side-rendering.png';
-import staticGenerationWithoutData from '/img/docs/next-js/사전-렌더링과-데이터-가져오기/static-generation-without-data.png';
-import staticGenerationWithData from '/img/docs/next-js/사전-렌더링과-데이터-가져오기/static-generation-with-data.png';
-import serverSideRenderingWithData from '/img/docs/next-js/사전-렌더링과-데이터-가져오기/server-side-rendering-with-data.png';
-import clientSideRendering from '/img/docs/next-js/사전-렌더링과-데이터-가져오기/client-side-rendering.png';
+import preRendering from '/img/docs/nextjs/사전-렌더링과-데이터-가져오기/pre-rendering.png';
+import noPreRendering from '/img/docs/nextjs/사전-렌더링과-데이터-가져오기/no-pre-rendering.png';
+import staticGeneration from '/img/docs/nextjs/사전-렌더링과-데이터-가져오기/static-generation.png';
+import serverSideRendering from '/img/docs/nextjs/사전-렌더링과-데이터-가져오기/server-side-rendering.png';
+import staticGenerationWithoutData from '/img/docs/nextjs/사전-렌더링과-데이터-가져오기/static-generation-without-data.png';
+import staticGenerationWithData from '/img/docs/nextjs/사전-렌더링과-데이터-가져오기/static-generation-with-data.png';
+import serverSideRenderingWithData from '/img/docs/nextjs/사전-렌더링과-데이터-가져오기/server-side-rendering-with-data.png';
+import clientSideRendering from '/img/docs/nextjs/사전-렌더링과-데이터-가져오기/client-side-rendering.png';
 
 # 사전 렌더링과 데이터 가져오기
 

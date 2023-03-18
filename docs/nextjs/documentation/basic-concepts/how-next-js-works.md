@@ -3,14 +3,14 @@ sidebar_position: 1
 ---
 
 import Image from '@theme/IdealImage';
-import compiling from '/img/docs/next-js/넥스트의-작동-방식/compiling.png';
-import minifying from '/img/docs/next-js/넥스트의-작동-방식/minifying.png';
-import bundling from '/img/docs/next-js/넥스트의-작동-방식/bundling.png';
-import codeSplitting from '/img/docs/next-js/넥스트의-작동-방식/code-splitting.png';
-import clientServer from '/img/docs/next-js/넥스트의-작동-방식/client-server.png';
-import clientSideRendering from '/img/docs/next-js/넥스트의-작동-방식/client-side-rendering.png';
-import preRendering from '/img/docs/next-js/넥스트의-작동-방식/pre-rendering.png';
-import cdn from '/img/docs/next-js/넥스트의-작동-방식/cdn.png';
+import compiling from '/img/docs/nextjs/넥스트의-작동-방식/compiling.png';
+import minifying from '/img/docs/nextjs/넥스트의-작동-방식/minifying.png';
+import bundling from '/img/docs/nextjs/넥스트의-작동-방식/bundling.png';
+import codeSplitting from '/img/docs/nextjs/넥스트의-작동-방식/code-splitting.png';
+import clientServer from '/img/docs/nextjs/넥스트의-작동-방식/client-server.png';
+import clientSideRendering from '/img/docs/nextjs/넥스트의-작동-방식/client-side-rendering.png';
+import preRendering from '/img/docs/nextjs/넥스트의-작동-방식/pre-rendering.png';
+import cdn from '/img/docs/nextjs/넥스트의-작동-방식/cdn.png';
 
 # 넥스트의 작동 방식
 
