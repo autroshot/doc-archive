@@ -8,7 +8,7 @@ sidebar_position: 1
 
 `/pages/api/auth/[...nextauth]` JS/TS 파일을 정의하면, 넥스트는 `/api/auth/*`로 시작하는 모든 API 요청을 `[...nextauth]` 파일에 작성된 코드로 처리합니다.
 
-유스 케이스에 따라 다음 두 가지 방법으로 넥스트인증을 초기화할 수 있습니다.
+사용 사례에 따라 다음 두 가지 방법으로 넥스트인증을 초기화할 수 있습니다.
 
 ## 간단한 초기화
 
@@ -28,7 +28,7 @@ export default NextAuth({
 
 ## 고급 초기화
 
-특정 유스 케이스가 있고 넥스트인증의 설계 의도와 약간 다른 작업을 수행하고 싶다면 고급 초기화를 사용합니다. `[...nextauth].js` 설정 파일은 결국 **일반적인 [API 경로](../../../next-js/documentation/api-routes/introduction.md)**에 불과하다는 점을 명심하세요.
+특정 사용 사례가 있고 넥스트인증의 설계 의도와 약간 다른 작업을 수행하고 싶다면 고급 초기화를 사용합니다. `[...nextauth].js` 설정 파일은 결국 **일반적인 [API 경로](../../../next-js/documentation/api-routes/introduction.md)**에 불과하다는 점을 명심하세요.
 
 `NextAuth.js`를 다음과 같이 초기화할 수 있습니다.
 

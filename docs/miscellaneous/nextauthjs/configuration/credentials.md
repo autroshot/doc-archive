@@ -8,7 +8,7 @@ sidebar_position: 2
 
 자격 증명 제공자를 사용하면 사용자 이름과 비밀번호, 이중 인증(2FA), 하드웨어 장치(예: YubiKey U2F / FIDO)와 같은 임의 자격 증명으로 로그인을 처리할 수 있습니다.
 
-사용자를 인증해야 하는 기존 시스템이 있는 유스 케이스를 지원합니다.
+사용자를 인증해야 하는 기존 시스템이 있는 경우를 지원합니다.
 
 ```js title="pages/api/auth/[...nextauth].js"
 import CredentialsProvider from "next-auth/providers/credentials"

@@ -40,11 +40,11 @@ export default function handler(req, res) {
 }
 ```
 
-## 유스 케이스
+## 사용 사례
 
 새 프로젝트의 경우에는 API 경로를 사용하여 전체 API를 만들 수 있습니다. 기존 API가 있는 경우에는 API 경로를 통해 API에 호출을 전달할 필요가 없습니다.
 
-기타 유스 케이스는 다음과 같습니다.
+기타 사용 사례는 다음과 같습니다.
 
 - 외부 서비스의 URL 마스킹하기(예시: `/api/secret` 대신 `https://company.com/secret-url`)
 - 서버에서 [환경 변수](../basic-features/environment-variables.md)를 사용하여 외부 서비스에 안전하게 접근하기
