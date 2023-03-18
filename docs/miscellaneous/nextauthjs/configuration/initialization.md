@@ -24,7 +24,7 @@ export default NextAuth({
 
 여기서는 `NextAuth`에 [옵션](https://next-auth.js.org/configuration/options)만 건네주면 나머지는 `NextAuth`가 처리합니다.
 
-이는 코드를 단순화하고 인증 흐름에서 잠재적인 오류를 줄이기 때문에 튜토리얼이나 문서의 다른 부분에서 선호되는 초기화입니다.
+이는 코드를 단순화하고 인증 흐름에서 잠재적인 오류를 줄이기 때문에 자습서나 문서의 다른 부분에서 선호되는 초기화입니다.
 
 ## 고급 초기화
 
