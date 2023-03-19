@@ -54,7 +54,7 @@ model User {
 
 프리즈마 스키마에는 강력한 데이터 모델링 기능이 있습니다. 예를 들어 [프리즈마 클라이언트 API의 관계 작업](https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries)을 더 쉽게 만들어주는 프리즈마 수준의 [관계 필드](https://www.prisma.io/docs/concepts/components/prisma-schema/relations)를 정의할 수 있습니다.
 
-위의 예시에서 `User`의 `posts` 필드는 프리즈마 수준에서만 정의됩니다. 즉, 기본 데이터베이스에서 외래 키로 명시되지 않습니다.
+위의 예시에서 `User`의 `posts` 필드는 프리즈마 수준에서만 정의됩니다. 즉, 밑에 있는 데이터베이스에서 외래 키로 명시되지 않습니다.
 
 :::
 

@@ -38,7 +38,7 @@ generator client {
 
 올바른 파일은 앱을 프로덕션에 [배포](https://www.prisma.io/docs/guides/deployment/deployment)할 때 특히 중요하며, 이는 종종 로컬 개발 환경과 다릅니다.
 
-#### 기본 이진 대상
+#### `native` 이진 대상
 
 `native` 이진 대상은 특별합니다. 구체적인 운영 체제에 매핑되지 않습니다. 대신 프리즈마가 현재 운영 체제를 감지하고 자동으로 올바른 이진 대상을 지정합니다.
 

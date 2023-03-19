@@ -1,6 +1,6 @@
 # 스키마
 
-**프리즈마 스키마 파일(스키마 파일, 프리즈마 스키마, 스키마)**은 프리즈마 설정을 위한 기본 설정 파일입니다. 일반적으로 `schema.prisma`라고 부르며 다음으로 구성됩니다.
+**프리즈마 스키마 파일(스키마 파일, 프리즈마 스키마, 스키마)**은 프리즈마 설정을 위한 주요 설정 파일입니다. 일반적으로 `schema.prisma`라고 부르며 다음으로 구성됩니다.
 
 - **데이터 소스** - 프리즈마가 연결해야 하는 데이터 소스의 세부 정보를 지정함 (예: 포스트그레SQL 데이터베이스)
 - **생성기** - 데이터 모델을 기반으로 생성되어야 하는 클라이언트를 지정함 (예: 프리즈마 클라이언트)
@@ -24,7 +24,7 @@
 - 데이터 소스 (포스트그레SQL 또는 몽고DB)
 - 생성기 (프리즈마 클라이언트)
 - 두 개의 모델(하나의 관계 포함)과 하나의 `enum`이 있는 데이터 모델 정의
-- 여러 [기본 데이터 타입 속성](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model#native-type-mapping) (`@db.VarChar(255)`, `@db.ObjectId`)
+- 여러 [원시 데이터 타입 속성](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model#native-type-mapping) (`@db.VarChar(255)`, `@db.ObjectId`)
 
 ```prisma
 datasource db {
