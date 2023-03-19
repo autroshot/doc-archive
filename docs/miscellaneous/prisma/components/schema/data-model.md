@@ -146,7 +146,7 @@ model comments {
 }
 ```
 
-그러나 [`@@map`](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#map-1) 속성을 사용하여 밑에 있는 데이터베이스의 원래 테이블 이름인 `comments`을 바꾸지 않고도 명명 규칙을 계속 준수하는 것이 가능합니다.
+그러나 [`@@map`](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#map-1) 속성을 사용하여 기반 데이터베이스의 원래 테이블 이름인 `comments`을 바꾸지 않고도 명명 규칙을 계속 준수하는 것이 가능합니다.
 
 ```prisma
 model Comment {
@@ -156,7 +156,7 @@ model Comment {
 }
 ```
 
-이 모델 정의를 이용해 프리즈마는 `Comment` 모델을 밑에 있는 데이터베이스의 `comments` 테이블에 자동으로 매핑합니다.
+이 모델 정의를 이용해 프리즈마는 `Comment` 모델을 기반 데이터베이스의 `comments` 테이블에 자동으로 매핑합니다.
 
 :::note 참고
 
@@ -164,7 +164,7 @@ model Comment {
 
 :::
 
-`@map`과 `@@map`을 사용하여 밑에 있는 데이터베이스의 테이블과 열 이름에서 모델과 필드 이름을 분리하여 [프리즈마 클라이언트 API의 모양을 조정할 수 있습니다](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/use-custom-model-and-field-names#using-map-and-map-to-rename-fields-and-models-in-the-prisma-client-api).
+`@map`과 `@@map`을 사용하여 기반 데이터베이스의 테이블과 열 이름에서 모델과 필드 이름을 분리하여 [프리즈마 클라이언트 API의 모양을 조정할 수 있습니다](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/use-custom-model-and-field-names#using-map-and-map-to-rename-fields-and-models-in-the-prisma-client-api).
 
 ## 필드 정의하기
 
@@ -223,7 +223,7 @@ model Comment {
 
 ### 원시 타입 매핑
 
-버전 2.17.0 이상은 밑에 있는 데이터베이스 타입을 설명하는 원시 데이터베이스 타입 속성을 지원합니다.
+버전 2.17.0 이상은 기반 데이터베이스 타입을 설명하는 원시 데이터베이스 타입 속성을 지원합니다.
 
 ```prisma {2}
 model Post {
@@ -235,13 +235,13 @@ model Post {
 
 타입 속성의 사용법은 다음과 같습니다.
 
-- 밑에 있는 제공자에 따라 다릅니다. (예: 포스트그레SQL은 `Boolean`으로 `@db.Boolean`를 사용하지만 MySQL은 `@db.TinyInt(1)`을 사용함)
+- 기반 제공자에 따라 다릅니다. (예: 포스트그레SQL은 `Boolean`으로 `@db.Boolean`를 사용하지만 MySQL은 `@db.TinyInt(1)`을 사용함)
 - PascalCase로 작성합니다. (예: `VarChar` 또는 `Text`)
 - 접두사가 `@db`입니다. 여기서 `db`는 스키마의 `datasource` 블록의 이름입니다.
 
-또한 분석 과정 동안, 밑에 있는 원시 타입이 기본 타입이 아닌 경우에만 타입 속성이 스키마에 추가됩니다.
+또한 분석 과정 동안, 기반 원시 타입이 기본 타입이 아닌 경우에만 타입 속성이 스키마에 추가됩니다.
 
-예를 들어 포스트그레SQL 제공자를 사용하는 경우, 밑에 있는 원시 타입이 `text`인 `string` 필드에는 타입 속성이 없습니다.
+예를 들어 포스트그레SQL 제공자를 사용하는 경우, 기반 원시 타입이 `text`인 `string` 필드에는 타입 속성이 없습니다.
 
 [스칼라 타입 및 제공자별 원시 데이터베이스 타입 속성의 전체 목록](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#model-field-scalar-types)을 참고하세요.
 
@@ -298,7 +298,7 @@ model Tag {
 
 `?` 타입 수정자가 필드에 달려 있지 않으면 모델의 모든 레코드에 필드가 필요합니다. 이것은 두 가지 수준에 영향을 줍니다.
 
-- **데이터베이스** - 필수 필드는 밑에 있는 데이터베이스의 `NOT NULL` 제약 조건을 통해 표시됨
+- **데이터베이스** - 필수 필드는 기반 데이터베이스의 `NOT NULL` 제약 조건을 통해 표시됨
 - **프리즈마 클라이언트** - 앱 코드에서 모델을 나타내는 프리즈마 클라이언트의 생성된 타입스크립트 타입은, 런타임에서 항상 값을 전달하도록 해당 필드를 필요에 따라 정의함
 
 :::note 참고
@@ -411,7 +411,7 @@ model User {
 
 :::note 관계형 데이터베이스의 제약 조건의 이름
 
-원한다면 밑에 있는 데이터베이스의 [주 키 제약 조건의 이름을 사용자 지정](https://www.prisma.io/docs/concepts/components/prisma-schema/names-in-underlying-database#constraint-and-index-names)할 수 있습니다.
+원한다면 기반 데이터베이스의 [주 키 제약 조건의 이름을 사용자 지정](https://www.prisma.io/docs/concepts/components/prisma-schema/names-in-underlying-database#constraint-and-index-names)할 수 있습니다.
 
 :::
 
@@ -433,7 +433,7 @@ model Post {
 
 `@default` 속성은 다음 중 하나가 가능합니다.
 
-- 밑에 있는 데이터베이스(관계형 데이터베이스만 해당)의 `DEFAULT` 값을 표현합니다.
+- 기반 데이터베이스(관계형 데이터베이스만 해당)의 `DEFAULT` 값을 표현합니다.
 - 프리즈마 수준 함수를 사용합니다. 예를 들어 `cuid()`와 `uuid()`는 모든 커넥터에 프리즈마의 [질의 엔진](https://www.prisma.io/docs/concepts/components/prisma-engines/query-engine)에서 제공됩니다.
 
 기본값은 다음이 될 수 있습니다.
@@ -480,7 +480,7 @@ model Post {
 
 :::note 관계형 데이터베이스의 제약 조건의 이름
 
-원한다면 밑에 있는 데이터베이스의 [제약 조건의 이름을 사용자 지정](https://www.prisma.io/docs/concepts/components/prisma-schema/names-in-underlying-database#constraint-and-index-names)할 수 있습니다.
+원한다면 기반 데이터베이스의 [제약 조건의 이름을 사용자 지정](https://www.prisma.io/docs/concepts/components/prisma-schema/names-in-underlying-database#constraint-and-index-names)할 수 있습니다.
 
 :::
 
@@ -502,7 +502,7 @@ model Post {
 
 :::note 관계형 데이터베이스의 제약 조건의 이름
 
-원한다면 밑에 있는 데이터베이스의 [색인의 이름을 사용자 지정](https://www.prisma.io/docs/concepts/components/prisma-schema/names-in-underlying-database#constraint-and-index-names)할 수 있습니다.
+원한다면 기반 데이터베이스의 [색인의 이름을 사용자 지정](https://www.prisma.io/docs/concepts/components/prisma-schema/names-in-underlying-database#constraint-and-index-names)할 수 있습니다.
 
 :::
 
@@ -543,7 +543,7 @@ model Post {
 }
 ```
 
-`cuid()`와 `uuid()`는 프리즈마에 의해 구현되므로 밑에 있는 데이터베이스 스키마에서 **보이지 않습니다**. 직접 프리즈마 스키마를 변경하고 프리즈마 클라이언트를 생성하여 분석을 사용할 때도 이 함수를 사용할 수 있습니다. 이 경우에 값은 프리즈마의 질의 엔진에 의해 생성됩니다.
+`cuid()`와 `uuid()`는 프리즈마에 의해 구현되므로 기반 데이터베이스 스키마에서 **보이지 않습니다**. 직접 프리즈마 스키마를 변경하고 프리즈마 클라이언트를 생성하여 분석을 사용할 때도 이 함수를 사용할 수 있습니다. 이 경우에 값은 프리즈마의 질의 엔진에 의해 생성됩니다.
 
 `autoincrement()`, `now()`, `dbgenerated()`에 대한 지원은 데이터베이스마다 다릅니다.
 
