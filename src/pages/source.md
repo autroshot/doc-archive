@@ -12,6 +12,7 @@
 | NextAuth.js    | https://next-auth.js.org/                                    | 4     |
 | Chakra UI      | https://chakra-ui.com/                                       | 2.3   |
 | Prisma         | https://www.prisma.io/                                       | 4.2.1 |
+| Docusaurus     | https://docusaurus.io/ko/                                    | 2.3.1 |
 | Emmet          | https://docs.emmet.io/                                       |       |
 | Yup            | https://github.com/jquense/yup                               | 0.32  |
 | 정규 표현식    | 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트              | 초판  |

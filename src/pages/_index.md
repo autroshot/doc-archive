@@ -14,6 +14,7 @@
 - [NextAuth.js](https://autroshot.github.io/docs-repository/docs/miscellaneous/nextauthjs)
 - [Chakra UI](https://autroshot.github.io/docs-repository/docs/miscellaneous/chakra-ui)
 - [Prisma](https://autroshot.github.io/docs-repository/docs/miscellaneous/prisma)
+- [Docusaurus](https://autroshot.github.io/docs-repository/docs/miscellaneous/docusaurus)
 - [Emmet](https://autroshot.github.io/docs-repository/docs/miscellaneous/emmet)
 - [Yup](https://autroshot.github.io/docs-repository/docs/miscellaneous/yup)
 - [정규 표현식](https://autroshot.github.io/docs-repository/docs/miscellaneous/regular-expression)

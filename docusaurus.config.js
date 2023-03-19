@@ -144,6 +144,11 @@ const config = {
               },
               {
                 type: 'doc',
+                docId: 'miscellaneous/docusaurus/README',
+                label: 'Docusaurus',
+              },
+              {
+                type: 'doc',
                 docId: 'miscellaneous/emmet/README',
                 label: 'Emmet',
               },
@@ -225,6 +230,10 @@ const config = {
               {
                 label: 'Prisma',
                 to: '/docs/miscellaneous/prisma',
+              },
+              {
+                label: 'Docusaurus',
+                to: '/docs/miscellaneous/docusaurus',
               },
               {
                 label: 'Emmet',
