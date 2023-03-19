@@ -98,7 +98,7 @@ $npm install @prisma/client
 
 `@prisma/client` 패키지를 설치하면 프리즈마 스키마를 읽고 프리즈마 클라이언트 코드를 생성하는 `prisma generate` 명령이 호출됩니다. 코드는 [기본적으로 `node_modules/.prisma/client` 폴더에 생성됩니다](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/generating-prisma-client#the-prismaclient-npm-package).
 
-데이터 모델을 변경한 후에는 프리즈마 클라이언트를 수동으로 다시 생성하여 `node_modules/.prisma/client` 내부의 코드를 업데이트해야 합니다.
+데이터 모델을 변경한 후에는 프리즈마 클라이언트를 수동으로 다시 생성하여 `node_modules/.prisma/client` 내부의 코드를 갱신해야 합니다.
 
 ```bash
 $prisma generate
