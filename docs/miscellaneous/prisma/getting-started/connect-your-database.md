@@ -22,18 +22,13 @@ datasource db {
 }
 ```
 
-그리고 `schema.prisma` 파일의 `generator` 파일 블록에 [`referentialIntegrity` 미리보기 기능](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/referential-integrity)을 추가하고 `datasource` 블록에서 참조 무결성 유형을 `"prisma"`로 설정해야 합니다.
+그리고 `datasource` 블록에서 [관계 모드 유형을 `prisma`로 설정](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/relation-mode#emulate-relations-in-prisma-with-the-prisma-relation-mode)해야 합니다.
 
-```prisma title="schema.prisma" {2,8}
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
-}
-
+```prisma title="schema.prisma" {3}
 datasource db {
-  provider             = "mysql"
-  url                  = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 ```
 
