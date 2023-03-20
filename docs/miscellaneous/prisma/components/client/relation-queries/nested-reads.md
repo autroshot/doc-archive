@@ -13,7 +13,7 @@ sidebar_position: 1
 
 다음 예시에서는 단일 사용자와 해당 사용자의 게시물을 반환합니다.
 
-```ts
+```ts {4-6}
 const getUser = await prisma.user.findUnique({
   where: {
     id: 19,
@@ -59,7 +59,7 @@ const getUser = await prisma.user.findUnique({
 
 다음 예시에서는 `title` 필드에 `cookies` 단어가 포함된 모든 게시물과 각 게시물의 작성자를 반환합니다. 결과에는 모든 작성자 필드가 포함됩니다.
 
-```ts
+```ts {6-8}
 const getPosts = await prisma.post.findMany({
   where: {
     title: {
@@ -176,7 +176,7 @@ const user = await prisma.user.findMany({
 
 예를 들어 다음 질의는 사용자의 `name`과 각 관련 게시물의 `title`를 반환합니다.
 
-```ts
+```ts {4, 7-9}
 const getUser = await prisma.user.findUnique({
   where: {
     id: 19,
@@ -240,7 +240,7 @@ const getUser = await prisma.user.findUnique({
 
 `select`와 `include`는 같은 수준에서 사용할 수 없습니다. 즉, 사용자의 게시물을 `include`하고 각 게시물의 제목을 `select`하면, 사용자의 `email`만 `select`할 수 없습니다.
 
-```ts
+```ts {5, 8}
 // 다음 질의는 예외를 반환합니다.
 const getUser = await prisma.user.findUnique({
   where: {
@@ -313,7 +313,7 @@ const getUser = await prisma.user.findUnique({
 
 예를 들어 `prisma.io` 이메일 주소로 모든 사용자를 질의하고 게시된 게시물의 제목을 선택할 수 있습니다.
 
-```ts
+```ts {8-13}
 const result = await prisma.user.findMany({
   where: {
     email: {
