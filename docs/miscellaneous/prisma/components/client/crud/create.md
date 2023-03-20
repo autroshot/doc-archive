@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # Create
 
+모든 예시는 [예시 스키마](../example-schema.md)를 기반으로 합니다.
+
 ## 단일 레코드 생성하기
 
 다음 질의는 두 개의 필드가 있는 단일 사용자를 생성합니다.

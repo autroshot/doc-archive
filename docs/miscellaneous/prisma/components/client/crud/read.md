@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Read
 
+모든 예시는 [예시 스키마](../example-schema.md)를 기반으로 합니다.
+
 ## ID 또는 고유 식별자로 레코드 가져오기
 
 다음 `findUnique` 질의는 고유 식별자 또는 ID로 단일 레코드를 반환합니다.

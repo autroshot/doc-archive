@@ -4,6 +4,8 @@ sidebar_position: 4
 
 # Update
 
+모든 예시는 [예시 스키마](../example-schema.md)를 기반으로 합니다.
+
 ## 단일 레코드 갱신하기
 
 다음 질의는 `update`를 사용하여 `email`로 단일 `User` 레코드를 찾고 갱신합니다.

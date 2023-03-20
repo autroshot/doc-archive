@@ -4,6 +4,8 @@ sidebar_position: 5
 
 # Delete
 
+모든 예시는 [예시 스키마](../example-schema.md)를 기반으로 합니다.
+
 ## 단일 레코드 삭제하기
 
 다음 질의는 `delete`를 사용하여 단일 `User` 레코드를 삭제합니다.
