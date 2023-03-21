@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Read
 
-모든 예시는 [예시 스키마](../example-schema.md)를 기반으로 합니다.
+모든 예시는 [예시 스키마](./example-schema.md)를 기반으로 합니다.
 
 ## ID 또는 고유 식별자로 레코드 가져오기
 

@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Delete
 
-모든 예시는 [예시 스키마](../example-schema.md)를 기반으로 합니다.
+모든 예시는 [예시 스키마](./example-schema.md)를 기반으로 합니다.
 
 ## 단일 레코드 삭제하기
 
