@@ -29,7 +29,7 @@ sidebar_position: 6
 
    b. 베르셀에는 `NEXTAUTH_URL` 환경 변수가 **필요하지 않습니다**.
 
-3. 제공자의 클라이언트 ID와 클라이언트 암호를 환경 변수에 추가합니다. ([OAuth 공급자](https://next-auth.js.org/configuration/providers/oauth)를 사용하지 않는다면 이 단계를 건너뜀)
+3. 제공자의 클라이언트 ID와 클라이언트 암호를 환경 변수에 추가합니다. ([OAuth 제공자](https://next-auth.js.org/configuration/providers/oauth)를 사용하지 않는다면 이 단계를 건너뜀)
 4. 배포!
 
 예시 저장소는 [https://github.com/nextauthjs/next-auth-example](https://github.com/nextauthjs/next-auth-example)을 확인하세요.

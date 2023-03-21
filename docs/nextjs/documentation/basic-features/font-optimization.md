@@ -57,7 +57,7 @@ export default MyDocument;
 
 `next/head`에 글꼴을 추가하는 것은 특정 페이지에만 적용되고 스트리밍 아키텍처에서는 작동하지 않기 때문에 권장하지 않습니다.
 
-자동 웹 글꼴 최적화는 현재 구글 글꼴과 Typekit을 지원하며 곧 다른 글꼴 공급자도 지원할 예정입니다. 또한 [로딩 전략](https://github.com/vercel/next.js/issues/21555)과 `font-display` 값에 대한 제어 기능을 추가할 계획입니다.
+자동 웹 글꼴 최적화는 현재 구글 글꼴과 Typekit을 지원하며 곧 다른 글꼴 제공자도 지원할 예정입니다. 또한 [로딩 전략](https://github.com/vercel/next.js/issues/21555)과 `font-display` 값에 대한 제어 기능을 추가할 계획입니다.
 
 자세한 내용은 [Google 글꼴 표시](https://nextjs.org/docs/messages/google-font-display)를 참조합니다.
 
