@@ -376,7 +376,7 @@ function readButtonInput(name: string, version: number, ...input: boolean[]) {
 
 ## `readonly` 튜플 타입
 
-튜플 타입에는 `readonly` 변형이 있습니다. 배열 약칭 문법과 동일하게 앞에 `readonly` 수정자를 붙이면 됩니다.
+튜플 타입에는 `readonly` 변형이 있습니다. 배열 약칭 구문과 동일하게 앞에 `readonly` 수정자를 붙이면 됩니다.
 
 ```ts
 function doSomething(pair: readonly [string, number]) {

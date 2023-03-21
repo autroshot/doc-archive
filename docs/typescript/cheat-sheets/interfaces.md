@@ -48,7 +48,7 @@ string[] or Array<string>
 
 `Object`, `String`, `Number`, `Boolean`
 
-## 일반 문법
+## 일반 구문
 
 ```ts
 // 선택적으로 기존 인터페이스나 타입에서 프로퍼티를 가져옵니다.

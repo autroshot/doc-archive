@@ -21,7 +21,7 @@ function sum({ a, b, c }) {
 sum({ a: 10, b: 3, c: 9 });
 ```
 
-객체에 대한 타입 주석은 구조 분해 문법 다음에 옵니다.
+객체에 대한 타입 주석은 구조 분해 구문 다음에 옵니다.
 
 ```ts
 function sum({ a, b, c }: { a: number; b: number; c: number }) {

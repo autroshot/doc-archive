@@ -7,7 +7,7 @@ sidebar_position: 8
 :::note 배경 지식
 
 - [나머지 매개변수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/rest_parameters)
-- [전개 문법](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+- [전개 구문](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
 :::
 
@@ -15,7 +15,7 @@ sidebar_position: 8
 
 선택적 매개변수 또는 다중 정의를 사용하여 다양한 고정 인수 개수를 허용하는 함수를 만들 수 있습니다. 추가로 **나머지 매개변수**를 사용하여 **무한한** 수의 인수를 취하는 함수를 정의할 수 있습니다.
 
-나머지 매개변수는 다른 모든 매개변수 뒤에서 `...` 문법을 사용합니다.
+나머지 매개변수는 다른 모든 매개변수 뒤에서 `...` 구문을 사용합니다.
 
 ```ts
 function multiply(n: number, ...m: number[]) {
@@ -29,7 +29,7 @@ const a = multiply(10, 1, 2, 3, 4);
 
 ## 나머지 인수
 
-반대로 전개 문법을 사용하여 배열에서 가변적인 수의 인수를 제공할 수 있습니다.
+반대로 전개 구문을 사용하여 배열에서 가변적인 수의 인수를 제공할 수 있습니다.
 
 예를 들어 배열의 `push` 메서드는 임의 개수의 인수를 사용합니다.
 

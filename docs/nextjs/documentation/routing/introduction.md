@@ -25,7 +25,7 @@ sidebar_label: 소개
 
 #### 동적 경로 세그먼트
 
-동적 세그먼트를 일치시키기 위해 대괄호 문법을 사용할 수 있습니다. 이렇게 하면 명명된 매개변수를 일치시킬 수 있습니다.
+동적 세그먼트를 일치시키기 위해 대괄호 구문을 사용할 수 있습니다. 이렇게 하면 명명된 매개변수를 일치시킬 수 있습니다.
 
 - `pages/blog/[slug].js` → `/blog/:slug`(`/blog/hello-world`)
 - `pages/[username]/settings.js` → `/:username/settings`(`/foo/settings`)

@@ -8,7 +8,7 @@ sidebar_position: 5
 
 `?.`는 왼쪽에 있는 평가 대상이 `null` 또는 `undefined`이면 평가를 멈추고 `undefined`를 반환한다.
 
-문법:
+구문:
 
 ```
 obj?.prop

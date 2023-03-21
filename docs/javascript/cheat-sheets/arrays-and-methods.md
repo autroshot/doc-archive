@@ -12,7 +12,7 @@ sidebar_position: 1
 
 ## 병합
 
-전개 문법을 활용한다.
+전개 구문을 활용한다.
 
 ```js
 const arr1 = ['a', 'b', 'c'];
@@ -45,7 +45,7 @@ for (let i = 0; i < arr.length; i++) {
 
 각 요소에 대해 콜백 함수를 실행한다.
 
-문법:
+구문:
 
 ```js
 arr.forEach(callback(value[, index[, array]])[, thisArg])
@@ -66,7 +66,7 @@ array.forEach(element => console.log(element));
 
 콜백 함수의 실행 결과로 이루어진 새로운 배열을 만든다.
 
-문법:
+구문:
 
 ```js
 arr.map(callback(value[, index[, array]])[, thisArg])
@@ -86,7 +86,7 @@ console.log(map); // [2, 8, 18, 32]
 
 반환값이 다음 요소에 전달된다.
 
-문법:
+구문:
 
 ```js
 arr.reduce(callback(accumulator, value[, index[, array]])[, initialValue])
@@ -108,7 +108,7 @@ alert(result); // 15
 
 특정 요소가 포함되어 있는지 판별한다. 판별에서 일치 연산자(`===`)를 사용한다.
 
-문법:
+구문:
 
 ```js
 arr.includes(valueToFind[, fromIndex])
@@ -127,7 +127,7 @@ console.log(pets.includes('at')); // false
 
 조건에 해당하는 요소로 이루어진 배열을 만든다.
 
-문법:
+구문:
 
 ```js
 arr.filter(callback(value[, index[, array]])[, thisArg])
@@ -157,7 +157,7 @@ console.log(result); // ['exuberant', 'destruction', 'present']
 
 오름차순으로 정렬하려면 `a`가 `b`보다 클 때 양수를 반환하면 된다.
 
-문법:
+구문:
 
 ```js
 arr.sort([compare(a, b)])
@@ -179,7 +179,7 @@ console.log(arr);  // [1, 2, 3, 4, 5]
 
 해당 요소를 발견하면 즉시 `true`를 반환한다.
 
-문법:
+구문:
 
 ```js
 arr.some(callback(value[, index[, array]])[, thisArg])
@@ -201,7 +201,7 @@ console.log(result); // true
 
 조건에 해당되지 않는 요소를 발견하면 즉시 `false`를 반환한다.
 
-문법:
+구문:
 
 ```js
 arr.every(callback(value[, index[, array]])[, thisArg])
