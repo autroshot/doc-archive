@@ -95,7 +95,7 @@ const usersWithCount = await prisma.user.findMany({
 
 2.15.0 이상에서는 모든 레코드와 `null`이 아닌 필드 값의 개수를 셀 수 있습니다.
 
-하단의 질의는 다음의 수를 반환합니다.
+하단의 질의는 다음의 개수를 반환합니다.
 
 - 모든 `User` 레코드 (`_all`)
 - `null`이 아닌 모든 `name` 값 (고유 값이 아니라 `null`이 아닌 값)

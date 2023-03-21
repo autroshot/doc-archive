@@ -6,7 +6,7 @@ sidebar_position: 5
 
 `orderBy`를 사용하여 특정 필드 또는 필드 집합을 기준으로 레코드 목록 또는 중첩 레코드 목록을 정렬합니다.
 
-예를 들어 다음의 질의는 `role`과 `name`으로 정렬된 모든 `User` 레코드와, `title`로 정렬된 각 사용자의 게시물을 반환합니다.
+예를 들어 다음 질의는 `role`과 `name`으로 정렬된 모든 `User` 레코드와, `title`로 정렬된 각 사용자의 게시물을 반환합니다.
 
 ```ts
 const usersWithPosts = await prisma.user.findMany({
@@ -77,7 +77,7 @@ const usersWithPosts = await prisma.user.findMany({
 
 관계의 프로퍼티를 기준으로 정렬할 수 있습니다.
 
-예를 들어 다음의 질의는 작성자의 이메일 주소를 기준으로 모든 게시물을 정렬합니다.
+예를 들어 다음 질의는 작성자의 이메일 주소를 기준으로 모든 게시물을 정렬합니다.
 
 ```ts
 const posts = await prisma.post.findMany({
@@ -93,7 +93,7 @@ const posts = await prisma.post.findMany({
 
 2.19.0 이상에서는 관련 레코드 개수를 기준으로 정렬할 수 있습니다.
 
-예를 들어 다음의 질의는 관련 게시물 수를 기준으로 사용자를 정렬합니다.
+예를 들어 다음 질의는 관련 게시물 수를 기준으로 사용자를 정렬합니다.
 
 ```ts
 const getActiveUsers = await prisma.user.findMany({
@@ -131,7 +131,7 @@ generator client {
 
 :::
 
-`updatedAt`가 선택적 필드라고 가정하면, 다음의 질의는 `updatedAt`로 게시물을 정렬하며 `null` 레코드는 마지막에 위치합니다.
+`updatedAt`가 선택적 필드라고 가정하면, 다음 질의는 `updatedAt`로 게시물을 정렬하며 `null` 레코드는 마지막에 위치합니다.
 
 ```ts
 const posts = await prisma.post.findMany({
