@@ -277,7 +277,7 @@ export default () => (
 
 ### 클릭 시 이메일 로그인 흐름 시작하기
 
-이메일 흐름과 함께 사용할 경우 타겟 `email`을 옵션으로 전달합니다.
+이메일 흐름과 함께 사용할 경우 대상 `email`을 옵션으로 전달합니다.
 
 ```jsx
 import { signIn } from "next-auth/react"
