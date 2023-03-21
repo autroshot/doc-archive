@@ -31,7 +31,7 @@ datasource db {
 일부 데이터 소스 `provider`에서는 SSL/TLS로 연결을 구성하고, 인증서 위치를 지정하는 `url` 매개변수를 전달할 수 있습니다.
 
 - [포스트그레SQL과의 SSL 연결 설정](https://www.prisma.io/docs/concepts/database-connectors/postgresql#configuring-an-ssl-connection)
-- [MySQL과의 SSL 연결 설정](https://www.prisma.io/docs/concepts/database-connectors/mysql#configuring-an-ssl-connection)
+- [마이SQL과의 SSL 연결 설정](https://www.prisma.io/docs/concepts/database-connectors/mysql#configuring-an-ssl-connection)
 - [마이크로소프트 SQL 서버와의 TLS 연결 설정](https://www.prisma.io/docs/concepts/database-connectors/sql-server#connection-details)
 
 프리즈마는 `./prisma` 디렉터리에 있는 SSL 인증서를 확인합니다. 인증서 파일이 해당 디렉터리 외부에 있는 경우(예: 프로젝트 루트 디렉터리) 인증서에 상대 경로를 사용해야 합니다.

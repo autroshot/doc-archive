@@ -15,7 +15,7 @@
 - `prisma generate` - 프리즈마 스키마에서 위에서 언급한 모든 정보를 읽어 올바른 데이터 소스 클라이언트 코드(예: 프리즈마 클라이언트)를 생성함
 - `prisma migrate dev` - 데이터 소스와 데이터 모델 정의를 읽어 새로운 마이그레이션을 생성함
 
-또한 스키마 파일 내의 [환경 변수를 사용](https://www.prisma.io/docs/concepts/components/prisma-schema#accessing-environment-variables-from-the-schema)하여 CLI 명령이 호출될 때 설정 옵션을 제공할 수 있습니다.
+또한 스키마 파일 내의 [환경 변수를 사용](#스키마에서-환경-변수-접근하기)하여 CLI 명령이 호출될 때 설정 옵션을 제공할 수 있습니다.
 
 ## 예시
 
@@ -24,7 +24,7 @@
 - 데이터 소스 (포스트그레SQL 또는 몽고DB)
 - 생성기 (프리즈마 클라이언트)
 - 두 개의 모델(하나의 관계 포함)과 하나의 `enum`이 있는 데이터 모델 정의
-- 여러 [원시 데이터 타입 속성](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model#native-type-mapping) (`@db.VarChar(255)`, `@db.ObjectId`)
+- 여러 [원시 데이터 타입 속성](./data-model.md#원시-타입-매핑) (`@db.VarChar(255)`, `@db.ObjectId`)
 
 ```prisma
 datasource db {

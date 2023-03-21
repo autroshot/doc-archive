@@ -88,7 +88,7 @@ const timePeriod = await prisma.timePeriod.findUnique({
 const users = await prisma.user.findMany()
 ```
 
-결과에 [페이지를 매길](https://www.prisma.io/docs/concepts/components/prisma-client/pagination) 수도 있습니다.
+결과에 [페이지를 매길](../pagination.md) 수도 있습니다.
 
 ## 특정 기준과 일치하는 첫 번째 레코드 가져오기
 
@@ -116,7 +116,7 @@ const findUser = await prisma.user.findFirst({
 
 ## 필터링된 레코드 목록 가져오기
 
-프리즈마 클라이언트는 레코드 필드 및 관련 레코드 필드에 대한 [필터링](https://www.prisma.io/docs/concepts/components/prisma-client/filtering-and-sorting)을 지원합니다.
+프리즈마 클라이언트는 레코드 필드 및 관련 레코드 필드에 대한 [필터링](../filtering.md)을 지원합니다.
 
 ### 단일 필드 값으로 필터링하기
 
@@ -179,7 +179,7 @@ const users = await prisma.user.findMany({
 }
 ```
 
-관련 필드 값 필터링에 대한 자세한 내용은 [관계 질의](https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries)를 참고하세요.
+관련 필드 값 필터링에 대한 자세한 내용은 [관계 질의](../relation-queries/index.md)를 참고하세요.
 
 ## 필드의 하위 집합 선택하기
 
@@ -203,8 +203,8 @@ const user = await prisma.user.findUnique({
 
 관계 포함에 대한 자세한 내용은 다음을 참고하세요.
 
-- [필드 선택하기](https://www.prisma.io/docs/concepts/components/prisma-client/select-fields)
-- [관계 질의](https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries)
+- [필드 선택하기](../select-fields.md)
+- [관계 질의](../relation-queries/index.md)
 
 ### 관련 레코드 필드의 하위 집합 선택하기
 

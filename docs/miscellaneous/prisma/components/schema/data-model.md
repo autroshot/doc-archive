@@ -10,7 +10,7 @@ sidebar_position: 3
 
 - 앱 도메인의 **개체**를 나타냄
 - 데이터베이스의 **테이블**(포스트그레SQL과 같은 관계형 데이터베이스)에 매핑됨
-- 생성된 [프리즈마 클라이언트 API](https://www.prisma.io/docs/concepts/components/prisma-client)에서 사용 가능한 **질의**의 기초를 형성함
+- 생성된 [프리즈마 클라이언트 API](../client/index.md)에서 사용 가능한 **질의**의 기초를 형성함
 - 타입스크립트와 함께 사용하면, 프리즈마 클라이언트는 모델과 모델의 [변형](https://www.prisma.io/docs/concepts/components/prisma-client/advanced-type-safety/operating-against-partial-structures-of-model-types)에 대한 생성된 **타입 정의**를 제공함. 그 결과 데이터베이스 접근을 타입에 완전히 안전하게 만듬
 
 다음 스키마는 블로그 플랫폼을 묘사합니다.
@@ -173,7 +173,7 @@ model Comment {
 - 필드 이름
 - 필드 타입
 - 선택적 타입 수정자
-- [원시 데이터베이스 타입 속성](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model#native-types-mapping)을 포함한 선택적 속성
+- [원시 데이터베이스 타입 속성](#원시-타입-매핑)을 포함한 선택적 속성
 
 필드 타입은 구조를 결정하며 다음 두 범주 중 하나에 속합니다.
 
@@ -219,7 +219,7 @@ model Comment {
 }
 ```
 
-모델 간의 관계에 대한 자세한 예시와 정보는 [관계 문서](https://www.prisma.io/docs/concepts/components/prisma-schema/relations)를 참고하세요.
+모델 간의 관계에 대한 자세한 예시와 정보는 [관계 문서](./relations/index.md)를 참고하세요.
 
 ### 원시 타입 매핑
 
@@ -551,7 +551,7 @@ model Post {
 
 ## 관계
 
-모델 간의 관계에 대한 자세한 예시와 정보는 [관계 문서](https://www.prisma.io/docs/concepts/components/prisma-schema/relations)를 참고하세요.
+모델 간의 관계에 대한 자세한 예시와 정보는 [관계 문서](./relations/index.md)를 참고하세요.
 
 ## 프리즈마 클라이언트의 모델
 

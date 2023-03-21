@@ -191,9 +191,9 @@ model Category {
 
 암시적 m-n 관계는 여전히 기반 데이터베이스의 관계 테이블에 나타납니다. 그러나 이 관계 테이블은 프리즈마에서 관리합니다.
 
-명시적 m-n 관계 대신 암시적 관계를 사용하면 다대다 관계에 대한 프리즈마 클라이언트 API가 좀 더 간단해집니다. 예를 들어 [중첩 쓰기](https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#nested-writes) 내부에 중첩 수준이 하나 줄어듭니다.
+명시적 m-n 관계 대신 암시적 관계를 사용하면 다대다 관계에 대한 프리즈마 클라이언트 API가 좀 더 간단해집니다. 예를 들어 [중첩 쓰기](../../client/relation-queries/nested-writes.md) 내부에 중첩 수준이 하나 줄어듭니다.
 
-프리즈마 마이그레이트를 사용하지 않지만 분석에서 데이터 모델을 얻는 경우에도 [관계 테이블에 대한 프리즈마의 규칙](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/many-to-many-relations#conventions-for-relation-tables-in-implicit-m-n-relations)을 따르면 암시적 다대다 관계를 사용할 수 있습니다.
+프리즈마 마이그레이트를 사용하지 않지만 분석에서 데이터 모델을 얻는 경우에도 [관계 테이블에 대한 프리즈마의 규칙](../../schema/relations/many-to-many-relations.md#암시적-m-n-관계의-관계-테이블에-대한-규칙)을 따르면 암시적 다대다 관계를 사용할 수 있습니다.
 
 다음과 같은 두 개의 모델이 있다고 가정해 보겠습니다.
 
@@ -253,7 +253,7 @@ authorId   Int
 
 :::note 참고
 
-관계 스칼라 필드는 생성된 프리즈마 클라이언트 API에서 읽기 전용입니다. 코드에서 관계를 갱신하려면 [중첩 쓰기](https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#nested-writes)를 사용하면 됩니다.
+관계 스칼라 필드는 생성된 프리즈마 클라이언트 API에서 읽기 전용입니다. 코드에서 관계를 갱신하려면 [중첩 쓰기](../../client/relation-queries/nested-writes.md)를 사용하면 됩니다.
 
 :::
 
