@@ -54,7 +54,7 @@ function paintShape(opts: PaintOptions) {
 }
 ```
 
-지정되지 않은 값에 기본값을 설정하는 패턴은 너무 일반적이어서 자바스크립트에는 이를 지원하는 문법이 있습니다.
+지정되지 않은 값에 기본값을 설정하는 패턴은 너무 일반적이어서 자바스크립트에는 이를 지원하는 구문이 있습니다.
 
 ```ts
 function paintShape({ shape, xPos = 0, yPos = 0 }: PaintOptions) {
@@ -70,7 +70,7 @@ function paintShape({ shape, xPos = 0, yPos = 0 }: PaintOptions) {
 
 :::note 참고
 
-현재로서는 구조 분해 패턴 내에 타입 주석을 배치할 수 있는 방법이 없습니다. 다음 문법은 자바스크립트에서 이미 다른 의미를 갖기 때문입니다.
+현재로서는 구조 분해 패턴 내에 타입 주석을 배치할 수 있는 방법이 없습니다. 다음 구문은 자바스크립트에서 이미 다른 의미를 갖기 때문입니다.
 
 ```ts
 function draw({ shape: Shape, xPos: number = 100 /*...*/ }) {

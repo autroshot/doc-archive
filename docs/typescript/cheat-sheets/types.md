@@ -24,7 +24,7 @@ sidebar_position: 3
 
 타입스크립트에는 타입 시스템에서 일반적인 작업을 수행하는 데 도움이 되는 많은 전역 타입이 포함되어 있습니다. 자세한 내용은 사이트의 [문서](https://www.typescriptlang.org/ko/docs/handbook/utility-types.html)를 확인하세요.
 
-## 객체 리터럴 문법
+## 객체 리터럴 구문
 
 ```ts
 type JSONResponse = {

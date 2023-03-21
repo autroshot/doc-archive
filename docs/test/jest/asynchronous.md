@@ -56,7 +56,7 @@ test('the fetch fails with an error', async () => {
 });
 ```
 
-이 경우 `async`와 `await`는 앞에서 사용한 프라미스와 동일한 논리를 가지는 효과적인 문법 설탕입니다.
+이 경우 `async`와 `await`는 앞에서 사용한 프라미스와 동일한 논리를 가지는 효과적인 구문 설탕입니다.
 
 :::caution
 

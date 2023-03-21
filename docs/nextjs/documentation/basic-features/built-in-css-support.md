@@ -143,9 +143,9 @@ Sass 지원에는 앞에서 설명한 내장 CSS 지원과 동일한 이점과 �
 
 :::note 참고
 
-Sass는 각각 고유한 확장자를 가진 [두 가지 다른 문법](https://sass-lang.com/documentation/syntax)을 지원합니다. `.scss` 확장자를 사용하려면 [SCSS 문법](https://sass-lang.com/documentation/syntax#scss)을 사용해야 하는 반면 `.sass` 확장자를 사용하려면 [들여쓰기 문법(Sass)](https://sass-lang.com/documentation/syntax#the-indented-syntax)을 사용해야 합니다.
+Sass는 각각 고유한 확장자를 가진 [두 가지 다른 구문](https://sass-lang.com/documentation/syntax)을 지원합니다. `.scss` 확장자를 사용하려면 [SCSS 구문](https://sass-lang.com/documentation/syntax#scss)을 사용해야 하는 반면 `.sass` 확장자를 사용하려면 [들여쓰기 구문(Sass)](https://sass-lang.com/documentation/syntax#the-indented-syntax)을 사용해야 합니다.
 
-어떤 것을 선택해야 할지 잘 모르겠다면 들여쓰기 문법(Sass)이 필요 없고 CSS의 상위 집합인 `.scss` 확장으로 시작하면 됩니다.
+어떤 것을 선택해야 할지 잘 모르겠다면 들여쓰기 구문(Sass)이 필요 없고 CSS의 상위 집합인 `.scss` 확장으로 시작하면 됩니다.
 
 :::
 

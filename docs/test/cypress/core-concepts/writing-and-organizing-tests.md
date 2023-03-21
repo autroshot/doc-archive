@@ -324,7 +324,7 @@ it.skip('returns "fizz" when number is multiple of 3', () => {
 
 이 설정은 지정된 스위트나 테스트 중에 적용되며 스위트나 테스트가 완료된 후에는 이전의 기본값으로 돌아갑니다.
 
-#### 문법
+#### 구문
 
 ```js
 describe(name, config, fn);

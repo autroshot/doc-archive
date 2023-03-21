@@ -8,7 +8,7 @@ sidebar_position: 6
 
 모든 피연산자가 `null` 또는 `undefined`이면 가장 오른쪽 피연산자를 반환한다.
 
-문법:
+구문:
 
 ```js
 leftExpr ?? rightExpr
