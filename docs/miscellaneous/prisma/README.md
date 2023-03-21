@@ -21,7 +21,7 @@ sidebar_position: 1
 
 ### 프리즈마 스키마
 
-프리즈마 툴킷의 도구를 사용하는 모든 프로젝트는 [프리즈마 스키마 파일](https://www.prisma.io/docs/concepts/components/prisma-schema)로 시작합니다. 개발자는 프리즈마 스키마를 이용하여 직관적인 데이터 모델링 언어로 앱 모델을 정의할 수 있습니다. 스키마에는 데이터베이스 연결과 제너레이터 정의가 포함됩니다.
+프리즈마 툴킷의 도구를 사용하는 모든 프로젝트는 [프리즈마 스키마 파일](./components/schema/index.md)로 시작합니다. 개발자는 프리즈마 스키마를 이용하여 직관적인 데이터 모델링 언어로 앱 모델을 정의할 수 있습니다. 스키마에는 데이터베이스 연결과 제너레이터 정의가 포함됩니다.
 
 ```prisma
 datasource db {
@@ -52,13 +52,13 @@ model User {
 
 :::note 참고
 
-프리즈마 스키마에는 강력한 데이터 모델링 기능이 있습니다. 예를 들어 [프리즈마 클라이언트 API의 관계 작업](https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries)을 더 쉽게 만들어주는 프리즈마 수준의 [관계 필드](https://www.prisma.io/docs/concepts/components/prisma-schema/relations)를 정의할 수 있습니다.
+프리즈마 스키마에는 강력한 데이터 모델링 기능이 있습니다. 예를 들어 [프리즈마 클라이언트 API의 관계 작업](./components/client/relation-queries/index.md)을 더 쉽게 만들어주는 프리즈마 수준의 [관계 필드](./components/schema/relations/index.md)를 정의할 수 있습니다.
 
-위의 예시에서 `User`의 `posts` 필드는 프리즈마 수준에서만 정의됩니다. 즉, 기본 데이터베이스에서 외래 키로 명시되지 않습니다.
+위의 예시에서 `User`의 `posts` 필드는 프리즈마 수준에서만 정의됩니다. 즉, 기반 데이터베이스에서 외래 키로 명시되지 않습니다.
 
 :::
 
-이 스키마에서는 다음의 세 가지를 설정합니다.
+이 스키마에서는 다음 세 가지를 설정합니다.
 
 - **데이터 소스** - 환경 변수를 통해 데이터베이스 연결을 지정함
 - **제너레이터** - 프리즈마 클라이언트를 생성함
@@ -66,11 +66,11 @@ model User {
 
 ### 프리즈마 데이터 모델
 
-이 페이지에서는 데이터 모델에 중점을 둡니다. 각 문서 페이지에서 [데이터 소스](https://www.prisma.io/docs/concepts/components/prisma-schema/data-sources) 및 [제너레이터](https://www.prisma.io/docs/concepts/components/prisma-schema/generators)에 대해 자세히 알아볼 수 있습니다.
+이 페이지에서는 데이터 모델에 중점을 둡니다. 각 문서 페이지에서 [데이터 소스](./components/schema/data-sources.md) 및 [제너레이터](./components/schema/generators.md)에 대해 자세히 알아볼 수 있습니다.
 
 #### 프리즈마 모델의 기능
 
-데이터 모델은 [모델](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model#defining-models)의 집합입니다.
+데이터 모델은 [모델](./components/schema/data-model.md#모델-정의하기)의 집합입니다.
 
 모델에는 두 가지 주요 기능이 있습니다.
 
@@ -98,7 +98,7 @@ $npm install @prisma/client
 
 `@prisma/client` 패키지를 설치하면 프리즈마 스키마를 읽고 프리즈마 클라이언트 코드를 생성하는 `prisma generate` 명령이 호출됩니다. 코드는 [기본적으로 `node_modules/.prisma/client` 폴더에 생성됩니다](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/generating-prisma-client#the-prismaclient-npm-package).
 
-데이터 모델을 변경한 후에는 프리즈마 클라이언트를 수동으로 다시 생성하여 `node_modules/.prisma/client` 내부의 코드를 업데이트해야 합니다.
+데이터 모델을 변경한 후에는 프리즈마 클라이언트를 수동으로 다시 생성하여 `node_modules/.prisma/client` 내부의 코드를 갱신해야 합니다.
 
 ```bash
 $prisma generate
@@ -112,7 +112,7 @@ $prisma generate
 
 ##### 프리즈마 클라이언트 가져오기 및 인스턴스화
 
-```tsx
+```ts
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 ```
@@ -121,7 +121,7 @@ const prisma = new PrismaClient()
 
 모든 프리즈마 클라이언트 쿼리는 오래된 순수 자바스크립트 객체를 반환합니다.
 
-[프리즈마 클라이언트 API 참고](https://www.prisma.io/docs/concepts/components/prisma-client)에서 가능한 작업을 확인할 수 있습니다.
+[프리즈마 클라이언트 API 참고](./components/client/index.md)에서 가능한 작업을 확인할 수 있습니다.
 
 #### 타입스크립트와 함께 사용하기
 
