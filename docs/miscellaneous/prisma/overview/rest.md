@@ -2,14 +2,14 @@
 sidebar_position: 1
 ---
 
-import Image from '@theme/IdealImage';
+import IdealImage from '@theme/IdealImage';
 import restApisWithPrismaClient from '/img/docs/prisma/rest-apis-with-prisma-client.png';
 
 # REST
 
 REST API를 구축할 때 프리즈마 클라이언트를 경로 컨트롤러 내에서 사용하여 데이터베이스 쿼리를 보낼 수 있습니다.
 
-<Image img={restApisWithPrismaClient} alt={'프리즈마 클라이언트와 REST API'} />
+<IdealImage img={restApisWithPrismaClient} alt={'프리즈마 클라이언트와 REST API'} />
 
 ## 지원되는 라이브러리
 

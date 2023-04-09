@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-import Image from '@theme/IdealImage';
+import IdealImage from '@theme/IdealImage';
 import preRendering from '/img/docs/nextjs/pre-rendering-and-data-fetching/pre-rendering.png';
 import noPreRendering from '/img/docs/nextjs/pre-rendering-and-data-fetching/no-pre-rendering.png';
 import staticGeneration from '/img/docs/nextjs/pre-rendering-and-data-fetching/static-generation.png';
@@ -22,9 +22,9 @@ import clientSideRendering from '/img/docs/nextjs/pre-rendering-and-data-fetchin
 
 다음 그림들은 사전 렌더링이 있을 때와 없을 때를 설명합니다.
 
-<Image img={preRendering} alt={'사전 렌더링이 있을 때'} />
+<IdealImage img={preRendering} alt={'사전 렌더링이 있을 때'} />
 
-<Image img={noPreRendering} alt={'사전 렌더링이 없을 때'} />
+<IdealImage img={noPreRendering} alt={'사전 렌더링이 없을 때'} />
 
 ## 두 가지 형태의 사전 렌더링
 
@@ -33,9 +33,9 @@ import clientSideRendering from '/img/docs/nextjs/pre-rendering-and-data-fetchin
 - [**정적 생성**](../basic-features/pages.md#정적-생성)은 **빌드 시점**에서 HTML을 생성하는 사전 렌더링 방식입니다. 사전 렌더링된 HTML은 각 요청에서 **재사용됩니다**.
 - [**SSR**](../basic-features/pages.md#ssr)은 **각 요청**에 대해 HTML을 생성하는 사전 렌더링 방식입니다.
 
-<Image img={staticGeneration} alt={'정적 생성'} />
+<IdealImage img={staticGeneration} alt={'정적 생성'} />
 
-<Image img={serverSideRendering} alt={'서버 측 렌더링'} />
+<IdealImage img={serverSideRendering} alt={'서버 측 렌더링'} />
 
 :::note 참고
 
@@ -68,11 +68,11 @@ import clientSideRendering from '/img/docs/nextjs/pre-rendering-and-data-fetchin
 
 외부 데이터를 가져올 필요가 없는 페이지는 앱이 프로덕션용으로 빌드될 때 자동으로 정적으로 생성됩니다.
 
-<Image img={staticGenerationWithoutData} alt={'데이터가 없는 정적 생성'} />
+<IdealImage img={staticGenerationWithoutData} alt={'데이터가 없는 정적 생성'} />
 
 그러나 일부 페이지의 경우에는 먼저 외부 데이터를 가져오고 HTML을 렌더링해야 합니다. 빌드 타임에 파일 시스템에 접근하거나, 외부 API를 가져오거나, 데이터베이스를 쿼리해야 할 수도 있습니다. 넥스트는 [데이터가 있는 정적 생성](../basic-features/pages.md#데이터가-있는-정적-생성)을 기본으로 지원합니다.
 
-<Image img={staticGenerationWithData} alt={'데이터가 있는 정적 생성'} />
+<IdealImage img={staticGenerationWithData} alt={'데이터가 있는 정적 생성'} />
 
 ### `getStaticProps`를 이용한 데이터가 있는 정적 생성
 
@@ -159,7 +159,7 @@ export async function getSortedPostsData() {
 
 빌드 타임이 아닌 요청 타임에 데이터를 가져와야 하는 경우에는 SSR을 이용할 수 있습니다.
 
-<Image img={serverSideRenderingWithData} alt={'데이터가 있는 서버 측 렌더링'} />
+<IdealImage img={serverSideRenderingWithData} alt={'데이터가 있는 서버 측 렌더링'} />
 
 SSR을 이용하려면 페이지에서 `getStaticProps` 대신 `getServerSideProps`을 내보내야 합니다.
 
@@ -190,7 +190,7 @@ export async function getServerSideProps(context) {
 - 페이지에서 외부 데이터가 필요하지 않은 부분을 정적으로 생성(사전 렌더링)함
 - 페이지가 로드되면 자바스크립트를 사용하여 클라이언트에서 외부 데이터를 가져오고 나머지 부분을 채움
 
-<Image img={clientSideRendering} alt={'클라이언트 측 렌더링'} />
+<IdealImage img={clientSideRendering} alt={'클라이언트 측 렌더링'} />
 
 이 접근 방식의 적절한 예시로는 사용자 대시보드 페이지가 있습니다. 대시보드는 사용자별 비공개 페이지이므로 SEO와 관련이 없으며 페이지를 미리 렌더링 할 필요가 없습니다. 데이터는 자주 갱신되므로 요청 타임의 데이터 가져오기가 필요합니다.
 
