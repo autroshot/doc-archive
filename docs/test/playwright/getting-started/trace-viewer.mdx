@@ -2,7 +2,6 @@
 sidebar_position: 5
 ---
 
-import IdealImage from '@theme/IdealImage';
 import htmlReport from '/img/docs/playwright/html-report.png';
 import htmlReportDetailedView from '/img/docs/playwright/html-report-detailed-view.png';
 import traceViewer from '/img/docs/playwright/trace-viewer.png';
@@ -56,11 +55,11 @@ npx playwright show-report
 
 HTML 보고서에서 테스트 이름의 파일 이름 옆에 있는 추적 아이콘을 클릭하여 필요한 테스트의 추적을 직접 엽니다.
 
-<IdealImage img={htmlReport} alt={'HTML 보고서'} />
+<Image img={htmlReport} alt="HTML 보고서" />
 
 또한 테스트의 상세 보기를 클릭하여 열고, `Traces` 탭의 추적 스크린숏을 클릭하여 추적을 열 수 있습니다.
 
-<IdealImage img={htmlReportDetailedView} alt={'HTML 보고서 상세 보기'} />
+<Image img={htmlReportDetailedView} alt="HTML 보고서 상세 보기" />
 
 보고서에 대한 자세한 내용은 [HTML 보고서](https://playwright.dev/docs/test-reporters#html-reporter)를 포함한 보고서 상세 안내서를 확인하세요.
 
@@ -68,6 +67,6 @@ HTML 보고서에서 테스트 이름의 파일 이름 옆에 있는 추적 아�
 
 각 동작을 클릭하거나 마우스를 타임라인으로 이동시켜, 테스트 추적을 보고 동작 전후의 페이지 상태를 확인합니다. 테스트의 각 단계에서 로그, 소스, 네트워크를 검사합니다. 추적 뷰어는 DOM 스냅숏을 생성하므로 완전한 상호 작용이 가능하고 개발자 도구를 여는 등의 작업이 가능합니다.
 
-<IdealImage img={traceViewer} alt={'추적 뷰어'} />
+<Image img={traceViewer} alt="추적 뷰어" />
 
 추적의 자세한 안내서는 [추적 뷰어](https://playwright.dev/docs/trace-viewer)를 확인하세요.
