@@ -91,6 +91,12 @@ const config = {
           },
           {
             type: 'doc',
+            docId: 'react/keeping-components-pure',
+            label: 'React',
+            position: 'left',
+          },
+          {
+            type: 'doc',
             docId: 'nextjs/README',
             label: 'Next.js',
             position: 'left',
@@ -198,6 +204,10 @@ const config = {
               {
                 label: 'TypeScript',
                 to: '/docs/typescript',
+              },
+              {
+                label: 'React',
+                to: '/docs/react/keeping-components-pure',
               },
               {
                 label: 'Next.js',

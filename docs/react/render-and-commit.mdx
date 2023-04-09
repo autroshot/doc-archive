@@ -1,0 +1,191 @@
+---
+sidebar_position: 2
+---
+
+import renderAndCommit1 from '/img/docs/react/render-and-commit/render-and-commit-1.png';
+import renderAndCommit2 from '/img/docs/react/render-and-commit/render-and-commit-2.png';
+import renderAndCommit3 from '/img/docs/react/render-and-commit/render-and-commit-3.png';
+import rerender1 from '/img/docs/react/render-and-commit/rerender-1.png';
+import rerender2 from '/img/docs/react/render-and-commit/rerender-2.png';
+import rerender3 from '/img/docs/react/render-and-commit/rerender-3.png';
+import browserPaint from '/img/docs/react/render-and-commit/browser-paint.png';
+
+# 렌더링과 커밋
+
+컴포넌트는 화면에 표시되기 전에 리액트에 의해 렌더링되어야 합니다. 이 프로세스의 단계를 이해하면 코드가 어떻게 실행되는지 이해하고 동작을 설명하는 데 도움이 됩니다.
+
+:::note 학습 내용
+
+- 리액트에서 렌더링의 의미
+- 리액트가 컴포넌트를 렌더링하는 시기와 이유
+- 화면에 컴포넌트가 표시되는 단계
+- 렌더링이 항상 DOM 갱신을 생성하지 않는 이유
+
+:::
+
+컴포넌트를 부엌에서 재료로 맛있는 요리를 조립하는 요리사라고 상상해 보세요. 이 시나리오에서 리액트는 고객의 요청을 접수하고 주문을 가져오는 웨이터입니다. UI를 요청하고 제공하는 이 프로세스에는 다음의 세 단계가 있습니다.
+
+1. 렌더링을 **트리거** (손님의 주문을 주방으로 전달)
+
+   <Image
+     img={renderAndCommit1}
+     alt="리액트는 레스토랑에서 웨이터 역할을 하며 사용자로부터 주문을 가져와 컴포넌트 주방으로 전달합니다."
+     maxWidth="14rem"
+   />
+
+2. 컴포넌트을 **렌더링** (주방에서 주문 준비)
+
+   <Image
+     img={renderAndCommit2}
+     alt="카드 주방장은 리액트에게 새로운 카드 컴포넌트를 제공합니다."
+     maxWidth="14rem"
+   />
+
+3. DOM에 **커밋** (주문을 테이블에 놓기)
+
+   <Image
+     img={renderAndCommit3}
+     alt="리액트는 카드를 테이블에 있는 사용자에게 전달합니다."
+     maxWidth="14rem"
+   />
+
+## 1단계: 렌더링을 트리거합니다.
+
+다음 두 가지가 컴포넌트의 렌더링을 트리거합니다.
+
+1. 컴포넌트의 **초기 렌더링**
+2. 컴포넌트(또는 상위 컴포넌트 중 하나)의 **상태가 갱신됨**
+
+### 초기 렌더링
+
+앱이 시작되면 초기 렌더링을 트리거해야 합니다. 프레임워크와 샌드박스는 때때로 이 코드를 숨기지만, 대상 DOM 노드로 [`createRoot`](https://react.dev/reference/react-dom/client/createRoot)를 호출하고 컴포넌트로 `render` 메서드를 호출합니다.
+
+<iframe
+  src="https://codesandbox.io/embed/gallant-waterfall-mnfdp5?codemirror=1&fontsize=14&hidenavigation=1&view=editor"
+  style={{
+    width: '100%',
+    height: '500px',
+    border: '0',
+    borderRadius: '4px',
+    overflow: 'hidden',
+  }}
+  title="gallant-waterfall-mnfdp5"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+/>
+
+`root.render()` 호출을 주석 처리하고 컴포넌트가 사라지는 것을 확인해 보세요!
+
+### 상태 갱신 시 리렌더링
+
+컴포넌트의 초기 렌더링 이후에는 [`set` 함수](https://react.dev/reference/react/useState#setstate)로 컴포넌트의 상태를 갱신하여 추가 렌더링을 트리거할 수 있습니다. 컴포넌트의 상태를 갱신하면 렌더링이 자동으로 대기열에 추가됩니다. (레스토랑 손님이 첫 주문을 한 후, 갈증이나 배고픔의 상태에 따라 차, 디저트 등을 주문하는 모습을 상상할 수 있습니다.)
+
+상태 갱신...
+
+<Image
+  img={rerender1}
+  alt="리액트는 레스토랑에서 웨이터 역할을 하며 머리에 커서가 있는 고객으로 표시되는 카드 UI를 사용자에게 제공합니다. 고객은 검은색 카드가 아닌 분홍색 카드를 원한다고 표현합니다!"
+  maxWidth="14rem"
+/>
+
+...트리거...
+
+<Image
+  img={rerender2}
+  alt="리액트는 컴포넌트 부엌으로 돌아가서 카드 주방장에게 분홍색 카드가 필요하다고 말합니다."
+  maxWidth="14rem"
+/>
+
+...렌더링!
+
+<Image
+  img={rerender3}
+  alt="카드 주방장은 리액트에게 분홍색 카드를 줍니다."
+  maxWidth="14rem"
+/>
+
+## 2단계: 리액트는 컴포넌트를 렌더링합니다.
+
+렌더링을 트리거한 후 리액트는 컴포넌트를 호출하여 화면에 표시할 내용을 파악합니다. **렌더링은 리액트가 컴포넌트를 호출하는 것입니다.**
+
+- **초기 렌더링 시**, 리액트는 루트 컴포넌트를 호출합니다.
+- **후속 렌더링의 경우**, 리액트는 상태 갱신이 렌더링을 트리거한 함수 컴포넌트를 호출합니다.
+
+이 프로세스는 재귀적입니다. 갱신된 컴포넌트가 다른 컴포넌트를 반환하면, 리액트가 **그** 컴포넌트를 다음에 렌더링하고, 그 컴포넌트도 무언가를 반환하면 **또 다른** 컴포넌트를 다음에 렌더링합니다. 이 프로세스는 더 이상 중첩된 컴포넌트가 없고 리액트가 화면에 표시되어야 하는 것을 정확히 알 때까지 계속됩니다.
+
+다음 예시에서 리액트는 `Gallery()`와 `Image()`를 여러 번 호출합니다.
+
+<iframe
+  src="https://codesandbox.io/embed/practical-mccarthy-1p08zd?codemirror=1&module=%2FGallery.js&fontsize=14&hidenavigation=1&view=editor"
+  style={{
+    width: '100%',
+    height: '500px',
+    border: '0',
+    borderRadius: '4px',
+    overflow: 'hidden',
+  }}
+  title="practical-mccarthy-1p08zd"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+/>
+
+- **초기 렌더링 중에**, 리액트는 `<section>`, `<h1>`, 세 개의 `<img>` 태그에 대한 [DOM 노드를 생성합니다](https://developer.mozilla.org/docs/Web/API/Document/createElement).
+- **다시 렌더링하는 동안**, 리액트는 이전 렌더링 이후에 변경된 프로퍼티가 있는지 확인합니다. 다음 단계인 커밋 단계 전까지는 아무 작업도 수행하지 않습니다.
+
+:::caution 함정
+
+렌더링은 항상 [순수한 계산](https://react.dev/learn/keeping-components-pure)이어야 합니다.
+
+- **동일한 입력, 동일한 출력.** 동일한 입력이 주어지면 컴포넌트는 항상 동일한 JSX를 반환해야 합니다. (누군가가 토마토 샐러드를 주문했는데 양파 샐러드를 받아서는 안 됩니다!)
+- **자신의 일만 신경 씁니다.** 렌더링 전에 존재했던 객체나 변수를 변경해서는 안 됩니다. (한 사람의 주문이 다른 사람의 주문을 바꾸면 안 됩니다.)
+
+그렇지 않으면 코드베이스가 복잡해짐에 따라 혼란스러운 버그와 예측할 수 없는 동작이 발생할 수 있습니다. **엄격 모드**에서 개발할 때 리액트는 각 컴포넌트의 함수를 두 번 호출하므로, 순수하지 않은 함수로 인한 실수를 발견하는 데 도움이 될 수 있습니다.
+
+:::
+
+:::note 심화
+
+#### 성능 최적화
+
+갱신된 컴포넌트가 트리에서 상당히 위쪽에 있다면, 갱신된 컴포넌트 내에 중첩된 모든 컴포넌트를 렌더링하는 기본 동작은 최적의 성능이 아닙니다. 성능 문제가 발생하면 [`memo`](https://react.dev/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)를 참고하세요. **성급하게 최적화하지 마세요!**
+
+:::
+
+## 3단계: 리액트는 변경 사항을 DOM에 커밋합니다.
+
+컴포넌트를 렌더링(호출)한 후에 리액트가 DOM을 수정합니다.
+
+- **초기 렌더링의 경우**, 리액트는 [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API를 사용하여 생성한 모든 DOM 노드를 화면에 표시합니다.
+- **리렌더링의 경우**, 리액트는 DOM이 최신 렌더링 출력과 일치하도록 만드는 데 필요한 최소한의 작업(렌더링 중에 계산됨!)을 적용합니다.
+
+**리액트는 렌더링 간에 차이가 있을 때만 DOM 노드를 변경합니다.**
+
+예를 들어 다음은 매초마다 부모로부터 전달된 다른 프롭으로 다시 렌더링하는 컴포넌트입니다. `<input>`에 텍스트를 추가하여 `value`를 갱신해 보세요. 컴포넌트가 다시 렌더링되어도 텍스트는 사라지지 않습니다.
+
+<iframe
+  src="https://codesandbox.io/embed/modern-snowflake-y5b4hi?codemirror=1&module=%2FClock.js&fontsize=14&hidenavigation=1&view=editor"
+  style={{
+    width: '100%',
+    height: '500px',
+    border: '0',
+    borderRadius: '4px',
+    overflow: 'hidden',
+  }}
+  title="modern-snowflake-y5b4hi"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+/>
+
+이는 마지막 단계에서 리액트가 `<h1>`의 내용만 새로운 `time`으로 갱신하기 때문입니다. JSX에 `<input>`이 지난번과 같은 위치에 나타나므로 리액트는 `<input>`이나 `value`를 건드리지 않습니다!
+
+## 에필로그: 브라우저 페인팅
+
+렌더링이 완료되고 리액트가 DOM을 갱신하면, 브라우저는 화면을 다시 칠합니다. 이 프로세스를 '브라우저 렌더링'이라고 하지만, 혼동을 피하기 위해 문서 전체에서는 '페인팅'이라고 부릅니다.
+
+<Image img={browserPaint} alt="'카드 요소가 있는 정물화'를 그리는 브라우저" />
+
+## 요약
+
+- 리액트 앱의 모든 화면 갱신은 **트리거**, **렌더링**, **커밋**의 세 단계로 이루어집니다.
+- 엄격 모드를 사용하여 컴포넌트에서 실수를 찾을 수 있습니다.
+- 리액트는 렌더링 결과가 지난번과 같으면 DOM을 건드리지 않습니다.
