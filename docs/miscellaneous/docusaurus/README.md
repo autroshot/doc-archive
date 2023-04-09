@@ -105,7 +105,7 @@ Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
 import Image from '@theme/IdealImage';
 import compiling from '/img/docs/next-js/how-next-js-works/compiling.png';
 
-<Image img={compiling} alt={'컴파일'} />
+<Image img={compiling} alt='컴파일' />
 ```
 
 ## 마크다운 링크
