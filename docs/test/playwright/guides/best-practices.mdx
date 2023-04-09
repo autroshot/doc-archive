@@ -2,7 +2,6 @@
 sidebar_position: 2
 ---
 
-import Image from '@theme/IdealImage';
 import generatingLocatorsWithCodegen from '/img/docs/playwright/best-practices/generating-locators-with-codegen.png';
 import generatingLocatorsInVSCodeWithCodegen from '/img/docs/playwright/best-practices/generating-locators-in-vs-code-with-codegen.png';
 import debuggingTestsInVSCode from '/img/docs/playwright/best-practices/debugging-tests-in-vs-code.png';
@@ -74,7 +73,7 @@ npx playwright codegen playwright.dev
 
 브라우저 창에서 페이지의 요소 위에 마우스를 놓으면 커서 아래에 강조 표시된 탐지기를 볼 수 있습니다. 요소를 클릭하면 탐지기가 플레이라이트 검사기에 추가됩니다. 탐지기를 복사하여 테스트 파일에 붙여넣거나, 플레이라이트 검사기에서 탐지기를 편집(예: 텍스트를 수정)하고 브라우저 창에서 결과를 확인하며 탐지기 탐색을 계속할 수 있습니다.
 
-<Image img={generatingLocatorsWithCodegen} alt={'코드젠으로 탐지기 생성하기'} />
+<Image img={generatingLocatorsWithCodegen} alt="코드젠으로 탐지기 생성하기" />
 
 ### VS 코드 확장을 사용하여 탐지기 생성하기
 
@@ -82,7 +81,7 @@ npx playwright codegen playwright.dev
 
 <Image
   img={generatingLocatorsInVSCodeWithCodegen}
-  alt={'코드젠을 사용하여 VS 코드에서 탐지기 생성하기'}
+  alt="코드젠을 사용하여 VS 코드에서 탐지기 생성하기"
 />
 
 ## 웹 우선 단언 사용하기
@@ -115,13 +114,13 @@ npx playwright codegen playwright.dev
 
 로컬 디버깅에서는 [VS 코드 확장](docs/test/playwright/getting-started/vs-code.mdx)을 설치하여 [테스트를 VS 코드에서 실시간 디버그](docs/test/playwright/getting-started/vs-code.mdx#%EC%8B%A4%EC%8B%9C%EA%B0%84-%EB%94%94%EB%B2%84%EA%B9%85)하는 것이 좋습니다. 실행하려는 테스트 옆의 줄을 마우스 오른쪽 버튼으로 클릭하여 브라우저 창을 열고, 중단점이 설정된 위치에서 일시 중지하여 디버그 모드에서 테스트를 실행할 수 있습니다.
 
-<Image img={debuggingTestsInVSCode} alt={'VS 코드의 테스트 디버깅'} />
+<Image img={debuggingTestsInVSCode} alt="VS 코드의 테스트 디버깅" />
 
 VS 코드에서 테스트의 탐지기를 클릭하거나 편집하여 테스트를 실시간 디버그할 수 있습니다. 브라우저 창에서 해당 탐지기를 강조 표시하고 페이지에서 찾은 다른 일치하는 탐지기를 표시합니다.
 
 <Image
   img={liveDebuggingLocatorsInVSCode}
-  alt={'VS 코드의 실시간 디버깅 탐지기'}
+  alt="VS 코드의 실시간 디버깅 탐지기"
 />
 
 `--debug` 플래그로 테스트를 실행하여 플레이라이트 검사기로 테스트를 디버그할 수 있습니다.
@@ -132,7 +131,7 @@ npx playwright test --debug
 
 그런 다음 테스트를 단계별로 진행하며 동작 가능성 로그를 보고, 탐지기를 실시간으로 편집하고, 브라우저 창에서 탐지기가 강조 표시되는 것을 볼 수 있습니다. 어떤 탐지기가 일치하는지, 얼마나 많은 탐지기가 일치하는지 확인할 수 있습니다.
 
-<Image img={debuggingWithTheInspector} alt={'검사기로 디버깅하기'} />
+<Image img={debuggingWithTheInspector} alt="검사기로 디버깅하기" />
 
 특정 테스트를 디버그하려면 테스트 파일의 이름과 테스트의 줄 번호를 추가하고 `--debug` 플래그를 추가합니다.
 
@@ -144,7 +143,7 @@ npx playwright test example.spec.ts:9 --debug
 
 CI에서 테스트가 실패하면 비디오와 스크린숏 대신 플레이라이트 [추적 뷰어](docs/test/playwright/getting-started/trace-viewer.mdx)를 사용하세요. 추적 뷰어는 쉽게 공유할 수 있는 로컬 PWA(Progressive Web App)로 테스트의 전체 추적을 제공합니다. 추적 뷰어를 사용하면 타임라인을 보고, 개발 도구를 사용하여 각 동작에 대한 DOM 스냅숏을 검사하고, 네트워크 요청 등을 볼 수 있습니다.
 
-<Image img={traceViewer} alt={'추적 뷰어'} />
+<Image img={traceViewer} alt="추적 뷰어" />
 
 추적은 플레이라이트 설정 파일에서 설정되며 실패한 테스트의 첫 번째 재시도 시 CI에서 실행되도록 설정됩니다. 자원을 많이 사용하므로 추적이 모든 테스트에서 실행되도록 `on`으로 설정하는 것은 권장하지 않습니다. 그러나 개발할 때 `--trace` 플래그로 로컬에서 추적을 실행할 수 있습니다.
 
@@ -158,11 +157,11 @@ npx playwright test --trace on
 npx playwright show-report
 ```
 
-<Image img={htmlReport} alt={'HTML 보고서'} />
+<Image img={htmlReport} alt="HTML 보고서" />
 
 추적은 테스트 옆에 있는 아이콘을 클릭하거나, 각 테스트 보고서를 열고 하단의 추적 섹션까지 스크롤하여 열 수 있습니다.
 
-<Image img={openTraceInReport} alt={'보고서에서 추적 열기'} />
+<Image img={openTraceInReport} alt="보고서에서 추적 열기" />
 
 ## 플레이라이트의 도구 사용하기
 

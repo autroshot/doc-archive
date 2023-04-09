@@ -2,10 +2,8 @@
 sidebar_position: 1
 ---
 
-import Image from '@theme/IdealImage';
 import usLayout from '/img/docs/javascript/us-layout.png';
 import germanLayout from '/img/docs/javascript/german-layout.png';
-import styles from './keyboard-keydown-and-keyup.module.css';
 
 # 키보드: `keydown`과 `keyup`
 
@@ -96,16 +94,8 @@ document.addEventListener('keydown', function (event) {
 
 예를 들어 다음은 미국 레이아웃(QWERTY)과 독일어 레이아웃(QWERTZ)의 모습입니다.
 
-<Image
-  img={usLayout}
-  alt={'미국 레이아웃'}
-  className={styles.imageWithMaxWidth}
-/>
-<Image
-  img={germanLayout}
-  alt={'독일어 레이아웃'}
-  className={styles.imageWithMaxWidth}
-/>
+<Image img={usLayout} alt="미국 레이아웃" maxWidth="37.625rem" />
+<Image img={germanLayout} alt="독일어 레이아웃" maxWidth="37.625rem" />
 
 동일한 키에 대해 미국 레이아웃은 `Z`, 독일어 레이아웃은 `Y`(문자가 교환됨)입니다.
 

@@ -2,10 +2,8 @@
 sidebar_position: 1
 ---
 
-import Image from '@theme/IdealImage';
 import structure from '/img/docs/concepts/domain-name/structure.png';
 import DNSRequest from '/img/docs/concepts/domain-name/dns-request.png';
-import styles from './domain-name.module.css';
 
 # 도메인 이름
 
@@ -27,11 +25,7 @@ import styles from './domain-name.module.css';
 
 도메인 이름은 여러 부분으로 구성된 단순한 구조를 가지고 있습니다. 이는 점으로 구분되며 **오른쪽에서 왼쪽으로** 읽습니다.
 
-<Image
-  img={structure}
-  alt={'MDN 도메인 이름의 구조'}
-  className={styles.imageWithMaxWidth1}
-/>
+<Image img={structure} alt="MDN 도메인 이름의 구조" maxWidth="15.75rem" />
 
 각 부분은 전체 도메인 이름에 대한 특정 정보를 제공합니다.
 
@@ -151,6 +145,6 @@ DNS 요청 과정은 다음과 같습니다.
 
 <Image
   img={DNSRequest}
-  alt={'DNS 요청에 대한 결과를 얻는 데 필요한 단계에 대한 설명'}
-  className={styles.imageWithMaxWidth2}
+  alt="DNS 요청에 대한 결과를 얻는 데 필요한 단계에 대한 설명"
+  maxWidth="34rem"
 />

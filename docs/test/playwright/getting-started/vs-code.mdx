@@ -2,7 +2,6 @@
 sidebar_position: 6
 ---
 
-import Image from '@theme/IdealImage';
 import chooseBrowsers from '/img/docs/playwright/vs-code/choose-browsers.png';
 import choosingAProfileForDebugging from '/img/docs/playwright/vs-code/choosing-a-profile-for-debugging.png';
 import choosingDefaultProfiles from '/img/docs/playwright/vs-code/choosing-default-profiles.png';
@@ -35,7 +34,7 @@ import styles from './test-generator.module.css';
 
 <Image
   img={VSCodeExtensionForPlaywright}
-  alt={'플레이라이트를 위한 VS 코드 확장'}
+  alt="플레이라이트를 위한 VS 코드 확장"
 />
 
 설치가 완료되면 명령 패널을 열고 다음을 입력하세요.
@@ -44,17 +43,17 @@ import styles from './test-generator.module.css';
 Install Playwright
 ```
 
-<Image img={installPlaywright} alt={'플레이라이트 설치하기'} />
+<Image img={installPlaywright} alt="플레이라이트 설치하기" />
 
 `Test: Install Playwright`를 선택하고 테스트를 실행할 브라우저를 선택합니다. 나중에 [`playwright.config`](https://playwright.dev/docs/test-configuration) 파일에서도 설정할 수 있습니다. [CI에서 테스트를 실행](https://playwright.dev/docs/ci-intro)하도록 깃허브 액션을 설정할 수도 있습니다.
 
-<Image img={chooseBrowsers} alt={'브라우저 선택하기'} />
+<Image img={chooseBrowsers} alt="브라우저 선택하기" />
 
 ## 테스트 실행
 
 테스트를 실행하기 위해 테스트 블록 옆에 있는 녹색 삼각형을 클릭하여 단일 테스트를 실행할 수 있습니다. 플레이라이트는 테스트의 각 줄을 실행합니다. 테스트가 완료되면 테스트 블록 옆에 녹색 확인 표시와 테스트를 실행하는 데 걸린 시간을 볼 수 있습니다.
 
-<Image img={runASingleTest} alt={'단일 테스트 실행하기'} />
+<Image img={runASingleTest} alt="단일 테스트 실행하기" />
 
 ### 테스트 실행하고 브라우저 표시하기
 
@@ -62,7 +61,7 @@ Install Playwright
 
 <Image
   img={showBrowsersWhileRunningTests}
-  alt={'테스트를 실행하는 동안 브라우저 표시하기'}
+  alt="테스트를 실행하는 동안 브라우저 표시하기"
 />
 
 모든 브라우저를 닫으려면 `Close all browsers` 버튼을 사용하세요.
@@ -71,17 +70,17 @@ Install Playwright
 
 테스트 사이드바에서 모든 테스트를 보고 각 테스트를 클릭하여 테스트를 확장합니다. 실행되지 않은 테스트에는 옆에 녹색 확인 표시가 없습니다. 테스트 사이드바의 테스트 위로 마우스를 가져가면 흰색 삼각형을 클릭하여 모든 테스트를 실행할 수 있습니다.
 
-<Image img={runAllTestsInFile} alt={'파일의 모든 테스트 실행하기'} />
+<Image img={runAllTestsInFile} alt="파일의 모든 테스트 실행하기" />
 
 ### 특정 브라우저에서 테스트 실행하기
 
 VS 코드 테스트 러너는 크롬의 기본 브라우저에서 테스트를 실행합니다. 다른 브라우저나 복수의 브라우저에서 실행하려면 재생 버튼의 드롭다운을 클릭하고 다른 프로필을 선택하세요. 또는 `Select Default Profile`을 클릭하여 기본 프로필을 수정하고 테스트를 실행할 브라우저를 선택하세요.
 
-<Image img={selectingBrowsers} alt={'브라우저 선택하기'} />
+<Image img={selectingBrowsers} alt="브라우저 선택하기" />
 
 복수의 프로필 또는 모든 프로필을 선택하여 여러 프로필에서 테스트를 실행할 수 있습니다. 이 프로필은 [`playwright.config`](https://playwright.dev/docs/test-configuration) 파일에서 가져옵니다. 모바일 프로필과 같은 더 많은 프로필을 원한다면 먼저 설정 파일에 프로필을 추가하세요.
 
-<Image img={choosingDefaultProfiles} alt={'기본 프로필 선택하기'} />
+<Image img={choosingDefaultProfiles} alt="기본 프로필 선택하기" />
 
 ## 테스트 디버깅
 
@@ -93,37 +92,37 @@ VS 코드 확장을 사용하면 VS 코드에서 바로 테스트를 디버그�
 
 테스트가 실패하면 VS 코드는 예상한 내용, 실제 결과, 전체 호출 로그를 보여주는 오류 메시지를 편집기에 바로 표시합니다.
 
-<Image img={errorMessagingInVSCode} alt={'VS 코드의 오류 메시지'} />
+<Image img={errorMessagingInVSCode} alt="VS 코드의 오류 메시지" />
 
 ### 실시간 디버깅
 
 VS 코드에서 실시간으로 테스트를 디버그할 수 있습니다. `Show Browser` 옵션을 선택한 상태에서 테스트를 실행하고 VS 코드의 탐지기 중 하나를 클릭하면, 브라우저 창에서 해당 요소가 강조 표시됩니다. 플레이라이트는 해당 요소가 존재할 때 강조 표시하며, 결과가 둘 이상이면 모두 강조 표시합니다.
 
-<Image img={liveDebuggingInVSCode1} alt={'VS 코드의 실시간 디버깅'} />
+<Image img={liveDebuggingInVSCode1} alt="VS 코드의 실시간 디버깅" />
 
 VS 코드에서 탐지기를 편집할 수도 있으며 플레이라이트는 브라우저 창에 변경 사항을 실시간으로 표시합니다.
 
-<Image img={liveDebuggingInVSCode2} alt={'VS 코드의 실시간 디버깅'} />
+<Image img={liveDebuggingInVSCode2} alt="VS 코드의 실시간 디버깅" />
 
 ### 디버그 모드에서 실행하기
 
 원하는 줄 번호 옆을 클릭해서 빨간색 점이 나타나면 중단점이 설정된 것입니다. 실행하려는 테스트 옆에 있는 줄을 마우스 오른쪽 버튼으로 클릭하여 디버그 모드에서 테스트를 실행할 수 있습니다.
 
-<Image img={settingDebugTestMode} alt={'디버그 테스트 모드 설정'} />
+<Image img={settingDebugTestMode} alt="디버그 테스트 모드 설정" />
 
 브라우저 창이 열리고 테스트가 실행되며, 중단점이 설정된 위치에서 일시 중지됩니다. VS 코드의 메뉴에서 테스트를 단계별로 실행하고, 테스트를 일시 중지하고, 테스트를 다시 실행할 수 있습니다.
 
-<Image img={runningTestInDebugMode} alt={'디버그 모드에서 테스트 실행'} />
+<Image img={runningTestInDebugMode} alt="디버그 모드에서 테스트 실행" />
 
 ### 다른 브라우저에서 디버그하기
 
 기본적으로 디버깅은 크로미움 프로필을 사용하여 수행됩니다. 테스트 사이드바에서 디버그 아이콘을 마우스 오른쪽 버튼으로 클릭하고, 드롭다운에서 `Select Default Profile` 옵션을 클릭하여, 다른 브라우저에서 테스트를 디버그할 수 있습니다.
 
-<Image img={debuggingOnSpecificProfile} alt={'특정 프로필에서 디버깅'} />
+<Image img={debuggingOnSpecificProfile} alt="특정 프로필에서 디버깅" />
 
 그런 다음 테스트 디버깅에 사용할 테스트 프로필을 선택합니다. 디버그 모드에서 테스트를 실행할 때마다 선택한 프로필을 사용합니다. 테스트가 있는 줄 번호를 마우스 오른쪽 버튼으로 클릭하고, 메뉴에서 `Debug Test`를 선택하여, 디버그 모드에서 테스트를 실행할 수 있습니다.
 
-<Image img={choosingAProfileForDebugging} alt={'디버깅을 위한 프로필 선택'} />
+<Image img={choosingAProfileForDebugging} alt="디버깅을 위한 프로필 선택" />
 
 디버깅에 대한 자세한 내용은 [VS 코드에서의 디버깅](https://code.visualstudio.com/docs/editor/debugging)을 참고하세요.
 
@@ -151,6 +150,6 @@ VS 코드에서 탐지기를 편집할 수도 있으며 플레이라이트는 �
 
 테스트 사이드바에서 `Pick locator` 버튼을 클릭하여 [탐지기](https://playwright.dev/docs/locators)를 선택하고 테스트 파일에 복사합니다. 그런 다음 브라우저에서 필요한 요소를 클릭하면 VS 코드의 `Pick locator` 상자에 표시됩니다. 키보드의 엔터 키를 눌러 탐지기를 클립보드에 복사한 다음 코드의 아무 곳에나 붙여넣습니다. 또는 취소하려면 Esc 키를 누르세요.
 
-<Image img={pickLocators} alt={'탐지기 선택하기'} />
+<Image img={pickLocators} alt="탐지기 선택하기" />
 
 플레이라이트는 페이지를 살펴보고 역할, 텍스트, 테스트 ID 탐지기의 우선순위를 정하여 최선의 탐지기를 찾아냅니다. 생성기가 탐지기와 일치하는 요소를 여러 개 찾으면, 탐지기를 개선하여 탄력성을 높이고 대상 요소를 고유하게 식별합니다. 탐지기로 인한 테스트 실패를 걱정할 필요가 없습니다.

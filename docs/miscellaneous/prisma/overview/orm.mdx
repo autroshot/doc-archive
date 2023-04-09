@@ -2,10 +2,8 @@
 sidebar_position: 2
 ---
 
-import Image from '@theme/IdealImage';
 import userTable from '/img/docs/prisma/user-table.png';
 import oneToNRelationBetweenUserAndPost from '/img/docs/prisma/one-to-n-relation-between-user-and-post.png';
-import styles from './orm.module.css';
 
 # ORM
 
@@ -60,11 +58,7 @@ ORM의 아이디어는 모델을 데이터베이스의 테이블에 매핑하는
 
 데이터베이스에 다음 `User` 테이블이 있다고 가정해 보겠습니다.
 
-<Image
-  img={userTable}
-  alt={'User 테이블'}
-  className={styles.imageWithMaxWidth}
-/>
+<Image img={userTable} alt="User 테이블" maxWidth="10.875rem" />
 
 대응되는 개체 클래스는 다음과 같습니다.
 
@@ -264,7 +258,7 @@ model User {
 
 `User`-`Post` 관계를 시각화한 다이어그램은 다음과 같습니다.
 
-<Image img={oneToNRelationBetweenUserAndPost} alt={'User와 Post의 1:n 관계'} />
+<Image img={oneToNRelationBetweenUserAndPost} alt="User와 Post의 1:n 관계" />
 
 프리즈마 수준에서 `User`-`Post` 관계는 다음으로 구성됩니다.
 

@@ -1,7 +1,7 @@
 import MDXComponents from '@theme-original/MDXComponents';
-import MyImage from '/src/components/my-image.jsx';
+import Image from '/src/components/image.jsx';
 
 export default {
   ...MDXComponents,
-  MyImage,
+  Image,
 };

@@ -2,7 +2,6 @@
 sidebar_position: 6
 ---
 
-import Image from '@theme/IdealImage';
 import offsetSkipTake from '/img/docs/prisma/pagination/offset-skip-take.png';
 import cursor1 from '/img/docs/prisma/pagination/cursor-1.png';
 import cursor2 from '/img/docs/prisma/pagination/cursor-2.png';
@@ -25,7 +24,7 @@ const results = await prisma.post.findMany({
 })
 ```
 
-<Image img={offsetSkipTake} alt={'오프셋의 skip과 take'} />
+<Image img={offsetSkipTake} alt='오프셋의 skip과 take' />
 
 결과 페이지를 구현하려면 페이지 수에 페이지당 표시할 결과 수를 곱한 값을 `skip`하면 됩니다.
 
@@ -120,7 +119,7 @@ const myCursor = lastPostInResults.id // 예시: 29
 
 다음 다이어그램은 처음 4개 결과들의 ID 또는 1 페이지를 보여줍니다. 다음 질의의 커서는 **29**입니다.
 
-<Image img={cursor1} alt={'커서 1'} />
+<Image img={cursor1} alt='커서 1' />
 
 두 번째 질의는 **전달된 커서 다음에서**(즉, **29**보다 큰 ID를 가진) `"Prisma"`라는 단어가 포함된 처음 4개의 `Post` 레코드를 반환합니다.
 
@@ -147,7 +146,7 @@ const myCursor = lastPostInResults.id // 예시: 52
 
 다음 다이어그램은 ID가 **29**인 레코드 **다음**에 있는 처음 4개의 `Post` 레코드를 보여줍니다. 이 예시에서 새로운 커서는 **52**입니다.
 
-<Image img={cursor2} alt={'커서 2'} />
+<Image img={cursor2} alt='커서 2' />
 
 ### 자주 묻는 질문
 
@@ -157,15 +156,15 @@ const myCursor = lastPostInResults.id // 예시: 52
 
 첫 번째 질의는 4개의 결과를 반환하고 커서는 **29**입니다.
 
-<Image img={cursor1} alt={'커서 1'} />
+<Image img={cursor1} alt='커서 1' />
 
 `skip: 1`이 없으면 두 번째 질의는 커서를 포함한 4개의 결과를 반환합니다.
 
-<Image img={cursor3} alt={'커서 3'} />
+<Image img={cursor3} alt='커서 3' />
 
 `skip: 1`이 있으면 커서가 포함되지 않습니다.
 
-<Image img={cursor2} alt={'커서 2'} />
+<Image img={cursor2} alt='커서 2' />
 
 원하는 페이지 매김 동작에 따라 `skip: 1`을 선택하거나 선택하지 않을 수 있습니다.
 
