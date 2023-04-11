@@ -1,15 +1,9 @@
 import React from 'react';
 
 export default function CodeSandbox({ title, modulePath }) {
-  let moduleQueryString = '';
-  if (modulePath) {
-    const convertedModulePath = modulePath.replace(/\//g, '%2F');
-    moduleQueryString = `&module=${convertedModulePath}`;
-  }
-
   return (
     <iframe
-      src={`https://codesandbox.io/embed/${title}?codemirror=1&fontsize=14&hidenavigation=1&view=editor${moduleQueryString}`}
+      src={createSrc()}
       style={{
         width: '100%',
         height: '500px',
@@ -22,4 +16,14 @@ export default function CodeSandbox({ title, modulePath }) {
       sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
     />
   );
+
+  function createSrc() {
+    let moduleQueryString = '';
+    if (modulePath) {
+      const convertedModulePath = modulePath.replace(/\//g, '%2F');
+      moduleQueryString = `&module=${convertedModulePath}`;
+    }
+
+    return `https://codesandbox.io/embed/${title}?codemirror=1&fontsize=14&hidenavigation=1&view=editor${moduleQueryString}`;
+  }
 }
