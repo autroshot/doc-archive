@@ -60,19 +60,7 @@ import browserPaint from '/img/docs/react/render-and-commit/browser-paint.png';
 
 앱이 시작되면 초기 렌더링을 트리거해야 합니다. 프레임워크와 샌드박스는 때때로 이 코드를 숨기지만, 대상 DOM 노드로 [`createRoot`](https://react.dev/reference/react-dom/client/createRoot)를 호출하고 컴포넌트로 `render` 메서드를 호출합니다.
 
-<iframe
-  src="https://codesandbox.io/embed/gallant-waterfall-mnfdp5?codemirror=1&fontsize=14&hidenavigation=1&view=editor"
-  style={{
-    width: '100%',
-    height: '500px',
-    border: '0',
-    borderRadius: '4px',
-    overflow: 'hidden',
-  }}
-  title="gallant-waterfall-mnfdp5"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-/>
+<CodeSandbox title="gallant-waterfall-mnfdp5" />
 
 `root.render()` 호출을 주석 처리하고 컴포넌트가 사라지는 것을 확인해 보세요!
 
@@ -115,19 +103,7 @@ import browserPaint from '/img/docs/react/render-and-commit/browser-paint.png';
 
 다음 예시에서 리액트는 `Gallery()`와 `Image()`를 여러 번 호출합니다.
 
-<iframe
-  src="https://codesandbox.io/embed/practical-mccarthy-1p08zd?codemirror=1&module=%2FGallery.js&fontsize=14&hidenavigation=1&view=editor"
-  style={{
-    width: '100%',
-    height: '500px',
-    border: '0',
-    borderRadius: '4px',
-    overflow: 'hidden',
-  }}
-  title="practical-mccarthy-1p08zd"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-/>
+<CodeSandbox title="practical-mccarthy-1p08zd" modulePath="/Gallery.js" />
 
 - **초기 렌더링 중에**, 리액트는 `<section>`, `<h1>`, 세 개의 `<img>` 태그에 대한 [DOM 노드를 생성합니다](https://developer.mozilla.org/docs/Web/API/Document/createElement).
 - **다시 렌더링하는 동안**, 리액트는 이전 렌더링 이후에 변경된 프로퍼티가 있는지 확인합니다. 다음 단계인 커밋 단계 전까지는 아무 작업도 수행하지 않습니다.
@@ -162,19 +138,7 @@ import browserPaint from '/img/docs/react/render-and-commit/browser-paint.png';
 
 예를 들어 다음은 매초마다 부모로부터 전달된 다른 프롭으로 다시 렌더링하는 컴포넌트입니다. `<input>`에 텍스트를 추가하여 `value`를 갱신해 보세요. 컴포넌트가 다시 렌더링되어도 텍스트는 사라지지 않습니다.
 
-<iframe
-  src="https://codesandbox.io/embed/modern-snowflake-y5b4hi?codemirror=1&module=%2FClock.js&fontsize=14&hidenavigation=1&view=editor"
-  style={{
-    width: '100%',
-    height: '500px',
-    border: '0',
-    borderRadius: '4px',
-    overflow: 'hidden',
-  }}
-  title="modern-snowflake-y5b4hi"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-/>
+<CodeSandbox title="modern-snowflake-y5b4hi" modulePath="/Clock.js" />
 
 이는 마지막 단계에서 리액트가 `<h1>`의 내용만 새로운 `time`으로 갱신하기 때문입니다. JSX에 `<input>`이 지난번과 같은 위치에 나타나므로 리액트는 `<input>`이나 `value`를 건드리지 않습니다!
 
