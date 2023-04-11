@@ -1,0 +1,200 @@
+---
+sidebar_position: 3
+---
+
+import render1 from '/img/docs/react/state-as-a-snapshot/render-1.png';
+import render2 from '/img/docs/react/state-as-a-snapshot/render-2.png';
+import render3 from '/img/docs/react/state-as-a-snapshot/render-3.png';
+import stateSnapshot1 from '/img/docs/react/state-as-a-snapshot/state-snapshot-1.png';
+import stateSnapshot2 from '/img/docs/react/state-as-a-snapshot/state-snapshot-2.png';
+import stateSnapshot3 from '/img/docs/react/state-as-a-snapshot/state-snapshot-3.png';
+
+# 스냅숏으로의 상태
+
+상태 변수는 읽고 쓸 수 있는 일반적인 자바스크립트 변수처럼 보일 수 있습니다. 그러나 상태는 스냅숏처럼 작동합니다. 상태를 설정해도 이미 가지고 있는 상태 변수는 변경되지 않지만 대신 리렌더링을 트리거합니다.
+
+:::note 학습 내용
+
+- 상태 설정이 리렌더링을 트리거하는 방법
+- 상태 갱신 시기와 방법
+- 설정 직후에 상태가 갱신되지 않는 이유
+- 이벤트 처리기가 상태의 스냅숏에 접근하는 방법
+
+:::
+
+## 상태 설정은 렌더링을 트리거한다
+
+클릭과 같은 사용자 이벤트에 대한 응답으로 사용자 인터페이스가 직접 변경된다고 생각할 수 있습니다. 리액트에서는 이 심성 모형(mental model)과 조금 다르게 작동합니다. 이전 페이지에서 리액트의 [상태 설정은 리렌더링을 요청한다](https://react.dev/learn/render-and-commit#step-1-trigger-a-render)는 것을 확인했습니다. 즉, 인터페이스가 이벤트에 반응하려면 **상태 갱신**이 필요합니다.
+
+다음 예시에서 `send`를 누르면, `setIsSent(true)`가 리액트에게 UI를 다시 렌더링하도록 지시합니다.
+
+<CodeSandbox title="laughing-benji-yxnodj" modulePath="/App.js" />
+
+버튼을 클릭하면 다음이 수행됩니다.
+
+1. `onSubmit` 이벤트 처리기가 실행됩니다.
+2. `setIsSent(true)`는 `isSent`를 `true`로 설정하고 새로운 렌더링을 대기열에 넣습니다.
+3. 리액트는 새로운 `isSent` 값에 따라 컴포넌트를 다시 렌더링합니다.
+
+이제 상태와 렌더링 간의 관계를 자세히 살펴보겠습니다.
+
+## 렌더링은 시간에 따라 스냅숏을 찍는다
+
+[렌더링](https://react.dev/learn/render-and-commit#step-2-react-renders-your-components)은 리액트가 컴포넌트(함수)를 호출한다는 것을 의미합니다. 해당 함수에서 반환되는 JSX는 시간에 따른 UI의 스냅숏과 같습니다. 프롭, 이벤트 처리기, 지역 변수는 모두 **렌더링 시점의 상태를 사용하여** 계산되었습니다.
+
+사진이나 동영상 프레임과 달리, 반환되는 UI **스냅숏**은 대화형입니다. 여기에는 입력에 대한 응답 작업을 지정하는 이벤트 처리기와 같은 논리가 포함됩니다. 리액트는 이 스냅숏과 일치하도록 화면을 갱신하고 이벤트 처리기를 연결합니다. 따라서 버튼을 누르면 JSX에서 클릭 처리기가 트리거됩니다.
+
+리액트가 컴포넌트를 리렌더링할 때 다음이 수행됩니다.
+
+1. 리액트가 함수를 다시 호출합니다.
+2. 함수가 새로운 JSX 스냅숏을 반환합니다.
+3. 리액트는 반환된 스냅숏과 일치하도록 화면을 갱신합니다.
+
+이를 그림으로 표현하면 다음과 같습니다.
+
+1. 리액트가 함수를 실행
+
+   <Image img={render1} maxWidth="14rem" />
+
+2. 스냅숏을 계산
+
+   <Image img={render2} maxWidth="14rem" />
+
+3. DOM 트리를 갱신
+
+   <Image img={render3} maxWidth="14rem" />
+
+컴포넌트의 메모리로서 상태는 함수가 반환된 후에 사라지는 일반적인 변수와 다릅니다. 상태는 실제로 선반에 있는 것처럼, 리액트 자체에, 함수 외부에 **존재합니다**. 리액트가 컴포넌트를 호출하면, 컴포넌트는 해당 렌더링에 대한 상태의 스냅숏을 제공합니다. 컴포넌트는 JSX에서 **해당 렌더링의 상태 값을 사용하여** 계산된 새로운 프롭 및 이벤트 처리기 세트와 함께 UI의 스냅숏을 반환합니다!
+
+1. 리액트에게 상태를 갱신하라고 지시합니다.
+
+   <Image img={stateSnapshot1} maxWidth="14rem" />
+
+2. 리액트는 상태 값을 갱신합니다.
+
+   <Image img={stateSnapshot2} maxWidth="14rem" />
+
+3. 리액트는 상태 값의 스냅숏을 컴포넌트에 전달합니다.
+
+   <Image img={stateSnapshot3} maxWidth="14rem" />
+
+작은 실험을 통해 이것이 어떻게 작동하는지 알아보겠습니다. 다음 예시에서 `+3` 버튼을 클릭하면 `setNumber(number + 1)`가 세 번 호출되므로 카운터가 세 번 증가할 것으로 예상할 수 있습니다.
+
+`+3` 버튼을 클릭하여 어떤 일이 발생하는지 확인해 보세요.
+
+<CodeSandbox title="dry-forest-7os05q" modulePath="/App.js" />
+
+`number`는 클릭당 1씩만 증가합니다!
+
+**상태 설정은 '다음' 렌더링에서만 적용됩니다.** 첫 렌더링 동안에는 `number`가 `0`이었습니다. 따라서 **해당 렌더링**의 `onClick` 처리기에서 `setNumber(number + 1)`가 호출된 후에도 `number` 값은 여전히 `0`입니다.
+
+```jsx
+<button
+  onClick={() => {
+    setNumber(number + 1);
+    setNumber(number + 1);
+    setNumber(number + 1);
+  }}
+>
+  +3
+</button>
+```
+
+이 버튼의 클릭 처리기가 리액트에게 지시하는 것은 다음과 같습니다.
+
+1. `setNumber(number + 1)`: `number`는 `0`이므로 `setNumber(0 + 1)`입니다.
+
+   리액트는 다음 렌더링에서 `number`를 `1`로 변경할 준비를 합니다.
+
+2. `setNumber(number + 1)`: `number`는 `0`이므로 `setNumber(0 + 1)`입니다.
+
+   리액트는 다음 렌더링에서 `number`를 `1`로 변경할 준비를 합니다.
+
+3. `setNumber(number + 1)`: `number`는 `0`이므로 `setNumber(0 + 1)`입니다.
+
+   리액트는 다음 렌더링에서 `number`를 `1`로 변경할 준비를 합니다.
+
+`setNumber(number + 1)`를 세 번 호출했지만, **이 렌더링**의 이벤트 처리기의 `number`는 항상 `0`이므로, 상태를 `1`로 세 번 설정한 것과 동일합니다. 이것이 이벤트 처리기가 완료된 후에, 리액트가 컴포넌트의 `number`를 `3`이 아닌 `1`로 다시 렌더링하는 이유입니다.
+
+코드에서 상태 변수를 해당 값으로 대입하여 이를 시각화할 수도 있습니다. `number` 상태 변수는 **이 렌더링**에서 `0`이므로 이벤트 처리기는 다음과 같습니다.
+
+```jsx
+<button
+  onClick={() => {
+    setNumber(0 + 1);
+    setNumber(0 + 1);
+    setNumber(0 + 1);
+  }}
+>
+  +3
+</button>
+```
+
+다음 렌더링에서 `number`는 `1`이므로 **해당 렌더링**의 클릭 처리기는 다음과 같습니다.
+
+```jsx
+<button
+  onClick={() => {
+    setNumber(1 + 1);
+    setNumber(1 + 1);
+    setNumber(1 + 1);
+  }}
+>
+  +3
+</button>
+```
+
+따라서 버튼을 다시 클릭하면 카운터가 `2`로 설정되고, 다시 클릭하면 `3`으로 설정됩니다.
+
+## 시간에 따른 상태
+
+흠, 재밌네요. 그럼 이 버튼을 클릭하면 어떤 경고가 표시될지 예상해 보세요.
+
+<CodeSandbox title="cranky-breeze-qvkn25" modulePath="/App.js" />
+
+이전의 대체 방법을 사용하면 경고에 `0`이 표시될 것이라고 예상할 수 있습니다.
+
+```jsx
+setNumber(0 + 5);
+alert(0);
+```
+
+그렇다면 경고에 타이머를 설정하여 컴포넌트를 다시 렌더링한 **이후**에만 실행되도록 하면 어떻게 될까요? `0`일까요? `5`일까요? 맞혀보세요!
+
+<CodeSandbox title="small-mountain-9162ll" modulePath="/App.js" />
+
+놀랐나요? 대체 방법을 사용하면 경고에 전달된 상태의 **스냅숏**을 볼 수 있습니다.
+
+```jsx
+setNumber(0 + 5);
+setTimeout(() => {
+  alert(0);
+}, 3000);
+```
+
+리액트에 저장된 상태는 경고가 실행되기 전에 변경되었을 수도 있습니다. 하지만 상태는 사용자가 경고와 상호 작용한 시점의 상태 스냅숏을 사용하여 예약되었습니다!
+
+이벤트 핸들러의 코드가 비동기인 경우에도 **상태 변수의 값은 렌더링 내에서 절대 변경되지 않습니다**. **해당 렌더링**의 `onClick` 내부에서, `setNumber(number + 5)`가 호출된 후에도 `number`의 값은 계속 `0`입니다. 그 값은 리액트가 컴포넌트를 호출하여 UI의 **스냅숏**을 찍을 때 **고정**되었습니다.
+
+다음은 이벤트 처리기가 타이밍 오류를 발생시킬 가능성을 줄이는 방법의 예입니다. 아래 예시는 5초 지연으로 메시지를 보내는 양식입니다. 다음 시나리오를 상상해 보세요.
+
+1. `Send` 버튼을 눌러 앨리스에게 `Hello`를 보냅니다.
+2. 5초 지연이 끝나기 전에 `To` 필드의 값을 `Bob`으로 변경합니다.
+
+`alert`에 무엇이 표시될까요? `You said Hello to Alice`가 표시될까요? 아니면 `You said Hello to Bob`이 표시될까요? 알고 있는 내용을 바탕으로 예상한 다음 시도해 보세요.
+
+<CodeSandbox title="nifty-burnell-r7e88v" modulePath="/App.js" />
+
+**리액트는 하나의 렌더링의 이벤트 처리기 내에서 상태 값을 '고정'합니다.** 코드가 실행되는 동안 상태가 변경되는 것을 걱정할 필요가 없습니다.
+
+하지만 리렌더링 전에 최신 상태를 읽고 싶다면 어떻게 해야 할까요? 다음 페이지에서 다루는 [상태 갱신 함수](https://react.dev/learn/queueing-a-series-of-state-updates)를 사용할 수 있습니다!
+
+## 요약
+
+- 상태를 설정하면 새로운 렌더링이 요청됩니다.
+- 리액트는 마치 선반에 있는 것처럼 컴포넌트 외부에 상태를 저장합니다.
+- `useState`를 호출하면 리액트는 해당 렌더링에 대한 상태의 스냅숏을 제공합니다.
+- 변수와 이벤트 처리기는 리렌더링에서 **생존하지 않습니다**. 모든 렌더링에는 고유한 이벤트 처리기가 있습니다.
+- 모든 렌더링(과 내부의 함수)은 항상 리액트가 해당 렌더링에 제공한 상태의 스냅숏을 보게 됩니다.
+- 렌더링된 JSX에서와 유사하게 이벤트 처리기에서 상태를 대체할 수 있습니다.
+- 과거에 생성된 이벤트 처리기는 해당 이벤트 처리기가 생성된 렌더링의 상태 값을 가집니다.
