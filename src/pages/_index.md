@@ -6,6 +6,7 @@
 
 - [JavaScript](https://autroshot.github.io/docs-repository/docs/javascript/keyboard-keydown-and-keyup)
 - [TypeScript](https://autroshot.github.io/docs-repository/docs/typescript)
+- [React](https://autroshot.github.io/docs-repository/docs/react/keeping-components-pure)
 - [Next.js](https://autroshot.github.io/docs-repository/docs/nextjs)
 - [Jest](https://autroshot.github.io/docs-repository/docs/test/jest)
 - [Cypress](https://autroshot.github.io/docs-repository/docs/test/cypress)
