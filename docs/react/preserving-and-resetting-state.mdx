@@ -1,0 +1,314 @@
+---
+sidebar_position: 6
+---
+
+import preservingStateDomTree from '/img/docs/react/preserving-and-resetting-state/preserving-state-dom-tree.png';
+import preservingStateTree from '/img/docs/react/preserving-and-resetting-state/preserving-state-tree.png';
+import preservingStateIncrement from '/img/docs/react/preserving-and-resetting-state/preserving-state-increment.png';
+import preservingStateRemoveComponent from '/img/docs/react/preserving-and-resetting-state/preserving-state-remove-component.png';
+import preservingStateAddComponent from '/img/docs/react/preserving-and-resetting-state/preserving-state-add-component.png';
+import preservingStateSameComponent from '/img/docs/react/preserving-and-resetting-state/preserving-state-same-component.png';
+import preservingStateDiff1 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-1.png';
+import preservingStateDiff2 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-2.png';
+import preservingStateDiffSame1 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-same-1.png';
+import preservingStateDiffSame2 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-same-2.png';
+import preservingStateDiffPosition1 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-position-1.png';
+import preservingStateDiffPosition2 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-position-2.png';
+import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-position-3.png';
+
+# 상태 보존과 재설정
+
+상태는 컴포넌트 간에 격리됩니다. 리액트는 UI 트리에서의 위치를 기준으로 어떤 상태가 어떤 컴포넌트에 속하는지 추적합니다. 리렌더링 간에 상태를 보존할 시기와 상태를 재설정할 시기를 제어할 수 있습니다.
+
+:::note 학습 내용
+
+- 리액트가 컴포넌트 구조를 보는 방법
+- 리액트가 언제 상태를 보존하거나 재설정하기로 선택하는지
+- 리액트가 컴포넌트의 상태를 재설정하도록 강제하는 방법
+- 키와 타입이 상태 보존 여부에 미치는 영향
+
+:::
+
+## UI 트리
+
+브라우저는 많은 트리 구조를 사용하여 UI를 모델링합니다. [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)은 HTML 요소를 나타내고, [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)은 CSS와 동일합니다. 심지어 [접근성](https://developer.mozilla.org/en-US/docs/Glossary/Accessibility_tree)도 있습니다!
+
+리액트 또한 트리 구조를 사용하여 여러분이 만든 UI를 관리하고 모델링합니다. 리액트는 JSX에서 **UI 트리**를 만듭니다. 그런 다음 리액트 DOM은 해당 UI 트리와 일치하도록 브라우저 DOM 요소를 갱신합니다. (리액트 네이티브는 이 트리를 모바일 플랫폼에 특화된 요소로 변환합니다.)
+
+<Image
+  img={preservingStateDomTree}
+  alt="세 개의 섹션이 수평으로 배열된 다이어그램입니다. 첫 번째 섹션에는 '컴포넌트 A', '컴포넌트 B', '컴포넌트 C'라는 레이블이 있는 세 개의 직사각형이 수직으로 쌓여 있습니다. 다음 창으로 향하는 화살표에는 리액트 로고가 있습니다. 중간 섹션에는 'A'라는 루트와 'B'와 'C'라는 두 자식이 있는 컴포넌트 트리가 있습니다. 다음 섹션으로 향하는 화살표에는 리액트 로고가 있습니다. 세 번째이자 마지막 섹션은 8개 노드의 트리를 포함하는 브라우저의 와이어프레임으로, 하위 집합만 강조 표시됩니다(중간 섹션의 하위 트리를 가리킴)."
+/>
+
+리액트는 컴포넌트에서 리액트 DOM이 DOM을 렌더링하는 데 사용하는 UI 트리를 생성합니다.
+
+## 상태는 트리의 위치에 연결된다
+
+컴포넌트 상태를 만들면, 상태가 컴포넌트 내부에 **살아 있다**고 생각할 수 있습니다. 그러나 실제로는, 상태는 리액트 내부에 보관됩니다. 리액트는 해당 컴포넌트가 UI 트리에 있는 위치에 따라, 보유하고 있는 각 상태 조각을 올바른 컴포넌트와 연결합니다.
+
+다음 예시에서 `<Counter />` JSX 태그는 하나뿐이지만, 두 곳의 다른 위치에서 렌더링됩니다.
+
+<CodeSandbox title="elated-frog-zcc3dp" modulePath="/App.js" />
+
+트리의 모습은 다음과 같습니다.
+
+<Image
+  img={preservingStateTree}
+  alt="리액트 컴포넌트의 트리 그림입니다. 루트 노드의 레이블은 'div'이며 두 개의 자식을 가집니다. 각 자식은 'Counter'이며, 둘 다 값이 0인 'count' 상태 방울이 포함되어 있습니다."
+  maxWidth="24rem"
+/>
+
+**두 카운터가 트리에서 각자의 고유한 위치에 렌더링되기 때문에 이들은 별개의 카운터입니다.** 보통 리액트를 사용하기 위해 이러한 위치에 대해 생각할 필요는 없지만, 작동 방식을 이해하는 데 도움이 될 수 있습니다.
+
+리액트에서 화면의 각 컴포넌트는 완전히 격리된 상태입니다. 예를 들어 두 개의 `Counter` 컴포넌트를 나란히 렌더링하면, 각 컴포넌트는 고유하고 독립적인 `score`와 `hover` 상태를 갖게 됩니다.
+
+다음의 두 카운터를 모두 클릭하고 서로 영향을 주지 않는 것을 확인해 보세요.
+
+<CodeSandbox title="inspiring-pike-3jz97w" modulePath="/App.js" />
+
+보시다시피 하나의 카운터가 갱신되면 해당 컴포넌트의 상태만 갱신됩니다.
+
+<Image
+  img={preservingStateIncrement}
+  alt="리액트 컴포넌트의 트리 그림입니다. 루트 노드의 레이블은 'div'이며 두 개의 자식을 가집니다. 왼쪽 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식은 'Counter'이며, 값이 1인 'count' 상태 방울이 포함됩니다. 오른쪽 자식의 상태 방울이 노란색으로 강조 표시되어 해당 값이 갱신되었음을 나타냅니다."
+  maxWidth="24rem"
+/>
+
+리액트는 동일한 위치에서 동일한 컴포넌트를 렌더링하는 한 상태를 유지합니다. 이를 확인하려면 두 카운터를 모두 증가시킨 다음, `Render the second counter` 확인란을 선택 취소하여 두 번째 컴포넌트를 제거한 다음, 다시 선택하여 추가합니다.
+
+<CodeSandbox title="romantic-wildflower-wxsc2o" modulePath="/App.js" />
+
+두 번째 카운터의 렌더링을 중지하는 순간, 해당 상태가 완전히 사라지는 것을 확인하세요. 이는 리액트가 컴포넌트를 제거하면 해당 컴포넌트의 상태가 파괴되기 때문입니다.
+
+<Image
+  img={preservingStateRemoveComponent}
+  alt="리액트 컴포넌트의 트리 그림입니다. 루트 노드의 레이블은 'div'이며 두 개의 자식을 가집니다. 왼쪽 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식이 사라지고 그 자리에 노란색 '펑' 이미지가 표시되어, 트리에서 컴포넌트가 삭제되었음을 강조 표시합니다."
+  maxWidth="24rem"
+/>
+
+`Render the second counter`을 선택하면, 두 번째 `Counter`와 해당 컴포넌트의 상태가 초기화되고(`score = 0`) DOM에 추가됩니다.
+
+<Image
+  img={preservingStateAddComponent}
+  alt="리액트 컴포넌트의 트리 그림입니다. 루트 노드의 레이블은 'div'이며 두 개의 자식을 가집니다. 왼쪽 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식 노드 전체가 노란색으로 강조 표시되어 방금 트리에 추가되었음을 나타냅니다."
+  maxWidth="31rem"
+/>
+
+**리액트는 컴포넌트가 UI 트리의 해당 위치에서 렌더링되는 동안 컴포넌트의 상태를 유지합니다.** 해당 컴포넌트가 제거되거나 다른 컴포넌트가 동일한 위치에서 렌더링되면 리액트는 해당 상태를 삭제합니다.
+
+## 동일한 위치에 있는 동일한 컴포넌트는 상태를 보존한다
+
+다음 예시에는 두 개의 다른 `<Counter />` 태그가 있습니다.
+
+<CodeSandbox title="bold-einstein-8swdmv" modulePath="/App.js" />
+
+확인란을 선택하거나 선택을 취소해도 카운터 상태가 재설정되지 않습니다. `isFancy`가 `true`이든 `false`이든, 루트 `App` 컴포넌트에서 반환된 `div`의 첫 번째 자식으로 항상 `<Counter />`가 있습니다.
+
+`Counter`는 동일한 위치에 있기 때문에 `App` 상태를 갱신해도 `Counter`가 재설정되지 않습니다.
+
+<Image
+  img={preservingStateSameComponent}
+  alt="두 섹션 사이를 전환하는 화살표로 구분된 두 섹션이 있는 그림입니다. 각 섹션에는 'isFancy'라는 상태 방울이 포함된 'App'이라는 부모가 있는 컴포넌트 레이아웃이 포함되어 있습니다. 이 컴포넌트에는 'div'라는 하나의 자식이 있으며, 이는 유일한 자식에게 전달되는 'isFancy'(보라색으로 강조 표시됨)가 포함된 프롭 방울로 연결됩니다. 마지막 자식은 'Counter'이며, 두 그림 모두에 값이 3인 'count' 상태 방울이 포함됩니다. 그림의 왼쪽 섹션에서는 아무것도 강조 표시되지 않으며 'isFancy' 부모의 상태 값이 'false'입니다. 그림의 오른쪽 섹션에서 'isFancy' 부모의 상태 값이 'true'로 변경되고 노란색으로 강조 표시됩니다. 하단의 프롭 방울의 'isFancy' 값도 'true'로 변경됩니다."
+  maxWidth="37.5rem"
+/>
+
+동일한 위치에 있는 동일한 컴포넌트이므로, 리액트 관점에서는 동일한 카운터입니다.
+
+:::caution 함정
+
+**리액트에서 중요한 것은 JSX 마크업에서의 위치가 아니라 UI 트리에서의 위치**라는 것을 기억하세요! 다음 컴포넌트에는 `if` 안팎에 다른 `<Counter />` JSX 태그를 가진 두 개의 `return` 절이 있습니다.
+
+<CodeSandbox title="nostalgic-alex-18c6we" modulePath="/App.js" />
+
+확인란을 선택하면 상태가 재설정될 것으로 예상할 수 있지만 그렇지 않습니다! 이는 **두 `<Counter />` 태그가 모두 같은 위치에서 렌더링되기 때문입니다**. 리액트는 함수에서 조건문이 어디에 있는지 모릅니다. 반환하는 트리만 봅니다.
+
+두 경우 모두 `App` 컴포넌트는 `<Counter />`가 첫 번째 자식인 `<div>`를 반환합니다. 리액트에게 두 카운터는 루트의 첫 번째 자식의 첫 번째 자식이라는 동일한 **주소**를 가집니다. 이것이 리액트가 논리를 구성하는 방법에 관계없이 이전 렌더링과 다음 렌더링 간에 컴포넌트를 일치시키는 방법입니다.
+
+:::
+
+## 동일한 위치의 다른 컴포넌트는 상태를 재설정한다
+
+다음 예시에서 확인란을 선택하면 `<Counter>`가 `<p>`로 바뀝니다.
+
+<CodeSandbox title="sharp-pine-6gbws5" modulePath="/App.js" />
+
+여기서는 동일한 위치에서 **다른** 컴포넌트 타입으로 전환됩니다. 처음에는 `<div>`의 첫 번째 자식에 `Counter`가 포함되었습니다. 그러나 `p`로 교체했을 때, 리액트는 UI 트리에서 `Counter`를 제거하고 해당 상태를 파괴했습니다.
+
+`Counter`가 `p`로 변경되면, `Counter`가 삭제되고 `p`가 추가됩니다.
+
+<Image
+  img={preservingStateDiff1}
+  alt="세 개의 섹션이 있는 그림입니다. 각 섹션 사이를 전환하는 화살표가 있습니다. 첫 번째 섹션에는 'div'라는 리액트 컴포넌트와 'Counter'라는 단일 자식 컴포넌트가 포함되어 있습니다. 'Counter' 컴포넌트에는 값이 3인 'count' 상태 방울이 포함됩니다. 가운데 섹션에는 동일한 'div' 부모가 있지만, 이제 자식 컴포넌트가 삭제되어 노란색 '펑' 이미지로 표시됩니다. 세 번째 섹션에는 다시 동일한 'div' 부모가 있습니다. 이제 밑에는 'p'라는 새로운 자식 컴포넌트가 있으며 노란색으로 강조 표시됩니다."
+  maxWidth="47rem"
+/>
+
+다시 전환하면 `p`가 삭제되고 `Counter`가 추가됩니다.
+
+<Image
+  img={preservingStateDiff2}
+  alt="세 개의 섹션이 있는 그림입니다. 각 섹션 사이를 전환하는 화살표가 있습니다. 첫 번째 섹션에는 'p'라는 리액트 컴포넌트가 포함됩니다. 가운데 섹션에는 동일한 'div' 부모가 있지만, 이제 자식 컴포넌트가 삭제되어 노란색 '펑' 이미지로 표시됩니다. 세 번째 섹션에는 다시 동일한 'div' 부모가 있습니다. 이제 밑에는 'Counter'라는 새로운 자식이 노란색으로 강조 표시됩니다. 자식 컴포넌트에는 값이 0인 'count' 상태 방울이 포함됩니다."
+  maxWidth="47rem"
+/>
+
+또한 **동일한 위치에 다른 컴포넌트를 렌더링하면 전체 하위 트리의 상태가 재설정됩니다.** 이를 확인하려면 다음의 카운터를 증가시키고 확인란을 선택해 보세요.
+
+<CodeSandbox title="dawn-grass-meowu5" modulePath="/App.js" />
+
+확인란을 클릭하면 카운터 상태가 재설정됩니다. `Counter`를 렌더링하더라도, `div`의 첫 번째 자식은 `div`에서 `section`으로 변경됩니다. 하위 `div`가 DOM에서 제거되면, 그 아래의 전체 트리(`Counter`와 해당 상태 포함)도 모두 파괴됩니다.
+
+`section`이 `div`로 변경되면, `section`이 삭제되고 새로운 `div`가 추가됩니다.
+
+<Image
+  img={preservingStateDiffSame1}
+  alt="세 개의 섹션이 있는 그림입니다. 각 섹션 사이를 전환하는 화살표가 있습니다. 첫 번째 섹션에는 'div'라는 리액트 컴포넌트가 있습니다. 그 아래에는 'section'이라는 단일 자식이 있습니다. 그 아래에는 값이 3인 'count' 상태 방울이 포함된 'Counter'라는 단일 자식이 있습니다. 가운데 섹션에는 동일한 'div' 부모가 있지만, 이제 자식 컴포넌트들이 삭제되어 노란색 '펑' 이미지로 표시됩니다. 세 번째 섹션에는 다시 동일한 'div' 부모가 있습니다. 이제 그 아래에는 노란색으로 강조 표시되며 'div'라는 새로운 자식이 있습니다. 그 아래에는 모두 노란색으로 강조 표시되며, 값이 0인 'count' 상태 방울이 포함된 'Counter'라는 새로운 자식이 있습니다."
+  maxWidth="49.5rem"
+/>
+
+다시 전환하면 `div`가 삭제되고 새로운 `section`이 추가됩니다.
+
+<Image
+  img={preservingStateDiffSame2}
+  alt="세 개의 섹션이 있는 그림입니다. 각 섹션 사이를 전환하는 화살표가 있습니다. 첫 번째 섹션에는 'div'라는 리액트 컴포넌트가 있습니다. 그 아래에는 'div'라는 단일 자식이 있습니다. 그 아래에는 값이 0인 'count' 상태 방울이 포함된 'Counter'라는 단일 자식이 있습니다. 가운데 섹션에는 동일한 'div' 부모가 있지만, 이제 자식 컴포넌트들이 삭제되어 노란색 '펑' 이미지로 표시됩니다. 세 번째 섹션에는 다시 동일한 'div' 부모가 있습니다. 이제 그 아래에는 'section'이라는 새로운 자식이 있으며 노란색으로 강조 표시됩니다. 그 아래에는 모두 노란색으로 강조 표시되며, 값이 0인 'count' 상태 방울이 포함된 'Counter'라는 새로운 자식이 있습니다."
+  maxWidth="49.5rem"
+/>
+
+경험적으로, **리렌더링 사이에서 상태를 보존하려면 트리 구조가 서로 '일치'해야 합니다**. 구조가 다르면 리액트가 트리에서 컴포넌트를 제거할 때 상태를 파괴합니다.
+
+:::caution 함정
+
+이것이 컴포넌트 함수 정의를 중첩해서는 안 되는 이유입니다.
+
+다음 예시에서 `MyTextField` 컴포넌트 함수는 `MyComponent` **내부**에 정의되어 있습니다.
+
+<CodeSandbox title="lucid-napier-0p1vil" modulePath="/App.js" />
+
+버튼을 클릭할 때마다 입력의 상태가 사라집니다! 이는 `MyComponent`의 렌더링마다 **다른** `MyTextField` 함수가 생성되기 때문입니다. 동일한 위치에서 **다른** 컴포넌트를 렌더링하므로 리액트는 그 아래의 모든 상태를 재설정합니다. 이로 인해 버그와 성능 문제가 발생합니다. 이 문제를 피하려면 **항상 컴포넌트 함수를 최상위 수준에서 선언하고 컴포넌트 함수 정의를 중첩하지 마세요**.
+
+:::
+
+## 동일한 위치에서 상태 재설정하기
+
+기본적으로 리액트는 컴포넌트가 동일한 위치에 있는 동안 상태를 보존합니다. 보통은 이런 동작을 원하므로 이는 기본 동작으로 적합합니다. 그러나 때로는 컴포넌트의 상태를 재설정하는 것을 원할 수 있습니다.
+
+두 명의 플레이어가 각 턴 동안 자신의 점수를 추적할 수 있는 다음 앱을 살펴보세요.
+
+<CodeSandbox title="zen-sunset-fi5b4y" modulePath="/App.js" />
+
+현재는 플레이어를 변경해도 점수가 유지됩니다. 두 개의 `Counter`는 동일한 위치에 나타나므로 리액트는 둘을 `person` 프롭이 바뀐 **동일한** `Counter`로 봅니다.
+
+그러나 개념적으로 이 앱에서는 두 개가 별도의 카운터여야 합니다. 이들은 UI에서 같은 위치에 나타날 수 있지만, 하나는 테일러에 대한 카운터이고 다른 하나는 사라에 대한 카운터입니다.
+
+둘을 전환할 때 상태를 재설정하는 방법은 두 가지가 있습니다.
+
+1. 컴포넌트를 다른 위치에서 렌더링합니다.
+2. 각 컴포넌트에 `key`를 사용하여 명시적인 ID를 부여합니다.
+
+### 옵션 1: 컴포넌트를 다른 위치에서 렌더링하기
+
+두 `Counter`를 독립적으로 사용하려면 두 개의 다른 위치에서 렌더링할 수 있습니다.
+
+<CodeSandbox title="gallant-nobel-pzdeny" modulePath="/App.js" />
+
+- 처음에는 `isPlayerA`가 `true`입니다. 따라서 첫 번째 위치에는 `Counter` 상태가 포함되고 두 번째 위치는 비어 있습니다.
+- `Next player` 버튼을 클릭하면 첫 번째 위치는 지워지지만, 이제 두 번째 위치에는 `Counter`가 포함됩니다.
+
+초기 상태
+
+<Image
+  img={preservingStateDiffPosition1}
+  alt="리액트 컴포넌트의 트리가 있는 그림입니다. 부모는 값이 'true'인 'isPlayerA' 상태 방울을 가진 'Scoreboard'입니다. 왼쪽으로 정렬된 유일한 자식은 값이 0인 'count' 상태 방울을 가진 'Counter'입니다. 왼쪽 자식은 모두 노란색으로 강조 표시되어 추가되었음을 나타냅니다."
+  maxWidth="24rem"
+/>
+
+`next`를 클릭
+
+<Image
+  img={preservingStateDiffPosition2}
+  alt="리액트 컴포넌트의 트리가 있는 그림입니다. 부모는 값이 'false'인 'isPlayerA' 상태 방울을 가진 'Scoreboard'입니다. 상태 방울이 노란색으로 강조 표시되어 변경되었음을 나타냅니다. 왼쪽 자식은 삭제되었음을 나타내는 노란색 '펑' 이미지로 대체되고, 오른쪽에는 추가되었음을 나타내는 노란색으로 강조 표시된 새 자식이 있습니다. 새로운 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다."
+  maxWidth="24rem"
+/>
+
+다시 `next` 를 클릭
+
+<Image
+  img={preservingStateDiffPosition3}
+  alt="리액트 컴포넌트의 트리가 있는 그림입니다. 부모는 값이 'true'인 'isPlayerA' 상태 방울을 가진 'Scoreboard'입니다. 상태 방울이 노란색으로 강조 표시되어 변경되었음을 나타냅니다. 왼쪽에는 새 자식이 있으며 노란색으로 강조 표시되어 추가되었음을 나타냅니다. 새로운 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식은 삭제되었음을 나타내는 노란색 '펑' 이미지로 대체됩니다."
+  maxWidth="24rem"
+/>
+
+각 `Counter`의 상태는 DOM에서 제거될 때마다 소멸됩니다. 이것이 버튼을 클릭할 때마다 재설정되는 이유입니다.
+
+이 해법은 같은 위치에 몇 개의 독립적인 컴포넌트만 렌더링되어 있을 때 편리합니다. 이 예시에서는 컴포넌트가 두 개만 있으므로 JSX에서 두 개를 개별적으로 렌더링하는 것이 어렵지 않습니다.
+
+### 옵션 2: 키를 사용하여 상태 재설정하기
+
+컴포넌트의 상태를 재설정하는 보다 일반적인 방법도 있습니다.
+
+[목록 렌더링](https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key)에서 `키`를 본 적이 있을 것입니다. 키는 목록만을 위한 것이 아닙니다! 키를 사용하여 리액트가 모든 컴포넌트를 구별하게 만들 수 있습니다. 기본적으로 리액트는 부모 내의 순서(첫 번째 카운터, 두 번째 카운터)로 컴포넌트를 식별합니다. 그러나 키를 사용하면 이것이 단지 첫 번째 카운터 또는 두 번째 카운터가 아니라, 특정 카운터(테일러의 카운터)라는 것을 리액트에게 알릴 수 있습니다. 이렇게 하면 리액트는 테일러의 카운터가 트리 어디에 나타나든 알 수 있습니다!
+
+다음 예시에서 두 `<Counter />`는 JSX에서 동일한 위치에 나타나더라도 상태를 공유하지 않습니다.
+
+<CodeSandbox title="little-framework-vlg047" modulePath="/App.js" />
+
+테일러와 사라 사이를 전환해도 상태가 보존되지 않습니다. 이는 **그들에게 다른 `key`를 줬기 때문입니다**.
+
+```jsx
+{
+  isPlayerA ? (
+    <Counter key="Taylor" person="Taylor" />
+  ) : (
+    <Counter key="Sarah" person="Sarah" />
+  );
+}
+```
+
+`key`를 지정하면 리액트는 부모 내의 순서 대신 `key` 자체를 위치의 일부로 사용합니다. 따라서 JSX에서 동일한 위치에 렌더링하더라도 리액트는 두 카운터를 다른 카운터로 보고 상태를 공유하지 않습니다. 카운터가 화면에 나타날 때마다 상태가 생성됩니다. 카운터가 제거될 때마다 상태가 파괴됩니다. 두 카운터를 전환하면 상태가 계속해서 재설정됩니다.
+
+:::note 참고
+
+키는 전역적으로 고유하지 않습니다. 키는 **부모 내에서**의 위치만 지정합니다.
+
+:::
+
+### 키를 사용하여 양식 재설정하기
+
+키로 상태를 재설정하는 것은 양식을 다룰 때 특히 유용합니다.
+
+다음의 채팅 앱에서 `<Chat>` 컴포넌트는 텍스트 입력 상태를 갖습니다.
+
+<CodeSandbox title="silent-hill-e2gbfe" modulePath="/App.js" />
+
+입력에 무언가를 입력한 다음 `Alice` 또는 `Bob`을 눌러 다른 수신자를 선택하세요. `<Chat>`이 트리에서 같은 위치에 렌더링되므로 입력 상태가 보존되는 것을 볼 수 있습니다.
+
+**많은 앱에서는 이것이 바람직한 동작일 수 있지만 이 채팅 앱에서는 그렇지 않습니다!** 사용자가 실수로 클릭하여 이미 입력한 메시지를 잘못된 사람에게 보내는 것을 원하지 않기 때문입니다. 이를 해결하려면 `key`를 추가하세요.
+
+```jsx
+<Chat key={to.id} contact={to} />
+```
+
+이렇게 하면 다른 수신자를 선택할 때, 자식 트리의 모든 상태를 포함하여 `Chat` 컴포넌트가 처음부터 다시 생성됩니다. 리액트는 DOM 요소를 재사용하는 대신 재생성합니다.
+
+이제 수신자를 전환하면 항상 텍스트 필드가 지워집니다.
+
+<CodeSandbox title="upbeat-joliot-s2dg76" modulePath="/App.js" />
+
+:::note 심화
+
+#### 제거된 컴포넌트의 상태 보존하기
+
+실제 채팅 앱에서는 사용자가 이전 수신자를 다시 선택할 때, 입력 상태를 복구하고 싶을 것입니다. 더 이상 표시되지 않는 컴포넌트의 상태를 **살아 있게** 보존하는 방법이 몇 가지 있습니다.
+
+- 현재 채팅만 렌더링하는 대신 **모든** 채팅을 렌더링하고, 다른 모든 채팅은 CSS로 숨길 수 있습니다. 채팅은 트리에서 제거되지 않으므로 지역 상태가 보존됩니다. 이 해법은 간단한 UI에 적합합니다. 그러나 숨겨진 트리가 크고 DOM 노드를 많이 포함하는 경우에는 매우 느려질 수 있습니다.
+- [상태 올리기](https://react.dev/learn/sharing-state-between-components)를 이용하여 상위 컴포넌트에서 각 수신자에 대해 보류 중인 메시지를 보존할 수 있습니다. 이렇게 하면 자식 컴포넌트가 제거되어도 괜찮습니다. 중요한 정보를 유지하는 것이 부모 컴포넌트이기 때문입니다. 이것이 가장 일반적인 해법입니다.
+- 리액트 상태 외에 다른 소스를 사용할 수도 있습니다. 예를 들어 사용자가 실수로 페이지를 닫은 경우에도 메시지 초안이 유지되기를 원할 수 있습니다. 이를 구현하려면 `Chat` 컴포넌트가 [`localStorage`](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)에서 읽어서 상태를 초기화하고 이곳에 초안을 저장하게 할 수 있습니다.
+
+어떤 전략을 선택하든지 앨리스와의 채팅은 밥과의 채팅과 개념적으로 구별되므로, 현재 수신자를 기반으로 `<Chat>` 트리에 `key`를 부여하는 것이 타당합니다.
+
+:::
+
+## 요약
+
+- 리액트는 동일한 컴포넌트가 동일한 위치에 렌더링되는 한 상태를 유지합니다.
+- 상태는 JSX 태그에 보관되지 않습니다. 상태는 JSX를 배치한 트리 위치와 관련이 있습니다.
+- 하위 트리에 다른 키를 제공하여 하위 트리의 상태를 강제로 재설정할 수 있습니다.
+- 컴포넌트 정의를 중첩하지 마세요. 그렇지 않으면 실수로 상태가 재설정됩니다.
