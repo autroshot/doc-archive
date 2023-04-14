@@ -1,0 +1,403 @@
+---
+sidebar_position: 5
+---
+
+# 상태의 구조 선택하기
+
+상태를 잘 구조화하면 버그가 계속 생기는 컴포넌트 대신 수정과 디버깅이 쉬운 컴포넌트를 만들 수 있습니다. 다음은 상태를 구조화할 때 고려해야 할 몇 가지 팁입니다.
+
+:::note 학습 내용
+
+- 상태 변수의 수를 어떻게 정할지
+- 상태를 구성할 때 피해야 할 것
+- 상태 구조의 일반적인 문제를 해결하는 방법
+
+:::
+
+## 상태 구조화 원칙
+
+어떤 상태를 유지하는 컴포넌트를 작성할 때, 사용할 상태 변수의 수와 데이터의 모양을 선택해야 합니다. 상태 구조가 최적이 아니더라도 올바른 프로그램을 작성하는 것이 가능하지만, 더 나은 선택을 위한 몇 가지 원칙이 있습니다.
+
+1. **관련 상태를 그룹화하세요.**두 개 이상의 상태 변수를 항상 동시에 갱신한다면 하나의 상태 변수로 병합하는 것이 좋습니다.
+2. **상태의 모순을 피하세요.** 여러 상태가 서로 모순되고 **불일치**할 수 있는 방식으로 구조화되면 실수할 여지가 생깁니다. 이를 피하세오.
+3. **불필요한 상태를 피하세요.** 렌더링 중에 컴포넌트의 프롭이나 기존의 상태 변수에서 어떤 정보를 계산할 수 있다면, 그 정보를 컴포넌트의 상태에 넣어서는 안 됩니다.
+4. **상태의 중복을 피하세요.** 동일한 데이터가 여러 상태 변수 간에 중복되거나 중첩된 객체 내에 중복되면 동기화를 유지하기 어렵습니다. 가능하면 중복을 줄이세요.
+5. **깊게 중첩된 상태를 피하세요.** 계층 구조가 깊은 상태는 갱신이 쉽지 않습니다. 가능하면 상태를 평평하게 구성하는 것이 좋습니다.
+
+이러한 원칙 뒤에 있는 목표는 **실수 없이 상태를 갱신하기 쉽게 만드는 것**입니다. 상태에서 불필요한 데이터나 중복 데이터를 제거하면 모든 것이 동기화된 상태로 유지됩니다. 이는 데이터베이스 엔지니어가 버그 가능성을 줄이기 위해 [데이터베이스 구조를 **정규화**](https://learn.microsoft.com/ko-kr/office/troubleshoot/access/database-normalization-description)하는 방법과 유사합니다. 알베르트 아인슈타인의 말을 빌리자면 **“상태를 최대한 단순하게 만드세요.”**
+
+이제 이러한 원칙이 실제로 어떻게 적용되는지 살펴보겠습니다.
+
+## 관련 상태를 그룹화하기
+
+단일 상태 변수를 사용할지 복수의 상태 변수를 사용할지 확신이 서지 않을 때가 있습니다.
+
+이렇게 해야 할까요?
+
+```jsx
+const [x, setX] = useState(0);
+const [y, setY] = useState(0);
+```
+
+아니면 이렇게 해야 할까요?
+
+```jsx
+const [position, setPosition] = useState({ x: 0, y: 0 });
+```
+
+기술적으로는 이러한 접근 방식 중 하나를 사용할 수 있습니다. 하지만 **어떤 두 개의 상태 변수가 항상 같이 바뀐다면, 그들을 하나의 상태 변수로 통합하는 것이 좋을 수 있습니다.** 그러면 항상 동기화 상태를 유지하는 것을 잊지 않을 것입니다.
+
+다음 예시는 커서를 움직이면 빨간색 점의 두 좌표가 모두 갱신됩니다.
+
+<CodeSandbox title="mutable-moon-k3wul4" modulePath="/App.js" />
+
+데이터를 객체 또는 배열로 그룹화하는 또 다른 경우는 필요한 상태의 수를 모를 때입니다. 예를 들어 사용자가 커스텀 필드를 추가할 수 있는 양식이 있을 때 유용합니다.
+
+:::caution 함정
+
+상태 변수가 객체인 경우, 다른 필드를 명시적으로 복사하지 않고는 [하나의 필드만 갱신할 수 없다](https://react.dev/learn/updating-objects-in-state)는 것을 기억하세요.
+
+예를 들어 위의 예시에서 `setPosition({ x: 100 })`은 `y` 프로퍼티가 전혀 없기 때문에 수행할 수 없습니다! 대신 `x`만 설정하고 싶다면, `setPosition({ ...position, x: 100 })`을 수행하거나 두 개의 상태 변수로 분할하여 `setX(100)`을 수행합니다.
+
+:::
+
+## 상태의 모순을 피하세요
+
+다음은 `isSending`과 `isSent` 상태 변수가 있는 호텔 피드백 양식입니다.
+
+```jsx
+export default function FeedbackForm() {
+  const [text, setText] = useState('');
+  const [isSending, setIsSending] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setIsSending(true);
+    await sendMessage(text);
+    setIsSending(false);
+    setIsSent(true);
+  }
+
+  if (isSent) {
+    return <h1>Thanks for feedback!</h1>;
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <p>How was your stay at The Prancing Pony?</p>
+      <textarea
+        disabled={isSending}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <br />
+      <button disabled={isSending} type="submit">
+        Send
+      </button>
+      {isSending && <p>Sending...</p>}
+    </form>
+  );
+}
+
+// 메시지를 보내는 척합니다.
+function sendMessage(text) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 2000);
+  });
+}
+```
+
+이 코드는 작동하는 동안 **불가능**한 상태의 여지를 남겨둡니다. 예를 들어 `setIsSent`와 `setIsSending`을 함께 호출하는 것을 잊은 경우, `isSending`과 `isSent`가 동시에 `true`인 상황이 발생할 수 있습니다. 컴포넌트가 복잡할수록 무슨 일이 일어나는지 파악하기 어렵습니다.
+
+`isSending`과 `isSent`가 동시에 `true`가 되어서는 안 됩니다. 따라서 세 가지 유효한 상태 (`'typing'` (초깃값), `'sending'`, `'sent'`) 중 하나를 취할 수 있는 하나의 `status` 상태 변수로 대체하는 것이 좋습니다.
+
+```jsx
+export default function FeedbackForm() {
+  const [text, setText] = useState('');
+  const [status, setStatus] = useState('typing');
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus('sending');
+    await sendMessage(text);
+    setStatus('sent');
+  }
+
+  const isSending = status === 'sending';
+  const isSent = status === 'sent';
+
+  if (isSent) {
+    return <h1>Thanks for feedback!</h1>;
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <p>How was your stay at The Prancing Pony?</p>
+      <textarea
+        disabled={isSending}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <br />
+      <button disabled={isSending} type="submit">
+        Send
+      </button>
+      {isSending && <p>Sending...</p>}
+    </form>
+  );
+}
+
+// 메시지를 보내는 척합니다.
+function sendMessage(text) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 2000);
+  });
+}
+```
+
+가독성을 위해 여전히 몇 가지 상수를 선언할 수 있습니다.
+
+```jsx
+const isSending = status === 'sending';
+const isSent = status === 'sent';
+```
+
+이들은 상태 변수가 아니므로 동기화를 걱정할 필요가 없습니다.
+
+## 불필요한 상태 피하기
+
+렌더링 중에 컴포넌트의 프롭이나 기존 상태 변수에서 어떤 정보를 계산할 수 있다면, 그 정보를 컴포넌트의 상태에 **넣어서는 안 됩니다**.
+
+예를 들어 다음의 양식을 살펴보겠습니다. 불필요한 상태를 찾을 수 있나요?
+
+```jsx
+export default function Form() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [fullName, setFullName] = useState('');
+
+  function handleFirstNameChange(e) {
+    setFirstName(e.target.value);
+    setFullName(e.target.value + ' ' + lastName);
+  }
+
+  function handleLastNameChange(e) {
+    setLastName(e.target.value);
+    setFullName(firstName + ' ' + e.target.value);
+  }
+
+  return (
+    <>
+      <h2>Let’s check you in</h2>
+      <label>
+        First name: <input value={firstName} onChange={handleFirstNameChange} />
+      </label>
+      <label>
+        Last name: <input value={lastName} onChange={handleLastNameChange} />
+      </label>
+      <p>
+        Your ticket will be issued to: <b>{fullName}</b>
+      </p>
+    </>
+  );
+}
+```
+
+이 양식에는 `firstName`, `lastName`, `fullName`이라는 세 가지 상태 변수가 있습니다. 그러나 `fullName`은 불필요합니다. **렌더링 중에 항상 `firstName`과 `lastName`에서 `fullName`을 계산할 수 있으므로 이를 상태에서 제거하세요.**
+
+다음과 같이 바꿀 수 있습니다.
+
+```jsx
+export default function Form() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  const fullName = firstName + ' ' + lastName;
+
+  function handleFirstNameChange(e) {
+    setFirstName(e.target.value);
+  }
+
+  function handleLastNameChange(e) {
+    setLastName(e.target.value);
+  }
+
+  return (
+    <>
+      <h2>Let’s check you in</h2>
+      <label>
+        First name: <input value={firstName} onChange={handleFirstNameChange} />
+      </label>
+      <label>
+        Last name: <input value={lastName} onChange={handleLastNameChange} />
+      </label>
+      <p>
+        Your ticket will be issued to: <b>{fullName}</b>
+      </p>
+    </>
+  );
+}
+```
+
+여기서 `fullName`은 **상태 변수가 아닙니다**. 대신 렌더링 중에 계산됩니다.
+
+```jsx
+const fullName = firstName + ' ' + lastName;
+```
+
+따라서 변경 처리기가 이를 갱신하기 위해 특별한 작업을 수행할 필요가 없습니다. `setFirstName` 또는 `setLastName`을 호출하면, 리렌더링이 트리거되고 다음 `fullName`이 새로운 데이터로부터 계산됩니다.
+
+:::note 심화
+
+#### 상태에서 프롭을 반영하지 마세요
+
+불필요한 상태의 일반적인 예는 다음과 같은 코드입니다.
+
+```jsx
+function Message({ messageColor }) {
+  const [color, setColor] = useState(messageColor);
+```
+
+여기서 `color` 상태 변수는 `messageColor` 프롭으로 초기화됩니다. **문제는 상위 컴포넌트가 나중에 `messageColor`의 다른 값(예: `'blue'` 대신 `'red'`)을 전달하면, `color` 상태 변수가 갱신되지 않는다는 것입니다!** 상태는 첫 번째 렌더링 중에만 초기화됩니다.
+
+이것이 상태 변수에 어떤 프롭을 **반영**하면 혼란을 초래할 수 있는 이유입니다. 대신 코드에서 직접 `messageColor` 프롭을 사용하세요. 이름을 더 짧게 지정하려면 상수를 사용하세요.
+
+```jsx
+function Message({ messageColor }) {
+  const color = messageColor;
+```
+
+이렇게 하면 상위 컴포넌트에서 전달된 프롭과 계속 동기화됩니다.
+
+상태에 프롭을 **반영**하는 것은 특정 프롭에 대한 모든 갱신을 무시하고 싶을 때에만 의미가 있습니다. 규칙에 따라, 프롭의 새 값이 무시된다는 것을 명확히 하기 위해 프롭의 이름을 `initial` 또는 `default`로 시작하도록 지으세요.
+
+```jsx
+function Message({ initialColor }) {
+  // color 상태 변수는 initialColor의 첫 번째 값을 유지합니다.
+  // initialColor 프롭에 대한 추가 변경은 무시됩니다.
+  const [color, setColor] = useState(initialColor);
+```
+
+:::
+
+## 상태의 중복 피하기
+
+다음의 메뉴 목록 컴포넌트를 사용하면 여러 가지 여행 간식 중에서 하나를 선택할 수 있습니다.
+
+```jsx
+const initialItems = [
+  { title: 'pretzels', id: 0 },
+  { title: 'crispy seaweed', id: 1 },
+  { title: 'granola bar', id: 2 },
+];
+
+export default function Menu() {
+  const [items, setItems] = useState(initialItems);
+  const [selectedItem, setSelectedItem] = useState(items[0]);
+
+  return (
+    <>
+      <h2>What's your travel snack?</h2>
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            {item.title}{' '}
+            <button
+              onClick={() => {
+                setSelectedItem(item);
+              }}
+            >
+              Choose
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>You picked {selectedItem.title}.</p>
+    </>
+  );
+}
+```
+
+선택된 항목은 `selectedItem` 상태 변수에 객체로 저장됩니다. 그러나 이것은 좋지 않습니다. **`selectedItem`의 내용은 `items` 목록에 있는 항목 중 하나와 동일한 객체입니다.** 항목 자체의 정보가 두 곳에서 중복됩니다.
+
+이것이 왜 문제일까요? 각 항목을 편집 가능하게 만들어 보겠습니다.
+
+<CodeSandbox title="boring-wu-769ixj" modulePath="/App.js" />
+
+항목에서 먼저 `Choose`을 클릭하고 편집하면, **입력은 갱신되지만 맨 아래의 레이블에는 편집 내용이 반영되지 않습니다.** 상태가 중복되어 `selectedItem`을 갱신하는 것을 잊었기 때문입니다.
+
+`selectedItem`도 갱신할 수 있지만, 더 쉬운 해결 방법은 중복을 제거하는 것입니다.
+
+다음 예시에서는 `selectedItem` 객체(`items` 내부의 객체와 중복됨) 대신 `selectedId` 상태를 유지하고, `items` 배열에서 해당 ID를 가진 항목을 검색하여 `selectedItem`을 가져옵니다.
+
+<CodeSandbox title="tender-frog-ubzyo9" modulePath="/App.js" />
+
+(또는 선택된 색인을 상태로 유지할 수 있습니다.)
+
+이전 상태는 다음과 같이 중복되었습니다.
+
+- `items = [{ id: 0, title: 'pretzels'}, ...]`
+- `selectedItem = {id: 0, title: 'pretzels'}`
+
+이제 상태는 다음과 같습니다.
+
+- `items = [{ id: 0, title: 'pretzels'}, ...]`
+- `selectedId = 0`
+
+중복은 사라졌고 필수 상태만 유지됩니다!
+
+이제 선택된 항목을 수정하면 하단의 메시지가 즉시 갱신됩니다. 이는 `setItems`가 리렌더링을 트리거하고 `items.find(...)`가 갱신된 제목이 있는 항목을 찾기 때문입니다. **선택된 ID**만 있으면 되므로, **선택된 항목**을 상태로 유지할 필요가 없습니다. 나머지는 렌더링 중에 계산할 수 있습니다.
+
+## 깊게 중첩된 상태 피하기
+
+행성, 대륙, 국가로 구성된 여행 계획을 상상해 보세요. 다음 예시와 같이 중첩 객체 및 배열을 사용하여 상태를 구조화할 수 있습니다.
+
+<CodeSandbox title="admiring-dijkstra-1pun7l" modulePath="/places.js" />
+
+이제 이미 방문한 장소를 삭제하는 버튼을 추가하고 싶다고 가정해 보겠습니다. 어떻게 할까요? [중첩된 상태 갱신](https://react.dev/learn/updating-objects-in-state#updating-a-nested-object)에는 변경된 부분부터 위쪽까지 객체의 복사본을 만드는 작업이 포함됩니다. 깊게 중첩된 장소를 삭제하면 상위 장소 체인 전체를 복사해야 합니다. 이러한 코드는 매우 장황할 수 있습니다.
+
+**상태가 너무 중첩되어 쉽게 갱신할 수 없다면 '평평'하게 만드는 것이 좋습니다.**
+
+다음은 이 데이터를 재구성하는 한 가지 방법입니다. 각 `place`에 **하위 장소**의 배열이 있는 트리 구조 대신, 각 장소가 **하위 장소의 ID** 배열을 보유하는 구조를 만들 수 있습니다. 그런 다음 각 장소 ID에서 해당 장소로의 매핑을 저장합니다.
+
+이 데이터 재구성은 데이터베이스 테이블을 생각나게 합니다.
+
+<CodeSandbox title="beautiful-solomon-pz7l98" modulePath="/places.js" />
+
+**이제 상태가 평평('정규화'라고도 함)하므로, 중첩된 항목 갱신이 더 쉬워집니다.**
+
+이제 장소를 제거하려면 두 가지 상태 수준만 갱신하면 됩니다.
+
+- **상위** 장소의 갱신된 버전은 `childIds` 배열에서 제거된 ID를 제외해야 합니다.
+- 루트 **테이블** 객체의 갱신된 버전에는 상위 장소의 갱신된 버전이 포함되어야 합니다.
+
+다음은 이를 수행하는 하나의 예시입니다.
+
+<CodeSandbox title="clever-parm-x9kuzx" modulePath="/App.js" />
+
+원하는 만큼 상태를 중첩할 수 있지만, **평평**하게 만들면 수많은 문제를 해결할 수 있습니다. 상태를 더 쉽게 갱신할 수 있으며 중첩된 객체의 다른 부분에 중복이 생기지 않게 합니다.
+
+:::note 심화
+
+#### 메모리 사용 개선하기
+
+이상적으로는 메모리 사용을 개선하기 위해 **테이블** 객체에서 삭제된 항목 (및 항목의 자식)도 제거해야 합니다.
+
+다음 버전은 그렇게 합니다. 또한 [이머를 사용](https://react.dev/learn/updating-objects-in-state#write-concise-update-logic-with-immer)하여 갱신 논리를 더 간결하게 만듭니다.
+
+<CodeSandbox title="quizzical-noyce-zim79i" modulePath="/App.js" />
+
+:::
+
+경우에 따라 일부 중첩된 상태를 하위 컴포넌트로 옮겨 상태 중첩을 줄일 수도 있습니다. 이는 마우스 커서가 항목을 가리키는지 여부와 같이 저장할 필요가 없는 임시 UI 상태에 적합합니다.
+
+## 요약
+
+- 두 상태 변수가 항상 함께 갱신된다면 하나로 병합하는 것이 좋습니다.
+- **불가능**한 상태가 생성되지 않도록 상태 변수를 신중하게 선택하세요.
+- 실수로 갱신할 가능성을 줄이는 방식으로 상태를 구조화하세요.
+- 동기화 상태를 유지할 필요가 없도록 불필요한 상태와 중복 상태를 피하세요.
+- 특별히 갱신을 방지하려는 경우가 아니면 상태에 프롭을 넣지 마세요.
+- 선택과 같은 UI 패턴의 경우, 객체 자체 대신 ID 또는 색인으로 상태로 유지하세요.
+- 깊게 중첩된 상태를 갱신하는 것이 복잡하다면 평평하게 만들어 보세요.
