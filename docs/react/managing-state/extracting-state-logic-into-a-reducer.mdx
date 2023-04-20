@@ -379,7 +379,7 @@ const initialTasks = [
 
 변환기를 작성할 때 다음 두 가지 팁을 기억하세요.
 
-- **변환기는 순수해야 합니다.** [상태 갱신 함수](https://react.dev/learn/queueing-a-series-of-state-updates)와 유사하게 변환기는 렌더링 중에 실행됩니다! (작업은 다음 렌더링까지 대기합니다.) 이는 변환기가 [순수](https://react.dev/learn/keeping-components-pure)해야 한다는 것을 의미합니다. 동일한 입력은 항상 동일한 출력을 생성해야 합니다. 요청을 보내거나, 타임아웃을 예약하거나, 부작용(컴포넌트 외부에 영향을 주는 작업)을 수행해서는 안 됩니다. 변형 없이 [객체](https://react.dev/learn/updating-objects-in-state)와 [배열](https://react.dev/learn/updating-arrays-in-state)을 갱신해야 합니다.
+- **변환기는 순수해야 합니다.** [상태 갱신 함수](../adding-interactivity/queueing-a-series-of-state-updates.mdx)와 유사하게 변환기는 렌더링 중에 실행됩니다! (작업은 다음 렌더링까지 대기합니다.) 이는 변환기가 [순수](../describing-the-ui/keeping-components-pure.mdx)해야 한다는 것을 의미합니다. 동일한 입력은 항상 동일한 출력을 생성해야 합니다. 요청을 보내거나, 타임아웃을 예약하거나, 부작용(컴포넌트 외부에 영향을 주는 작업)을 수행해서는 안 됩니다. 변형 없이 [객체](https://react.dev/learn/updating-objects-in-state)와 [배열](https://react.dev/learn/updating-arrays-in-state)을 갱신해야 합니다.
 - **데이터가 여러 번 변경되더라도 각 작업은 단일 사용자의 상호 작용을 설명합니다.** 예를 들어 사용자가 변환기가 관리하는 5개의 필드가 있는 양식에서 `Reset`을 누르면 5개의 개별 `set_field` 작업보다 하나의 `reset_form` 작업을 전달하는 것이 더 합리적입니다. 변환기에서 모든 작업을 기록한다면, 그 기록은 어떤 상호 작용이나 응답이 어떤 순서로 발생했는지 재구성할 수 있을 만큼 충분히 명확해야 합니다. 이는 디버깅에 도움이 됩니다!
 
 ## 이머로 간결한 변환기 작성하기

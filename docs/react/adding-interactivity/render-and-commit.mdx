@@ -49,7 +49,7 @@ import browserPaint from '/img/docs/react/render-and-commit/browser-paint.png';
      maxWidth="14rem"
    />
 
-## 1단계: 렌더링을 트리거합니다.
+## 1단계: 렌더링을 트리거한다
 
 다음 두 가지가 컴포넌트의 렌더링을 트리거합니다.
 
@@ -92,7 +92,7 @@ import browserPaint from '/img/docs/react/render-and-commit/browser-paint.png';
   maxWidth="14rem"
 />
 
-## 2단계: 리액트는 컴포넌트를 렌더링합니다.
+## 2단계: 리액트는 컴포넌트를 렌더링한다
 
 렌더링을 트리거한 후 리액트는 컴포넌트를 호출하여 화면에 표시할 내용을 파악합니다. **렌더링은 리액트가 컴포넌트를 호출하는 것입니다.**
 
@@ -110,7 +110,7 @@ import browserPaint from '/img/docs/react/render-and-commit/browser-paint.png';
 
 :::caution 함정
 
-렌더링은 항상 [순수한 계산](https://react.dev/learn/keeping-components-pure)이어야 합니다.
+렌더링은 항상 [순수한 계산](../describing-the-ui/keeping-components-pure.mdx)이어야 합니다.
 
 - **동일한 입력, 동일한 출력.** 동일한 입력이 주어지면 컴포넌트는 항상 동일한 JSX를 반환해야 합니다. (누군가가 토마토 샐러드를 주문했는데 양파 샐러드를 받아서는 안 됩니다!)
 - **자신의 일만 신경 씁니다.** 렌더링 전에 존재했던 객체나 변수를 변경해서는 안 됩니다. (한 사람의 주문이 다른 사람의 주문을 바꾸면 안 됩니다.)
@@ -127,7 +127,7 @@ import browserPaint from '/img/docs/react/render-and-commit/browser-paint.png';
 
 :::
 
-## 3단계: 리액트는 변경 사항을 DOM에 커밋합니다.
+## 3단계: 리액트는 변경 사항을 DOM에 커밋한다
 
 컴포넌트를 렌더링(호출)한 후에 리액트가 DOM을 수정합니다.
 
