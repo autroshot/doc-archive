@@ -91,7 +91,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'react/keeping-components-pure',
+            docId: 'react/README',
             label: 'React',
             position: 'left',
           },
@@ -207,7 +207,7 @@ const config = {
               },
               {
                 label: 'React',
-                to: '/docs/react/keeping-components-pure',
+                to: '/docs/react',
               },
               {
                 label: 'Next.js',
