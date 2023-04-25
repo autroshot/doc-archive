@@ -18,7 +18,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'autroshot', // Usually your GitHub org/user name.
-  projectName: 'docs-repository', // Usually your repo name.
+  projectName: 'doc-archive', // Usually your repo name.
   trailingSlash: false,
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -183,7 +183,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/autroshot/docs-repository',
+            href: 'https://github.com/autroshot/doc-archive',
             position: 'right',
             className: 'header-github-link',
             'aria-label': '깃허브',
@@ -272,7 +272,7 @@ const config = {
               },
               {
                 label: '깃허브',
-                href: 'https://github.com/autroshot/docs-repository',
+                href: 'https://github.com/autroshot/doc-archive',
               },
             ],
           },
