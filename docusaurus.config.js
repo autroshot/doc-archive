@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '문서 저장소',
+  title: '문서 보관소',
   tagline: '개인적으로 번역하거나 정리한 문서를 모아 놓은 곳입니다.',
   url: 'https://autroshot.github.io/',
   baseUrl: '/docs-repository/',
@@ -71,7 +71,7 @@ const config = {
         },
       },
       navbar: {
-        title: '문서 저장소',
+        title: '문서 보관소',
         logo: {
           alt: '사이트 로고',
           src: 'img/logo.svg',
