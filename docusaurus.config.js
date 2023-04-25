@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '문서 저장소',
+  title: '문서 보관소',
   tagline: '개인적으로 번역하거나 정리한 문서를 모아 놓은 곳입니다.',
   url: 'https://autroshot.github.io/',
   baseUrl: '/docs-repository/',
@@ -18,7 +18,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'autroshot', // Usually your GitHub org/user name.
-  projectName: 'docs-repository', // Usually your repo name.
+  projectName: 'doc-archive', // Usually your repo name.
   trailingSlash: false,
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -71,7 +71,7 @@ const config = {
         },
       },
       navbar: {
-        title: '문서 저장소',
+        title: '문서 보관소',
         logo: {
           alt: '사이트 로고',
           src: 'img/logo.svg',
@@ -183,7 +183,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/autroshot/docs-repository',
+            href: 'https://github.com/autroshot/doc-archive',
             position: 'right',
             className: 'header-github-link',
             'aria-label': '깃허브',
@@ -272,7 +272,7 @@ const config = {
               },
               {
                 label: '깃허브',
-                href: 'https://github.com/autroshot/docs-repository',
+                href: 'https://github.com/autroshot/doc-archive',
               },
             ],
           },
