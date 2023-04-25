@@ -9,7 +9,7 @@ const config = {
   title: '문서 보관소',
   tagline: '개인적으로 번역하거나 정리한 문서를 모아 놓은 곳입니다.',
   url: 'https://autroshot.github.io/',
-  baseUrl: '/docs-repository/',
+  baseUrl: '/doc-archive/',
   staticDirectories: ['static'],
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
