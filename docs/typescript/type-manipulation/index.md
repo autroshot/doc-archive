@@ -7,8 +7,8 @@
 다양한 타입 연산자를 결합하여, 복잡한 작업과 값을 간결하고 유지 관리하기 쉬운 방식으로 표현할 수 있습니다. 이 곳에서는 기존 타입이나 값으로 새 타입을 표현하는 방법을 다룹니다.
 
 - [제네릭](./generics.md) - 매개변수를 받는 타입
-- [`keyof` 타입 연산자](https://www.typescriptlang.org/docs/handbook/2/keyof-types.html) - `keyof` 연산자를 사용하여 새 타입 만들기
-- [`typeof` 타입 연산자](https://www.typescriptlang.org/docs/handbook/2/typeof-types.html) - `typeof` 연산자를 사용하여 새 타입 만들기
+- [`keyof` 타입 연산자](./keyof-type-operator.md) - `keyof` 연산자를 사용하여 새 타입 만들기
+- [`typeof` 타입 연산자](./typeof-type-operator.md) - `typeof` 연산자를 사용하여 새 타입 만들기
 - [색인된 접근 타입](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html) - `Type['a']` 구문을 사용하여 타입의 하위 집합에 접근하기
 - [조건부 타입](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html) - 타입 시스템에서 `if` 문처럼 작동하는 타입
 - [매핑된 타입](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html) - 기존 타입의 각 프로퍼티를 매핑하여 타입 만들기
