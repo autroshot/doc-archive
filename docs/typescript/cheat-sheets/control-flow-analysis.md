@@ -15,8 +15,8 @@ CFA(Control Flow Analysis, 제어 흐름 분석)는 대부분 합집합을 사�
 #### 원시값을 위한 `typeof`
 
 ```ts
-const input = getUserInput();
 // input: string | number
+const input = getUserInput();
 
 if (typeof input === "string") {
   // input: string
@@ -26,8 +26,8 @@ if (typeof input === "string") {
 #### `in`을 이용한 객체의 프로퍼티
 
 ```ts
-const input = getUserInput();
 // input: string | { error: ... }
+const input = getUserInput();
 
 if ("error" in input) {
   // input: { error: ... }
@@ -37,8 +37,8 @@ if ("error" in input) {
 #### 클래스를 위한 `instanceof`
 
 ```ts
-const input = getUserInput();
 // input: number | number[]
+const input = getUserInput();
 
 if (input instanceof Array) {
   // input: number[]
@@ -48,8 +48,8 @@ if (input instanceof Array) {
 #### 모든 타입을 위한 타입 가드 함수
 
 ```ts
-const input = getUserInput();
 // input: number | number[]
+const input = getUserInput();
 
 if (Array.isArray(input)) {
   // input: number[]
@@ -61,8 +61,8 @@ if (Array.isArray(input)) {
 불린 연산을 수행할 때 동일한 코드 줄에서도 좁히기가 발생합니다.
 
 ```ts
-const input = getUserInput();
 // input: string | number[]
+const input = getUserInput();
 
 const inputLength =
   (typeof input === "string" && input.length) || input;
@@ -83,8 +83,8 @@ type Responses =
 사용법:
 
 ```ts
-const res = getResponse();
 // res: Responses
+const res = getResponse();
 
 switch (res.status) {
   case 200: return res.data;
@@ -108,8 +108,8 @@ function isErrorResponse(obj: Response): obj is APIErrorResponse {
 사용법:
 
 ```ts
-const res = getResponse();
 // res: Responses | APIErrorResponse
+const res = getResponse();
 
 if (isErrorResponse(res)) {
   // res: APIErrorResponse
@@ -131,8 +131,8 @@ function assertResponse(obj: any): asserts obj is SuccessResponse {
 사용법:
 
 ```ts
-const res = getResponse();
 // res: SuccessResponse | ErrorResponse
+const res = getResponse();
 
 assertResponse(res);
 // res: SuccessResponse
@@ -179,8 +179,8 @@ if (isSuccessResponse) {
 ### 재할당에 의한 타입 갱신
 
 ```ts
-let data: string | number = ...
 // data: string | number
+let data: string | number = ...
 
 data = "Hello";
 // data: string

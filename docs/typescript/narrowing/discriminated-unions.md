@@ -41,7 +41,7 @@ function getArea(shape: Shape) {
 }
 ```
 
-[`strictNullChecks`](https://www.typescriptlang.org/tsconfig#strictNullChecks)가 설정되어 있으면 오류가 발생합니다. `radius`가 정의되지 않았을 수 있기 때문입니다.
+[`strictNullChecks`](https://www.typescriptlang.org/ko/tsconfig#strictNullChecks)가 설정되어 있으면 오류가 발생합니다. `radius`가 정의되지 않았을 수 있기 때문입니다.
 
 그렇다면 `kind` 프로퍼티에 적절한 검사를 수행하면 어떨까요?
 
@@ -66,7 +66,7 @@ function getArea(shape: Shape) {
 }
 ```
 
-그러나 이상적인 방법은 아닙니다. 타입 검사기에게 `shape.radius`가 정의되어 있다고 `null`이 아니라는 단언(`!`)으로 말했습니다. 하지만 이러한 단언은 코드를 옮기면 오류가 발생하기 쉽습니다. 게다가 [`strictNullChecks`](https://www.typescriptlang.org/tsconfig#strictNullChecks)가 설정되어 있지 않다면 실수로 해당 필드에 접근할 수 있습니다. 선택적 프로퍼티는 읽을 때 항상 존재한다고 가정하기 때문입니다. 분명 더 좋은 방법이 있을 것입니다.
+그러나 이상적인 방법은 아닙니다. 타입 검사기에게 `shape.radius`가 정의되어 있다고 `null`이 아니라는 단언(`!`)으로 말했습니다. 하지만 이러한 단언은 코드를 옮기면 오류가 발생하기 쉽습니다. 게다가 [`strictNullChecks`](https://www.typescriptlang.org/ko/tsconfig#strictNullChecks)가 설정되어 있지 않다면 실수로 해당 필드에 접근할 수 있습니다. 선택적 프로퍼티는 읽을 때 항상 존재한다고 가정하기 때문입니다. 분명 더 좋은 방법이 있을 것입니다.
 
 `Shape` 인코딩의 문제는 타입 검사기가 `kind` 프로퍼티로 `radius`나 `sideLength`의 존재 여부를 알 수 없다는 점입니다. 우리가 아는 것을 타입 검사기에게 전달해야 합니다.
 
@@ -97,7 +97,7 @@ function getArea(shape: Shape) {
 }
 ```
 
-첫 번째 `Shape` 정의와 동일하게 오류가 발생합니다. `radius`가 선택적일 때 (그리고 [`strictNullChecks`](https://www.typescriptlang.org/tsconfig#strictNullChecks)가 설정되었을 때) 오류가 발생했습니다. 타입스크립트가 해당 프로퍼티의 존재 여부를 알 수 없기 때문입니다. 이제 `Shape`가 합집합이므로 타입스크립트는 `shape`가 `Square`일 수 있으며 `Square`는 `radius`을 가지고 있지 않다고 알려줍니다. 두 해석 모두 맞습니다. 하지만 `Shape`의 합집합 인코딩은 [`strictNullChecks`](https://www.typescriptlang.org/tsconfig#strictNullChecks) 설정과 관계없이 오류를 일으킬 것입니다.
+첫 번째 `Shape` 정의와 동일하게 오류가 발생합니다. `radius`가 선택적일 때 (그리고 [`strictNullChecks`](https://www.typescriptlang.org/ko/tsconfig#strictNullChecks)가 설정되었을 때) 오류가 발생했습니다. 타입스크립트가 해당 프로퍼티의 존재 여부를 알 수 없기 때문입니다. 이제 `Shape`가 합집합이므로 타입스크립트는 `shape`가 `Square`일 수 있으며 `Square`는 `radius`을 가지고 있지 않다고 알려줍니다. 두 해석 모두 맞습니다. 하지만 `Shape`의 합집합 인코딩은 [`strictNullChecks`](https://www.typescriptlang.org/ko/tsconfig#strictNullChecks) 설정과 관계없이 오류를 일으킬 것입니다.
 
 만약 `kind` 프로퍼티를 다시 확인하면 어떨까요?
 

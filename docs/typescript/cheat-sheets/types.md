@@ -30,8 +30,8 @@ sidebar_position: 3
 type JSONResponse = {
   version: number;                      // 필드
 
-  /** 바이트 단위 */                      // 첨부 문서
-  payloadSize: number;                  //
+  /** 바이트 단위 */                    // 첨부 문서
+  payloadSize: number;
 
   outOfStock?: boolean;                 // 선택적
 
@@ -93,9 +93,9 @@ type Size =
 타입을 병합하거나 확장하는 방법입니다.
 
 ```ts
+// { x: number, y: number };
 type Location =
   { x: number } & { y: number };
-// { x: number, y: number };
 ```
 
 ## 타입 인덱싱
@@ -105,8 +105,8 @@ type Location =
 ```ts
 type Response = { data: { ... } };
 
-type Data = Response["data"];
 // { ... }
+type Data = Response["data"];
 ```
 
 ## 값에서 타입 가져오기
@@ -153,9 +153,9 @@ type Subscriber<Type> = {
     // 매개변수가 기존 타입인 함수로 타입을 설정합니다.
     (newValue: Type[Property]) => void
 };
-type ArtistSub = Subscriber<Artist>;
 // { name: (nv: string) => void,
 //   bio: (nv: string) => void }
+type ArtistSub = Subscriber<Artist>;
 ```
 
 ## 조건부 타입
@@ -167,8 +167,8 @@ type HasFourLegs<Animal> =
   Animal extends { legs: 4 } ? Animal : never;
 
 type Animals = Bird | Dog | Ant | Wolf;
-type FourLegs = HasFourLegs<Animals>;
 // Dog | Wolf
+type FourLegs = HasFourLegs<Animals>;
 ```
 
 ## 템플릿 합집합 타입
@@ -179,10 +179,10 @@ type FourLegs = HasFourLegs<Animals>;
 type SupportedLangs = "en" | "pt" | "zh";
 type FooterLocaleIDs = "header" | "footer";
 
-type AllLocaleIDs =
-  `${SupportedLangs}_${FooterLocaleIDs}_id`;
 // "en_header_id" | "en_footer_id"
 // | "pt_header_id" | "pt_footer_id"
 // | "zh_header_id" | "zh_footer_id"
+type AllLocaleIDs =
+  `${SupportedLangs}_${FooterLocaleIDs}_id`;
 ```
 

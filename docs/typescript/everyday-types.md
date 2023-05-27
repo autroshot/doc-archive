@@ -18,7 +18,7 @@ sidebar_position: 3
 - `number`는 `42`와 같은 숫자를 의미합니다. 자바스크립트는 정수에 대한 특별한 런타임 값이 없으며 `int`나 `float`에 해당하는 것이 없습니다. 모든 것이 단순히 `number`입니다.
 - `boolean`은 두 값, `true`와 `false`를 의미합니다.
 
-:::note 참고
+:::caution
 
 `String`, `Number`, `Boolean`과 같이 대문자로 시작하는 타입 이름은 유효하지만 특수한 내장 타입을 참조합니다. 이들은 거의 사용하지 않습니다. 항상 타입에 `string`, `number`, `boolean`을 사용하세요.
 
@@ -28,7 +28,7 @@ sidebar_position: 3
 
 `[1, 2, 3]`과 같은 배열 타입을 지정하려면 `number[]` 구문을 사용할 수 있습니다. 이 구문은 모든 타입에 대해 작동합니다(예: `string[]`은 문자열 배열). `Array<number>`로 작성된 것도 볼 수 있는데, 이는 같은 의미입니다. 제네릭을 다룰 때 `T<U>` 구문에 대해 자세히 알아볼 것입니다.
 
-:::note 참고
+:::caution
 
 `[number]`는 다른 것입니다. [튜플](./object-types/generics.md#튜플-타입)을 참고하세요.
 
@@ -68,7 +68,7 @@ const n: number = obj;
 let myName: string = "Alice";
 ```
 
-:::note 참고
+:::caution
 
 타입스크립트는 `int x = 0;`과 같이 타입을 왼쪽에서 선언하지 않습니다. 타입 주석은 항상 대상의 **뒤**에 붙습니다.
 

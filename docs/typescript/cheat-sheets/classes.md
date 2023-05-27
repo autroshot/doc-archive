@@ -46,8 +46,8 @@ class Bag { #item: any }
 클래스는 타입이나 값으로 사용될 수 있습니다.
 
 ```ts
-const a: Bag = new Bag();
 // 앞의 Bag은 타입이고 뒤의 Bag은 값입니다.
+const a: Bag = new Bag();
 ```
 
 따라서 다음과 같이 하지 않도록 주의하세요.
