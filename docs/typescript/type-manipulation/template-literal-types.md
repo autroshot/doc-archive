@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # 템플릿 리터럴 타입
