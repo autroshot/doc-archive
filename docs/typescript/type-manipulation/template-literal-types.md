@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # 템플릿 리터럴 타입
 
-템플릿 리터럴 타입은 [문자열 리터럴 타입](../everyday-types/literal-types)을 기반으로 하며 합집합을 통해 많은 문자열로 확장할 수 있습니다.
+템플릿 리터럴 타입은 [문자열 리터럴 타입](../everyday-types/literal-types.md)을 기반으로 하며 합집합을 통해 많은 문자열로 확장할 수 있습니다.
 
 템플릿 리터럴 타입은 [자바스크립트의 템플릿 리터럴 문자열](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals)과 구문이 동일하지만, 타입 위치에서 사용됩니다. 구체적인 리터럴 타입과 함께 사용하면, 템플릿 리터럴은 내용을 연결하여 새로운 문자열 리터럴 타입을 생성합니다.
 
