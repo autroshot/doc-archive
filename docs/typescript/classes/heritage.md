@@ -173,7 +173,7 @@ b.greet();
 
 ### 타입 전용 필드 선언
 
-`target >= ES2022` 또는 [`useDefineForClassFields`](https://www.typescriptlang.org/tsconfig#useDefineForClassFields)가 `true`이면, 상위 클래스 생성자가 완료된 후에 클래스 필드가 초기화되어 상위 클래스에서 설정한 모든 값을 덮어씁니다. 이는 상속된 필드에 대해 더 정확한 타입을 다시 선언하려는 경우에만 문제가 될 수 있습니다. `declare`를 사용하여 런타임에서는 필드 선언이 없어야 함을 타입스크립트에 나타낼 수 있습니다.
+`target >= ES2022` 또는 [`useDefineForClassFields`](https://www.typescriptlang.org/ko/tsconfig#useDefineForClassFields)가 `true`이면, 상위 클래스 생성자가 완료된 후에 클래스 필드가 초기화되어 상위 클래스에서 설정한 모든 값을 덮어씁니다. 이는 상속된 필드에 대해 더 정확한 타입을 다시 선언하려는 경우에만 문제가 될 수 있습니다. `declare`를 사용하여 런타임에서는 필드 선언이 없어야 함을 타입스크립트에 나타낼 수 있습니다.
 
 ```ts
 interface Animal {
@@ -279,7 +279,7 @@ class MsgError extends Error {
 }
 ```
 
-그러나 `MsgError`의 하위 클래스도 프로토타입을 수동으로 설정해야 합니다. [`Object.setPrototypeOf`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)을 지원하지 않는 런타임의 경우에는 [`__proto__`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)를 대신 사용할 수 있습니다.
+그러나 `MsgError`의 하위 클래스도 프로토타입을 수동으로 설정해야 합니다. [`Object.setPrototypeOf`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)을 지원하지 않는 런타임의 경우에는 [`__proto__`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)를 대신 사용할 수 있습니다.
 
 안타깝게도 [이 해결책은 인터넷 익스플로러 10과 이전 버전에서는 작동하지 않습니다](https://msdn.microsoft.com/en-us/library/s4esdbwz(v=vs.94).aspx). 프로토타입에서 인스턴스 자체로 메서드를 수동으로 복사할 수 있지만 (예: `MsgError.prototype`에서 `this`로) 프로토타입 사슬 자체는 수정할 수 없습니다.
 

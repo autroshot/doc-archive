@@ -9,7 +9,7 @@
 - [제네릭](./generics.md) - 매개변수를 받는 타입
 - [`keyof` 타입 연산자](./keyof-type-operator.md) - `keyof` 연산자를 사용하여 새 타입 만들기
 - [`typeof` 타입 연산자](./typeof-type-operator.md) - `typeof` 연산자를 사용하여 새 타입 만들기
-- [색인된 접근 타입](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html) - `Type['a']` 구문을 사용하여 타입의 하위 집합에 접근하기
-- [조건부 타입](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html) - 타입 시스템에서 `if` 문처럼 작동하는 타입
-- [매핑된 타입](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html) - 기존 타입의 각 프로퍼티를 매핑하여 타입 만들기
-- [템플릿 리터럴 타입](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) - 템플릿 리터럴 문자열을 통해 프로퍼티를 변경하는 매핑된 타입
+- [색인된 접근 타입](./indexed-access-types.md) - `Type['a']` 구문을 사용하여 타입의 하위 집합에 접근하기
+- [조건부 타입](./conditional-types.md) - 타입 시스템에서 `if` 문처럼 작동하는 타입
+- [매핑된 타입](./mapped-types.md) - 기존 타입의 각 프로퍼티를 매핑하여 타입 만들기
+- [템플릿 리터럴 타입](./template-literal-types.md) - 템플릿 리터럴 문자열을 통해 프로퍼티를 변경하는 매핑된 타입

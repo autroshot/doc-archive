@@ -61,6 +61,6 @@ const f3 = function (): void {
 
 `void`에 대한 자세한 내용은 다음 문서 항목을 참조하세요.
 
-- [안내서](#void)
+- [안내서](./other-types.md#void)
 - [자주 묻는 질문 - “void를 반환하는 함수가 void가 아닌 값을 반환하는 함수에 할당 가능한 이유는 무엇인가요?”](https://github.com/Microsoft/TypeScript/wiki/FAQ#why-are-functions-returning-non-void-assignable-to-function-returning-void)
 

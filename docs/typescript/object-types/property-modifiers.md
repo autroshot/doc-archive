@@ -85,7 +85,7 @@ function draw({ shape: Shape, xPos: number = 100 /*...*/ }) {
 
 :::
 
-[매핑 수정자](https://www.typescriptlang.org/ko/docs/handbook/2/mapped-types.html#mapping-modifiers)를 사용하여 `optional` 속성을 제거할 수 있습니다.
+[매핑 수정자](../type-manipulation/mapped-types.md#매핑-수정자)를 사용하여 `optional` 속성을 제거할 수 있습니다.
 
 ## `readonly` 프로퍼티
 
@@ -157,7 +157,7 @@ writablePerson.age++;
 console.log(readonlyPerson.age); // 43을 출력합니다.
 ```
 
-[매핑 수정자](https://www.typescriptlang.org/ko/docs/handbook/2/mapped-types.html#mapping-modifiers)를 사용하여 `readonly` 속성을 제거할 수 있습니다.
+[매핑 수정자](../type-manipulation/mapped-types.md#매핑-수정자)를 사용하여 `readonly` 속성을 제거할 수 있습니다.
 
 ## 색인 시그니처
 

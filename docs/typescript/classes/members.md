@@ -52,7 +52,7 @@ pt.x = "0";
 
 ### `--strictPropertyInitialization`
 
-[`strictPropertyInitialization`](https://www.typescriptlang.org/tsconfig#strictPropertyInitialization) 설정은 생성자에서의 클래스 필드 초기화 여부를 제어합니다.
+[`strictPropertyInitialization`](https://www.typescriptlang.org/ko/tsconfig#strictPropertyInitialization) 설정은 생성자에서의 클래스 필드 초기화 여부를 제어합니다.
 
 ```ts
 class BadGreeter {
@@ -232,7 +232,7 @@ class C {
 
 - `get`이 있지만 `set`이 없으면, 프로퍼티는 자동으로 `readonly`입니다.
 - 설정자 매개변수의 타입을 지정하지 않으면, 해당 타입은 획득자의 반환 타입에서 추론됩니다.
-- 획득자와 설정자는 [멤버 가시성](https://www.typescriptlang.org/docs/handbook/2/classes.html#member-visibility)을 가져야 합니다.
+- 획득자와 설정자는 [멤버 가시성](./member-visibility.md)을 가져야 합니다.
 
 [타입스크립트 4.3](https://devblogs.microsoft.com/typescript/announcing-typescript-4-3/)부터는 획득자와 설정자가 다른 타입을 가지는 것이 가능합니다.
 
