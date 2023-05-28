@@ -8,6 +8,6 @@ sidebar_position: 2
 
 :::caution
 
-`[number]`는 다른 것입니다. [튜플](./object-types/generics.md#튜플-타입)을 참고하세요.
+`[number]`는 다른 것입니다. [튜플](../object-types/generics.md#튜플-타입)을 참고하세요.
 
 :::
