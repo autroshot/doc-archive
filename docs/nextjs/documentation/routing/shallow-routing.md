@@ -42,7 +42,7 @@ componentDidUpdate(prevProps) {
   const { pathname, query } = this.props.router
   // 무한 루프를 피하기 위해 props가 변경되었는지 확인합니다.
   if (query.counter !== prevProps.router.query.counter) {
-    // 새 쿼리를 기반으로 데이터 가져오기
+    // 새 질의를 기반으로 데이터 가져오기
   }
 }
 ```

@@ -6,13 +6,13 @@ import restApisWithPrismaClient from '/img/docs/prisma/rest-apis-with-prisma-cli
 
 # REST
 
-REST API를 구축할 때 프리즈마 클라이언트를 경로 컨트롤러 내에서 사용하여 데이터베이스 쿼리를 보낼 수 있습니다.
+REST API를 구축할 때 프리즈마 클라이언트를 경로 컨트롤러 내에서 사용하여 데이터베이스 질의를 보낼 수 있습니다.
 
 <Image img={restApisWithPrismaClient} alt='프리즈마 클라이언트와 REST API' />
 
 ## 지원되는 라이브러리
 
-프리즈마 클라이언트는 데이터베이스에 쿼리를 보내는 책임만 가지고 있으므로 원하는 모든 HTTP 서버 라이브러리나 웹 프레임워크와 결합할 수 있습니다.
+프리즈마 클라이언트는 데이터베이스에 질의를 보내는 책임만 가지고 있으므로 원하는 모든 HTTP 서버 라이브러리나 웹 프레임워크와 결합할 수 있습니다.
 
 다음은 프리즈마와 함께 사용할 수 있는 라이브러리 및 프레임워크 목록입니다.
 

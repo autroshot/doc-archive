@@ -69,7 +69,7 @@ import clientSideRendering from '/img/docs/nextjs/pre-rendering-and-data-fetchin
 
 <Image img={staticGenerationWithoutData} alt='데이터가 없는 정적 생성' />
 
-그러나 일부 페이지의 경우에는 먼저 외부 데이터를 가져오고 HTML을 렌더링해야 합니다. 빌드 타임에 파일 시스템에 접근하거나, 외부 API를 가져오거나, 데이터베이스를 쿼리해야 할 수도 있습니다. 넥스트는 [데이터가 있는 정적 생성](../basic-features/pages.md#데이터가-있는-정적-생성)을 기본으로 지원합니다.
+그러나 일부 페이지의 경우에는 먼저 외부 데이터를 가져오고 HTML을 렌더링해야 합니다. 빌드 타임에 파일 시스템에 접근하거나, 외부 API를 가져오거나, 데이터베이스에 질의해야 할 수도 있습니다. 넥스트는 [데이터가 있는 정적 생성](../basic-features/pages.md#데이터가-있는-정적-생성)을 기본으로 지원합니다.
 
 <Image img={staticGenerationWithData} alt='데이터가 있는 정적 생성' />
 
@@ -102,7 +102,7 @@ export async function getStaticProps() {
 
 :::
 
-### 외부 API나 데이터베이스 쿼리로 데이터 가져오기
+### 외부 API나 데이터베이스 질의로 데이터 가져오기
 
 파일 시스템은 물론, 외부 API 엔드포인트와 같은 다른 소스에서 데이터를 가져올 수 있습니다.
 
@@ -119,7 +119,7 @@ export async function getSortedPostsData() {
 
 :::
 
-데이터베이스를 직접 쿼리할 수도 있습니다.
+데이터베이스를 직접 질의할 수도 있습니다.
 
 ```jsx
 import someDatabaseSDK from 'someDatabaseSDK'
@@ -133,14 +133,14 @@ export async function getSortedPostsData() {
 
 이것은 `getStaticProps`가 **서버 측에서만 실행**되기 때문에 가능한 것입니다.
 
-`getStaticProps`는 클라이언트 측에서 실행되지 않습니다. 브라우저용 JS 번들에 포함조차 되지 않습니다. 따라서 데이터베이스 쿼리와 같은 코드를 브라우저로 보내지 않고도 직접 작성할 수 있습니다.
+`getStaticProps`는 클라이언트 측에서 실행되지 않습니다. 브라우저용 JS 번들에 포함조차 되지 않습니다. 따라서 데이터베이스 질의와 같은 코드를 브라우저로 보내지 않고도 직접 작성할 수 있습니다.
 
 ### 개발 vs 프로덕션
 
 - `npm run dev`나 `yarn dev`로 실행되는 개발에서는 `getStaticProps`가 요청마다 실행됩니다.
 - 프로덕션에서는 `getStaticProps`가 빌드 타임에 실행됩니다. 이 작동은 [`getStaticPaths`](../basic-features/data-fetching/get-static-paths.md)에서 반환되는 [`fallback`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-false) 키를 이용해 개선될 수 있습니다.
 
-`getStaticProps`는 빌드 타임에 실행되므로 쿼리 매개변수나 HTTP 헤더와 같이 요청 타임에만 사용할 수 있는 데이터는 사용할 수 없습니다.
+`getStaticProps`는 빌드 타임에 실행되므로 질의 매개변수나 HTTP 헤더와 같이 요청 타임에만 사용할 수 있는 데이터는 사용할 수 없습니다.
 
 ### 페이지에서만 사용 가능
 
