@@ -74,7 +74,7 @@ export default function Post({ post }) {
 
 ```jsx title="pages/posts/[id].js"
 export async function getStaticPaths() {
-  // 이것이 true이면(미리보기 환경에서는 true임)
+  // 이것이 true이면(미리 보기 환경에서는 true임)
   // 정적 페이지를 사전 렌더링하지 않습니다.
   // 빌드가 빨라지고 첫 페이지 로딩이 느려집니다.
   if (process.env.SKIP_BUILD_STATIC_GENERATION) {

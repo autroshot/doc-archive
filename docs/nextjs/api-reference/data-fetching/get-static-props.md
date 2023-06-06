@@ -21,8 +21,8 @@ export async function getStaticProps(context) {
 `context` 매개변수는 다음의 키가 포함된 객체입니다.
 
 - `params`에는 [동적 경로](../../documentation/routing/dynamic-routes.md)를 사용하는 페이지의 경로 매개변수가 포함됩니다. 예를 들어 페이지 이름이 `[id].js`인 경우 `params`는 `{ id: ... }`입니다. 이것은 `getStaticPaths`와 함께 사용해야 합니다.
-- 페이지가 [미리보기 모드](https://nextjs.org/docs/advanced-features/preview-mode)이면 `preview`가 `true`이며 이외에는 `undefined`입니다.
-- `previewData`에는 `setPreviewData`에서 설정한 미리보기 데이터가 포함됩니다.
+- 페이지가 [미리 보기 모드](https://nextjs.org/docs/advanced-features/preview-mode)이면 `preview`가 `true`이며 이외에는 `undefined`입니다.
+- `previewData`에는 `setPreviewData`에서 설정한 미리 보기 데이터가 포함됩니다.
 - `locale`에는 활성 로케일이 포함됩니다. (활성화된 경우)
 - `locales`에는 지원되는 모든 로케일이 포함됩니다. (활성화된 경우)
 - `defaultLocale`에는 설정된 기본 로케일이 포함됩니다. (활성화된 경우)

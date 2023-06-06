@@ -34,7 +34,7 @@ useQuery({ queryKey: ['something', 'special'], ... })
 // 개별 할 일
 useQuery({ queryKey: ['todo', 5], ... })
 
-// 미리보기(preview) 형식의 개별 할 일
+// 미리 보기(preview) 형식의 개별 할 일
 useQuery({ queryKey: ['todo', 5, { preview: true }], ...})
 
 // 완료된(done) 할 일 목록

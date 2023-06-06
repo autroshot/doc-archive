@@ -143,6 +143,6 @@ JSON 파일은 [`next/link`](https://nextjs.org/docs/api-reference/next/link)이
 
 개발 중(`next dev`)에는 `getStaticProps`가 모든 요청마다 호출됩니다.
 
-## 미리보기 모드
+## 미리 보기 모드
 
-[**미리보기 모드**](https://nextjs.org/docs/advanced-features/preview-mode)를 사용하여 빌드 타임 대신 **요청 타임**에 정적 생성을 우회하고 페이지를 렌더링할 수 있습니다. 예를 들어 헤드리스 CMS를 사용 중이며 초안이 게시되기 전에 미리보기를 원할 수 있습니다.
+[**미리 보기 모드**](https://nextjs.org/docs/advanced-features/preview-mode)를 사용하여 빌드 타임 대신 **요청 타임**에 정적 생성을 우회하고 페이지를 렌더링할 수 있습니다. 예를 들어 헤드리스 CMS를 사용 중이며 초안이 게시되기 전에 미리 보는 것을 원할 수 있습니다.
