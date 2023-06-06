@@ -10,7 +10,7 @@ sidebar_position: 1
 
 다음으로 구성됩니다.
 
-- **프리즈마 클라이언트** - 노드 및 타입스크립트를 위한 자동 생성되며 타입에 안전한 쿼리 작성기
+- **프리즈마 클라이언트** - 노드 및 타입스크립트를 위한 자동 생성되며 타입에 안전한 질의 작성기
 
 - **프리즈마 마이그레이트** - 마이그레이션 시스템
 - **프리즈마 스튜디오** - 데이터베이스의 데이터를 보고 편집하는 GUI
@@ -75,7 +75,7 @@ model User {
 모델에는 두 가지 주요 기능이 있습니다.
 
 - 관계형 데이터베이스의 테이블 또는 몽고DB의 컬렉션을 나타냄
-- 프리즈마 클라이언트 API에서 쿼리의 기반을 제공함
+- 프리즈마 클라이언트 API에서 질의의 기반을 제공함
 
 #### 데이터 모델 가져오기
 
@@ -84,7 +84,7 @@ model User {
 - 데이터 모델을 직접 작성하고 [프리즈마 마이그레이트](https://www.prisma.io/docs/concepts/components/prisma-migrate)를 사용하여 데이터베이스에 매핑함
 - 데이터베이스를 [분석](https://www.prisma.io/docs/concepts/components/introspection)하여 데이터 모델 생성함
 
-데이터 모델이 정의되면 모델에 대한 CRUD를 비롯한 더 많은 쿼리를 표시하는 [프리즈마 클라이언트를 생성](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/generating-prisma-client)할 수 있습니다. 타입스크립트를 사용하는 경우에는 모든 쿼리에 대해 완전한 타입 안전성을 얻을 수 있습니다. 이는 모델 필드의 하위 집합만 검색하는 경우에도 적용됩니다.
+데이터 모델이 정의되면 모델에 대한 CRUD를 비롯한 더 많은 질의를 표시하는 [프리즈마 클라이언트를 생성](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/generating-prisma-client)할 수 있습니다. 타입스크립트를 사용하는 경우에는 모든 질의에 대해 완전한 타입 안전성을 얻을 수 있습니다. 이는 모델 필드의 하위 집합만 검색하는 경우에도 적용됩니다.
 
 ### 프리즈마 클라이언트로 데이터베이스에 접근하기
 
@@ -104,9 +104,9 @@ $npm install @prisma/client
 $prisma generate
 ```
 
-#### 프리즈마 클라이언트를 사용하여 데이터베이스에 쿼리 보내기
+#### 프리즈마 클라이언트를 사용하여 데이터베이스에 질의 보내기
 
-프리즈마 클라이언트가 생성되면 코드로 가져와서 데이터베이스에 쿼리를 보낼 수 있습니다.
+프리즈마 클라이언트가 생성되면 코드로 가져와서 데이터베이스에 질의를 보낼 수 있습니다.
 
 설정 코드는 다음과 같습니다.
 
@@ -117,13 +117,13 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 ```
 
-이제 생성된 프리즈마 클라이언트 API를 통해 쿼리 전송을 시작할 수 있습니다.
+이제 생성된 프리즈마 클라이언트 API를 통해 질의 전송을 시작할 수 있습니다.
 
-모든 프리즈마 클라이언트 쿼리는 오래된 순수 자바스크립트 객체를 반환합니다.
+모든 프리즈마 클라이언트 질의는 오래된 순수 자바스크립트 객체를 반환합니다.
 
 [프리즈마 클라이언트 API 참고](./components/client/index.md)에서 가능한 작업을 확인할 수 있습니다.
 
 #### 타입스크립트와 함께 사용하기
 
-타입스크립트를 사용할 때 쿼리의 결과는 정적으로 입력되므로 존재하지 않는 속성에 실수로라도 접근할 수 없게 됩니다. 그리고 모든 오타는 컴파일 타임에 포착됩니다. [생성된 타입의 고급 사용법](https://www.prisma.io/docs/concepts/components/prisma-client/advanced-type-safety/operating-against-partial-structures-of-model-types) 문서에서 프리즈마 클라이언트의 생성된 타입을 활용하는 방법을 확인할 수 있습니다.
+타입스크립트를 사용할 때 질의의 결과는 정적으로 입력되므로 존재하지 않는 속성에 실수로라도 접근할 수 없게 됩니다. 그리고 모든 오타는 컴파일 타임에 포착됩니다. [생성된 타입의 고급 사용법](https://www.prisma.io/docs/concepts/components/prisma-client/advanced-type-safety/operating-against-partial-structures-of-model-types) 문서에서 프리즈마 클라이언트의 생성된 타입을 활용하는 방법을 확인할 수 있습니다.
 
