@@ -2,6 +2,16 @@
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import menu from '/img/docs/electron/introduction/menu.png';
+import autoUpdater from '/img/docs/electron/introduction/auto-updater.png';
+import installer from '/img/docs/electron/introduction/installer.png';
+import appStore from '/img/docs/electron/introduction/app-store.png';
+import crashReporting from '/img/docs/electron/introduction/crash-reporting.png';
+import fiddle from '/img/docs/electron/introduction/fiddle.png';
+
 # 소개
 
 일렉트론(Electron)은 자바스크립트, HTML, CSS를 사용하여 플랫폼 간 데스크톱 앱을 구축합니다.
@@ -20,31 +30,51 @@ sidebar_position: 1
 
 일렉트론의 주 프로세스 API를 사용하여 운영 체제의 인터페이스와 상호 작용합니다. [애플리케이션 창](https://www.electronjs.org/docs/latest/tutorial/window-customization)의 모양을 사용자 정의하고, 애플리케이션 [메뉴](https://www.electronjs.org/docs/latest/api/menu)를 제어하고, [대화 상자](https://www.electronjs.org/docs/latest/api/dialog) 또는 [알림](https://www.electronjs.org/docs/latest/tutorial/notifications)을 통해 사용자에게 알립니다.
 
-![VS코드의 맥OS 운영 체제 메뉴입니다. 'Code' 메뉴 항목이 선택되었으며 하위 메뉴의 항목은 다음과 같습니다. 'About Visual Studio Code', 'Check for Updates...', 'Preferences', 'Services', 'Hide Visual Studio Code', 'Hide Others', 'Show All', 'Quit Visual Studio Code'.](https://www.electronjs.org/assets/marketing/menu.png)
+<Image
+  img={menu}
+  alt={`VS코드의 맥OS 운영 체제 메뉴입니다. 'Code' 메뉴 항목이 선택되었으며 하위 메뉴의 항목은 다음과 같습니다. 'About Visual Studio Code', 'Check for Updates...', 'Preferences', 'Services', 'Hide Visual Studio Code', 'Hide Others', 'Show All', 'Quit Visual Studio Code'.`}
+  maxWidth="500px"
+/>
 
 ### 자동 소프트웨어 업데이트
 
 [스쿼럴](https://github.com/Squirrel)이 제공하는 일렉트론의 [`autoUpdater` 모듈](https://www.electronjs.org/docs/latest/api/auto-updater)로 새 버전을 출시할 때마다 맥OS 및 윈도우 사용자에게 소프트웨어 업데이트를 보내세요.
 
-![일렉트론 피들의 자동 업데이트 대화 상자입니다. 사용자에게 v0.27.3으로 업데이트하라는 메시지가 표시됩니다. 'A new version has been downloaded. Restart the application to apply the updates.' 하단에는 'Later'와 'Restart'라는 두 개의 버튼이 있습니다.](https://www.electronjs.org/assets/marketing/auto-updater.png)
+<Image
+  img={autoUpdater}
+  alt={`일렉트론 피들의 자동 업데이트 대화 상자입니다. 사용자에게 v0.27.3으로 업데이트하라는 메시지가 표시됩니다. 'A new version has been downloaded. Restart the application to apply the updates.' 하단에는 'Later'와 'Restart'라는 두 개의 버튼이 있습니다.`}
+  maxWidth="500px"
+/>
 
 ### 애플리케이션 설치 프로그램
 
 [커뮤니티 지원 도구](https://www.electronjs.org/docs/latest/tutorial/application-distribution)를 사용하여 맥OS의 애플 디스크 이미지(`.dmg`), 윈도우의 윈도우 설치 프로그램(`.msi`), 리눅스의 RPM 패키지 관리자(`.rpm`)와 같은 플랫폼별 도구를 생성합니다.
 
-![왓츠앱 설치 프로그램(DMG)용 맥OS 창입니다. 'WhatsApp'과 'Applications'라는 두 아이콘이 있습니다. 사용자에게 왓츠앱 앱 아이콘을 애플리케이션 폴더로 끌어오라는 메시지가 표시됩니다.](https://www.electronjs.org/assets/marketing/installer.png)
+<Image
+  img={installer}
+  alt={`왓츠앱 설치 프로그램(DMG)용 맥OS 창입니다. 'WhatsApp'과 'Applications'라는 두 아이콘이 있습니다. 사용자에게 왓츠앱 앱 아이콘을 애플리케이션 폴더로 끌어오라는 메시지가 표시됩니다.`}
+  maxWidth="500px"
+/>
 
 ### 앱스토어 배포
 
 더 많은 사용자에게 애플리케이션을 배포하세요. 일렉트론은 [맥 앱 스토어](https://www.apple.com/ca/osx/apps/app-store/index.html)(맥OS), [마이크로소프트 스토어](https://www.microsoft.com/en-ca/store/apps/windows)(윈도우), [스냅 스토어](https://snapcraft.io/store)(리눅스)를 최고 수준으로 지원합니다.
 
-![맥 앱 스토어 창에서 로켓챗 다운로드 페이지가 열립니다.](https://www.electronjs.org/assets/marketing/app-store.png)
+<Image
+  img={appStore}
+  alt="맥 앱 스토어 창에서 로켓챗 다운로드 페이지가 열립니다."
+  maxWidth="500px"
+/>
 
 ### 충돌 보고
 
 [`crashReporter`](https://www.electronjs.org/docs/latest/api/crash-reporter) 모듈을 사용하여 사용자로부터 자바스크립트와 네이티브 충돌 데이터를 자동으로 수집합니다. 타사 서비스를 사용하여 이 데이터를 수집하거나 자체 온프레미스 크래시패드 서버를 설정하세요.
 
-![센트리(https://sentry.io) 충돌 보고의 스크린숏입니다. 오류 메시지('BrowserWindow Unresponsive'), 사용자 이동 경로, 사용자 정보를 표시합니다.](https://www.electronjs.org/assets/marketing/crash-reporting.png)
+<Image
+  img={crashReporting}
+  alt="센트리(https://sentry.io) 충돌 보고의 스크린숏입니다. 오류 메시지('BrowserWindow Unresponsive'), 사용자 이동 경로, 사용자 정보를 표시합니다."
+  maxWidth="500px"
+/>
 
 ## 좋아하는 도구를 사용하기
 
@@ -57,11 +87,53 @@ sidebar_position: 1
 - [시작하기](https://electronforge.io/)
 - [소스 코드](https://github.com/electron/forge)
 
+```sh
+$ npm init electron-app@latest my-app
+✔ Locating custom template: "base"
+✔ Initializing directory
+✔ Preparing template
+✔ Initializing template
+✔ Installing template dependencies
+```
+
 ## 설치
 
 직접 알아보고 싶다면 npm 레지스트리에서 직접 일렉트론 패키지를 설치할 수 있습니다.
 
 프로덕션 환경을 위해 최신 안정 버전을 설치하세요. 좀 더 실험적인 것을 원한다면, 사전 공개 또는 나이틀리(nightly) 채널을 사용해 보세요.
+
+<Tabs>
+  <TabItem value="stable" label="Stable" default>
+
+```sh
+$ npm install --save-dev electron@latest
+# Electron 25.0.1
+# Node 18.15.0
+# Chromium 114.0.5735.45
+```
+
+  </TabItem>
+  <TabItem value="prerelease" label="Prerelease">
+
+```sh
+$ npm install --save-dev electron@alpha
+# Electron 26.0.0-alpha.2
+# Node 18.16.0
+# Chromium 116.0.5791.0
+```
+
+  </TabItem>
+  <TabItem value="nightly" label="Nightly">
+
+```sh
+$ npm install --save-dev electron-nightly
+# Electron 27.0.0-nightly.20230602
+# Node 18.16.0
+# Chromium 116.0.5791.0
+```
+
+  </TabItem>
+</Tabs>
 
 ## 일렉트론 피들
 
@@ -71,3 +143,5 @@ sidebar_position: 1
 
 - [다운로드](https://www.electronjs.org/fiddle)
 - [소스 코드](https://github.com/electron/fiddle)
+
+<Image img={fiddle} alt="일렉트론 피들의 기본 창의 스크린숏" maxWidth="500px" />
