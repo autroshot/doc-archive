@@ -7,6 +7,8 @@ export default function ElectronFiddleButton({ href }) {
       style={{
         textDecoration: 'none',
         color: 'white',
+        marginTop: '10px',
+        marginBottom: '10px',
       }}
       href={href ?? '#'}
       target="_blank"
