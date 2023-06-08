@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 초기화
 
-넥스트에서 특정 경로로 시작하는 모든 요청을 잡는 API 경로를 정의할 수 있습니다. 편의상 이를 [모든 API 경로 잡기](../../../nextjs/documentation/api-routes/dynamic-api-routes.md#모든-api-경로-잡기)라고 부릅니다.
+넥스트에서 특정 경로로 시작하는 모든 요청을 잡는 API 경로를 정의할 수 있습니다. 편의상 이를 [모든 API 경로 잡기](../../../frameworks/nextjs/documentation/api-routes/dynamic-api-routes.md#모든-api-경로-잡기)라고 부릅니다.
 
 `/pages/api/auth/[...nextauth]` JS/TS 파일을 정의하면, 넥스트는 `/api/auth/*`로 시작하는 모든 API 요청을 `[...nextauth]` 파일에 작성된 코드로 처리합니다.
 
@@ -28,7 +28,7 @@ export default NextAuth({
 
 ## 고급 초기화
 
-특정 사용 사례가 있고 넥스트인증의 설계 의도와 약간 다른 작업을 수행하고 싶다면 고급 초기화를 사용합니다. `[...nextauth].js` 설정 파일은 결국 **일반적인 [API 경로](../../../nextjs/documentation/api-routes/introduction.md)**에 불과하다는 점을 명심하세요.
+특정 사용 사례가 있고 넥스트인증의 설계 의도와 약간 다른 작업을 수행하고 싶다면 고급 초기화를 사용합니다. `[...nextauth].js` 설정 파일은 결국 **일반적인 [API 경로](../../../frameworks/nextjs/documentation/api-routes/introduction.md)**에 불과하다는 점을 명심하세요.
 
 `NextAuth.js`를 다음과 같이 초기화할 수 있습니다.
 
