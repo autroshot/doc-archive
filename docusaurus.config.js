@@ -96,10 +96,16 @@ const config = {
             position: 'left',
           },
           {
-            type: 'doc',
-            docId: 'nextjs/README',
-            label: 'Next.js',
+            type: 'dropdown',
+            label: '프레임워크',
             position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'nextjs/README',
+                label: 'Next.js',
+              },
+            ],
           },
           {
             type: 'dropdown',
