@@ -96,10 +96,21 @@ const config = {
             position: 'left',
           },
           {
-            type: 'doc',
-            docId: 'nextjs/README',
-            label: 'Next.js',
+            type: 'dropdown',
+            label: '프레임워크',
             position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'frameworks/nextjs/README',
+                label: 'Next.js',
+              },
+              {
+                type: 'doc',
+                docId: 'frameworks/electron/README',
+                label: 'Electron',
+              },
+            ],
           },
           {
             type: 'dropdown',
@@ -211,7 +222,11 @@ const config = {
               },
               {
                 label: 'Next.js',
-                to: '/docs/nextjs',
+                to: '/docs/frameworks/nextjs',
+              },
+              {
+                label: 'Electron',
+                to: '/docs/frameworks/electron',
               },
               {
                 label: 'Jest',
