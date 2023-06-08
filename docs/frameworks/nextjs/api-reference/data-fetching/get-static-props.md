@@ -57,7 +57,7 @@ function Blog({ posts }) {
 
 // 이 함수는 서버 측에서 빌드 타임에 호출됩니다.
 // 클라이언트 측에서는 호출되지 않으므로
-// 직접 데이터베이스 쿼리를 수행할 수도 있습니다.
+// 직접 데이터베이스 질의를 수행할 수도 있습니다.
 export async function getStaticProps() {
   const postsDirectory = path.join(process.cwd(), 'posts')
   const filenames = await fs.readdir(postsDirectory)

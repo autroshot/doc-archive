@@ -41,7 +41,7 @@ export async function getStaticProps(context) {
 
 [증분형 정적 재생성](./incremental-static-regeneration.md)과 함께 사용하면, `getStaticProps`는 오래된 페이지의 유효성을 다시 검사하고 새 페이지가 브라우저에 제공되는 동안 뒤에서 실행됩니다.
 
-`getStaticProps`는 정적 HTML을 생성하므로 들어오는 요청(쿼리 매개변수나 HTTP 헤더)에 접근할 수 없습니다. 페이지 요청에 접근해야 하는 경우에는 `getStaticProps`에 추가로 [미들웨어](https://nextjs.org/docs/advanced-features/middleware)를 사용하는 것을 고려해야 합니다.
+`getStaticProps`는 정적 HTML을 생성하므로 들어오는 요청(질의 매개변수나 HTTP 헤더)에 접근할 수 없습니다. 페이지 요청에 접근해야 하는 경우에는 `getStaticProps`에 추가로 [미들웨어](https://nextjs.org/docs/advanced-features/middleware)를 사용하는 것을 고려해야 합니다.
 
 ## CMS에서 데이터 가져오기
 
@@ -60,7 +60,7 @@ function Blog({ posts }) {
 }
 
 // 이 함수는 서버 측에서 빌드 타임에 호출됩니다.
-// 클라이언트 측에서 호출되지 않으므로 데이터베이스 쿼리를 여기서 직접 해도 됩니다.
+// 클라이언트 측에서 호출되지 않으므로 데이터베이스 질의를 여기서 직접 해도 됩니다.
 export async function getStaticProps() {
   // posts를 얻기 위해 외부 API 엔드포인트를 호출합니다.
   // 모든 데이터 가져오기 라이브러리를 사용할 수 있습니다.
@@ -83,7 +83,7 @@ export default Blog;
 
 ## 서버 측 코드 직접 작성하기
 
-`getStaticProps`는 서버 측에서만 실행되므로 클라이언트 측에서는 실행되지 않습니다. 브라우저용 JS 번들에도 포함되지 않으므로 브라우저로 보내지 않고 직접 데이터베이스 쿼리를 작성할 수 있습니다.
+`getStaticProps`는 서버 측에서만 실행되므로 클라이언트 측에서는 실행되지 않습니다. 브라우저용 JS 번들에도 포함되지 않으므로 브라우저로 보내지 않고 직접 데이터베이스 질의를 작성할 수 있습니다.
 
 즉, `getStaticProps`에서 외부 소스에서 데이터를 가져오는 API 경로를 사용하는 대신 `getStaticProps`에 직접 서버 측 코드를 작성할 수 있습니다.
 
