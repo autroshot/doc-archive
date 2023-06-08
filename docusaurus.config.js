@@ -105,6 +105,11 @@ const config = {
                 docId: 'frameworks/nextjs/README',
                 label: 'Next.js',
               },
+              {
+                type: 'doc',
+                docId: 'frameworks/electron/README',
+                label: 'Electron',
+              },
             ],
           },
           {
@@ -218,6 +223,10 @@ const config = {
               {
                 label: 'Next.js',
                 to: '/docs/frameworks/nextjs',
+              },
+              {
+                label: 'Electron',
+                to: '/docs/frameworks/electron',
               },
               {
                 label: 'Jest',
