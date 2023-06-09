@@ -325,7 +325,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 이 코드는 노드의 `process.versions` 객체에 접근하고, 기본적인 `replaceText` 도우미 함수를 실행하여 버전 번호를 HTML 문서에 삽입합니다.
 
-이 스크립트를 렌더러 프로세스에 연결하려면, 사전 로드 스크립트의 경로를 기존 `BrowserWindow` 생성자의 `webPreferences.preload` 옵션에 전달합니다.
+이 스크립트를 렌더러 프로세스에 첨부하려면, 사전 로드 스크립트의 경로를 기존 `BrowserWindow` 생성자의 `webPreferences.preload` 옵션에 전달합니다.
 
 ```js
 // 파일 상단에 노드의 path 모듈을 포함합니다.
