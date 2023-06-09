@@ -1,0 +1,409 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Button from '/src/components/electronFiddleButton.jsx';
+
+# 첫 번째 앱 만들기
+
+## 학습 목표
+
+이곳에서는 일렉트론 프로젝트를 설정하고 최소한의 시작 앱을 작성하는 방법을 배웁니다. 이 부분을 마치면 터미널에서 개발 모드로 작동하는 일렉트론 앱을 실행할 수 있게 됩니다.
+
+## 프로젝트 설정하기
+
+:::caution WSL을 피하세요.
+
+윈도우 시스템을 사용한다면 이 자습서에서 [리눅스용 윈도우 하위 시스템](https://learn.microsoft.com/en-us/windows/wsl/about#what-is-wsl-2)(WSL)을 사용하지 마세요. 앱을 실행하려고 할 때 문제가 발생할 수 있습니다.
+
+:::
+
+### npm 프로젝트 초기화하기
+
+일렉트론 앱은 `package.json` 파일을 진입점으로, npm을 사용하여 기초를 세웁니다. 폴더를 만들고 `npm init`으로 폴더 내의 npm 패키지를 초기화합니다.
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
+```sh
+mkdir my-electron-app && cd my-electron-app
+npm init
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+mkdir my-electron-app && cd my-electron-app
+yarn init
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+mkdir my-electron-app && cd my-electron-app
+pnpm init
+```
+
+  </TabItem>
+</Tabs>
+
+이 명령은 `package.json`에서 일부 필드를 설정하라는 메시지를 표시합니다. 이 자습서의 목적을 위해 따라야 할 몇 가지 규칙이 있습니다.
+
+- **진입점**은 `main.js`(곧 생성할 예정임)여야 합니다.
+- `author`, `license`, `description`에는 아무 값이나 넣을 수 있지만 나중에 [패키징](https://www.electronjs.org/docs/latest/tutorial/tutorial-packaging)에 필요합니다.
+
+이제 앱의 `devDependencies`에 일렉트론을 설치합니다. 이는 프로덕션에 필요하지 않은 개발 전용 외부 패키지 종속성입니다.
+
+:::info 일렉트론이 개발 종속성인 이유는 무엇인가요?
+
+프로덕션 코드가 일렉트론 API를 실행하고 있기 때문에, 이는 직관에 반하는 것처럼 보일 수 있습니다. 그러나 패키징된 앱에는 일렉트론 이진이 포함되므로, 일렉트론을 프로덕션 종속성으로 지정할 필요가 없습니다.
+
+:::
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
+```sh
+npm install electron --save-dev
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add electron --dev
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add electron --save-dev
+```
+
+  </TabItem>
+</Tabs>
+
+패키지를 초기화하고 일렉트론을 설치한 후, `package.json` 파일은 아래와 같을 것입니다. 이제 일렉트론 실행 파일이 포함된 `node_modules` 폴더와 설치할 정확한 종속성 버전을 지정하는 `package-lock.json` 잠금 파일도 있어야 합니다.
+
+```json title="package.json"
+{
+  "name": "my-electron-app",
+  "version": "1.0.0",
+  "description": "Hello World!",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jane Doe",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "23.1.3"
+  }
+}
+```
+
+:::info 일렉트론 고급 설치 단계
+
+오류가 발생해서 일렉트론을 직접 설치하지 못한다면 [고급 설치](https://www.electronjs.org/docs/latest/tutorial/installation) 문서를 참고하세요. 미러 다운로드, 프록시, 문제 해결 단계를 확인할 수 있습니다.
+
+:::
+
+### `.gitignore` 추가하기
+
+[`.gitignore`](https://git-scm.com/docs/gitignore) 파일은 깃으로 추적하지 않을 파일과 디렉터리를 지정합니다. 프로젝트의 `node_modules` 폴더를 커밋하지 않으려면, [깃허브의 노드 gitignore 템플릿](https://github.com/github/gitignore/blob/main/Node.gitignore)의 복사본을 프로젝트의 루트 폴더에 배치해야 합니다.
+
+## 일렉트론 앱 실행하기
+
+:::tip 더 읽을 거리
+
+일렉트론의 여러 프로세스가 함께 작동하는 방식을 이해하고 싶다면 [일렉트론의 프로세스 모델](https://www.electronjs.org/docs/latest/tutorial/process-model) 문서를 읽어보세요.
+
+:::
+
+`package.json`에서 정의한 [`main`](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#main) 스크립트는 모든 일렉트론 앱의 진입점입니다. 이 스크립트는 노드 환경에서 실행됩니다. 스크립트는 앱의 수명 주기를 제어하고, 네이티브 인터페이스를 표시하고, 권한 있는 작업을 수행하고, 렌더러 프로세스를 관리하는 **주 프로세스**를 제어합니다. (자세한 내용은 나중에 설명함)
+
+첫 번째 일렉트론 앱을 만들기 전에, 먼저 간단한 스크립트를 사용하여 주 프로세스 진입점이 올바르게 설정되었는지 확인하겠습니다. 다음과 같이 한 줄의 코드로 이루어진 `main.js` 파일을 프로젝트의 루트 폴더에 만듭니다.
+
+```js title="main.js"
+console.log('Hello from Electron 👋');
+```
+
+일렉트론의 주 프로세스는 노드 런타임이므로, `electron` 명령으로 임의의 노드 코드를 실행할 수 있습니다([REPL](https://www.electronjs.org/docs/latest/tutorial/repl)로도 가능함). 이 스크립트를 실행하려면, `package.json`의 [`scripts`](https://docs.npmjs.com/cli/v7/using-npm/scripts) 필드에 있는 `start` 명령에 `electron .`을 추가하세요. 이 명령은 일렉트론 실행 파일이 현재 디렉터리에서 기본 스크립트를 찾고 개발 모드로 실행하도록 지시합니다.
+
+```json title="package.json"
+{
+  "name": "my-electron-app",
+  "version": "1.0.0",
+  "description": "Hello World!",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jane Doe",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "23.1.3"
+  }
+}
+```
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
+```sh
+npm run start
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn run start
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm run start
+```
+
+  </TabItem>
+</Tabs>
+
+터미널에 `Hello from Electron 👋`이 출력되어야 합니다. 축하합니다! 일렉트론에서 첫 번째 코드 줄을 실행했습니다! 다음으로 HTML을 사용하여 사용자 인터페이스를 만들고, 이를 네이티브 창에 로드하는 방법을 배우겠습니다.
+
+## `BrowserWindow`에 웹 페이지 로드하기
+
+일렉트론에서 각 창은 로컬 HTML 파일 또는 원격 웹 주소에서 로드할 수 있는 웹 페이지를 표시합니다. 이 예시에서는 로컬 파일에서 로드합니다. 프로젝트의 루트 폴더에 있는 `index.html` 파일에 간단한 웹 페이지를 생성해 보겠습니다.
+
+```html title="index.html"
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Hello from Electron renderer!</title>
+  </head>
+  <body>
+    <h1>Hello from Electron renderer!</h1>
+    <p>👋</p>
+  </body>
+</html>
+```
+
+이제 웹 페이지가 있으므로, 이를 일렉트론 [`BrowserWindow`](https://www.electronjs.org/docs/latest/api/browser-window)에 로드할 수 있습니다. `main.js` 파일의 내용을 다음 코드로 바꾸세요. 강조 표시된 각 블록을 개별적으로 설명하겠습니다.
+
+```js title="main.js" {0,2-9,11-13}
+const { app, BrowserWindow } = require('electron');
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
+
+  win.loadFile('index.html');
+};
+
+app.whenReady().then(() => {
+  createWindow();
+});
+```
+
+### 모듈 가져오기
+
+```js title="main.js (줄 1)"
+const { app, BrowserWindow } = require('electron');
+```
+
+첫 번째 줄에서는 커먼JS 모듈 구문을 사용하여 두 개의 일렉트론 모듈을 가져오고 있습니다.
+
+- [`app`](https://www.electronjs.org/docs/latest/api/app) - 앱의 이벤트 수명 주기를 제어함
+- [`BrowserWindow`](https://www.electronjs.org/docs/latest/api/browser-window) - 앱 창을 만들고 관리함
+
+:::info 대문자 표기법
+
+**a**pp과 **B**rowser**W**indow 모듈 사이의 대문자 차이를 눈치채셨을 것입니다. 일렉트론은 모듈이 인스턴스화 가능한 클래스 생성자일 때(예: `BrowserWindow`, `Tray`, `Notification`) 일반적인 자바스크립트 규칙인 파스칼 표기법(PascalCase)을 따릅니다. 반면 모듈이 인스턴스화할 수 없는 것일 때(예: `app`, `ipcRenderer`, `webContents`) 카멜 표기법(camelCase)을 따릅니다.
+
+:::
+
+:::danger 일렉트론의 ES 모듈
+
+[ECMA스크립트 모듈](https://nodejs.org/api/esm.html)(예: 모듈을 로드하기 위해 `import`를 사용함)은 현재 일렉트론에서 직접 지원되지 않습니다. [electron/electron#21457](https://github.com/electron/electron/issues/21457)에서 일렉트론의 ESM 상태에 대한 자세한 정보를 확인할 수 있습니다.
+
+:::
+
+### 창을 인스턴스화하는 재사용 가능한 함수 작성하기
+
+`createWindow()` 함수는 웹 페이지를 새 `BrowserWindow` 인스턴스로 로드합니다.
+
+```js title="main.js (줄 3-10)"
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
+
+  win.loadFile('index.html');
+};
+```
+
+### 앱이 준비되면 함수 호출하기
+
+```js title="main.js (줄 12-14)"
+app.whenReady().then(() => {
+  createWindow();
+});
+```
+
+일렉트론의 많은 핵심 모듈은 노드의 비동기식 이벤트 기반 아키텍처를 준수하는 노드의 [이벤트 송신기](https://nodejs.org/api/events.html#events)입니다. 앱 모듈은 이러한 송신기 중 하나입니다.
+
+일렉트론에서 `BrowserWindows`는 앱 모듈의 [`ready`](https://www.electronjs.org/docs/latest/api/app#event-ready) 이벤트가 발생한 후에만 생성할 수 있습니다. [`app.whenReady()`](https://www.electronjs.org/docs/latest/api/app#appwhenready) API를 사용하여 이 이벤트를 기다렸다가 프라미스가 이행되면 `createWindow()`를 호출할 수 있습니다.
+
+:::info
+
+일반적으로 송신기의 `.on` 함수를 사용하여 노드 이벤트를 수신합니다.
+
+```diff
++ app.on('ready', () => {
+- app.whenReady().then(() => {
+  createWindow()
+})
+```
+
+그러나 일렉트론은 특히 해당 이벤트를 직접 수신할 때 발생하는 미묘한 함정을 방지하기 위해, `ready` 이벤트 전용 도우미로 `app.whenReady()`를 노출합니다. 자세한 내용은 [electron/electron#21972](https://github.com/electron/electron/pull/21972)를 참고하세요.
+
+:::
+
+이 시점에서 일렉트론 앱의 `start` 명령을 실행하면 웹 페이지를 표시하는 창이 성공적으로 열립니다!
+
+앱이 창에 표시하는 각 웹 페이지는 **렌더러 프로세스**(또는 간단히 렌더러)라는 별도의 프로세스에서 실행됩니다. 렌더러 프로세스는 일반적인 프런트엔드 웹 개발에 사용하는 것과 동일한 자바스크립트 API 및 도구에 접근할 수 있습니다. 예를 들어 [웹팩](https://webpack.js.org/)을 사용하여 코드를 묶고 축소하거나, [리액트](https://reactjs.org/)를 사용하여 사용자 인터페이스를 구축할 수 있습니다.
+
+## 앱 창의 수명 주기 관리하기
+
+앱 창은 운영 체제마다 다르게 작동합니다. 일렉트론은 이러한 규칙을 기본적으로 강제하는 대신, 사용자가 원한다면 앱 코드에서 이를 구현할 수 있는 선택권을 제공합니다. `app`과 `BrowserWindow` 모듈에서 발생하는 이벤트를 수신하여 네이티브 창의 규칙을 구현할 수 있습니다.
+
+:::tip 특정 프로세스의 흐름 제어하기
+
+노드의 [`process.platform`](https://nodejs.org/api/process.html#process_process_platform) 변수를 확인하면 특정 플랫폼에서 조건부로 코드를 실행할 수 있습니다. 일렉트론이 실행할 수 있는 플랫폼은 `win32`(윈도우), `linux`(리눅스), `darwin`(맥OS), 세 가지뿐입니다.
+
+:::
+
+### 모든 창이 닫힐 때 앱 종료하기 (윈도우 및 리눅스)
+
+윈도우와 리눅스에서 모든 창을 닫으면 일반적으로 앱이 완전히 종료됩니다. 이 패턴을 일렉트론 앱에 구현하려면, app 모듈의 [`window-all-closed`](https://www.electronjs.org/docs/latest/api/app#event-window-all-closed) 이벤트를 수신하고, 사용자가 맥OS를 사용하지 않는다면 [`app.quit()`](https://www.electronjs.org/docs/latest/api/app#appquit)를 호출합니다.
+
+```js
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit();
+});
+```
+
+### 열려 있는 창이 없으면 창 열기 (맥OS)
+
+반대로 맥OS 앱은 일반적으로 창이 열리지 않아도 계속 실행됩니다. 사용 가능한 창이 없을 때 앱을 활성화하면 새 창이 열립니다.
+
+이 기능을 구현하려면, `app` 모듈의 [`activate`](https://www.electronjs.org/docs/latest/api/app#event-activate-macos) 이벤트를 수신하고, `BrowserWindows`가 열려 있지 않으면 기존의 `createWindow()` 메서드를 호출합니다.
+
+`ready` 이벤트 전에는 창을 만들 수 없으므로, 앱이 초기화된 후에만 `activate` 이벤트를 수신해야 합니다. 이를 위해서는 기존의 `whenReady()` 콜백 내에서 활성화된 이벤트만 수신하면 됩니다.
+
+```js
+app.whenReady().then(() => {
+  createWindow();
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+});
+```
+
+## 최종 시작 코드
+
+<Button href="https://fiddle.electronjs.org/launch?target=electron/v25.0.1/docs/fiddles/tutorial-first-app" />
+
+## 선택 사항: VS 코드에서 디버그하기
+
+VS 코드를 사용하여 앱을 디버그하려면 주 프로세스와 렌더러 프로세스 모두에 VS 코드를 연결해야 합니다. 실행할 예시 설정은 아래와 같습니다. 프로젝트의 새 `.vscode` 폴더에 `launch.json` 설정을 만드세요.
+
+```json title=".vscode/launch.json"
+{
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Main + renderer",
+      "configurations": ["Main", "Renderer"],
+      "stopAll": true
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Renderer",
+      "port": 9222,
+      "request": "attach",
+      "type": "chrome",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Main",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      },
+      "args": [".", "--remote-debugging-port=9222"],
+      "outputCapture": "std",
+      "console": "integratedTerminal"
+    }
+  ]
+}
+```
+
+사이드바에서 '실행 및 디버그'를 선택하면 'Main + renderer' 옵션이 표시되어, 주 프로세스 및 렌더러 프로세스 모두에서 중단점을 설정하고 모든 변수를 검사할 수 있습니다.
+
+`launch.json` 파일에서 수행한 작업은 세 가지 구성을 만드는 것입니다.
+
+- `Main`은 주 프로세스를 시작하고 원격 디버깅을 위해 포트 9222를 노출하는 데 사용됩니다(`--remote-debugging-port=9222`). 이는 `Renderer`용 디버거를 연결하는 데 사용할 포트입니다. 주 프로세스는 노드 프로세스이므로 유형은 `node`로 설정됩니다.
+- `Renderer`는 렌더러 프로세스를 디버그하는 데 사용됩니다. 주 프로세스가 프로세스를 생성하는 프로세스이므로, 새 프로세스를 만드는 대신 주 프로세스에 "첨부"(`"request": "attach"`)해야 합니다. 렌더러 프로세스는 웹 프로세스이므로 사용해야 하는 디버거는 `chrome`입니다.
+- `Main + renderer`는 앞의 것들을 동시에 실행하는 [복합 작업](https://code.visualstudio.com/Docs/editor/tasks#_compound-tasks)입니다.
+
+:::caution
+
+`Renderer`에서 프로세스에 첨부하기 때문에, 디버거가 실행되기 전에 연결할 시간이 충분하지 않아서 코드의 첫 번째 줄을 건너뛸 수 있습니다. 개발 모드에서 코드를 실행하기 전에 페이지를 새로 고치거나 시간 제한을 설정하여 이 문제를 해결할 수 있습니다.
+
+:::
+
+:::info 더 읽을 거리
+
+디버깅에 대해 자세히 알아보려면 다음 안내서를 참고하세요.
+
+- [애플리케이션 디버깅](https://www.electronjs.org/docs/latest/tutorial/application-debugging)
+- [개발자 도구 확장 프로그램](https://www.electronjs.org/docs/latest/tutorial/devtools-extension)
+
+:::
+
+## 요약
+
+일렉트론 앱은 npm 패키지를 사용하여 설정됩니다. 일렉트론은 프로젝트의 `devDependencies`에 설치되어야 하며 `package.json` 파일의 스크립트를 사용하여 개발 모드에서 실행할 수 있습니다.
+
+실행 파일은 `package.json`의 `main` 프로퍼티에 있는 자바스크립트 진입점을 실행합니다. 이 파일은 일렉트론의 **주 프로세스**를 제어합니다. 주 프로세스는 노드의 인스턴스를 실행하고 앱의 수명 주기, 기본 인터페이스 표시, 권한 있는 작업 수행, 렌더러 프로세스 관리를 담당합니다.
+
+**렌더러 프로세스**(또는 줄여서 렌더러)는 그래픽 콘텐츠 표시를 담당합니다. 웹 주소나 로컬 HTML 파일을 지정하여 웹 페이지를 렌더러에 로드할 수 있습니다. 렌더러는 일반 웹 페이지와 매우 유사하게 작동하며, 웹 페이지와 동일한 웹 API에 접근할 수 있습니다.
+
+다음 장에서는 권한 있는 API로 렌더러 프로세스를 보강하는 방법과 프로세스 간에 통신하는 방법을 배울 것입니다.
