@@ -8,7 +8,7 @@ sidebar_position: 2
 
 예를 들어 미국에서 편지와 소포를 보낼 때 필요한 필드를 묘사하는 `BasicAddress` 타입이 있다고 가정해 보겠습니다.
 
-```ts
+```ts twoslash
 interface BasicAddress {
   name?: string;
   street: string;
@@ -20,10 +20,11 @@ interface BasicAddress {
 
 일부 상황에서는 이것만으로 충분하지만 주소에 연결된 단위 번호가 존재하는 경우가 있습니다. 그러면 다음과 같이 `AddressWithUnit`으로 묘사할 수 있습니다.
 
-```ts {2}
+```ts twoslash
 interface AddressWithUnit {
   name?: string;
   unit: string;
+//^^^^^^^^^^^^^
   street: string;
   city: string;
   country: string;
@@ -35,7 +36,7 @@ interface AddressWithUnit {
 
 대신 다음과 같이 기존 `BasicAddress` 타입을 확장하고 `AddressWithUnit`만의 새 필드를 추가할 수 있습니다.
 
-```ts
+```ts twoslash
 interface BasicAddress {
   name?: string;
   street: string;
@@ -55,7 +56,7 @@ interface AddressWithUnit extends BasicAddress {
 
 `interface`는 복수의 타입에서 확장할 수도 있습니다.
 
-```ts
+```ts twoslash
 interface Colorful {
   color: string;
 }
