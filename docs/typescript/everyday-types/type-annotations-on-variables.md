@@ -6,8 +6,9 @@ sidebar_position: 4
 
 `const`, `var`, `let`을 사용하여 변수를 선언할 때, 선택적으로 타입 주석을 추가하여 변수 타입을 명시적으로 지정할 수 있습니다.
 
-```ts
+```ts twoslash
 let myName: string = "Alice";
+//        ^^^^^^^^ Type annotation
 ```
 
 :::caution
@@ -18,7 +19,7 @@ let myName: string = "Alice";
 
 그러나 대부분의 경우 이것은 필요하지 않습니다. 타입스크립트는 가능하다면 코드의 타입을 자동으로 **추론**하려고 합니다. 예를 들어 변수의 타입은 초기화자(initializer)의 타입을 기반으로 추론됩니다.
 
-```ts
+```ts twoslash
 // 타입 주석이 필요하지 않습니다. myName은 string 타입으로 추론됩니다.
 let myName = "Alice";
 ```

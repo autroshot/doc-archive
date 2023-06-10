@@ -12,7 +12,8 @@ sidebar_position: 7
 
 문자열이나 숫자를 받을 수 있는 함수를 작성해 보겠습니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
 function printId(id: number | string) {
   console.log("Your ID is: " + id);
 }
@@ -20,7 +21,7 @@ function printId(id: number | string) {
 printId(101);
 // 문제없습니다.
 printId("202");
-// 오류: Argument of type '{ myID: number; }' is not assignable to parameter of type 'string | number'.
+// 오류가 발생합니다.
 printId({ myID: 22342 });
 ```
 
@@ -30,10 +31,9 @@ printId({ myID: 22342 });
 
 타입스크립트는 합집합의 **모든** 멤버에 대해 유효한 경우에만 연산을 허용합니다. 예를 들어 합집합 `string | number`인 경우, `string`에서만 사용할 수 있는 메서드는 사용할 수 없습니다.
 
-```ts
+```ts twoslash
+// @errors: 2339
 function printId(id: number | string) {
-  // 오류: Property 'toUpperCase' does not exist on type 'string | number'.
-  //   Property 'toUpperCase' does not exist on type 'number'.
   console.log(id.toUpperCase());
 }
 ```
@@ -42,7 +42,7 @@ function printId(id: number | string) {
 
 예를 들어 타입스크립트는 `typeof` 값으로 `"string"`을 갖는 것은 `string`뿐이라는 것을 알고 있습니다.
 
-```ts
+```ts twoslash
 function printId(id: number | string) {
   if (typeof id === "string") {
     // 이 분기에서 id는 string 타입입니다.
@@ -56,7 +56,7 @@ function printId(id: number | string) {
 
 또 다른 예는 `Array.isArray`와 같은 함수를 사용하는 것입니다.
 
-```ts
+```ts twoslash
 function welcomePeople(x: string[] | string) {
   if (Array.isArray(x)) {
     // 여기서 x는 'string[]'입니다.
@@ -72,7 +72,7 @@ function welcomePeople(x: string[] | string) {
 
 때로는 모든 멤버가 공통 요소를 가진 합집합이 있을 수 있습니다. 예를 들어 배열과 문자열에는 모두 `slice` 메서드가 있습니다. 합집합의 모든 멤버가 공통 프로퍼티를 가지고 있는 경우, 좁히기를 사용하지 않고 해당 프로퍼티를 사용할 수 있습니다.
 
-```ts
+```ts twoslash
 // 반환 타입은 'number[] | string'으로 추론됩니다.
 function getFirstThree(x: number[] | string) {
   return x.slice(0, 3);

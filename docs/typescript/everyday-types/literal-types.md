@@ -8,30 +8,29 @@ sidebar_position: 10
 
 이에 대해 생각하는 한 가지 방법은 자바스크립트에서 변수를 선언하는 다양한 방법을 고려하는 것입니다. `var`와 `let` 모두 변수 내부의 내용을 변경할 수 있지만, `const`는 변경할 수 없습니다. 이는 타입스크립트가 리터럴를 위한 타입을 생성하는 방식에 반영됩니다.
 
-```ts
+```ts twoslash
 let changingString = "Hello World";
 changingString = "Olá Mundo";
 // changingString은 가능한 모든 문자열을 나타낼 수 있습니다.
 // 따라서 타입스크립트는 타입 시스템에서 문자열을 묘사합니다.
-// let changingString: string
 changingString;
+// ^?
 
 const constantString = "Hello World";
 // constantString은 가능한 문자열이 하나입니다.
 // 따라서 리터럴 타입을 표현합니다.
-// const constantString: "Hello World"
 constantString;
+// ^?
 ```
 
 리터럴 타입 자체는 그다지 가치가 없습니다.
 
-```ts
+```ts twoslash
+// @errors: 2322
 let x: "hello" = "hello";
 // 문제없습니다.
 x = "hello";
 // ...
-
-// 오류: Type '"howdy"' is not assignable to type '"hello"'.
 x = "howdy";
 ```
 
@@ -39,18 +38,18 @@ x = "howdy";
 
 그러나 리터럴을 합집합으로 **결합**하면 훨씬 더 유용한 개념을 표현할 수 있습니다. 예를 들어 특정 값의 집합만 허용하는 함수를 표현할 수 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
 function printText(s: string, alignment: "left" | "right" | "center") {
   // ...
 }
 printText("Hello, world", "left");
-// 오류: Argument of type '"centre"' is not assignable to parameter of type '"left" | "right" | "center"'.
 printText("G'day, mate", "centre");
 ```
 
 숫자 리터럴 타입도 동일한 방식으로 작동합니다.
 
-```ts
+```ts twoslash
 function compare(a: string, b: string): -1 | 0 | 1 {
   return a === b ? 0 : a > b ? 1 : -1;
 }
@@ -58,7 +57,8 @@ function compare(a: string, b: string): -1 | 0 | 1 {
 
 물론 리터럴을 리터럴이 아닌 타입과 결합할 수도 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
 interface Options {
   width: number;
 }
@@ -67,7 +67,6 @@ function configure(x: Options | "auto") {
 }
 configure({ width: 100 });
 configure("auto");
-// 오류: Argument of type '"automatic"' is not assignable to parameter of type 'Options | "auto"'.
 configure("automatic");
 ```
 
@@ -77,7 +76,9 @@ configure("automatic");
 
 변수를 객체로 초기화하면, 타입스크립트는 해당 객체의 프로퍼티가 나중에 값이 변경될 수 있다고 가정합니다. 예를 들어 다음 코드를 작성했다고 가정해 보겠습니다.
 
-```ts
+```ts twoslash
+declare const someCondition: boolean;
+// ---cut---
 const obj = { counter: 0 };
 if (someCondition) {
   obj.counter = 1;
@@ -88,9 +89,11 @@ if (someCondition) {
 
 문자열에도 동일하게 적용됩니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
+declare function handleRequest(url: string, method: "GET" | "POST"): void;
+
 const req = { url: "https://example.com", method: "GET" };
-// 오류: Argument of type 'string' is not assignable to parameter of type '"GET" | "POST"'.
 handleRequest(req.url, req.method);
 ```
 
@@ -100,7 +103,9 @@ handleRequest(req.url, req.method);
 
 1. 두 위치 중 하나에 타입 단언을 추가하여 추론을 변경할 수 있습니다.
 
-   ```ts
+   ```ts twoslash
+   declare function handleRequest(url: string, method: "GET" | "POST"): void;
+   // ---cut---
    // 변경 1
    const req = { url: "https://example.com", method: "GET" as "GET" };
    // 변경 2
@@ -111,7 +116,9 @@ handleRequest(req.url, req.method);
 
 2. `as const`를 사용하여 전체 객체를 타입 리터럴로 변환할 수 있습니다.
 
-   ```ts
+   ```ts twoslash
+   declare function handleRequest(url: string, method: "GET" | "POST"): void;
+   // ---cut---
    const req = { url: "https://example.com", method: "GET" } as const;
    handleRequest(req.url, req.method);
    ```

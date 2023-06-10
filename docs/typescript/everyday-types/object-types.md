@@ -8,9 +8,10 @@ sidebar_position: 6
 
 예를 들어 다음은 점과 같은 객체를 받는 함수 입니다.
 
-```ts
+```ts twoslash
 // 매개변수의 타입 주석은 객체 타입입니다.
 function printCoord(pt: { x: number; y: number }) {
+  //                      ^^^^^^^^^^^^^^^^^^^^^^^^
   console.log("The coordinate's x value is " + pt.x);
   console.log("The coordinate's y value is " + pt.y);
 }
@@ -25,7 +26,7 @@ printCoord({ x: 3, y: 7 });
 
 객체 타입은 프로퍼티의 일부 또는 전체를 **선택 사항**으로 지정할 수 있습니다. 프로퍼티 이름 뒤에 `?`를 추가하면 됩니다.
 
-```ts
+```ts twoslash
 function printName(obj: { first: string; last?: string }) {
   // ...
 }
@@ -36,10 +37,10 @@ printName({ first: "Alice", last: "Alisson" });
 
 자바스크립트에서 존재하지 않는 프로퍼티에 접근하면, 런타임 오류가 발생하는 것이 아니라 `undefined` 값을 얻게 됩니다. 따라서 선택적 프로퍼티에서 **읽기**를 할 때는 `undefined`를 먼저 확인해야 합니다.
 
-```ts
+```ts twoslash
+// @errors: 2532
 function printName(obj: { first: string; last?: string }) {
   // 오류 - 'obj.last'가 제공되지 않으면 충돌이 발생할 수 있습니다!
-  // 오류: 'obj.last' is possibly 'undefined'.
   console.log(obj.last.toUpperCase());
   if (obj.last !== undefined) {
     // 문제없습니다.

@@ -10,7 +10,9 @@ sidebar_position: 12
 
 ES2020부터는 자바스크립트에서 매우 큰 정수에 사용되는 원시값, `BigInt`가 있습니다.
 
-```ts
+```ts twoslash
+// @target: es2020
+
 // BigInt 함수로 bigint를 생성합니다.
 const oneHundred: bigint = BigInt(100);
 
@@ -24,11 +26,11 @@ const anotherHundred: bigint = 100n;
 
 자바스크립트에는 `Symbol()` 함수를 통해 전역적으로 고유한 참조를 만드는 데 사용되는 원시값이 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2367
 const firstName = Symbol("name");
 const secondName = Symbol("name");
 
-// 오류: This comparison appears to be unintentional because the types 'typeof firstName' and 'typeof secondName' have no overlap.
 if (firstName === secondName) {
   // 절대로 실행되지 않습니다.
 }
