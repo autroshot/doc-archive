@@ -14,7 +14,7 @@ sidebar_position: 7
 
 자바스크립트에서 `this`를 처리하는 방식은 정말 특이합니다.
 
-```ts
+```ts twoslash
 class MyClass {
   name = "MyClass";
   getName() {
@@ -45,7 +45,7 @@ console.log(obj.getName());
 
 `this` 컨텍스트를 자주 잃는 함수가 있다면, 메서드 정의 대신 화살표 함수 프로퍼티를 사용하는 것이 좋습니다.
 
-```ts
+```ts twoslash
 class MyClass {
   name = "MyClass";
   getName = () => {
@@ -70,7 +70,9 @@ console.log(g());
 
 다음 매개변수는 컴파일 중에 지워집니다.
 
-```ts
+```ts twoslash
+type SomeType = any;
+// ---cut---
 // this 매개변수가 있는 타입스크립트 입력
 function fn(this: SomeType, x: number) {
   /* ... */
@@ -86,7 +88,8 @@ function fn(x) {
 
 타입스크립트는 `this` 매개변수로 함수 호출이 올바른 컨텍스트에서 수행되는지 확인합니다. 화살표 함수를 사용하는 대신 메서드 정의에 `this` 매개변수를 추가하여 메서드가 올바르게 호출되도록 정적으로 적용할 수 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2684
 class MyClass {
   name = "MyClass";
   getName(this: MyClass) {
@@ -99,7 +102,6 @@ c.getName();
  
 // 오류, 충돌합니다.
 const g = c.getName;
-// 오류: The 'this' context of type 'void' is not assignable to method's 'this' of type 'MyClass'.
 console.log(g());
 ```
 

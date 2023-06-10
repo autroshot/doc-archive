@@ -10,19 +10,18 @@ sidebar_position: 2
 
 `implements`절을 사용하여 클래스가 특정 `interface`를 충족하는지 확인할 수 있습니다. 클래스가 올바르게 구현되지 않으면 오류가 발생합니다.
 
-```ts
+```ts twoslash
+// @errors: 2420
 interface Pingable {
   ping(): void;
 }
- 
+
 class Sonar implements Pingable {
   ping() {
     console.log("ping!");
   }
 }
 
-// 오류: Class 'Ball' incorrectly implements interface 'Pingable'.
-//   Property 'ping' is missing in type 'Ball' but required in type 'Pingable'.
 class Ball implements Pingable {
   pong() {
     console.log("pong!");
@@ -36,16 +35,17 @@ class Ball implements Pingable {
 
 `implements`절은 클래스가 인터페이스 타입으로 취급될 수 있는지 확인할 뿐입니다. 클래스나 메서드의 타입을 **전혀** 변경하지 않습니다. `implements`절이 클래스 타입을 변경한다고 잘못 생각해서 오류가 많이 발생하곤 합니다.
 
-```ts
+```ts twoslash
+// @errors: 7006
 interface Checkable {
   check(name: string): boolean;
 }
  
 class NameChecker implements Checkable {
-  // 오류: Parameter 's' implicitly has an 'any' type.
   check(s) {
     // 여기서는 오류가 발생하지 않습니다.
     return s.toLowercse() === "ok";
+    //         ^?
   }
 }
 ```
@@ -54,7 +54,8 @@ class NameChecker implements Checkable {
 
 마찬가지로 선택적 프로퍼티를 사용하여 인터페이스를 구현해도 해당 프로퍼티가 생성되지 않습니다.
 
-```ts
+```ts twoslash
+// @errors: 2339
 interface A {
   x: number;
   y?: number;
@@ -63,7 +64,6 @@ class C implements A {
   x = 0;
 }
 const c = new C();
-// 오류: Property 'y' does not exist on type 'C'.
 c.y = 10;
 ```
 
@@ -77,7 +77,7 @@ c.y = 10;
 
 클래스는 기본 클래스에서 `extend`(확장)될 수 있습니다. 파생 클래스에는 기본 클래스의 모든 프로퍼티와 메서드가 있으며 추가 멤버도 정의합니다.
 
-```ts
+```ts twoslash
 class Animal {
   move() {
     console.log("Moving along!");
@@ -113,7 +113,7 @@ d.woof(3);
 
 예를 들어 다음은 메서드를 재정의하는 합법적인 방법입니다.
 
-```ts
+```ts twoslash
 class Base {
   greet() {
     console.log("Hello, world!");
@@ -137,7 +137,15 @@ d.greet("reader");
 
 파생 클래스가 기본 클래스의 계약을 따르는 것이 중요합니다. 기본 클래스 참조로 파생 클래스 인스턴스를 참조하는 것은 매우 일반적이며 항상 합법적입니다.
 
-```ts
+```ts twoslash
+class Base {
+  greet() {
+    console.log("Hello, world!");
+  }
+}
+class Derived extends Base {}
+const d = new Derived();
+// ---cut---
 // 기본 클래스 참조를 이용해 파생 인스턴스의 별칭을 지정합니다.
 const b: Base = d;
 // 문제없습니다.
@@ -146,7 +154,8 @@ b.greet();
 
 만약 `Derived`가 `Base`의 계약을 따르지 않는다면 어떻게 될까요?
 
-```ts
+```ts twoslash
+// @errors: 2416
 class Base {
   greet() {
     console.log("Hello, world!");
@@ -155,8 +164,6 @@ class Base {
  
 class Derived extends Base {
   // name 매개변수를 필수로 만들었습니다.
-  // 오류: Property 'greet' in type 'Derived' is not assignable to the same property in base type 'Base'.
-  //   Type '(name: string) => void' is not assignable to type '() => void'.
   greet(name: string) {
     console.log(`Hello, ${name.toUpperCase()}`);
   }
@@ -165,7 +172,12 @@ class Derived extends Base {
 
 오류를 무시하고 다음 코드를 컴파일하면 충돌이 발생합니다.
 
-```ts
+```ts twoslash
+declare class Base {
+  greet(): void;
+}
+declare class Derived extends Base {}
+// ---cut---
 const b: Base = new Derived();
 // name이 undefined이므로 충돌합니다.
 b.greet();
@@ -175,7 +187,7 @@ b.greet();
 
 `target >= ES2022` 또는 [`useDefineForClassFields`](https://www.typescriptlang.org/ko/tsconfig#useDefineForClassFields)가 `true`이면, 상위 클래스 생성자가 완료된 후에 클래스 필드가 초기화되어 상위 클래스에서 설정한 모든 값을 덮어씁니다. 이는 상속된 필드에 대해 더 정확한 타입을 다시 선언하려는 경우에만 문제가 될 수 있습니다. `declare`를 사용하여 런타임에서는 필드 선언이 없어야 함을 타입스크립트에 나타낼 수 있습니다.
 
-```ts
+```ts twoslash
 interface Animal {
   dateOfBirth: any;
 }
@@ -205,7 +217,7 @@ class DogHouse extends AnimalHouse {
 
 경우에 따라 자바스크립트 클래스가 초기화되는 순서가 예상과 다를 수 있습니다. 다음 코드를 살펴보겠습니다.
 
-```ts
+```ts twoslash
 class Base {
   name = "base";
   constructor() {
@@ -246,7 +258,7 @@ ES2015에서 객체를 반환하는 생성자는 암시적으로 `super(...)` �
 
 다음의 하위 클래스를 살펴보겠습니다.
 
-```ts
+```ts twoslash
 class MsgError extends Error {
   constructor(m: string) {
     super(m);
@@ -264,7 +276,7 @@ class MsgError extends Error {
 
 권장 사항으로, `super(...)` 호출 직후에 프로토타입을 수동으로 조정할 수 있습니다.
 
-```ts
+```ts twoslash
 class MsgError extends Error {
   constructor(m: string) {
     super(m);

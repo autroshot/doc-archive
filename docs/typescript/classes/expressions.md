@@ -12,7 +12,7 @@ sidebar_position: 10
 
 클래스 표현식은 클래스 선언과 매우 유사합니다. 유일하고 실질적인 차이점은 클래스 표현식에 이름이 필요하지 않다는 것입니다. 하지만 바인딩된 식별자를 통한 참조가 가능합니다.
 
-```ts
+```ts twoslash
 const someClass = class<Type> {
   content: Type;
   constructor(value: Type) {
@@ -20,6 +20,6 @@ const someClass = class<Type> {
   }
 };
 
-// const m: someClass<string>
 const m = new someClass("Hello, world");
+//    ^?
 ```

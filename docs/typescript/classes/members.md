@@ -6,7 +6,7 @@ sidebar_position: 1
 
 다음은 가장 기본적인 클래스인 빈 클래스입니다.
 
-```ts
+```ts twoslash
 class Point {}
 ```
 
@@ -16,7 +16,8 @@ class Point {}
 
 필드 선언은 클래스에 쓰기 가능한 공용 프로퍼티를 만듭니다.
 
-```ts
+```ts twoslash
+// @strictPropertyInitialization: false
 class Point {
   x: number;
   y: number;
@@ -31,7 +32,7 @@ pt.y = 0;
 
 필드는 **초깃값**을 가질 수 있습니다. 클래스가 인스턴스화되면 자동으로 해당 값으로 초기화됩니다.
 
-```ts
+```ts twoslash
 class Point {
   x = 0;
   y = 0;
@@ -44,9 +45,14 @@ console.log(`${pt.x}, ${pt.y}`);
 
 `const`, `let`, `var`과 마찬가지로 클래스 프로퍼티의 초깃값은 타입 추론에 사용됩니다.
 
-```ts
+```ts twoslash
+// @errors: 2322
+class Point {
+  x = 0;
+  y = 0;
+}
+// ---cut---
 const pt = new Point();
-// 오류: Type 'string' is not assignable to type 'number'.
 pt.x = "0";
 ```
 
@@ -54,14 +60,14 @@ pt.x = "0";
 
 [`strictPropertyInitialization`](https://www.typescriptlang.org/ko/tsconfig#strictPropertyInitialization) 설정은 생성자에서의 클래스 필드 초기화 여부를 제어합니다.
 
-```ts
+```ts twoslash
+// @errors: 2564
 class BadGreeter {
-  // 오류: Property 'name' has no initializer and is not definitely assigned in the constructor.
   name: string;
 }
 ```
 
-```ts
+```ts twoslash
 class GoodGreeter {
   name: string;
  
@@ -75,7 +81,7 @@ class GoodGreeter {
 
 생성자 이외의 수단을 통해 필드를 확실히 초기화하려는 경우 (예를 들어 외부 라이브러리가 클래스의 일부를 채우는 경우) **확정 할당 단언 연산자, `!`**를 사용할 수 있습니다.
 
-```ts
+```ts twoslash
 class OKGreeter {
   // 초기화되지 않았지만 오류가 발생하지 않습니다.
   name!: string;
@@ -86,23 +92,22 @@ class OKGreeter {
 
 필드에는 `readonly` 수정자가 붙을 수 있습니다. 이는 생성자 외부에서의 필드에 대한 할당을 막습니다.
 
-```ts
+```ts twoslash
+// @errors: 2540 2540
 class Greeter {
   readonly name: string = "world";
- 
+
   constructor(otherName?: string) {
     if (otherName !== undefined) {
       this.name = otherName;
     }
   }
- 
+
   err() {
-    // 오류: Cannot assign to 'name' because it is a read-only property.
     this.name = "not ok";
   }
 }
 const g = new Greeter();
-// 오류: Cannot assign to 'name' because it is a read-only property.
 g.name = "also not ok";
 ```
 
@@ -116,7 +121,7 @@ g.name = "also not ok";
 
 클래스 생성자는 함수와 매우 유사합니다. 타입 주석, 기본값, 다중 정의(overload)가 있는 매개변수를 추가할 수 있습니다.
 
-```ts
+```ts twoslash
 class Point {
   x: number;
   y: number;
@@ -129,7 +134,7 @@ class Point {
 }
 ```
 
-```ts
+```ts twoslash
 class Point {
   // 다중 정의
   constructor(x: number, y: string);
@@ -149,7 +154,8 @@ class Point {
 
 자바스크립트에서와 마찬가지로 기본 클래스가 있다면, `this.` 멤버를 사용하기 전에 생성자 본문에서 `super();`를 호출해야 합니다.
 
-```ts
+```ts twoslash
+// @errors: 17009
 class Base {
   k = 4;
 }
@@ -157,7 +163,6 @@ class Base {
 class Derived extends Base {
   constructor() {
     // ES5에서는 잘못된 값을 출력합니다. ES6에서는 예외가 발생합니다.
-    // 오류: 'super' must be called before accessing 'this' in the constructor of a derived class.
     console.log(this.k);
     super();
   }
@@ -176,7 +181,7 @@ class Derived extends Base {
 
 클래스의 함수 프로퍼티를 **메서드**라고 합니다. 함수와 생성자에서 사용하는 모든 타입 주석을 메서드에서도 사용할 수 있습니다.
 
-```ts
+```ts twoslash
 class Point {
   x = 10;
   y = 10;
@@ -192,7 +197,8 @@ class Point {
 
 메서드 본문 내에서는 여전히 `this.`를 통해 필드와 기타 메서드에 접근해야 합니다. 메서드 본문의 잘못된 이름은 항상 해당 스코프에 있는 것을 참조합니다.
 
-```ts
+```ts twoslash
+// @errors: 2322
 let x: number = 0;
  
 class C {
@@ -200,7 +206,6 @@ class C {
  
   m() {
     // 클래스 프로퍼티가 아니라 첫 줄의 x를 수정하려고 합니다.
-    // 오류: Type 'string' is not assignable to type 'number'.
     x = "world";
   }
 }
@@ -210,7 +215,7 @@ class C {
 
 클래스에서는 **접근자**를 사용할 수 있습니다.
 
-```ts
+```ts twoslash
 class C {
   _length = 0;
   get length() {
@@ -236,7 +241,7 @@ class C {
 
 [타입스크립트 4.3](https://devblogs.microsoft.com/typescript/announcing-typescript-4-3/)부터는 획득자와 설정자가 다른 타입을 가지는 것이 가능합니다.
 
-```ts
+```ts twoslash
 class Thing {
   _size = 0;
  
@@ -263,7 +268,7 @@ class Thing {
 
 클래스는 색인 시그니처를 선언할 수 있습니다. 이는 [객체 타입의 색인 시그니처](../object-types/property-modifiers.md#색인-시그니처)와 동일하게 작동합니다.
 
-```ts
+```ts twoslash
 class MyClass {
   [s: string]: boolean | ((s: string) => boolean);
  

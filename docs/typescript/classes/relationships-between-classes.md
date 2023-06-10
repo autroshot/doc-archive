@@ -8,7 +8,7 @@ sidebar_position: 12
 
 예를 들어 다음 두 클래스는 동일하기 때문에 서로 대신할 수 있습니다.
 
-```ts
+```ts twoslash
 class Point1 {
   x = 0;
   y = 0;
@@ -25,7 +25,8 @@ const p: Point1 = new Point2();
 
 마찬가지로 명시적 상속이 없더라도 클래스 간의 하위 타입 관계는 존재합니다.
 
-```ts
+```ts twoslash
+// @strict: false
 class Person {
   name: string;
   age: number;
@@ -45,7 +46,7 @@ const p: Person = new Employee();
 
 빈 클래스에는 멤버가 없습니다. 구조적 타입 시스템에서 멤버가 없는 타입은 일반적으로 다른 모든 것의 상위 타입입니다. 따라서 빈 클래스를 작성하면 (하지 마세요!) 빈 클래스의 자리를 모든 것이 대체할 수 있습니다.
 
-```ts
+```ts twoslash
 class Empty {}
  
 function fn(x: Empty) {

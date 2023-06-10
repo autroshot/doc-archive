@@ -12,7 +12,7 @@ sidebar_position: 4
 
 클래스에는 `static` 멤버가 있을 수 있습니다. 이 멤버는 클래스의 특정 인스턴스와 연결되지 않습니다. 클래스 생성자 객체 자체를 통해 접근할 수 있습니다.
 
-```ts
+```ts twoslash
 class MyClass {
   static x = 0;
   static printX() {
@@ -25,17 +25,17 @@ MyClass.printX();
 
 정적 멤버는 동일하게 `public`, `protected`, `private`와 같은 가시성 한정자를 사용할 수 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2341
 class MyClass {
   private static x = 0;
 }
-// 오류: Property 'x' is private and only accessible within class 'MyClass'.
 console.log(MyClass.x);
 ```
 
 정적 멤버도 상속됩니다.
 
-```ts
+```ts twoslash
 class Base {
   static getGreeting() {
     return "Hello world";
@@ -50,9 +50,9 @@ class Derived extends Base {
 
 일반적으로 `Function` 프로토타입에서 프토퍼티를 덮어쓰는 것은 안전하지 않고 가능하지 않습니다. 클래스 자체가 `new`로 호출할 수 있는 함수이기 때문에 특정 `static` 이름은 사용할 수 없습니다. `name`, `length`, `call`과 같은 함수 프로퍼티는 `static` 멤버로 정의할 수 없습니다.
 
-```ts
+```ts twoslash
+// @errors: 2699
 class S {
-  // 오류: Static property 'name' conflicts with built-in property 'Function.name' of constructor function 'S'.
   static name = "S!";
 }
 ```
@@ -65,7 +65,7 @@ class S {
 
 예를 들어 타입스크립트에는 정적 클래스 구문이 필요하지 않습니다. 일반 객체(또는 최상위 함수)도 같은 작업을 수행할 수 있기 때문입니다.
 
-```ts
+```ts twoslash
 // 불필요한 정적 클래스
 class MyStaticClass {
   static doSomething() {}
