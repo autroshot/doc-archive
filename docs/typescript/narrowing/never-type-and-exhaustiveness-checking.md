@@ -12,7 +12,17 @@ sidebar_position: 4
 
 예를 들어 `getArea` 함수의 `default`에서 `never`에 `shape`를 할당하는 코드(오류가 발생함)를 작성할 수 있습니다. 해당 코드는 모든 가능한 케이스가 처리되지 않았을 때 실행됩니다.
 
-```ts
+```ts twoslash
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+// ---cut---
 type Shape = Circle | Square;
 
 function getArea(shape: Shape) {
@@ -30,7 +40,18 @@ function getArea(shape: Shape) {
 
 다음과 같이 새 요소를 `Shape` 합집합에 추가하면 타입스크립트 오류가 발생합니다.
 
-```ts
+```ts twoslash
+// @errors: 2322
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+// ---cut---
 interface Triangle {
   kind: "triangle";
   sideLength: number;
@@ -45,7 +66,6 @@ function getArea(shape: Shape) {
     case "square":
       return shape.sideLength ** 2;
     default:
-      // 오류: Type 'Triangle' is not assignable to type 'never'.
       const _exhaustiveCheck: never = shape;
       return _exhaustiveCheck;
   }

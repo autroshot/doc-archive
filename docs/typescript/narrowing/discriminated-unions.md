@@ -10,7 +10,7 @@ sidebar_position: 3
 
 다음은 `Shape`을 정의하는 첫 번째 시도입니다.
 
-```ts
+```ts twoslash
 interface Shape {
   kind: "circle" | "square";
   radius?: number;
@@ -20,10 +20,17 @@ interface Shape {
 
 문자열 리터럴 타입 `"circle"`과 `"square"`의 합집합을 사용해 모양을 원형으로 처리해야 하는지, 사각형으로 처리해야 하는지 알려줍니다. `string` 대신 `"circle" | "square"`를 사용해 철자 오류 문제를 방지할 수 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2367
+interface Shape {
+  kind: "circle" | "square";
+  radius?: number;
+  sideLength?: number;
+}
+
+// ---cut---
 function handleShape(shape: Shape) {
-  // 철자가 틀렸습니다.
-  // 오류: This condition will always return 'false' since the types '"circle" | "square"' and '"rect"' have no overlap.
+  // 이런!
   if (shape.kind === "rect") {
     // ...
   }
@@ -34,9 +41,16 @@ function handleShape(shape: Shape) {
 
 먼저 원을 처리해 보겠습니다.
 
-```ts
+```ts twoslash
+// @errors: 2532 18048
+interface Shape {
+  kind: "circle" | "square";
+  radius?: number;
+  sideLength?: number;
+}
+
+// ---cut---
 function getArea(shape: Shape) {
-  // 오류: Object is possibly 'undefined'.
   return Math.PI * shape.radius ** 2;
 }
 ```
@@ -45,10 +59,17 @@ function getArea(shape: Shape) {
 
 그렇다면 `kind` 프로퍼티에 적절한 검사를 수행하면 어떨까요?
 
-```ts
+```ts twoslash
+// @errors: 2532 18048
+interface Shape {
+  kind: "circle" | "square";
+  radius?: number;
+  sideLength?: number;
+}
+
+// ---cut---
 function getArea(shape: Shape) {
   if (shape.kind === "circle") {
-    // 오류: Object is possibly 'undefined'.
     return Math.PI * shape.radius ** 2;
   }
 }
@@ -58,7 +79,14 @@ function getArea(shape: Shape) {
 
 `null`이 아니라는 단언(`shape.radius` 뒤에 `!`)을 이용해 `radius`가 분명 존재한다고 알려주는 건 어떨까요?
 
-```ts
+```ts twoslash
+interface Shape {
+  kind: "circle" | "square";
+  radius?: number;
+  sideLength?: number;
+}
+
+// ---cut---
 function getArea(shape: Shape) {
   if (shape.kind === "circle") {
     return Math.PI * shape.radius! ** 2;
@@ -72,7 +100,7 @@ function getArea(shape: Shape) {
 
 이를 염두에 두고 `Shape`를 다시 정의해 보겠습니다.
 
-```ts
+```ts twoslash
 interface Circle {
   kind: "circle";
   radius: number;
@@ -90,9 +118,22 @@ type Shape = Circle | Square;
 
 `Shape`의 `radius`에 접근을 시도하면 어떤 일이 생기는지 보겠습니다.
 
-```ts
+```ts twoslash
+// @errors: 2339
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+
+type Shape = Circle | Square;
+
+// ---cut---
 function getArea(shape: Shape) {
-  // 오류: Property 'radius' does not exist on type 'Shape'.
   return Math.PI * shape.radius ** 2;
 }
 ```
@@ -101,16 +142,29 @@ function getArea(shape: Shape) {
 
 만약 `kind` 프로퍼티를 다시 확인하면 어떨까요?
 
-```ts
+```ts twoslash
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+
+type Shape = Circle | Square;
+
+// ---cut---
 function getArea(shape: Shape) {
-  // (parameter) shape: Circle
   if (shape.kind === "circle") {
     return Math.PI * shape.radius ** 2;
+    //               ^?
   }
 }
 ```
 
-오류가 사라졌습니다. 합집합의 모든 타입에 리터럴 타입의 공통 프로퍼티가 존재한다면, 타입스크립트는 이를 **구별되는 합집합**으로 간주하고 합집합의 범위를 좁힐 수 있습니다.
+오류가 사라졌습니다! 합집합의 모든 타입에 리터럴 타입의 공통 프로퍼티가 존재한다면, 타입스크립트는 이를 **구별되는 합집합**으로 간주하고 합집합의 범위를 좁힐 수 있습니다.
 
 예시에서는 `kind`가 공통 프로퍼티입니다. `kind`는 `Shape`의 **구별되는** 프로퍼티입니다.
 
@@ -118,15 +172,28 @@ function getArea(shape: Shape) {
 
 `switch`문에서도 동일한 검사가 작동합니다. 이제 `null`이 아니라는 단언(`!`) 같은 성가신 코드 없이 완전한 `getArea`을 작성할 수 있습니다.
 
-```ts
+```ts twoslash
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+
+type Shape = Circle | Square;
+
+// ---cut---
 function getArea(shape: Shape) {
   switch (shape.kind) {
     case "circle":
-      // (parameter) shape: Circle
       return Math.PI * shape.radius ** 2;
+    //                 ^?
     case "square":
-      // (parameter) shape: Square
       return shape.sideLength ** 2;
+    //       ^?
   }
 }
 ```

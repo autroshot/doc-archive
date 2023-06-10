@@ -2,7 +2,7 @@
 
 `padLeft`라는 함수가 있다고 가정해 보겠습니다.
 
-```ts
+```ts twoslash
 function padLeft(padding: number | string, input: string): string {
   throw new Error("Not implemented yet!");
 }
@@ -12,10 +12,9 @@ function padLeft(padding: number | string, input: string): string {
 
 `padding`에 `number`를 건네줄 때의 논리를 구현해 보겠습니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
 function padLeft(padding: number | string, input: string) {
-  // 오류: Argument of type 'string | number' is not assignable to parameter of type 'number'.
-  //   Type 'string' is not assignable to type 'number'.
   return " ".repeat(padding) + input;
 }
 ```
@@ -24,7 +23,7 @@ function padLeft(padding: number | string, input: string) {
 
 이제 해당 부분을 구현해 보겠습니다.
 
-```ts
+```ts twoslash
 function padLeft(padding: number | string, input: string) {
   if (typeof padding === "number") {
     return " ".repeat(padding) + input;
@@ -39,14 +38,14 @@ function padLeft(padding: number | string, input: string) {
 
 타입스크립트는 `if`문에서 `typeof padding === "number"`를 **타입 가드(type guard)**라는 특별한 코드로 이해합니다. 해당 위치에서 가능한 구체적인 타입을 얻을 수 있는 실행 경로를 찾습니다. 이러한 특별 검사(타입 가드), 할당, 그리고 타입을 선언된 것보다 구체적인 타입으로 정제하는 과정을 **좁히기(narrowing)**라고 부릅니다. 많은 편집기에서 타입이 변경되는 과정을 관찰할 수 있습니다.
 
-```ts
+```ts twoslash
 function padLeft(padding: number | string, input: string) {
   if (typeof padding === "number") {
-    // (parameter) padding: number
     return " ".repeat(padding) + input;
+    //                ^?
   }
-  // (parameter) padding: string
   return padding + input;
+  //     ^?
 }
 ```
 
