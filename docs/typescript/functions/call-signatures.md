@@ -8,7 +8,7 @@ sidebar_position: 2
 
 프로퍼티가 있고 호출 가능한 것을 묘사하려면 다음과 같이 객체 타입으로 **호출 시그니처**를 작성할 수 있습니다.
 
-```ts
+```ts twoslash
 type DescribableFunction = {
   description: string;
   (someArg: number): boolean;

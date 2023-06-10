@@ -6,7 +6,7 @@ sidebar_position: 1
 
 함수를 묘사하는 가장 간단한 방법은 **함수 타입 표현식**입니다. 이 타입은 구문적으로 화살표 함수와 유사합니다.
 
-```ts
+```ts twoslash
 function greeter(fn: (a: string) => void) {
   fn("Hello, World");
 }
@@ -28,7 +28,7 @@ greeter(printToConsole);
 
 물론 다음과 같이 타입 별칭을 사용하여 함수 타입의 이름을 지정할 수 있습니다.
 
-```ts
+```ts twoslash
 type GreetFunction = (a: string) => void;
 function greeter(fn: GreetFunction) {
   // ...

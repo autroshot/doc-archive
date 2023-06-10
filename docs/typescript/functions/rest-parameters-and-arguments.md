@@ -17,7 +17,7 @@ sidebar_position: 8
 
 나머지 매개변수는 다른 모든 매개변수 뒤에서 `...` 구문을 사용합니다.
 
-```ts
+```ts twoslash
 function multiply(n: number, ...m: number[]) {
   return m.map((x) => n * x);
 }
@@ -33,7 +33,7 @@ const a = multiply(10, 1, 2, 3, 4);
 
 예를 들어 배열의 `push` 메서드는 임의 개수의 인수를 사용합니다.
 
-```ts
+```ts twoslash
 const arr1 = [1, 2, 3];
 const arr2 = [4, 5, 6];
 arr1.push(...arr2);
@@ -41,7 +41,8 @@ arr1.push(...arr2);
 
 일반적으로 타입스크립트는 배열이 불변이라고 가정하지 않습니다. 이로 인해 다음과 같이 놀라운 일이 생길 수 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2556
 // 추론된 타입은 'number[]'입니다. 즉 0개 이상의 숫자가 포함된 배열입니다.
 // 특별히 두 개의 숫자가 포함된 배열이 아닙니다.
 const args = [8, 5];
@@ -51,7 +52,7 @@ const angle = Math.atan2(...args);
 
 이 상황에 대한 일반적이고 가장 간단한 솔루션은 `const` 컨텍스트입니다.
 
-```ts
+```ts twoslash
 // 길이가 2인 튜플로 추론됩니다.
 const args = [8, 5] as const;
 // 문제없습니다.

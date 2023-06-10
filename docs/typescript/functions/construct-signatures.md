@@ -8,7 +8,9 @@ sidebar_position: 3
 
 다음과 같이 호출 시그니처 앞에 `new` 키워드를 추가하여 **생성 시그니처**를 작성할 수 있습니다.
 
-```ts
+```ts twoslash
+type SomeObject = any;
+// ---cut---
 type SomeConstructor = {
   new (s: string): SomeObject;
 };
@@ -19,7 +21,7 @@ function fn(ctor: SomeConstructor) {
 
 자바스크립트의 `Date` 객체와 같은 일부 객체는 `new` 유무와 관계없이 호출 가능합니다. 동일한 타입의 호출과 생성 시그니처를 임의로 결합할 수 있습니다.
 
-```ts
+```ts twoslash
 interface CallOrConstruct {
   new (s: string): Date;
   (n?: number): number;

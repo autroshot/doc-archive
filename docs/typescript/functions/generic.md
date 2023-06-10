@@ -8,7 +8,7 @@ sidebar_position: 4
 
 예를 들어 배열의 첫 번째 요소를 반환하는 함수가 있다고 가정해 보겠습니다.
 
-```ts
+```ts twoslash
 function firstElement(arr: any[]) {
   return arr[0];
 }
@@ -20,7 +20,7 @@ function firstElement(arr: any[]) {
 
 다음과 같이 함수 시그니처에서 **타입 매개변수**를 선언하면 됩니다.
 
-```ts
+```ts twoslash
 function firstElement<Type>(arr: Type[]): Type | undefined {
   return arr[0];
 }
@@ -28,7 +28,9 @@ function firstElement<Type>(arr: Type[]): Type | undefined {
 
 함수에 타입 매개변수 `Type`를 추가하고 이를 두 곳에서 사용함으로써 함수 입력(배열)과 출력(반환값) 사이에 링크를 만들었습니다. 이제 함수를 호출하면 더 구체적인 타입이 나옵니다.
 
-```ts
+```ts twoslash
+declare function firstElement<Type>(arr: Type[]): Type | undefined;
+// ---cut---
 // s의 타입은 string입니다.
 const s = firstElement(["a", "b", "c"]);
 // n의 타입은 number입니다.
@@ -43,7 +45,7 @@ const u = firstElement([]);
 
 복수의 타입 매개변수도 사용할 수 있습니다. 예를 들어 `map`의 독립 실행 버전은 다음과 같습니다.
 
-```ts
+```ts twoslash
 function map<Input, Output>(arr: Input[], func: (arg: Input) => Output): Output[] {
   return arr.map(func);
 }
@@ -61,7 +63,8 @@ const parsed = map(["1", "2", "3"], (n) => parseInt(n));
 
 두 값 중에서 더 긴 값을 반환하는 함수를 작성해 보겠습니다. 그러기 위해서는 숫자형인 `length` 프로퍼티가 필요합니다. `extends`를 사용하여 타입 매개변수를 해당 타입으로 제한합니다.
 
-```ts
+```ts twoslash
+// @errors: 2345 2322
 function longest<Type extends { length: number }>(a: Type, b: Type) {
   if (a.length >= b.length) {
     return a;
@@ -75,7 +78,6 @@ const longerArray = longest([1, 2], [1, 2, 3]);
 // longerString의 타입은 'alice' | 'bob'입니다.
 const longerString = longest("alice", "bob");
 // 오류! 숫자형에는 length 프로퍼티가 없습니다.
-// 오류: Argument of type 'number' is not assignable to parameter of type '{ length: number; }'.
 const notOK = longest(10, 100);
 ```
 
@@ -91,7 +93,8 @@ const notOK = longest(10, 100);
 
 다음은 제네릭 제약을 사용할 때 발생하는 일반적인 오류입니다.
 
-```ts
+```ts twoslash
+// @errors: 2322
 function minimumLength<Type extends { length: number }>(
   obj: Type,
   minimum: number
@@ -99,8 +102,6 @@ function minimumLength<Type extends { length: number }>(
   if (obj.length >= minimum) {
     return obj;
   } else {
-    // 오류: Type '{ length: number; }' is not assignable to type 'Type'.
-    //   '{ length: number; }' is assignable to the constraint of type 'Type', but 'Type' could be instantiated with a different subtype of constraint '{ length: number; }'.
     return { length: minimum };
   }
 }
@@ -110,7 +111,12 @@ function minimumLength<Type extends { length: number }>(
 
 위 코드에 문제가 없다면 다음과 같이 분명히 작동하지 않는 코드를 작성할 수 있게 됩니다.
 
-```ts
+```ts twoslash
+declare function minimumLength<Type extends { length: number }>(
+  obj: Type,
+  minimum: number
+): Type;
+// ---cut---
 // arr은 '{ length: 6 }' 값을 얻습니다.
 const arr = minimumLength([1, 2, 3], 6);
 // 여기서 충돌이 발생합니다.
@@ -124,7 +130,7 @@ console.log(arr.slice(0));
 
 예를 들어 두 배열을 결합하는 함수를 작성한다고 가정해 보겠습니다.
 
-```ts
+```ts twoslash
 function combine<Type>(arr1: Type[], arr2: Type[]): Type[] {
   return arr1.concat(arr2);
 }
@@ -132,14 +138,18 @@ function combine<Type>(arr1: Type[], arr2: Type[]): Type[] {
 
 일치하지 않는 배열로 이 함수를 호출하면 오류가 발생합니다.
 
-```ts
-// 오류: Type 'string' is not assignable to type 'number'.Type 'string' is not assignable to type 'number'.
+```ts twoslash
+// @errors: 2322
+declare function combine<Type>(arr1: Type[], arr2: Type[]): Type[];
+// ---cut---
 const arr = combine([1, 2, 3], ["hello"]);
 ```
 
 그러나 원한다면 `Type`을 수동으로 지정할 수 있습니다.
 
-```ts
+```ts twoslash
+declare function combine<Type>(arr1: Type[], arr2: Type[]): Type[];
+// ---cut---
 const arr = combine<string | number>([1, 2, 3], ["hello"]);
 ```
 
@@ -151,7 +161,7 @@ const arr = combine<string | number>([1, 2, 3], ["hello"]);
 
 다음은 유사하게 보이는 함수를 작성하는 두 가지 방법입니다.
 
-```ts
+```ts twoslash
 function firstElement1<Type>(arr: Type[]) {
   return arr[0];
 }
@@ -178,7 +188,7 @@ const b = firstElement2([1, 2, 3]);
 
 다음은 앞의 예시와 유사한, 함수의 또 다른 쌍입니다.
 
-```ts
+```ts twoslash
 function filter1<Type>(arr: Type[], func: (arg: Type) => boolean): Type[] {
   return arr.filter(func);
 }
@@ -203,7 +213,7 @@ function filter2<Type, Func extends (arg: Type) => boolean>(
 
 우리는 함수가 제네릭일 필요가 없다는 사실을 종종 잊곤 합니다.
 
-```ts
+```ts twoslash
 function greet<Str extends string>(s: Str) {
   console.log("Hello, " + s);
 }
@@ -213,7 +223,7 @@ greet("world");
 
 더 간단한 버전을 쉽게 작성할 수 있습니다.
 
-```ts
+```ts twoslash
 function greet(s: string) {
   console.log("Hello, " + s);
 }
