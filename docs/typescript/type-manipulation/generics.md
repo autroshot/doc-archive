@@ -14,7 +14,7 @@ C# 및 자바와 같은 언어에서 재사용 가능한 구성 요소를 만들
 
 제네릭이 없으면 `identity` 함수에 특정 타입을 지정해야 합니다.
 
-```ts
+```ts twoslash
 function identity(arg: number): number {
   return arg;
 }
@@ -22,7 +22,7 @@ function identity(arg: number): number {
 
 또는 `any` 타입을 사용하여 `identity` 함수를 묘사할 수 있습니다.
 
-```ts
+```ts twoslash
 function identity(arg: any): any {
   return arg;
 }
@@ -32,7 +32,7 @@ function identity(arg: any): any {
 
 대신 인수의 타입을 포착하여 반환되는 것을 나타낼 수 있는 방법이 필요합니다. 여기서는 값이 아닌 타입에 대해 작동하는 특별한 종류의 변수인 **타입 변수**를 사용합니다.
 
-```ts
+```ts twoslash
 function identity<Type>(arg: Type): Type {
   return arg;
 }
@@ -48,18 +48,26 @@ function identity<Type>(arg: Type): Type {
 
 첫 번째 방법은 타입 인수를 포함한 모든 인수를 함수에 전달하는 것입니다.
 
-```ts
-// let output: string
+```ts twoslash
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
+// ---cut---
 let output = identity<string>("myString");
+//       ^?
 ```
 
 여기서는 명시적으로 `()` 대신 인수 주위의 `<>`를 사용하여, `Type`을 `string`으로 설정합니다.
 
 두 번째 방법이 가장 일반적일 것입니다. 여기서는 **타입 인수 추론**을 사용합니다. 즉, 전달하는 인수의 타입에 따라 컴파일러가 자동으로 `Type` 값을 설정하기를 원합니다.
 
-```ts
-// let output: string
+```ts twoslash
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
+// ---cut---
 let output = identity("myString");
+//       ^?
 ```
 
 꺾쇠 괄호(`<>`) 안에 타입을 명시적으로 전달할 필요가 없다는 점을 유의하세요. 컴파일러는 단지 `"myString"` 값을 보고 `Type`을 해당 타입으로 설정했습니다.
@@ -72,7 +80,7 @@ let output = identity("myString");
 
 이전의 `identity` 함수를 살펴보겠습니다.
 
-```ts
+```ts twoslash
 function identity<Type>(arg: Type): Type {
   return arg;
 }
@@ -80,9 +88,9 @@ function identity<Type>(arg: Type): Type {
 
 호출할 때마다 `arg` 인수의 길이도 콘솔에 기록하려면 어떻게 해야 할까요? 이렇게 작성하고 싶을지도 모릅니다.
 
-```ts
+```ts twoslash
+// @errors: 2339
 function loggingIdentity<Type>(arg: Type): Type {
-  // 오류: Property 'length' does not exist on type 'Type'.
   console.log(arg.length);
   return arg;
 }
@@ -92,7 +100,7 @@ function loggingIdentity<Type>(arg: Type): Type {
 
 이 함수는 실제로 `Type`이 아닌 `Type`의 배열에서 작동하도록 설계되었다고 가정해 보겠습니다. 배열로 작업하고 있으므로 `.length` 멤버를 사용할 수 있어야 합니다. 다른 타입의 배열을 만드는 방식으로 이를 묘사할 수 있습니다.
 
-```ts
+```ts twoslash
 function loggingIdentity<Type>(arg: Type[]): Type[] {
   console.log(arg.length);
   return arg;
@@ -103,7 +111,7 @@ function loggingIdentity<Type>(arg: Type[]): Type[] {
 
 또는 예시를 다음과 같이 작성할 수 있습니다.
 
-```ts
+```ts twoslash
 function loggingIdentity<Type>(arg: Array<Type>): Array<Type> {
   console.log(arg.length); // 배열에는 '.length'가 있으므로 더 이상 오류가 발생하지 않습니다.
   return arg;
@@ -118,7 +126,7 @@ function loggingIdentity<Type>(arg: Array<Type>): Array<Type> {
 
 제네릭 함수의 타입은 제네릭이 아닌 함수의 타입과 비슷하며, 함수 선언과 마찬가지로 타입 매개변수가 먼저 나열됩니다.
 
-```ts
+```ts twoslash
 function identity<Type>(arg: Type): Type {
   return arg;
 }
@@ -128,7 +136,7 @@ let myIdentity: <Type>(arg: Type) => Type = identity;
 
 타입 변수의 수와 타입 변수가 사용되는 방식이 일치하는 한, 타입의 제네릭 타입 매개변수에 다른 이름을 사용할 수도 있습니다.
 
-```ts
+```ts twoslash
 function identity<Type>(arg: Type): Type {
   return arg;
 }
@@ -138,7 +146,7 @@ let myIdentity: <Input>(arg: Input) => Input = identity;
 
 객체 리터럴 타입의 호출 시그니처로 제네릭 타입을 작성할 수도 있습니다.
 
-```ts
+```ts twoslash
 function identity<Type>(arg: Type): Type {
   return arg;
 }
@@ -148,7 +156,7 @@ let myIdentity: { <Type>(arg: Type): Type } = identity;
 
 이제 첫 번째 제네릭 인터페이스를 작성해 보겠습니다. 이전 예시에서 객체 리터럴을 가져와 인터페이스로 옮겨 보겠습니다.
 
-```ts
+```ts twoslash
 interface GenericIdentityFn {
   <Type>(arg: Type): Type;
 }
@@ -162,7 +170,7 @@ let myIdentity: GenericIdentityFn = identity;
 
 유사한 예시에서 제네릭 매개변수를 전체 인터페이스의 매개변수로 옮기고 싶을 수 있습니다. 이를 통해 어떤 타입(들)이 제네릭인지 확인할 수 있습니다. (예: `Dictionary`가 아닌 `Dictionary<string>`) 이렇게 하면 인터페이스의 다른 모든 멤버가 타입 매개변수를 볼 수 있습니다.
 
-```ts
+```ts twoslash
 interface GenericIdentityFn<Type> {
   (arg: Type): Type;
 }
@@ -182,12 +190,13 @@ let myIdentity: GenericIdentityFn<number> = identity;
 
 제네릭 클래스의 모양은 제네릭 인터페이스와 비슷합니다. 제네릭 클래스에는 클래스 이름 뒤에 오는 꺾쇠 괄호(`<>`) 안에 제네릭 타입 매개변수 목록이 있습니다.
 
-```ts
+```ts twoslash
+// @strict: false
 class GenericNumber<NumType> {
   zeroValue: NumType;
   add: (x: NumType, y: NumType) => NumType;
 }
- 
+
 let myGenericNumber = new GenericNumber<number>();
 myGenericNumber.zeroValue = 0;
 myGenericNumber.add = function (x, y) {
@@ -197,13 +206,19 @@ myGenericNumber.add = function (x, y) {
 
 이는 `GenericNumber` 클래스의 이름 그대로 사용하는 것이지만, `number` 타입만 사용하도록 제한하는 것은 아무것도 없습니다. 대신 `string`이나 더 복잡한 객체를 사용할 수도 있습니다.
 
-```ts
+```ts twoslash
+// @strict: false
+class GenericNumber<NumType> {
+  zeroValue: NumType;
+  add: (x: NumType, y: NumType) => NumType;
+}
+// ---cut---
 let stringNumeric = new GenericNumber<string>();
 stringNumeric.zeroValue = "";
 stringNumeric.add = function (x, y) {
   return x + y;
 };
- 
+
 console.log(stringNumeric.add(stringNumeric.zeroValue, "test"));
 ```
 
@@ -215,9 +230,9 @@ console.log(stringNumeric.add(stringNumeric.zeroValue, "test"));
 
 앞의 예시를 기억한다면 타입 집합이 어떤 기능에 있는지 **어느 정도** 알고 있는 상태에서 해당 타입 집합에서 작동하는 제네릭 함수를 작성하고 싶을 수 있습니다. `loggingIdentity` 예시에서 `arg`의 `.length` 프로퍼티에 접근하고 싶었지만, 컴파일러는 모든 타입에 `.length` 프로퍼티가 있음을 증명할 수 없으므로 이러한 가정을 할 수 없다고 경고합니다.
 
-```ts
+```ts twoslash
+// @errors: 2339
 function loggingIdentity<Type>(arg: Type): Type {
-  // 오류: Property 'length' does not exist on type 'Type'.
   console.log(arg.length);
   return arg;
 }
@@ -227,7 +242,7 @@ function loggingIdentity<Type>(arg: Type): Type {
 
 이를 위해 제약 조건을 설명하는 인터페이스를 만듭니다. 여기서는 단일 `.length` 프로퍼티가 있는 인터페이스를 만든 다음 이 인터페이스와 `extends` 키워드를 사용하여 제약 조건을 나타냅니다.
 
-```ts
+```ts twoslash
 interface Lengthwise {
   length: number;
 }
@@ -240,14 +255,32 @@ function loggingIdentity<Type extends Lengthwise>(arg: Type): Type {
 
 제네릭 함수는 이제 제약이 있으므로 더 이상 모든 타입에서 작동하지 않습니다.
 
-```ts
-// Argument of type 'number' is not assignable to parameter of type 'Lengthwise'.
+```ts twoslash
+// @errors: 2345
+interface Lengthwise {
+  length: number;
+}
+
+function loggingIdentity<Type extends Lengthwise>(arg: Type): Type {
+  console.log(arg.length);
+  return arg;
+}
+// ---cut---
 loggingIdentity(3);
 ```
 
 대신 필요한 프로퍼티가 모두 있는 타입의 값을 전달해야 합니다.
 
-```ts
+```ts twoslash
+interface Lengthwise {
+  length: number;
+}
+
+function loggingIdentity<Type extends Lengthwise>(arg: Type): Type {
+  console.log(arg.length);
+  return arg;
+}
+// ---cut---
 loggingIdentity({ length: 10, value: 3 });
 ```
 
@@ -257,15 +290,15 @@ loggingIdentity({ length: 10, value: 3 });
 
 예를 들어 여기서는 이름이 지정된 객체에서 프로퍼티를 가져오려고 합니다. `obj`에 존재하지 않는 프로퍼티를 실수로 가져오지 않기 위해, 두 타입 사이에 제약 조건을 설정합니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
 function getProperty<Type, Key extends keyof Type>(obj: Type, key: Key) {
   return obj[key];
 }
- 
+
 let x = { a: 1, b: 2, c: 3, d: 4 };
- 
+
 getProperty(x, "a");
-// Argument of type '"m"' is not assignable to parameter of type '"a" | "b" | "c" | "d"'.
 getProperty(x, "m");
 ```
 
@@ -275,7 +308,7 @@ getProperty(x, "m");
 
 예를 들어 다음과 같습니다.
 
-```ts
+```ts twoslash
 function create<Type>(c: { new (): Type }): Type {
   return new c();
 }
@@ -283,31 +316,33 @@ function create<Type>(c: { new (): Type }): Type {
 
 고급 예시에서는 프로토타입 프로퍼티를 사용하여 생성자 함수와 클래스 타입의 인스턴스 측 사이의 관계를 추론하고 제한합니다.
 
-```ts
+```ts twoslash
+// @strict: false
 class BeeKeeper {
   hasMask: boolean = true;
 }
- 
+
 class ZooKeeper {
   nametag: string = "Mikle";
 }
- 
+
 class Animal {
   numLegs: number = 4;
 }
- 
+
 class Bee extends Animal {
+  numLegs = 6;
   keeper: BeeKeeper = new BeeKeeper();
 }
- 
+
 class Lion extends Animal {
   keeper: ZooKeeper = new ZooKeeper();
 }
- 
+
 function createInstance<A extends Animal>(c: new () => A): A {
   return new c();
 }
- 
+
 createInstance(Lion).keeper.nametag;
 createInstance(Bee).keeper.hasMask;
 ```

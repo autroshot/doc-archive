@@ -8,31 +8,34 @@ sidebar_position: 7
 
 템플릿 리터럴 타입은 [자바스크립트의 템플릿 리터럴 문자열](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals)과 구문이 동일하지만, 타입 위치에서 사용됩니다. 구체적인 리터럴 타입과 함께 사용하면, 템플릿 리터럴은 내용을 연결하여 새로운 문자열 리터럴 타입을 생성합니다.
 
-```ts
+```ts twoslash
 type World = "world";
 
-// type Greeting = "hello world"
 type Greeting = `hello ${World}`;
+//   ^?
 ```
 
 보간 위치에서 합집합을 사용하는 경우, 타입은 각 합집합 멤버가 나타낼 수 있는 가능한 모든 문자열 리터럴의 집합입니다.
 
-```ts
+```ts twoslash
 type EmailLocaleIDs = "welcome_email" | "email_heading";
 type FooterLocaleIDs = "footer_title" | "footer_sendoff";
 
-// type AllLocaleIDs = "welcome_email_id" | "email_heading_id" | "footer_title_id" | "footer_sendoff_id"
 type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
+//   ^?
 ```
 
 템플릿 리터럴의 보간된 각 위치에 대해 합집합이 교차 곱해집니다.
 
-```ts
+```ts twoslash
+type EmailLocaleIDs = "welcome_email" | "email_heading";
+type FooterLocaleIDs = "footer_title" | "footer_sendoff";
+// ---cut---
 type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
 type Lang = "en" | "ja" | "pt";
 
-// type LocaleMessageIDs = "en_welcome_email_id" | "en_email_heading_id" | "en_footer_title_id" | "en_footer_sendoff_id" | "ja_welcome_email_id" | "ja_email_heading_id" | "ja_footer_title_id" | "ja_footer_sendoff_id" | "pt_welcome_email_id" | "pt_email_heading_id" | "pt_footer_title_id" | "pt_footer_sendoff_id"
 type LocaleMessageIDs = `${Lang}_${AllLocaleIDs}`;
+//   ^?
 ```
 
 일반적으로 대규모 문자열 합집합에서는 사전(ahead-of-time, AOT) 생성을 사용하는 것이 좋지만, 소규모 사례에서는 템플릿 리터럴 타입이 유용합니다.
@@ -43,7 +46,8 @@ type LocaleMessageIDs = `${Lang}_${AllLocaleIDs}`;
 
 전달된 객체에 `on()`이라는 새 함수를 추가하는 함수(`makeWatchedObject`)를 생각해 보겠습니다. 자바스크립트에서의 호출은 `makeWatchedObject(baseObject)`와 같을 것입니다. 우리는 기본 객체가 다음과 같다고 상상할 수 있습니다.
 
-```ts
+```ts twoslash
+// @noErrors
 const passedObject = {
   firstName: "Saoirse",
   lastName: "Ronan",
@@ -62,7 +66,10 @@ const passedObject = {
 
 따라서 `on()`의 단순한 함수 시그니처는 `on(eventName: string, callBack: (newValue: any) => void)`일 수 있습니다. 그러나 앞의 설명에서 우리는 코드에 기록하고 싶은 중요한 타입 제약 조건을 식별했습니다. 템플릿 리터럴 타입을 사용하면 이러한 제약 조건을 코드로 가져올 수 있습니다.
 
-```ts
+```ts twoslash
+// @noErrors
+declare function makeWatchedObject(obj: any): any;
+// ---cut---
 const person = makeWatchedObject({
   firstName: "Saoirse",
   lastName: "Ronan",
@@ -78,7 +85,7 @@ person.on("firstNameChanged", (newValue) => {
 
 `on`은 `firstName`뿐만 아니라 `firstNameChanged` 이벤트를 수신합니다. 적격한 이벤트 이름 집합이 감시되는 객체의 프로퍼티 이름의 합집합에 의해 제한되고 끝에 `Changed`가 추가되게 하면, `on()`의 단순한 사양이 더 강력해질 수 있습니다. 우리는 자바스크립트에서 이러한 계산을 하는 것에 익숙합니다. (예: ``Object.keys(passedObject).map(x => `${x}Changed`)`` 하지만 **타입 시스템 내부**의 템플릿 리터럴은 문자열 조작과 유사한 접근 방식을 제공합니다.
 
-```ts
+```ts twoslash
 type PropEventSource<Type> = {
   on(eventName: `${string & keyof Type}Changed`, callback: (newValue: any) => void): void;
 };
@@ -90,7 +97,14 @@ declare function makeWatchedObject<Type>(obj: Type): Type & PropEventSource<Type
 
 이를 통해 잘못된 프로퍼티가 주어졌을 때 오류가 발생하는 것을 만들 수 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
+type PropEventSource<Type> = {
+    on(eventName: `${string & keyof Type}Changed`, callback: (newValue: any) => void): void;
+};
+
+declare function makeWatchedObject<T>(obj: T): T & PropEventSource<T>;
+// ---cut---
 const person = makeWatchedObject({
   firstName: "Saoirse",
   lastName: "Ronan",
@@ -100,11 +114,9 @@ const person = makeWatchedObject({
 person.on("firstNameChanged", () => {});
 
 // 쉬운 사용자 오류 방지 (이벤트 이름 대신 키 사용)
-// 오류: Argument of type '"firstName"' is not assignable to parameter of type '"firstNameChanged" | "lastNameChanged" | "ageChanged"'.
 person.on("firstName", () => {});
 
 // 오타 방지
-// 오류: Argument of type '"frstNameChanged"' is not assignable to parameter of type '"firstNameChanged" | "lastNameChanged" | "ageChanged"'.
 person.on("frstNameChanged", () => {});
 ```
 
@@ -119,10 +131,10 @@ person.on("frstNameChanged", () => {});
 3. 검증된 프로퍼티의 타입은 색인된 접근을 사용하여 제네릭 구조에서 조회할 수 있습니다.
 4. 그러면 이 타입 정보는 콜백 함수에 대한 인수가 동일한 타입인지 확인하기 위해 적용될 수 있습니다.
 
-```ts
+```ts twoslash
 type PropEventSource<Type> = {
     on<Key extends string & keyof Type>
-        (eventName: `${Key}Changed`, callback: (newValue: Type[Key]) => void ): void;
+        (eventName: `${Key}Changed`, callback: (newValue: Type[Key]) => void): void;
 };
 
 declare function makeWatchedObject<Type>(obj: Type): Type & PropEventSource<Type>;
@@ -133,16 +145,16 @@ const person = makeWatchedObject({
   age: 26
 });
 
-// (parameter) newName: string
 person.on("firstNameChanged", newName => {
-  console.log(`new name is ${newName.toUpperCase()}`);
+    //                        ^?
+    console.log(`new name is ${newName.toUpperCase()}`);
 });
 
-// (parameter) newAge: number
 person.on("ageChanged", newAge => {
-  if (newAge < 0) {
-    console.warn("warning! negative age");
-  }
+    //                  ^?
+    if (newAge < 0) {
+        console.warn("warning! negative age");
+    }
 })
 ```
 
@@ -162,46 +174,46 @@ person.on("ageChanged", newAge => {
 
 예시:
 
-```ts
+```ts twoslash
 type Greeting = "Hello, world"
-// type ShoutyGreeting = "HELLO, WORLD"
 type ShoutyGreeting = Uppercase<Greeting>
+//   ^?
 
 type ASCIICacheKey<Str extends string> = `ID-${Uppercase<Str>}`
-// type MainID = "ID-MY_APP"
 type MainID = ASCIICacheKey<"my_app">
+//   ^?
 ```
 
 ### `Lowercase<StringType>`
 
 문자열의 각 문자를 소문자로 변환합니다.
 
-```ts
+```ts twoslash
 type Greeting = "Hello, world"
-// type QuietGreeting = "hello, world"
 type QuietGreeting = Lowercase<Greeting>
+//   ^?
 
 type ASCIICacheKey<Str extends string> = `id-${Lowercase<Str>}`
-// type MainID = "id-my_app"
 type MainID = ASCIICacheKey<"MY_APP">
+//   ^?
 ```
 
 ### `Capitalize<StringType>`
 
 문자열의 첫 번째 문자를 대문자로 변환합니다.
 
-```ts
+```ts twoslash
 type LowercaseGreeting = "hello, world";
-// type Greeting = "Hello, world"
 type Greeting = Capitalize<LowercaseGreeting>;
+//   ^?
 ```
 
 ### `Uncapitalize<StringType>`
 
 문자열의 첫 번째 문자를 소문자로 변환합니다.
 
-```ts
+```ts twoslash
 type UppercaseGreeting = "HELLO WORLD";
-// type UncomfortableGreeting = "hELLO WORLD"
 type UncomfortableGreeting = Uncapitalize<UppercaseGreeting>;
+//   ^?
 ```
