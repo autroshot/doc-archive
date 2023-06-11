@@ -6,7 +6,7 @@ sidebar_position: 2
 
 중첩 쓰기를 사용하면 단일 트랜잭션으로 데이터베이스에 관계형 데이터를 쓸 수 있습니다.
 
-예를 들어 다음의 중첩 쓰기는 하나의 `User`와 두 개의 관련 `Post` 레코드를 생성합니다.
+예를 들어 다음 중첩 쓰기는 하나의 `User`와 두 개의 관련 `Post` 레코드를 생성합니다.
 
 ```ts
 const createUserAndPost = await prisma.user.create({

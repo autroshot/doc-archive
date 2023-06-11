@@ -22,7 +22,7 @@ export async function getStaticProps(context) {
 
 ## 사용 시기
 
-다음의 경우에 `getStaticProps`을 사용해야 합니다.
+다음 경우에 `getStaticProps`을 사용해야 합니다.
 
 - 페이지를 렌더링하는 데 필요한 데이터가 사용자의 요청에 앞서 빌드 타임에 얻을 수 있음
 - 데이터를 헤드리스 CMS에서 가져옴

@@ -65,7 +65,7 @@ function Home() {
 export default Home;
 ```
 
-위의 예시에서는 복수의 링크를 사용합니다. 각 링크에는 다음의 페이지로 향하는 경로(`href`)가 매핑됩니다.
+위의 예시에서는 복수의 링크를 사용합니다. 각 링크에는 다음 페이지로 향하는 경로(`href`)가 매핑됩니다.
 
 - `/` → `pages/index.js`
 - `/about` → `pages/about.js`

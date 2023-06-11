@@ -9,7 +9,7 @@ API 경로는 넥스트로 API를 만들기 위한 솔루션을 제공합니다.
 
 `pages/api` 폴더 내의 모든 파일은 `/api/*`에 매핑되며 `page` 대신 API 엔드포인트로 처리됩니다. 이는 서버 측 번들로 클라이언트 측 번들 크기를 늘리지 않습니다.
 
-예를 들어 다음의 `pages/api/user.js` API 경로는 `200` 상태 코드와 `json` 응답을 반환합니다.
+예를 들어 다음 `pages/api/user.js` API 경로는 `200` 상태 코드와 `json` 응답을 반환합니다.
 
 ```js
 export default function handler(req, res) {
@@ -23,7 +23,7 @@ API 경로는 `next.config.js`의 [`pageExtensions`설정](../../api-reference/n
 
 :::
 
-API 경로가 작동하려면 함수를 `default`로 내보내서 **요청 핸들러**로 만들어야 합니다. 그러면 핸들러는 다음의 매개변수를 받습니다.
+API 경로가 작동하려면 함수를 `default`로 내보내서 **요청 핸들러**로 만들어야 합니다. 그러면 핸들러는 다음 매개변수를 받습니다.
 
 - `req` - [http.IncomingMessage](https://nodejs.org/api/http.html#class-httpincomingmessage) 인스턴스와 미리 빌드된 [미들웨어](https://nextjs.org/docs/api-routes/api-middlewares)
 - `res` - [http.ServerResponse](https://nodejs.org/api/http.html#class-httpserverresponse) 인스턴스와 [도우미 함수](../api-routes/response-helpers.md)

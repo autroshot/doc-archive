@@ -58,7 +58,7 @@ function myForEach(arr: any[], callback: (arg: any, index?: number) => void) {
 }
 ```
 
-`index?`의 일반적인 의도는 선택적 매개변수로서 다음의 두 호출이 가능한 것입니다.
+`index?`의 일반적인 의도는 선택적 매개변수로서 다음 두 호출이 가능한 것입니다.
 
 ```ts twoslash
 // @errors: 2532 18048

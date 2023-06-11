@@ -18,7 +18,7 @@ export async function getStaticProps(context) {
 
 ## 컨텍스트 매개변수
 
-`context` 매개변수는 다음의 키가 포함된 객체입니다.
+`context` 매개변수는 다음 키가 포함된 객체입니다.
 
 - `params`에는 [동적 경로](../../documentation/routing/dynamic-routes.md)를 사용하는 페이지의 경로 매개변수가 포함됩니다. 예를 들어 페이지 이름이 `[id].js`인 경우 `params`는 `{ id: ... }`입니다. 이것은 `getStaticPaths`와 함께 사용해야 합니다.
 - 페이지가 [미리 보기 모드](https://nextjs.org/docs/advanced-features/preview-mode)이면 `preview`가 `true`이며 이외에는 `undefined`입니다.

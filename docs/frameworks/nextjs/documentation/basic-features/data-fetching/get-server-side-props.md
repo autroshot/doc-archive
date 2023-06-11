@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
 
 ## 실행 시기
 
-`getServerSideProps`는 서버 측에서만 실행되고 브라우저에서는 실행되지 않습니다. 페이지에서 `getServerSideProps`를 사용하면 다음의 작업이 수행됩니다.
+`getServerSideProps`는 서버 측에서만 실행되고 브라우저에서는 실행되지 않습니다. 페이지에서 `getServerSideProps`를 사용하면 다음 작업이 수행됩니다.
 
 - 해당 페이지를 직접 요청하면 `getServerSideProps`가 요청 타임에 실행됩니다. 해당 페이지는 반환된 프롭으로 미리 렌더링됩니다.
 - [`next/link`](https://nextjs.org/docs/api-reference/next/link)나 [`next/router`](https://nextjs.org/docs/api-reference/next/router)를 통해 클라이언트 측 페이지 전환에서 해당 페이지를 요청하면, 넥스트가 `getServerSideProps`을 실행하는 API 요청을 서버에 보냅니다.

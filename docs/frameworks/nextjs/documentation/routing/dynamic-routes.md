@@ -29,13 +29,13 @@ export default Post;
 { "pid": "abc" }
 ```
 
-마찬가지로 경로 `/post/abc?foo=bar`는 다음의 `query` 객체를 가집니다.
+마찬가지로 경로 `/post/abc?foo=bar`는 다음 `query` 객체를 가집니다.
 
 ```json
 { "foo": "bar", "pid": "abc" }
 ```
 
-그러나 경로 매개변수는 동일한 이름을 가진 질의 매개변수를 재정의합니다. 예를 들어 경로 `/post/abc?pid=123`는 다음의 `query` 객체를 가집니다.
+그러나 경로 매개변수는 동일한 이름을 가진 질의 매개변수를 재정의합니다. 예를 들어 경로 `/post/abc?pid=123`는 다음 `query` 객체를 가집니다.
 
 ```json
 { "pid": "abc" }

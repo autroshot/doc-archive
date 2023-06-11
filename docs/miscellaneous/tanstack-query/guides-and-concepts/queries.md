@@ -11,7 +11,7 @@ sidebar_position: 2
 컴포넌트 또는 사용자 정의 훅에서 쿼리를 구독하려면 최소한 다음과 함께 `useQuery` 훅을 호출합니다.
 
 - **질의 고유 키**
-- 다음의 프라미스를 반환하는 함수
+- 다음 프라미스를 반환하는 함수
    - 데이터를 이행(resolve)하거나
    - 오류를 발생시킴
 
@@ -37,7 +37,7 @@ const result = useQuery({ queryKey: ['todos'], queryFn: fetchTodoList })
 - `isError` 또는 `status === 'error'` - 질의에 오류가 발생함
 - `isSuccess` 또는 `status === 'success'` - 쿼리가 성공했으며 데이터를 사용할 수 있음
 
-이러한 주요 상태 외에도 질의 상태에 따라 다음의 추가 정보를 사용할 수 있습니다.
+이러한 주요 상태 외에도 질의 상태에 따라 다음 추가 정보를 사용할 수 있습니다.
 
 - `error` - 질의가 `isError` 상태이면, `error` 프로퍼티로 오류를 사용할 수 있음
 - `data` - 질의가 `success` 상태이면, `data` 프로퍼티로 데이터를 사용할 수 있음
@@ -102,7 +102,7 @@ function Todos() {
 
 ### 가져오기 상태
 
-`result` 객체에서 `status` 필드 외에, 다음의 옵션과 함께 추가 `fetchStatus` 프로퍼티도 얻을 수 있습니다.
+`result` 객체에서 `status` 필드 외에, 다음 옵션과 함께 추가 `fetchStatus` 프로퍼티도 얻을 수 있습니다.
 
 - `fetchStatus === 'fetching'` - 질의가 현재 가져오는 중
 - `fetchStatus === 'paused'` - 질의가 가져오려고 했지만 일시 중지됨 (자세한 내용은 [네트워크 모드](https://tanstack.com/query/latest/docs/react/guides/network-mode) 안내서를 참고)

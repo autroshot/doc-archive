@@ -26,7 +26,7 @@ $ yarn add @tanstack/react-query
 
 ### CDN
 
-모듈 번들러나 패키지 관리자를 사용하지 않는 경우, [unpkg.com](https://unpkg.com) CDN에서 호스팅되는 글로벌(UMD) 빌드도 있습니다. HTML 파일 하단에 다음의 `<script>` 태그를 추가하기만 하면 됩니다.
+모듈 번들러나 패키지 관리자를 사용하지 않는 경우, [unpkg.com](https://unpkg.com) CDN에서 호스팅되는 글로벌(UMD) 빌드도 있습니다. HTML 파일 하단에 다음 `<script>` 태그를 추가하기만 하면 됩니다.
 
 ```html
 <script src="https://unpkg.com/@tanstack/react-query@4/build/umd/index.production.js"></script>

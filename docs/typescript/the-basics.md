@@ -307,7 +307,7 @@ function greet(person: string, date: Date) {
 greet("Maddison", new Date());
 ```
 
-여기서 다음의 두 가지 사항에 주목하세요.
+여기서 다음 두 가지 사항에 주목하세요.
 
 1. `person`과 `date` 매개변수에는 더 이상 타입 주석이 없습니다.
 2. 백틱(`` ` ``)을 사용하는 문자열인 **템플릿 문자열**은 연결(concat)이 있는 일반 문자열로 변환되었습니다.
