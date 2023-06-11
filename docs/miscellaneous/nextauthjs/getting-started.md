@@ -81,7 +81,7 @@ export default function App({
 }
 ```
 
-그러면 `useSession`의 인스턴스가 세션 데이터와 상태에 접근할 수 있습니다. 또한 `<SessionProvider />`는 브라우저 탭과 창 간에 세션을 업데이트하고 동기화합니다.
+그러면 `useSession`의 인스턴스가 세션 데이터와 상태에 접근할 수 있습니다. 또한 `<SessionProvider />`는 브라우저 탭과 창 간에 세션을 갱신하고 동기화합니다.
 
 ### 프런트엔드 - 리액트 훅 추가하기
 
