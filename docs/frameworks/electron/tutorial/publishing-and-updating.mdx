@@ -1,0 +1,214 @@
+---
+sidebar_position: 6
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 게시와 업데이트
+
+## 학습 목표
+
+이곳이 자습서의 마지막 단계입니다! 여기서는 앱을 깃허브 릴리스에 게시하고 자동 업데이트를 앱 코드에 통합해 보겠습니다.
+
+## `update.electronjs.org` 사용하기
+
+일렉트론의 관리자는 [https://update.electronjs.org](https://update.electronjs.org/)에서 오픈 소스 앱을 위한 자동 업데이트 서비스를 무료로 제공합니다. 요구 사항은 다음과 같습니다.
+
+- 앱이 맥OS 또는 윈도우에서 실행됩니다.
+- 앱에 공개 깃허브 저장소가 있습니다.
+- 빌드가 [깃허브 릴리스](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)에 게시되었습니다.
+- 빌드가 [코드 서명](https://www.electronjs.org/docs/latest/tutorial/code-signing)되었습니다.
+
+이 시점에서, 모든 코드를 공개 깃허브 저장소에 이미 푸시했다고 가정하겠습니다.
+
+:::info 대체 업데이트 서비스
+
+대체 저장소 호스트(예: 깃랩 또는 빗버킷)를 사용 중이거나 코드 저장소를 비공개로 유지해야 한다면, 자체 일렉트론 업데이트 서버 호스팅에 대한 [단계별 안내서](https://www.electronjs.org/docs/latest/tutorial/updates)를 참고하세요.
+
+:::
+
+## 깃허브 릴리스 게시하기
+
+일렉트론 포지에는 패키징된 앱을 다양한 소스로 배포하는 것을 자동화할 수 있는 [퍼블리셔](https://www.electronforge.io/config/publishers) 플러그인이 있습니다. 이 자습서에서는 깃허브 릴리스에 코드를 게시할 수 있는 깃허브 퍼블리셔를 사용합니다.
+
+### 개인 접근 토큰 생성하기
+
+포지는 앱을 허가 없이 깃허브 저장소에 게시할 수 없습니다. 깃허브 릴리스에 대한 접근 권한을 부여하는 인증된 토큰을 포지에 전달해야 합니다. 이를 수행하는 가장 쉬운 방법은 `public_repo` 범위로 [새 개인용 접근 토큰(PAT)을 생성](https://github.com/settings/tokens/new)하여 공개 저장소에 대한 쓰기 접근 권한을 부여하는 것입니다. **이 토큰은 반드시 비밀로 유지하세요.**
+
+### 깃허브 퍼블리셔 설정하기
+
+#### 모듈 설치하기
+
+포지의 [깃허브 퍼블리셔](https://www.electronforge.io/config/publishers/github)는 프로젝트의 `devDependencies`에 설치해야 하는 플러그인입니다.
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
+```sh
+npm install --save-dev @electron-forge/publisher-github
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add --dev @electron-forge/publisher-github
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add --save-dev @electron-forge/publisher-github
+```
+
+  </TabItem>
+</Tabs>
+
+#### 포지에서 퍼블리셔 설정하기
+
+설치가 완료되면 포지의 설정에서 설정해야 합니다. 옵션의 전체 목록은 포지의 [`PublisherGitHubConfig`](https://js.electronforge.io/interfaces/_electron_forge_publisher_github.PublisherGitHubConfig.html) API 문서에 있습니다.
+
+```js title="forge.config.js"
+module.exports = {
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'github-user-name',
+          name: 'github-repo-name',
+        },
+        prerelease: false,
+        draft: true,
+      },
+    },
+  ],
+};
+```
+
+:::tip 게시 전에 릴리즈 초안 작성하기
+
+릴리스를 초안으로 게시하도록 포지를 구성했습니다. 이렇게 하면 최종 사용자에게 실제로 게시하지 않고도 생성된 아티팩트와 릴리스를 볼 수 있습니다. 릴리스 노트를 작성하고 배포 파일이 작동하는지 다시 확인한 후, 깃허브를 통해 릴리스를 수동으로 게시할 수 있습니다.
+
+:::
+
+#### 인증 토큰 설정하기
+
+또한 인증 토큰을 퍼블리셔에게 인식시켜야 합니다. 기본적으로 퍼블리셔는 `GITHUB_TOKEN` 환경 변수에 저장된 값을 사용합니다.
+
+### 게시 명령 실행하기
+
+포지의 [게시 명령](https://www.electronforge.io/cli#publish)을 npm 스크립트에 추가하세요.
+
+```json title="package.json" {5}
+  //...
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  //...
+```
+
+이 명령은 설정된 메이커를 실행하고 출력 배포 파일을 새로운 깃허브 릴리스에 게시합니다.
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
+```sh
+npm run publish
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn run publish
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm run publish
+```
+
+  </TabItem>
+</Tabs>
+
+기본적으로 이는 호스트 운영 체제와 아키텍처에 대한 단일 배포 파일만 게시합니다. 포지 명령에 `--arch` 플래그를 전달하여 다양한 아키텍처에 대해 게시할 수 있습니다.
+
+프로젝트의 `package.json` 파일에 있는 `version` 필드의 값이 이 릴리스의 이름이 됩니다.
+
+:::tip 릴리스에 태그 지정하기
+
+원한다면 릴리스가 코드 기록의 레이블이 지정된 지점과 연결되도록 [깃에서 릴리스에 태그를 지정](https://git-scm.com/book/en/v2/Git-Basics-Tagging)할 수 있습니다. npm은 버전 올리기 및 태그 지정을 처리할 수 있는 편리한 [`npm version`](https://docs.npmjs.com/cli/v8/commands/npm-version) 명령과 함께 제공됩니다.
+
+:::
+
+#### 보너스: 깃허브 액션에 게시하기
+
+로컬로 게시하면 호스트 운영 체제의 배포 파일만 만들 수 있기 때문에 어려울 수 있습니다. (예: 맥OS에서는 윈도우 `.exe` 파일을 게시할 수 없음)
+
+해결책은 우분투, 맥OS, 윈도우의 클라우드에서 작업을 실행할 수 있는 [깃허브 액션](https://github.com/features/actions)과 같은 자동화 워크플로를 통해 앱을 게시하는 것입니다. 이것이 바로 [일렉트론 피들](https://electronjs.org/fiddle)이 취하는 접근 방식입니다. 자세한 내용은 피들의 [빌드 및 릴리스 파이프라인](https://github.com/electron/fiddle/blob/main/.github/workflows/build.yaml) 그리고 [포지 설정](https://github.com/electron/fiddle/blob/main/forge.config.js)을 참고하세요.
+
+## 코드 업데이트 프로그램을 도구화하기
+
+이제 깃허브 릴리스를 통해 기능적 릴리스 시스템을 갖추었으므로, 새 릴리스가 나올 때마다 업데이트를 다운로드하도록 일렉트론 앱에 알려줘야 합니다. 일렉트론 앱은 [autoUpdater](https://www.electronjs.org/docs/latest/api/auto-updater) 모듈을 통해 이 작업을 수행합니다. 이 모듈은 업데이트 서버 피드를 읽어 새 버전을 다운로드할 수 있는지 확인합니다.
+
+`update.electronjs.org` 서비스는 업데이트 프로그램과 호환되는 피드를 제공합니다. 예를 들어 일렉트론 피들 v0.28.0은 https://update.electronjs.org/electron/fiddle/darwin/v0.28.0에서 끝점을 확인하여 최신 깃허브 릴리스를 사용할 수 있는지 확인합니다.
+
+릴리스가 깃허브에 게시된 후에는 `update.electronjs.org` 서비스가 앱에서 작동해야 합니다. 이제 남은 작업은 `autoUpdater` 모듈로 피드를 설정하는 것입니다.
+
+이 과정을 더 쉽게 만들기 위해, 일렉트론 팀은 [`update-electron-app`](https://github.com/electron/update-electron-app) 모듈을 유지 관리합니다. 모듈은 한 번의 함수 호출로 `update.electronjs.org`에 대한 `autoUpdater` 상용구를 설정합니다. 추가 설정이 필요 없습니다. 모듈은 프로젝트의 `package.json`의 `"repository"` 필드와 일치하는 `update.electronjs.org` 피드를 검색합니다.
+
+먼저 모듈을 런타임 종속성으로 설치합니다.
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
+```sh
+npm install update-electron-app
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add update-electron-app
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add update-electron-app
+```
+
+  </TabItem>
+</Tabs>
+
+이제 모듈을 가져오고 주 프로세스에서 바로 호출하세요.
+
+```js title="main.js"
+require('update-electron-app')();
+```
+
+이제 됐습니다! 앱이 패키징되면, 새 깃허브 릴리스를 게시할 때마다 앱이 자체적으로 업데이트됩니다.
+
+## 요약
+
+이 자습서에서는 앱의 배포 파일을 깃허브 릴리스에 업로드하도록 일렉트론 포지의 깃허브 퍼블리셔를 설정했습니다. 플랫폼 간 배포 파일을 항상 생성할 수는 없으므로, 시스템에 대한 접근 권한이 없다면 지속적 통합(CI) 파이프라인에서 빌드하고 게시 흐름을 설정하는 것이 좋습니다.
+
+일렉트론 앱은 `autoUpdater` 모듈을 업데이트 서버 피드로 지정하여 자체적으로 업데이트할 수 있습니다. `update.electronjs.org`는 깃허브 릴리스에 게시된 오픈 소스 앱을 위해 일렉트론에서 제공하는 무료 업데이트 서버입니다. 이 서비스를 사용하도록 일렉트론 앱을 설정하기 위해서는 `update-electron-app` 모듈을 설치하고 가져오기만 하면 됩니다.
+
+앱이 `update.electronjs.org`에 적합하지 않다면, 대신 자체 업데이트 서버를 배포하고 `autoUpdater` 모듈을 직접 설정해야 합니다.
+
+:::info 🌟 끝났습니다!
+
+여러분은 일렉트론 자습서를 공식적으로 완료했습니다. 나머지 문서를 자유롭게 탐색하고 즐겁게 개발하세요! 질문이 있다면 커뮤니티 [디스코드 서버](https://discord.gg/electronjs)를 방문해 주세요.
+
+:::

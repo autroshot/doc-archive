@@ -1,0 +1,192 @@
+---
+sidebar_position: 5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 애플리케이션 패키징하기
+
+## 학습 목표
+
+이곳에서는 [일렉트론 포지](https://www.electronforge.io/)로 앱을 패키징하고 배포하는 간단한 방법을 살펴보겠습니다.
+
+## 일렉트론 포지 사용하기
+
+일렉트론에는 핵심 모듈에 번들로 제공되는 패키징과 배포용 도구가 없습니다. 개발 모드에서 작동하는 일렉트론 앱이 있으면, 추가 도구를 사용하여 사용자에게 배포할 수 있는 패키지 앱(**배포 파일**이라고도 함)을 만들어야 합니다. 배포 파일은 설치 프로그램(예: 윈도우의 MSI) 또는 휴대용 실행 파일(예: 맥OS의 `.app`)일 수 있습니다.
+
+일렉트론 포지는 일렉트론 앱의 패키징과 배포를 처리하는 일체형 도구입니다. 내부적으로는 많은 일렉트론 도구(예: [`electron-packager`](https://github.com/electron/electron-packager), [`@electron/osx-sign`](https://github.com/electron/osx-sign), [`electron-winstaller`](https://github.com/electron/windows-installer) 등)를 단일 인터페이스로 통합하므로 도구를 연결하는 것에 대해 걱정할 필요가 없습니다.
+
+### 프로젝트를 포지로 가져오기
+
+프로젝트의 `devDependencies`에 일렉트론 포지의 CLI를 설치하고, 편리한 변환 스크립트를 사용하여 기존 프로젝트를 가져올 수 있습니다.
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
+```sh
+npm install --save-dev @electron-forge/cli
+npx electron-forge import
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add --dev @electron-forge/cli
+npx electron-forge import
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add --save-dev @electron-forge/cli
+npx electron-forge import
+```
+
+  </TabItem>
+</Tabs>
+
+변환 스크립트가 완료되면 포지는 `package.json` 파일에 몇 가지 스크립트를 추가합니다.
+
+```json title="package.json"
+  //...
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  //...
+```
+
+:::info CLI 문서
+
+`make`와 기타 포지 API에 대한 자세한 내용은 [일렉트론 포지 CLI 문서](https://www.electronforge.io/cli#commands)를 확인하세요.
+
+:::
+
+이제 `package.json`의 `devDependencies` 아래에 몇 가지 패키지가 더 설치되었습니다. 그리고 설정 객체를 내보내는 새로운 `forge.config.js` 파일을 확인할 수 있습니다. 미리 채워진 설정에서는 각 대상 플랫폼별로 메이커(배포 가능한 앱 번들을 생성하는 패키지)가 표시됩니다.
+
+### 배포 파일 만들기
+
+배포 파일을 만들려면 `electron-forge make` 명령을 실행하는 프로젝트의 새로운 `make` 스크립트를 사용하세요.
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
+```sh
+npm run make
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn make
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm run make
+```
+
+  </TabItem>
+</Tabs>
+
+이 `make` 명령에는 두 단계가 포함됩니다.
+
+1. 먼저 내부적으로는 `electron-forge package`를 실행하여 일렉트론 이진과 앱 코드를 묶습니다. 패키징된 코드가 폴더에 생성됩니다.
+2. 그리고 이 패키징된 앱 폴더를 사용하여 설정된 각 메이커에 대해 별도의 배포 파일을 만듭니다.
+
+스크립트가 실행된 후에는 배포 파일이 포함된 `out` 폴더와 패키징된 앱 코드가 포함된 폴더가 표시되어야 합니다.
+
+```text title="맥OS 출력 예시"
+out/
+├── out/make/zip/darwin/x64/my-electron-app-darwin-x64-1.0.0.zip
+├── ...
+└── out/my-electron-app-darwin-x64/my-electron-app.app/Contents/MacOS/my-electron-app
+```
+
+`out/make` 폴더의 배포 파일을 실행할 준비가 되었습니다! 이제 번들링된 첫 번째 일렉트론 앱을 만들었습니다.
+
+:::tip 배포 파일의 형식
+
+일렉트론 포지는 다양한 OS별 형식(예: DMG, deb, MSI 등)으로 배포 파일을 생성하도록 설정할 수 있습니다. 모든 설정 옵션은 포지의 [메이커](https://www.electronforge.io/config/makers) 문서를 참고하세요.
+
+:::
+
+:::tip 앱 아이콘 생성과 추가
+
+사용자 지정 앱 아이콘을 설정하려면 설정에 몇 가지 추가 사항이 필요합니다. 자세한 내용은 [포지의 아이콘 자습서](https://www.electronforge.io/guides/create-and-add-icons)를 확인하세요.
+
+:::
+
+:::info 일렉트론 포지 없이 패키징하기
+
+코드를 수동으로 패키징하거나 일렉트론 앱 패키징의 메커니즘을 이해하고 싶다면 [애플리케이션 패키징](https://www.electronjs.org/docs/latest/tutorial/application-distribution) 문서를 확인하세요.
+
+:::
+
+## 중요: 코드 서명하기
+
+데스크톱 앱을 최종 사용자에게 배포하려면 일렉트론 앱을 **코드 서명**하는 것을 **적극 권장합니다**. 코드 서명은 데스크톱 앱을 배송하는 데 중요한 부분이며, 자습서의 마지막 부분에 있는 자동 업데이트 단계에서 필수입니다.
+
+코드 서명은 데스크톱 앱이 알려진 소스에서 생성되었음을 인증하는 데 사용하는 보안 기술입니다. 윈도우와 맥OS에는 사용자가 서명되지 않은 앱을 다운로드하거나 실행하기 어렵게 만드는 고유한 OS별 코드 서명 시스템이 있습니다.
+
+맥OS에서 코드 서명은 앱 패키징 수준에서 수행됩니다. 윈도우에서는 배포 가능한 설치 프로그램이 대신 서명됩니다. 윈도우와 맥OS용 코드 서명 인증서가 이미 있다면, 포지의 설정에서 자격 증명을 설정할 수 있습니다.
+
+:::info
+
+코드 서명에 대한 자세한 내용은 포지 문서의 [맥OS 앱에 서명하기](https://www.electronforge.io/guides/code-signing) 안내서를 참고하세요.
+
+:::
+
+<Tabs groupId="package-manager">
+  <TabItem value="windows" label="Windows" default>
+
+```js title='forge.config.js'
+module.exports = {
+  // ...
+  makers: [
+    {
+      name: '@electron-forge/maker-squirrel',
+      config: {
+        certificateFile: './cert.pfx',
+        certificatePassword: process.env.CERTIFICATE_PASSWORD,
+      },
+    },
+  ],
+  // ...
+};
+```
+
+  </TabItem>
+  <TabItem value="macos" label="macOS">
+
+```js title='forge.config.js'
+module.exports = {
+  packagerConfig: {
+    osxSign: {},
+    // ...
+    osxNotarize: {
+      tool: 'notarytool',
+      appleId: process.env.APPLE_ID,
+      appleIdPassword: process.env.APPLE_PASSWORD,
+      teamId: process.env.APPLE_TEAM_ID,
+    },
+    // ...
+  },
+};
+```
+
+  </TabItem>
+</Tabs>
+
+## 요약
+
+일렉트론 앱은 사용자에게 배포하기 위해 패키징이 필요합니다. 이 자습서에서는 앱을 일렉트론 포지로 가져와서 앱을 패키징하고 설치 프로그램을 생성하도록 설정했습니다.
+
+사용자의 시스템에서 앱을 신뢰하려면 배포 파일이 정품이며 코드 서명을 통해 변조되지 않았음을 디지털 방식으로 인증해야 합니다. 코드 서명 인증서 정보를 사용하도록 앱을 설정하면, 포지를 통해 앱에 서명할 수 있습니다.
