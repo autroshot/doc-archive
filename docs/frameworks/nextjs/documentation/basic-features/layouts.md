@@ -6,7 +6,7 @@ sidebar_position: 4
 
 리액트 모델을 사용하면 [페이지](./pages.md)를 일련의 컴포넌트로 분해할 수 있습니다. 이러한 컴포넌트 중 많은 부분이 페이지 간에 재사용되는 경우가 많습니다.
 
-예를 들어 모든 페이지에 동일한 내비게이션과 꼬리말이 있을 수 있습니다.
+예를 들어 모든 페이지에 동일한 내비게이션과 바닥글이 있을 수 있습니다.
 
 ```jsx title="components/layout.js"
 import Navbar from './navbar';
