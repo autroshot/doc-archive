@@ -1,3 +1,4 @@
+// @ts-ignore
 import IdealImage from '@theme/IdealImage';
 import React from 'react';
 

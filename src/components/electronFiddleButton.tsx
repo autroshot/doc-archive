@@ -3,7 +3,7 @@ import React from 'react';
 export default function ElectronFiddleButton({ href }) {
   return (
     <a
-      class="button button--primary"
+      className="button button--primary"
       style={{
         textDecoration: 'none',
         color: 'white',

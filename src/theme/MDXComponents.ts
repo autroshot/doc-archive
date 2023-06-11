@@ -1,6 +1,6 @@
 import MDXComponents from '@theme-original/MDXComponents';
-import CodeSandbox from '/src/components/codeSandbox.jsx';
-import Image from '/src/components/image.jsx';
+import CodeSandbox from '../components/codeSandbox';
+import Image from '../components/image';
 
 export default {
   ...MDXComponents,
