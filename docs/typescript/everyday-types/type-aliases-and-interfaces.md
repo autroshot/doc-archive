@@ -10,7 +10,7 @@ sidebar_position: 8
 
 **타입 별칭**은 정확히 그 역할을 수행합니다. 즉, 타입 별칭은 **타입의 이름**입니다. 타입 별칭의 구문은 다음과 같습니다.
 
-```ts
+```ts twoslash
 type Point = {
   x: number;
   y: number;
@@ -27,13 +27,16 @@ printCoord({ x: 100, y: 100 });
 
 사실 타입 별칭을 사용하면 객체 타입뿐만 아니라 모든 타입의 이름을 지정할 수 있습니다. 예를 들어 타입 별칭은 합집합 타입의 이름을 지정할 수 있습니다.
 
-```ts
+```ts twoslash
 type ID = number | string;
 ```
 
 별칭은 별칭일 뿐입니다. 타입 별칭을 사용하여 동일한 타입의 서로 다른(고유한) **버전**을 만들 수는 없습니다. 별칭을 사용한다는 것은 타입의 별칭을 작성하는 것입니다. 다음 코드는 잘못된 것처럼 보일 수 있지만, 타입스크립트에 따르면 두 타입은 동일한 타입의 별칭이기 때문에 문제가 없습니다.
 
-```ts
+```ts twoslash
+declare function getInput(): string;
+declare function sanitize(str: string): string;
+// ---cut---
 type UserInputSanitizedString = string;
 
 function sanitizeInput(str: string): UserInputSanitizedString {
@@ -51,7 +54,7 @@ userInput = "new input";
 
 **인터페이스 선언**은 객체 타입의 이름을 지정하는 또 다른 방법입니다.
 
-```ts
+```ts twoslash
 interface Point {
   x: number;
   y: number;

@@ -10,7 +10,7 @@ sidebar_position: 3
 
 클래스 멤버의 기본 가시성은 `public`입니다. `public` 멤버는 어디에서나 접근할 수 있습니다.
 
-```ts
+```ts twoslash
 class Greeter {
   public greet() {
     console.log("hi!");
@@ -26,7 +26,8 @@ g.greet();
 
 `protected` 멤버는 자신이 선언된 클래스의 하위 클래스에서만 볼 수 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2445
 class Greeter {
   public greet() {
     console.log("Hello, " + this.getName());
@@ -40,11 +41,11 @@ class SpecialGreeter extends Greeter {
   public howdy() {
     // 여기에서 protected 멤버에 접근할 수 있습니다.
     console.log("Howdy, " + this.getName());
+    //                          ^^^^^^^^^^^^^^
   }
 }
 const g = new SpecialGreeter();
 g.greet(); // 문제없습니다.
-// 오류: Property 'getName' is protected and only accessible within class 'Greeter' and its subclasses.
 g.getName();
 ```
 
@@ -52,7 +53,7 @@ g.getName();
 
 파생 클래스는 기본 클래스의 계약을 따라야 합니다. 하지만 기본 클래스의 하위 타입을 더 노출되게 만드는 것이 가능합니다. 예를 들어 `protected` 멤버를 `public`으로 만들 수 있습니다.
 
-```ts
+```ts twoslash
 class Base {
   protected m = 10;
 }
@@ -70,7 +71,8 @@ console.log(d.m); // 문제없습니다.
 
 다른 OOP 언어는 기본 클래스 참조를 통한 `protected` 멤버 접근에 대한 의견이 다릅니다.
 
-```ts
+```ts twoslash
+// @errors: 2446
 class Base {
   protected x: number = 1;
 }
@@ -82,8 +84,6 @@ class Derived2 extends Base {
     other.x = 10;
   }
   f2(other: Base) {
-    // 오류: Property 'x' is protected and only accessible through an instance of class 'Derived2'.
-    //   This is an instance of class 'Base'.
     other.x = 10;
   }
 }
@@ -99,21 +99,25 @@ C# 및 C++의 타입스크립트 측은 `Derived2`의 `x`에 접근하는 것이
 
 `private`은 `protected`와 유사하지만 하위 클래스에서의 멤버에 대한 접근도 허용하지 않습니다.
 
-```ts
+```ts twoslash
+// @errors: 2341
 class Base {
   private x = 0;
 }
 const b = new Base();
 // 클래스 외부에서 접근할 수 없습니다.
-// 오류: Property 'x' is private and only accessible within class 'Base'.
 console.log(b.x);
 ```
 
-```ts
+```ts twoslash
+// @errors: 2341
+class Base {
+  private x = 0;
+}
+// ---cut---
 class Derived extends Base {
   showX() {
     // 하위 클래스에서 접근할 수 없습니다.
-    // 오류: Property 'x' is private and only accessible within class 'Base'.
     console.log(this.x);
   }
 }
@@ -121,12 +125,11 @@ class Derived extends Base {
 
 `private` 멤버는 파생 클래스에 표시되지 않으므로 파생 클래스에서 해당 멤버의 가시성을 높일 수는 없습니다.
 
-```ts
+```ts twoslash
+// @errors: 2415
 class Base {
   private x = 0;
 }
-// 오류: Class 'Derived' incorrectly extends base class 'Base'.
-//   Property 'x' is private in type 'Base' but not in type 'Derived'.
 class Derived extends Base {
   x = 1;
 }
@@ -138,7 +141,7 @@ class Derived extends Base {
 
 타입스크립트는 인스터스 간의 `private` 접근을 허용합니다.
 
-```ts
+```ts twoslash
 class A {
   private x = 10;
  
@@ -155,13 +158,13 @@ class A {
 
 이는 `in`이나 단순 프로퍼티 룩업과 같은 자바스크립트 런타입 구조가 여전히 `private`이나 `protected` 멤버에 접근할 수 있음을 의미합니다.
 
-```ts
+```ts twoslash
 class MySafe {
   private secretKey = 12345;
 }
 ```
 
-```ts
+```js
 // 자바스크립트 파일에서...
 const s = new MySafe();
 // 12345를 출력합니다.
@@ -170,7 +173,8 @@ console.log(s.secretKey);
 
 `private`은 타입 검사 중에 대괄호 표기법을 사용하여 접근할 수 있습니다. 이를 이용하면 단위 테스트 등에서 `private`로 선언된 필드에 쉽게 접근할 수 있습니다. 하지만 이런 **느슨한 `private`**은 엄격하지 않다는 단점이 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2341
 class MySafe {
   private secretKey = 12345;
 }
@@ -178,7 +182,6 @@ class MySafe {
 const s = new MySafe();
  
 // 타입 검사 중에는 허용되지 않습니다.
-// 오류: Property 'secretKey' is private and only accessible within class 'MySafe'.
 console.log(s.secretKey);
  
 // 문제없습니다.
@@ -187,7 +190,7 @@ console.log(s["secretKey"]);
 
 타입스크립트의 `private`와 달리 자바스크립트의 [`private` 필드(`#`)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/Private_class_fields)는 컴파일 후에도 `private`으로 유지됩니다. 그리고 이전에 언급한 대괄호 표기법 접근과 같은 탈출용 해치를 제공하지 않으므로 **엄격한 `private`**이 됩니다.
 
-```ts
+```ts twoslash
 class Dog {
   #barkAmount = 0;
   personality = "happy";
@@ -196,27 +199,28 @@ class Dog {
 }
 ```
 
-```ts
-"use strict";
+```ts twoslash
+// @target: esnext
+// @showEmit
 class Dog {
-    #barkAmount = 0;
-    personality = "happy";
-    constructor() { }
+  #barkAmount = 0;
+  personality = "happy";
+
+  constructor() {}
 }
 ```
 
 ES2021 이하로 컴파일할 때 타입스크립트는 `#` 대신 위크맵을 사용합니다.
 
-```ts
-"use strict";
-var _Dog_barkAmount;
+```ts twoslash
+// @target: es2015
+// @showEmit
 class Dog {
-    constructor() {
-        _Dog_barkAmount.set(this, 0);
-        this.personality = "happy";
-    }
+  #barkAmount = 0;
+  personality = "happy";
+
+  constructor() {}
 }
-_Dog_barkAmount = new WeakMap();
 ```
 
 악의적인 사용자로부터 클래스의 값을 보호해야 한다면 클로저, 위크맵, `private` 필드와 같은 강력한 런타임 프라이버시를 제공하는 메커니즘을 사용해야 합니다. 런타임 동안 이러한 추가 프라이버시 확인은 성능에 영향을 미칠 수 있습니다.

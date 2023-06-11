@@ -16,7 +16,7 @@ sidebar_position: 11
 
 [`strictNullChecks`](https://www.typescriptlang.org/ko/tsconfig#strictNullChecks)가 **켜져** 있으면, 값이 `null`이나 `undefined`인 경우 해당 값에 메서드 또는 프로퍼티를 사용하기 전에 해당 값을 테스트해야 합니다. 선택적 프로퍼티를 사용하기 전에 `undefined`를 확인하는 것처럼, **좁히기**를 사용하여 `null`일 수 있는 값을 확인할 수 있습니다.
 
-```ts
+```ts twoslash
 function doSomething(x: string | null) {
   if (x === null) {
     // 아무것도 하지 않습니다.
@@ -30,7 +30,7 @@ function doSomething(x: string | null) {
 
 타입스크립트에는 명시적 검사를 수행하지 않고 타입에서 `null`과 `undefined`를 제거하기 위한 특별한 구문도 있습니다. 표현식 뒤에 `!`를 쓰는 것은, 사실상 값이 `null`이나 `undefined`가 아니라는 타입 단언입니다.
 
-```ts
+```ts twoslash
 function liveDangerously(x?: number | null) {
   // 오류가 발생하지 않습니다.
   console.log(x!.toFixed());

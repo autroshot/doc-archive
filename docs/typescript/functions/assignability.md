@@ -12,7 +12,7 @@ sidebar_position: 10
 
 따라서 `() => void` 타입의 다음 구현은 유효합니다.
 
-```ts
+```ts twoslash
 type voidFunc = () => void;
  
 const f1: voidFunc = () => {
@@ -28,7 +28,19 @@ const f3: voidFunc = function () {
 
 그리고 이 함수의 반환값을 다른 변수에 할당할 때는 `void` 타입이 유지됩니다.
 
-```ts
+```ts twoslash
+type voidFunc = () => void;
+
+const f1: voidFunc = () => {
+  return true;
+};
+
+const f2: voidFunc = () => true;
+
+const f3: voidFunc = function () {
+  return true;
+};
+// ---cut---
 const v1 = f1();
  
 const v2 = f2();
@@ -38,7 +50,7 @@ const v3 = f3();
 
 이 특성 때문에 `Array.prototype.push`가 숫자를 반환하고 `Array.prototype.forEach` 메서드가 반환 타입이 `void`인 함수를 기대함에도 다음 코드가 유효한 것입니다.
 
-```ts
+```ts twoslash
 const src = [1, 2, 3];
 const dst = [0];
  
@@ -47,7 +59,7 @@ src.forEach((el) => dst.push(el));
 
 리터럴 함수 정의에 `void` 반환 타입이 있으면 해당 함수는 아무것도 반환하지 **않아야** 합니다.
 
-```ts
+```ts twoslash
 function f2(): void {
   // @ts-expect-error
   return true;

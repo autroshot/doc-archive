@@ -8,7 +8,7 @@ sidebar_position: 3
 
 교집합 타입은 `&` 연산자를 사용하여 정의됩니다.
 
-```ts
+```ts twoslash
 interface Colorful {
   color: string;
 }
@@ -21,7 +21,15 @@ type ColorfulCircle = Colorful & Circle;
 
 여기서는 `Colorful`과 `Circle`을 교차시켜 `Colorful`과 `Circle`의 모든 구성원이 포함된 새로운 타입을 만듭니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
+interface Colorful {
+  color: string;
+}
+interface Circle {
+  radius: number;
+}
+// ---cut---
 function draw(circle: Colorful & Circle) {
   console.log(`Color was ${circle.color}`);
   console.log(`Radius was ${circle.radius}`);
@@ -30,7 +38,6 @@ function draw(circle: Colorful & Circle) {
 // 문제없습니다.
 draw({ color: "blue", radius: 42 });
 
-// 오류: Argument of type '{ color: string; raidus: number; }' is not assignable to parameter of type 'Colorful & Circle'.
-//   Object literal may only specify known properties, but 'raidus' does not exist in type 'Colorful & Circle'. Did you mean to write 'radius'?
+// 이런!
 draw({ color: "red", raidus: 42 });
 ```

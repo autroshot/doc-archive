@@ -10,11 +10,17 @@ sidebar_position: 1
 
 우리는 대부분 프로퍼티 세트가 존재할 수 있는 객체를 다룹니다. 이 경우 이름 끝에 물음표(`?`)를 추가하여 해당 프로퍼티를 **선택 사항**으로 표시할 수 있습니다.
 
-```ts
+```ts twoslash
+interface Shape {}
+declare function getShape(): Shape;
+
+// ---cut---
 interface PaintOptions {
   shape: Shape;
   xPos?: number;
+  //  ^
   yPos?: number;
+  //  ^
 }
 
 function paintShape(opts: PaintOptions) {
@@ -32,36 +38,66 @@ paintShape({ shape, xPos: 100, yPos: 100 });
 
 [`strictNullChecks`](https://www.typescriptlang.org/ko/tsconfig#strictNullChecks)일 때, 타입스크립트는 해당 프로퍼티가 `undefined`일 수 있다고 알려줍니다.
 
-```ts
+```ts twoslash
+interface Shape {}
+declare function getShape(): Shape;
+
+interface PaintOptions {
+  shape: Shape;
+  xPos?: number;
+  yPos?: number;
+}
+
+// ---cut---
 function paintShape(opts: PaintOptions) {
-  // (property) PaintOptions.xPos?: number | undefined
   let xPos = opts.xPos;
-  // (property) PaintOptions.yPos?: number | undefined
+  //              ^?
   let yPos = opts.yPos;
+  //              ^?
   // ...
 }
 ```
 
 자바스크립트에서는 프로퍼티를 지정하지 않아도 접근이 가능하며 그 값은 `undefined`입니다. `undefined`를 다음과 같이 특별하게 다룰 수 있습니다.
 
-```ts
+```ts twoslash
+interface Shape {}
+declare function getShape(): Shape;
+
+interface PaintOptions {
+  shape: Shape;
+  xPos?: number;
+  yPos?: number;
+}
+
+// ---cut---
 function paintShape(opts: PaintOptions) {
-  // let xPos: number
   let xPos = opts.xPos === undefined ? 0 : opts.xPos;
-  // let yPos: number
+  //  ^?
   let yPos = opts.yPos === undefined ? 0 : opts.yPos;
+  //  ^?
   // ...
 }
 ```
 
 지정되지 않은 값에 기본값을 설정하는 패턴은 너무 일반적이어서 자바스크립트에는 이를 지원하는 구문이 있습니다.
 
-```ts
+```ts twoslash
+interface Shape {}
+declare function getShape(): Shape;
+
+interface PaintOptions {
+  shape: Shape;
+  xPos?: number;
+  yPos?: number;
+}
+
+// ---cut---
 function paintShape({ shape, xPos = 0, yPos = 0 }: PaintOptions) {
-  // (parameter) xPos: number
   console.log("x coordinate at", xPos);
-  // (parameter) yPos: number
+  //                             ^?
   console.log("y coordinate at", yPos);
+  //                             ^?
   // ...
 }
 ```
@@ -72,11 +108,14 @@ function paintShape({ shape, xPos = 0, yPos = 0 }: PaintOptions) {
 
 현재로서는 구조 분해 패턴 내에 타입 주석을 배치할 수 있는 방법이 없습니다. 다음 구문은 자바스크립트에서 이미 다른 의미를 갖기 때문입니다.
 
-```ts
+```ts twoslash
+// @noImplicitAny: false
+// @errors: 2552 2304
+interface Shape {}
+declare function render(x: unknown);
+// ---cut---
 function draw({ shape: Shape, xPos: number = 100 /*...*/ }) {
-  // 오류: Cannot find name 'shape'. Did you mean 'Shape'?
   render(shape);
-  // 오류: Cannot find name 'xPos'.
   render(xPos);
 }
 ```
@@ -91,7 +130,8 @@ function draw({ shape: Shape, xPos: number = 100 /*...*/ }) {
 
 타입스크립트에서 프로퍼티는 `readonly`로 표시할 수 있습니다. 런타임 동작은 바뀌지 않습니다. 하지만 `readonly`로 표시된 프로퍼티는 타임 검사에서 쓰기(write)가 불가능합니다.
 
-```ts
+```ts twoslash
+// @errors: 2540
 interface SomeType {
   readonly prop: string;
 }
@@ -101,14 +141,14 @@ function doSomething(obj: SomeType) {
   console.log(`prop has the value '${obj.prop}'.`);
 
   // 하지만 다시 할당할 수는 없습니다.
-  // 오류: Cannot assign to 'prop' because it is a read-only property.
   obj.prop = "hello";
 }
 ```
 
 `readonly` 수정자를 사용한다고 해서 값이 완전히 불변인 것은 아닙니다. 내부 콘텐츠를 변경할 수 없다는 의미입니다. 즉, 프로퍼티 자체를 다시 쓰는 것이 불가능하다는 것입니다.
 
-```ts
+```ts twoslash
+// @errors: 2540
 interface Home {
   readonly resident: { name: string; age: number };
 }
@@ -121,7 +161,6 @@ function visitForBirthday(home: Home) {
 
 function evict(home: Home) {
   // 하지만 Home의 resident 프로퍼티 자체에는 쓰기가 불가능합니다.
-  // 오류: Cannot assign to 'resident' because it is a read-only property.
   home.resident = {
     name: "Victor the Evictor",
     age: 42,
@@ -133,7 +172,7 @@ function evict(home: Home) {
 
 타입스크립트는 두 타입의 프로퍼티가 호환되는지 확인할 때 `readonly`를 고려하지 않습니다. 따라서 `readonly`는 별칭을 통해 변경될 수도 있습니다.
 
-```ts
+```ts twoslash
 interface Person {
   name: string;
   age: number;
@@ -167,14 +206,16 @@ console.log(readonlyPerson.age); // 43을 출력합니다.
 
 예시:
 
-```ts
+```ts twoslash
+declare function getStringArray(): StringArray;
+// ---cut---
 interface StringArray {
   [index: number]: string;
 }
 
 const myArray: StringArray = getStringArray();
-// const secondItem: string
 const secondItem = myArray[1];
+//     ^?
 ```
 
 위의 `StringArray` 인터페이스에는 색인 시그니처가 있습니다. 이 색인 시그니처는 `StringArray`가 `number`로 색인되면 `string`을 반환한다고 명시합니다.
@@ -185,7 +226,9 @@ const secondItem = myArray[1];
 
 두 가지 타입의 색인을 모두 지원할 수 있지만 숫자 색인에서 반환된 타입은 문자열 색인에서 반환된 타입의 하위 타입이어야 합니다. `number`로 색인을 만들 때, 자바스크립트가 실제로 객체로 색인을 만들기 전에 `string`으로 변환하기 때문입니다. `100`(`number`)으로 색인을 만드는 것은 `"100"`(`string`)으로 색인을 만드는 것과 동일하므로 둘이 일관되어야 합니다.
 
-```ts
+```ts twoslash
+// @errors: 2413
+// @strictPropertyInitialization: false
 interface Animal {
   name: string;
 }
@@ -196,7 +239,6 @@ interface Dog extends Animal {
 
 // 오류: 숫자형 문자열로 색인을 만들면 완전히 다른 타입의 Animal을 얻을 수 있습니다.
 interface NotOkay {
-  // 오류: 'number' index type 'Animal' is not assignable to 'string' index type 'Dog'.
   [x: number]: Animal;
   [x: string]: Dog;
 }
@@ -208,19 +250,19 @@ interface NotOkay {
 
 다음 예시에서는 `name`의 타입이 문자열 색인의 타입과 일치하지 않으므로 타입 검사기가 오류를 표시합니다.
 
-```ts
+```ts twoslash
+// @errors: 2411
 interface NumberDictionary {
   [index: string]: number;
 
   length: number; // 문제없습니다.
-  // 오류: Property 'name' of type 'string' is not assignable to 'string' index type 'number'.
   name: string;
 }
 ```
 
 그러나 색인 시그니처가 프로퍼티 타입의 합집합인 경우 다른 타입의 프로퍼티가 허용됩니다.
 
-```ts
+```ts twoslash
 interface NumberOrStringDictionary {
   [index: string]: number | string;
   length: number; // length가 숫자이므로 문제없습니다.
@@ -230,13 +272,15 @@ interface NumberOrStringDictionary {
 
 마지막으로 색인 시그니처를 `readonly`로 설정하여 색인에 할당하는 것을 방지할 수 있습니다.
 
-```ts
+```ts twoslash
+declare function getReadOnlyStringArray(): ReadonlyStringArray;
+// ---cut---
+// @errors: 2542
 interface ReadonlyStringArray {
   readonly [index: number]: string;
 }
 
 let myArray: ReadonlyStringArray = getReadOnlyStringArray();
-// 오류: Index signature in type 'ReadonlyStringArray' only permits reading.
 myArray[2] = "Mallory";
 ```
 

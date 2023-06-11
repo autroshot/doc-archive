@@ -6,7 +6,7 @@ sidebar_position: 6
 
 인터페이스와 마찬가지로 클래스는 제네릭일 수 있습니다. 제네릭 클래스가 `new`로 인스턴스화되면 타입 매개변수는 함수 호출에서와 같은 방식으로 추론됩니다.
 
-```ts
+```ts twoslash
 class Box<Type> {
   contents: Type;
   constructor(value: Type) {
@@ -14,8 +14,8 @@ class Box<Type> {
   }
 }
 
-// const b: Box<string>
 const b = new Box("hello!");
+//    ^?
 ```
 
 클래스는 인터페이스와 동일한 방식으로 일반 제약 조건과 기본값을 사용할 수 있습니다.
@@ -24,9 +24,9 @@ const b = new Box("hello!");
 
 이 코드는 허용되지 않는데 그 이유가 명확하지 않을 수 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2302
 class Box<Type> {
-  // 오류: Static members cannot reference class type parameters.
   static defaultValue: Type;
 }
 ```

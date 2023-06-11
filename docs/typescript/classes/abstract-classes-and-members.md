@@ -12,36 +12,46 @@ sidebar_position: 11
 
 예시를 살펴보겠습니다.
 
-```ts
+```ts twoslash
+// @errors: 2511
 abstract class Base {
   abstract getName(): string;
- 
+
   printName() {
     console.log("Hello, " + this.getName());
   }
 }
 
-// 오류: Cannot create an instance of an abstract class.
 const b = new Base();
 ```
 
 추상적이기 때문에 `new`로 `Base`를 인스턴스화할 수 없습니다. 대신 파생 클래스를 만들고 추상 멤버를 구현해야 합니다.
 
-```ts
+```ts twoslash
+abstract class Base {
+  abstract getName(): string;
+  printName() {}
+}
+// ---cut---
 class Derived extends Base {
   getName() {
     return "world";
   }
 }
- 
+
 const d = new Derived();
 d.printName();
 ```
 
 기본 클래스의 추상 멤버를 구현하는 것을 잊어버리면 오류가 발생합니다.
 
-```ts
-// 오류: Non-abstract class 'Derived' does not implement inherited abstract member 'getName' from class 'Base'.
+```ts twoslash
+// @errors: 2515
+abstract class Base {
+  abstract getName(): string;
+  printName() {}
+}
+// ---cut---
 class Derived extends Base {
   // 무언가를 하는 것을 잊었습니다.
 }
@@ -53,9 +63,19 @@ class Derived extends Base {
 
 예를 들어 다음 코드를 작성할 수 있습니다.
 
-```ts
+```ts twoslash
+// @errors: 2511
+abstract class Base {
+  abstract getName(): string;
+  printName() {}
+}
+class Derived extends Base {
+  getName() {
+    return "";
+  }
+}
+// ---cut---
 function greet(ctor: typeof Base) {
-  // 오류: Cannot create an instance of an abstract class.
   const instance = new ctor();
   instance.printName();
 }
@@ -65,21 +85,32 @@ function greet(ctor: typeof Base) {
 
 `greet`의 정의를 고려할 때, 결국 추상 클래스가 생성되므로 이 코드를 작성하는 것이 완벽하게 허용될 것입니다.
 
-```ts
-// 옳지 않습니다!
+```ts twoslash
+declare const greet: any, Base: any;
+// ---cut---
+// 좋지 않습니다!
 greet(Base);
 ```
 
 대신 생성 시그니처가 있는 것을 받는 함수를 작성하려고 합니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
+abstract class Base {
+  abstract getName(): string;
+  printName() {}
+}
+class Derived extends Base {
+  getName() {
+    return "";
+  }
+}
+// ---cut---
 function greet(ctor: new () => Base) {
   const instance = new ctor();
   instance.printName();
 }
 greet(Derived);
-// 오류: Argument of type 'typeof Base' is not assignable to parameter of type 'new () => Base'.
-//   Cannot assign an abstract constructor type to a non-abstract constructor type.
 greet(Base);
 ```
 

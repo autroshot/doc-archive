@@ -54,14 +54,15 @@ type JSONResponse = {
 
 주로 문서화에 유용합니다.
 
-```ts
+```ts twoslash
 type SanitizedInput = string;
 type MissingNo = 404;
 ```
 
 ## 객체 리터럴 타입
 
-```ts
+```ts twoslash
+// @noLib
 type Location = {
   x: number;
   y: number;
@@ -72,7 +73,13 @@ type Location = {
 
 튜플은 특정 색인에 고정된 타입이 있는 특별한 배열입니다.
 
-```ts
+```ts twoslash
+// @noLib
+type Location = {
+  x: number;
+  y: number;
+}
+// ---cut---
 type Data = [
   location: Location,
   timestamp: string
@@ -83,51 +90,53 @@ type Data = [
 
 고정된 문자열 목록과 같이 여러 옵션을 가지는 타입을 묘사합니다.
 
-```ts
-type Size =
-  "small" | "medium" | "large";
+```ts twoslash
+type Size = "small" | "medium" | "large";
 ```
 
 ## 교집합 타입
 
 타입을 병합하거나 확장하는 방법입니다.
 
-```ts
-// { x: number, y: number };
-type Location =
-  { x: number } & { y: number };
+```ts twoslash
+// @noLib
+type Location = { x: number } & { y: number };
 ```
 
 ## 타입 인덱싱
 
 타입의 하위 집합에서 추출하고 이름을 지정하는 방법입니다.
 
-```ts
-type Response = { data: { ... } };
+```ts twoslash
+// @noLib
+type Response = { data: string };
 
-// { ... }
 type Data = Response["data"];
+//   ^?
 ```
 
 ## 값에서 타입 가져오기
 
 `typeof` 연산자를 이용해 기존 자바스크립트 런타임 값의 타입을 재사용합니다.
 
-```ts
-const data = { ... };
-type Data = typeof data;
+```ts twoslash
+const person = { name: 'Alex', age: 20 };
+
+type Person = typeof person;
+//   ^?
 ```
 
 ## 함수 반환에서 타입 가져오기
 
 함수의 반환값을 타입으로 재사용합니다.
 
-```ts
-const createFixtures = () => { ... };
-type Fixtures =
-  ReturnType<typeof createFixtures>;
+```ts twoslash
+const createPerson = () => { 
+  return { name: 'Alex', age: 20 }
+};
 
-function test(fixture: Fixtures) {}
+type Person = ReturnType<typeof createPerson>;
+//   ^?
 ```
 
 ## 모듈에서 타입 가져오기
@@ -144,7 +153,7 @@ const data: import("./data").data
 
 입력 타입이 새 타입의 구조를 변경 가능하게 만듭니다.
 
-```ts
+```ts twoslash
 type Artist = { name: string, bio: string };
 
 type Subscriber<Type> = {
@@ -153,36 +162,51 @@ type Subscriber<Type> = {
     // 매개변수가 기존 타입인 함수로 타입을 설정합니다.
     (newValue: Type[Property]) => void
 };
-// { name: (nv: string) => void,
-//   bio: (nv: string) => void }
+
 type ArtistSub = Subscriber<Artist>;
+//   ^?
 ```
 
 ## 조건부 타입
 
 타입 시스템 내에서 `if`문처럼 작동합니다. 제네릭을 통해 생성된 다음 타입 합집합의 옵션 수를 줄이는 데 많이 사용됩니다.
 
-```ts
+```ts twoslash
+interface FourLegs {
+  legs: 4
+}
+
+interface Bird {
+  legs: 2
+}
+interface Dog {
+  legs: 4
+}
+interface Ant {
+  legs: 6
+}
+interface Wolf {
+  legs: 4
+}
+// ---cut---
 type HasFourLegs<Animal> =
   Animal extends { legs: 4 } ? Animal : never;
 
 type Animals = Bird | Dog | Ant | Wolf;
-// Dog | Wolf
-type FourLegs = HasFourLegs<Animals>;
+
+type FourLegsAnimals = HasFourLegs<Animals>;
+//   ^?
 ```
 
 ## 템플릿 합집합 타입
 
 템플릿 문자열을 사용해 타입 시스템 내에서 텍스트를 결합하고 조작할 수 있습니다.
 
-```ts
+```ts twoslash
 type SupportedLangs = "en" | "pt" | "zh";
 type FooterLocaleIDs = "header" | "footer";
 
-// "en_header_id" | "en_footer_id"
-// | "pt_header_id" | "pt_footer_id"
-// | "zh_header_id" | "zh_footer_id"
-type AllLocaleIDs =
-  `${SupportedLangs}_${FooterLocaleIDs}_id`;
+type AllLocaleIDs = `${SupportedLangs}_${FooterLocaleIDs}_id`;
+//   ^?
 ```
 

@@ -10,9 +10,9 @@ sidebar_position: 1
 
 예를 들어 다음 예시에서는 `obj`의 타입에서 오류가 발생합니다.
 
-```ts
+```ts twoslash
+// @errors: 2551
 const obj = { width: 10, height: 15 };
-// 오류: Property 'heigth' does not exist on type '{ width: number; height: number; }'. Did you mean 'height'?
 const area = obj.width * obj.heigth;
 ```
 
@@ -26,8 +26,8 @@ const area = obj.width * obj.heigth;
 
 예를 들어 다음 코드에는 `)`가 누락되어서 구문 오류가 발생합니다.
 
-```ts
-// 오류: ')' expected.
+```ts twoslash
+// @errors: 1005
 let a = (4
 ```
 
@@ -47,8 +47,8 @@ console.log(4 / []);
 
 구문상 가능한 이 프로그램은 `Infinity`를 출력합니다. 그러나 타입스크립트는 숫자를 배열로 나누는 것을 무의미한 작업으로 간주하고 오류를 발생시킵니다.
 
-```ts
-// 오류: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+```ts twoslash
+// @errors: 2363
 console.log(4 / []);
 ```
 

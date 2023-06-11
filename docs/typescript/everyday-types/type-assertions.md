@@ -10,7 +10,7 @@ sidebar_position: 9
 
 이 상황에서 **타입 단언**을 사용하여 보다 구체적인 타입을 지정할 수 있습니다.
 
-```ts
+```ts twoslash
 const myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement;
 ```
 
@@ -18,7 +18,7 @@ const myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement;
 
 다음과 같이 꺾쇠 괄호(`<>`) 구문을 사용할 수도 있습니다. 코드가 `.tsx` 파일에 있는 경우에는 불가능합니다.
 
-```ts
+```ts twoslash
 const myCanvas = <HTMLCanvasElement>document.getElementById("main_canvas");
 ```
 
@@ -30,13 +30,16 @@ const myCanvas = <HTMLCanvasElement>document.getElementById("main_canvas");
 
 타입스크립트는 타입의 **더 구체적인** 또는 **덜 구체적인** 버전으로 변환하는 타입 단언만 허용합니다. 이 규칙은 다음과 같은 **불가능한** 강제를 방지합니다.
 
-```ts
-// 오류: Conversion of type 'string' to type 'number' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+```ts twoslash
+// @errors: 2352
 const x = "hello" as number;
 ```
 
 때때로 이 규칙은 너무 보수적일 수 있으며 유효할 수 있는 더 복잡한 강제를 허용하지 않습니다. 이 경우에는 먼저 `any`(또는 나중에 소개할 `unknown`)로 단언한 다음, 원하는 타입으로 단언할 수 있습니다.
 
-```ts
+```ts twoslash
+declare const expr: any;
+type T = { a: 1; b: 2; c: 3 };
+// ---cut---
 const a = (expr as any) as T;
 ```

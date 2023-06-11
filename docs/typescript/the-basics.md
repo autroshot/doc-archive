@@ -65,11 +65,10 @@ function fn(x) {
 
 이상적으로는 코드를 실행하기 **전에** 이러한 버그를 찾는 데 도움이 되는 도구를 사용할 수 있습니다. 바로 이것이 타입스크립트와 같은 정적 타입 검사기가 하는 일입니다. **정적 타입 시스템**은 프로그램을 실행할 때의 값의 형태와 동작을 묘사합니다. 타입스크립트와 같은 타입 검사기는 해당 정보를 사용하여 문제가 발생할 수 있는 시점을 알려줍니다.
 
-```ts
+```ts twoslash
+// @errors: 2349
 const message = "hello!";
 
-// 오류: This expression is not callable.
-//   Type 'String' has no call signatures.
 message();
 ```
 
@@ -92,13 +91,13 @@ user.location; // undefined를 반환합니다.
 
 궁극적으로 정적 타입 시스템은 어떤 코드를 오류로 표시해야 하는지 판단해야 합니다. 해당 코드가 즉시 오류를 발생시키지 않는 **유효한** 자바스크립트일지라도 말입니다. 타입스크립트에서 다음 코드는 `location`이 정의되지 않았다는 오류를 생성합니다.
 
-```ts
+```ts twoslash
+// @errors: 2339
 const user = {
   name: "Daniel",
   age: 26,
 };
 
-// 오류: Property 'location' does not exist on type '{ name: string; age: number; }'.
 user.location;
 ```
 
@@ -108,7 +107,8 @@ user.location;
 
 오타
 
-```ts
+```ts twoslash
+// @noErrors
 const announcement = "Hello World!";
 
 // 오타를 얼마나 빨리 발견할 수 있나요?
@@ -121,21 +121,22 @@ announcement.toLocaleLowerCase();
 
 호출되지 않은 함수
 
-```ts
+```ts twoslash
+// @noUnusedLocals
+// @errors: 2365
 function flipCoin() {
-  // 원래 의도는 Math.random()이었습니다.
-  // 오류: Operator '<' cannot be applied to types '() => number' and 'number'.
+  // 원래 의도는 'Math.random()'이었습니다.
   return Math.random < 0.5;
 }
 ```
 
 기본적인 논리 오류
 
-```ts
+```ts twoslash
+// @errors: 2367
 const value = Math.random() < 0.5 ? "a" : "b";
 if (value !== "a") {
   // ...
-// 오류: This comparison appears to be unintentional because the types '"a"' and '"b"' have no overlap.
 } else if (value === "b") {
   // 이런, 도달할 수 없습니다.
 }
@@ -149,13 +150,16 @@ if (value !== "a") {
 
 즉, 타입스크립트를 코드 편집에도 활용할 수 있습니다. 핵심 타입 검사기는 편집기에 입력할 때 오류 메시지와 코드 완성을 제공할 수 있습니다. 이것은 사람들이 타입스크립트의 도구에 대해 이야기할 때 자주 언급하는 부분입니다.
 
-```ts
+```ts twoslash
+// @noErrors
+// @esModuleInterop
 import express from "express";
 const app = express();
 
 app.get("/", function (req, res) {
   // 코드 완성이 제공됩니다.
   res.sen
+//       ^|
 });
 
 app.listen(3000);
@@ -179,7 +183,7 @@ npm install -g typescript
 
 이제 빈 폴더로 이동하여 첫 번째 타입스크립트 프로그램인 `hello.ts`를 작성해 보겠습니다.
 
-```ts
+```ts twoslash
 // 세상에 인사를 건넵니다.
 console.log("Hello world!");
 ```
@@ -205,7 +209,8 @@ console.log("Hello world!");
 
 만약 타입 검사에서 오류가 발생했다면 어떻게 될까요? `hello.ts`를 다시 작성해 보겠습니다.
 
-```ts
+```ts twoslash
+// @noErrors
 // 이것은 산업 등급의 범용 인사 함수입니다.
 function greet(person, date) {
   console.log(`Hello ${person}, today is ${date}!`);
@@ -240,7 +245,7 @@ tsc --noEmitOnError hello.ts
 
 지금까지 우리는 타입스크립트에게 `person`이나 `date`가 무엇인지 말하지 않았습니다. 코드를 편집하여 타입스크립트에게 `person`이 `string`이고 `date`가 `Date` 객체여야 한다고 알려 주겠습니다. 또한 `date`의 `toDateString()` 메서드를 사용하겠습니다.
 
-```ts
+```ts twoslash
 function greet(person: string, date: Date) {
   console.log(`Hello ${person}, today is ${date.toDateString()}!`);
 }
@@ -250,12 +255,12 @@ function greet(person: string, date: Date) {
 
 이제 타입스크립트는 `greet`가 잘못 호출될 때, 이를 알려줄 수 있습니다. 예를 들면 다음과 같습니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
 function greet(person: string, date: Date) {
   console.log(`Hello ${person}, today is ${date.toDateString()}!`);
 }
 
-// 오류: Argument of type 'string' is not assignable to parameter of type 'Date'.
 greet("Maddison", Date());
 ```
 
@@ -265,7 +270,7 @@ greet("Maddison", Date());
 
 어쨌든 우리는 오류를 신속하게 해결할 수 있습니다.
 
-```ts {4}
+```ts twoslash {5}
 function greet(person: string, date: Date) {
   console.log(`Hello ${person}, today is ${date.toDateString()}!`);
 }
@@ -275,9 +280,9 @@ greet("Maddison", new Date());
 
 명시적인 타입 주석을 항상 작성할 필요는 없다는 점을 기억하세요. 대부분의 경우 타입스크립트는 우리가 타입을 생략하더라도 **추론**할(알아낼) 수 있습니다.
 
-```ts
-// let msg: string
+```ts twoslash
 let msg = "hello there!";
+//  ^?
 ```
 
 `msg`에 `string` 타입이 있다고 타입스크립트에 알려 주지 않았지만, 타입스크립트는 이를 알아낼 수 있습니다. 이는 타입스크립트의 기능으로, 타입 시스템이 어쨌든 동일한 타입을 추론하게 된다면 주석을 추가하지 않는 것이 가장 좋습니다.
@@ -292,10 +297,11 @@ let msg = "hello there!";
 
 위의 함수 `greet`를 `tsc`로 컴파일하여 자바스크립트를 출력할 때 어떤 일이 발생하는지 살펴보겠습니다.
 
-```ts
-"use strict";
-function greet(person, date) {
-  console.log("Hello ".concat(person, ", today is ").concat(date.toDateString(), "!"));
+```ts twoslash
+// @showEmit
+// @target: es5
+function greet(person: string, date: Date) {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`);
 }
 
 greet("Maddison", new Date());
@@ -365,4 +371,3 @@ greet("Maddison", new Date());
 ### `strictNullChecks`
 
 기본적으로 `null`과 `undefined`와 같은 값은 다른 모든 타입에 할당 가능합니다. 이렇게 하면 일부 코드를 더 쉽게 작성할 수 있지만, `null`과 `undefined`를 처리하는 것을 잊는 것은 세상의 수많은 버그의 원인이 됩니다. 일부는 이를 [수십억 달러짜리 실수](https://www.youtube.com/watch?v=ybrQvs4x0Ps)라고 생각합니다! [`strictNullChecks`](https://www.typescriptlang.org/ko/tsconfig#strictNullChecks) 플래그를 사용하면 `null`과 `undefined`를 보다 명확하게 처리할 수 있으며, `null`과 `undefined`를 처리하는 것을 잊어버리지 않았는지 걱정할 필요가 없어집니다.
-

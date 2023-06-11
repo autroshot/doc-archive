@@ -10,7 +10,7 @@ sidebar_position: 7
 
 `void`는 값을 반환하지 않는 함수의 반환값을 나타냅니다. 함수에 `return`문이 없거나 반환문에서 명시적 값을 반환하지 않을 때 추론되는 타입입니다.
 
-```ts
+```ts twoslash
 // 추론된 반환 타입은 void입니다.
 function noop() {
   return;
@@ -41,12 +41,12 @@ function noop() {
 
 `unknown` 타입은 **모든(any)** 값을 나타냅니다. 이 타입은 `any` 타입과 유사하지만 `unknown` 값으로 무언가를 하는 것은 오류를 발생시키므로 더 안전합니다.
 
-```ts
+```ts twoslash
+// @errors: 2571 18046
 function f1(a: any) {
   a.b(); // 문제없습니다.
 }
 function f2(a: unknown) {
-  // 오류: Object is of type 'unknown'.
   a.b();
 }
 ```
@@ -55,7 +55,9 @@ function f2(a: unknown) {
 
 반대로 알 수 없는 타입의 값을 반환하는 함수를 묘사하는 것도 가능합니다.
 
-```ts
+```ts twoslash
+declare const someRandomString: string;
+// ---cut---
 function safeParse(s: string): unknown {
   return JSON.parse(s);
 }
@@ -68,7 +70,7 @@ const obj = safeParse(someRandomString);
 
 일부 함수는 값을 **절대** 반환하지 않습니다.
 
-```ts
+```ts twoslash
 function fail(msg: string): never {
   throw new Error(msg);
 }
@@ -78,7 +80,7 @@ function fail(msg: string): never {
 
 `never`는 타입스크립트가 합집합에 남은 것이 없다고 판단할 때도 나타납니다.
 
-```ts
+```ts twoslash
 function fn(x: string | number) {
   if (typeof x === "string") {
     // 무언가를 합니다.
@@ -94,7 +96,7 @@ function fn(x: string | number) {
 
 전역 타입인 `Function`은 `bind`, `call`, `apply`, 그리고 자바스크립트의 모든 함수 값에 존재하는 기타 프로퍼티를 묘사합니다. 그리고 `Function` 타입의 값을 항상 호출할 수 있는 특별한 프로퍼티가 있습니다. 해당 호출은 `any`를 반환합니다.
 
-```ts
+```ts twoslash
 function doSomething(f: Function) {
   return f(1, 2, 3);
 }

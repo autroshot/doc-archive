@@ -21,10 +21,10 @@ sidebar_position: 1
 
 다음 예시를 확인하세요.
 
-```ts
+```ts twoslash
+// @errors: 2531 18047
 function printAll(strs: string | string[] | null) {
   if (typeof strs === "object") {
-    // 오류: Object is possibly 'null'.
     for (const s of strs) {
       console.log(s);
     }

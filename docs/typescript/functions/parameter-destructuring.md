@@ -14,7 +14,7 @@ sidebar_position: 9
 
 자바스크립트에서는 다음과 같습니다.
 
-```ts
+```js
 function sum({ a, b, c }) {
   console.log(a + b + c);
 }
@@ -23,7 +23,7 @@ sum({ a: 10, b: 3, c: 9 });
 
 객체에 대한 타입 주석은 구조 분해 구문 다음에 옵니다.
 
-```ts
+```ts twoslash
 function sum({ a, b, c }: { a: number; b: number; c: number }) {
   console.log(a + b + c);
 }
@@ -31,7 +31,7 @@ function sum({ a, b, c }: { a: number; b: number; c: number }) {
 
 다소 장황해 보일 수 있지만 여기서도 명명된 타입을 사용할 수 있습니다.
 
-```ts
+```ts twoslash
 // 이전 예시와 동일합니다.
 type ABC = { a: number; b: number; c: number };
 function sum({ a, b, c }: ABC) {

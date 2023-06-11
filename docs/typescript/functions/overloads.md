@@ -4,11 +4,12 @@ sidebar_position: 6
 
 # 다중 정의
 
-일부 자바스크립트 함수는 다양한 수와 다양한 타입의 인수로 호출할 수 있습니다. 예를 들어 타임스탬프(하나의 인수) 또는 월/일/년 지정(세 개의 인수)을 사용하는 `Date`를 생성하는 함수를 작성할 수 있습니다.
+일부 자바스크립트 함수는 다양한 수와 다양한 타입의 인수로 호출할 수 있습니다. 예를 들어 타임스탬프(하나의 인수) 또는 월, 일, 년(세 개의 인수)을 지정하여 `Date`를 생성하는 함수를 작성할 수 있습니다.
 
 타입스크립트에서는 **다중 정의(overload) 시그니처**를 사용하여 다양한 방식으로 호출 가능한 함수를 묘사할 수 있습니다. 다중 정의 시그니처는 몇 가지 함수 시그니처(보통 두 개 이상)를 작성하고 그 뒤에 함수 본문을 작성하여 만듭니다.
 
-```ts
+```ts twoslash
+// @errors: 2575
 function makeDate(timestamp: number): Date;
 function makeDate(m: number, d: number, y: number): Date;
 function makeDate(mOrTimestamp: number, d?: number, y?: number): Date {
@@ -20,7 +21,6 @@ function makeDate(mOrTimestamp: number, d?: number, y?: number): Date {
 }
 const d1 = makeDate(12345678);
 const d2 = makeDate(5, 5, 5);
-// 오류: No overload expects 2 arguments, but overloads do exist that expect either 1 or 3 arguments.
 const d3 = makeDate(1, 3);
 ```
 
@@ -32,13 +32,13 @@ const d3 = makeDate(1, 3);
 
 이것은 일반적인 혼란의 원인입니다. 사람들은 종종 다음과 같은 코드를 작성하고 오류가 왜 발생하는지 모릅니다.
 
-```ts
+```ts twoslash
+// @errors: 2554
 function fn(x: string): void;
 function fn() {
   // ...
 }
 // 0개의 인수로 호출 가능할 것이라 예상합니다.
-// 오류: Expected 1 arguments, but got 0.
 fn();
 ```
 
@@ -54,20 +54,19 @@ fn();
 
 예를 들어 다음 함수에서는 구현 시그니처가 다중 정의와 호환되지 않아서 오류가 발생합니다.
 
-```ts
+```ts twoslash
+// @errors: 2394
 function fn(x: boolean): void;
 // 인수 타입이 올바르지 않습니다.
-// 오류: This overload signature is not compatible with its implementation signature.
 function fn(x: string): void;
 function fn(x: boolean) {}
 ```
 
-```ts
+```ts twoslash
+// @errors: 2394
 function fn(x: string): string;
 // 반환 타입이 올바르지 않습니다.
-// 오류: This overload signature is not compatible with its implementation signature.
 function fn(x: number): boolean;
-
 function fn(x: string | number) {
   return "oops";
 }
@@ -79,7 +78,7 @@ function fn(x: string | number) {
 
 다음과 같이 문자열이나 배열의 길이를 반환하는 함수가 있다고 가정해 보겠습니다.
 
-```ts
+```ts twoslash
 function len(s: string): number;
 function len(arr: any[]): number;
 function len(x: any) {
@@ -89,22 +88,19 @@ function len(x: any) {
 
 이 함수는 문제가 없습니다. 문자열이나 배열로 호출할 수 있습니다. 그러나 타입스크립트는 함수 호출을 단일 다중 정의로만 해결할 수 있기 때문에 문자열 또는 배열일 수 있는 값으로 호출하는 것은 불가능합니다.
 
-```ts
+```ts twoslash
+// @errors: 2769
+declare function len(s: string): number;
+declare function len(arr: any[]): number;
+// ---cut---
 len(""); // 문제없습니다.
 len([0]); // 문제없습니다.
-// 오류: No overload matches this call.
-//   Overload 1 of 2, '(s: string): number', gave the following error.
-//     Argument of type 'number[] | "hello"' is not assignable to parameter of type 'string'.
-//       Type 'number[]' is not assignable to type 'string'.
-//   Overload 2 of 2, '(arr: any[]): number', gave the following error.
-//     Argument of type 'number[] | "hello"' is not assignable to parameter of type 'any[]'.
-//       Type 'string' is not assignable to type 'any[]'.No overload matches this call.
 len(Math.random() > 0.5 ? "hello" : [0]);
 ```
 
 두 다중 정의의 인수 개수와 반환 타입이 같으므로, 다중 정의가 없는 함수를 대신 작성할 수 있습니다.
 
-```ts
+```ts twoslash
 function len(x: any[] | string) {
   return x.length;
 }
@@ -124,7 +120,7 @@ function len(x: any[] | string) {
 
 예시:
 
-```ts
+```ts twoslash
 const user = {
   id: 123,
  
@@ -139,7 +135,13 @@ const user = {
 
 자바스크립트 명세서에는 `this`라는 이름을 가진 매개변수를 사용할 수 없다고 명시되어 있습니다. 따라서 타입스크립트에서는 이 구문을 사용하여 함수 본문에서 `this`의 타입을 선언할 수 있습니다.
 
-```ts
+```ts twoslash
+interface User {
+  id: number;
+  admin: boolean;
+}
+declare const getDB: () => DB;
+// ---cut---
 interface DB {
   filterUsers(filter: (this: User) => boolean): User[];
 }
@@ -152,13 +154,18 @@ const admins = db.filterUsers(function (this: User) {
 
 이 패턴은 다른 객체가 일반적으로 함수 호출 시기를 제어하는 콜백 스타일 API에서 많이 사용합니다. 여기서는 화살표 함수가 아닌 `function`을 사용해야 합니다.
 
-```ts
+```ts twoslash
+// @errors: 7041 7017
+interface User {
+  id: number;
+  isAdmin: boolean;
+}
+declare const getDB: () => DB;
+// ---cut---
 interface DB {
   filterUsers(filter: (this: User) => boolean): User[];
 }
- 
+
 const db = getDB();
-// 오류: The containing arrow function captures the global value of 'this'.
-//   Element implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
 const admins = db.filterUsers(() => this.admin);
 ```

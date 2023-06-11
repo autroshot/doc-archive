@@ -10,18 +10,21 @@ sidebar_position: 5
 
 함수를 선언할 때 각 매개변수 뒤에 타입 주석을 추가하여 함수가 허용하는 매개변수 타입을 선언할 수 있습니다. 매개변수 타입 주석은 매개변수 이름 다음에 옵니다.
 
-```ts
+```ts twoslash
 // 매개변수 타입 주석
 function greet(name: string) {
+  //                 ^^^^^^^^
   console.log("Hello, " + name.toUpperCase() + "!!");
 }
 ```
 
 매개변수에 타입 주석이 있다면, 해당 함수에 대한 인수가 검사됩니다.
 
-```ts
+```ts twoslash
+// @errors: 2345
+declare function greet(name: string): void;
+// ---cut---
 // 실행하면 런타임 오류가 발생합니다!
-// 오류: Argument of type 'number' is not assignable to parameter of type 'string'.
 greet(42);
 ```
 
@@ -35,8 +38,9 @@ greet(42);
 
 반환 타입 주석을 추가할 수도 있습니다. 반환 타입 주석은 매개변수 목록 뒤에 나타납니다.
 
-```ts
+```ts twoslash
 function getFavoriteNumber(): number {
+  //                        ^^^^^^^^
   return 26;
 }
 ```
@@ -49,19 +53,18 @@ function getFavoriteNumber(): number {
 
 예를 들면 다음과 같습니다.
 
-```ts
-// 여기에는 타입 주석이 없지만 타입스크립트는 버그를 발견할 수 있습니다.
+```ts twoslash
+// @errors: 2551
 const names = ["Alice", "Bob", "Eve"];
 
-// 함수에 대한 컨텍스트 타이핑
+// 함수에 대한 컨텍스트 타이핑입니다.
+// 매개변수 s는 문자열 타입을 갖는 것으로 추론됩니다.
 names.forEach(function (s) {
-  // 오류: Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
   console.log(s.toUppercase());
 });
 
 // 컨텍스트 타이핑은 화살표 함수에도 적용됩니다.
 names.forEach((s) => {
-  // 오류: Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
   console.log(s.toUppercase());
 });
 ```

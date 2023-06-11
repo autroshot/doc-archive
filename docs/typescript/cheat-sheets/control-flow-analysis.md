@@ -14,45 +14,64 @@ CFA(Control Flow Analysis, 제어 흐름 분석)는 대부분 합집합을 사�
 
 #### 원시값을 위한 `typeof`
 
-```ts
-// input: string | number
+```ts twoslash
+declare function getUserInput(): string | number;
+// ---cut---
 const input = getUserInput();
+//    ^?
 
 if (typeof input === "string") {
-  // input: string
+  console.log(input);
+  //          ^?
 }
 ```
 
 #### `in`을 이용한 객체의 프로퍼티
 
-```ts
-// input: string | { error: ... }
-const input = getUserInput();
+```ts twoslash
+interface Name {
+  firstName: string;
+}
+interface Address {
+  state: string;
+}
 
-if ("error" in input) {
-  // input: { error: ... }
+declare function getUserInput(): Name | Address;
+// ---cut---
+const input = getUserInput();
+//    ^?
+
+if ("firstName" in input) {
+  console.log(input);
+  //          ^?
 }
 ```
 
 #### 클래스를 위한 `instanceof`
 
-```ts
-// input: number | number[]
+```ts twoslash
+declare function getUserInput(): number | number[];
+// ---cut---
 const input = getUserInput();
+//    ^?
 
 if (input instanceof Array) {
-  // input: number[]
+  console.log(input);
+  //          ^?
 }
 ```
 
 #### 모든 타입을 위한 타입 가드 함수
 
-```ts
-// input: number | number[]
+```ts twoslash
+declare function getUserInput(): number | number[];
+// ---cut---
 const input = getUserInput();
+//    ^?
 
 if (Array.isArray(input)) {
-  // input: number[]
+  console.log(input);
+  //          ^?
 }
 ```
 
@@ -60,18 +79,20 @@ if (Array.isArray(input)) {
 
 불린 연산을 수행할 때 동일한 코드 줄에서도 좁히기가 발생합니다.
 
-```ts
-// input: string | number[]
+```ts twoslash
+declare function getUserInput(): string | number[];
+// ---cut---
 const input = getUserInput();
+//    ^?
 
 const inputLength =
   (typeof input === "string" && input.length) || input;
-  // input: string
+  //                            ^?
 ```
 
 ## 구별되는 합집합
 
-```ts
+```ts twoslash
 type Responses =
   | { status: 200, data: any }
   | { status: 301, to: string }
@@ -82,14 +103,31 @@ type Responses =
 
 사용법:
 
-```ts
-// res: Responses
+```ts twoslash
+type Responses =
+  | { status: 200, data: any }
+  | { status: 301, to: string }
+  | { status: 400, error: Error }
+
+declare function getResponse(): Responses;
+declare function redirect(to: string): void;
+// ---cut---
 const res = getResponse();
+//    ^?
 
 switch (res.status) {
-  case 200: return res.data;
-  case 301: return redirect(res.to);
-  case 400: return res.error;
+  case 200:
+    res.data;
+//  ^?
+    break;
+  case 301:
+    redirect(res.to);
+    //       ^?
+    break;
+  case 400:
+    res.error;
+//  ^?
+    break;
 }
 ```
 
@@ -97,28 +135,46 @@ switch (res.status) {
 
 `true`이면 새 스코프에 대한 CFA 변경을 설명하는 반환 타입을 가진 함수입니다.
 
-```ts
-function isErrorResponse(obj: Response): obj is APIErrorResponse {
-  return obj instanceof APIErrorResponse;
+```ts twoslash
+interface ErrorResponse { status: 400, error: Error };
+type Responses =
+  | { status: 200, data: any }
+  | { status: 301, to: string }
+  | ErrorResponse
+// ---cut---
+function isErrorResponse(obj: Responses): obj is ErrorResponse {
+  return "error" in obj ? true : false;
 }
 ```
 
-반환 타입 위치에 있는 `obj is APIErrorResponse`는 단언을 설명합니다.
+반환 타입 위치에 있는 `obj is ErrorResponse`는 단언을 묘사합니다.
 
 사용법:
 
-```ts
-// res: Responses | APIErrorResponse
+```ts twoslash
+interface ErrorResponse { status: 400, error: Error };
+type Responses =
+  | { status: 200, data: any }
+  | { status: 301, to: string }
+  | ErrorResponse
+
+declare function getResponse(): Responses;
+function isErrorResponse(obj: Responses): obj is ErrorResponse {
+  return "error" in obj ? true : false;
+}
+// ---cut---
 const res = getResponse();
+//    ^?
 
 if (isErrorResponse(res)) {
-  // res: APIErrorResponse
+  console.log(res);
+  //          ^?
 }
 ```
 
 ## 단언 함수
 
-CFA를 설명하는 함수는 `false`를 반환하는 대신 오류를 던지기 때문에 현재 스코프에 영향을 줍니다.
+CFA를 묘사하는 함수는 `false`를 반환하는 대신 오류를 던지기 때문에 현재 스코프에 영향을 줍니다.
 
 ```ts
 function assertResponse(obj: any): asserts obj is SuccessResponse {
@@ -144,24 +200,24 @@ assertResponse(res);
 
 ### `as const`로 타입 좁히기
 
-객체의 하위 필드는 변경 가능한 것으로 처리됩니다. 할당 동안에는 하위 필드의 타입이 리터럴이 아닌 버전으로 확대됩니다. 접두사 `as const`는 모든 타입을 리터럴 버전으로 잠급니다.
+객체의 하위 필드는 변경 가능한 것으로 간주됩니다. 할당 중에는 하위 필드의 타입이 리터럴이 아닌 버전으로 확장됩니다. 접두사 `as const`는 모든 타입을 리터럴 버전으로 잠급니다.
 
-```ts
-const data1 = {
+```ts twoslash
+const obj = {
   name: "Zagreus"
 };
 
-typeof data1 = {
-  name: string
-};
+console.log(obj);
+//          ^?
+```
 
-const data2 = {
+```ts twoslash
+const obj = {
   name: "Zagreus"
 } as const;
 
-typeof data2 = {
-  name: "Zagreus"
-};
+console.log(obj);
+//          ^?
 ```
 
 ### 관련 변수 추적하기
@@ -173,16 +229,19 @@ const isSuccessResponse
 
 if (isSuccessResponse) {
   // res: SuccessResponse
+  res.data;
 }
 ```
 
 ### 재할당에 의한 타입 갱신
 
-```ts
-// data: string | number
-let data: string | number = ...
+```ts twoslash
+declare function getData(): string | number;
+// ---cut---
+let data = getData();
+//  ^?
 
 data = "Hello";
-// data: string
+console.log(data);
+//          ^?
 ```
-
