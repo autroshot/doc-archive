@@ -45,11 +45,8 @@ body {
 .markdown a {
   text-decoration: underline;
 }
-[data-theme='light'] .markdown a:hover {
-  color: rgb(46, 133, 85, 0.7);
-}
-[data-theme='dark'] .markdown a:hover {
-  color: rgb(37, 194, 160, 0.7);
+.markdown a:hover {
+  text-decoration-thickness: 2px;
 }
 
 .header-github-link:hover {
