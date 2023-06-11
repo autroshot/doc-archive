@@ -1,0 +1,204 @@
+---
+sidebar_position: 3
+---
+
+import Button from '/src/components/electronFiddleButton.tsx';
+
+# 사전 로드 스크립트 사용하기
+
+## 학습 목표
+
+이곳에서는 사전 로드 스크립트가 무엇인지 배우고, 권한 있는 API를 렌더러 프로세스에 안전하게 노출하기 위해 스크립트를 사용하는 방법을 알아봅니다. 또한 일렉트론의 IPC(프로세스 간 통신) 모듈을 사용하여 기본 프로세스와 렌더러 프로세스 간에 통신하는 방법을 배웁니다.
+
+## 사전 로드 스크립트
+
+일렉트론의 주 프로세스는 전체 운영 체제에 접근할 수 있는 노드 환경입니다. [일렉트론 모듈](https://www.electronjs.org/docs/latest/api/app) 외에도 [노드 내장](https://nodejs.org/dist/latest/docs/api/) 및 npm을 통해 설치된 모든 패키지에 접근할 수 있습니다. 반면 렌더러 프로세스는 웹 페이지를 실행하며 보안상의 이유로 노드를 기본적으로 실행하지 않습니다.
+
+일렉트론의 다양한 프로세스 유형을 연결하려면 **사전 로드(preload)**라는 특수 스크립트를 사용해야 합니다.
+
+## 사전 로드 스크립트로 렌더러 확장하기
+
+`BrowserWindow`의 사전 로드 스크립트는 노드 및 일렉트론 API의 제한된 하위 집합과 HTML DOM에 모두 접근할 수 있는 컨텍스트에서 실행됩니다.
+
+:::info 사전 로드 스크립트 샌드박싱
+
+일렉트론 20부터 사전 로드 스크립트는 기본적으로 **샌드박스**이며 더 이상 전체 노드 환경에 접근할 수 없습니다. 실질적으로 이는 제한된 API 모음에만 접근할 수 있는 폴리필 `require` 함수가 있다는 것을 의미합니다.
+
+| 사용 가능한 API | 세부 사항                                                                                                                                                                                                                                                                                       |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 일렉트론 모듈   | 렌더러 프로세스 모듈                                                                                                                                                                                                                                                                            |
+| 노드 모듈       | [`events`](https://nodejs.org/api/events.html), [`timers`](https://nodejs.org/api/timers.html), [`url`](https://nodejs.org/api/url.html)                                                                                                                                                        |
+| 폴리필된 전역   | [`Buffer`](https://nodejs.org/api/buffer.html), [`process`](https://www.electronjs.org/docs/latest/api/process), [`clearImmediate`](https://nodejs.org/api/timers.html#timers_clearimmediate_immediate), [`setImmediate`](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) |
+
+자세한 내용은 [프로세스 샌드박싱](https://www.electronjs.org/docs/latest/tutorial/sandbox) 안내서를 확인하세요.
+
+:::
+
+사전 로드 스크립트는 크롬 확장 프로그램의 [콘텐츠 스크립트](https://developer.chrome.com/docs/extensions/mv3/content_scripts/)와 유사하게 웹페이지가 렌더러에 로드되기 전에 주입됩니다. 권한 있는 접근이 필요한 기능을 렌더러에 추가하려면, [`contextBridge`](https://www.electronjs.org/docs/latest/api/context-bridge) API를 통해 [전역](https://developer.mozilla.org/en-US/docs/Glossary/Global_object) 객체를 정의할 수 있습니다.
+
+이 개념을 시연하기 위해 앱의 크롬, 노드, 일렉트론의 버전을 렌더러에 노출하는 사전 로드 스크립트를 생성하겠습니다.
+
+일렉트론의 `process.versions` 객체의 선택된 프로퍼티를 `versions` 전역 변수의 렌더러 프로세스에 노출하는 새로운 `preload.js` 스크립트를 추가하세요.
+
+```js title="preload.js"
+const { contextBridge } = require('electron');
+
+contextBridge.exposeInMainWorld('versions', {
+  node: () => process.versions.node,
+  chrome: () => process.versions.chrome,
+  electron: () => process.versions.electron,
+  // 함수뿐만 아니라 변수도 노출할 수 있습니다.
+});
+```
+
+이 스크립트를 렌더러 프로세스에 첨부하려면, 해당 경로를 `BrowserWindow` 생성자의 `webPreferences.preload` 옵션에 전달합니다.
+
+```js title="main.js" {1,7-9}
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  });
+
+  win.loadFile('index.html');
+};
+
+app.whenReady().then(() => {
+  createWindow();
+});
+```
+
+:::info
+
+여기에 사용되는 노드 개념이 두 가지 있습니다.
+
+- [`__dirname`](https://nodejs.org/api/modules.html#modules_dirname) 문자열은 현재 실행 중인 스크립트의 경로(이 경우 프로젝트의 루트 폴더)를 가리킵니다.
+- [`path.join`](https://nodejs.org/api/path.html#path_path_join_paths) API는 여러 경로 조각을 결합하여 모든 플랫폼에서 작동하는 결합된 경로 문자열을 생성합니다.
+
+:::
+
+이 시점에서 렌더러는 전역 `versions`에 접근할 수 있으므로 해당 정보를 창에 표시해 보겠습니다. 이 변수는 `window.versions` 또는 간단히 `versions`를 통해 접근할 수 있습니다. [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) DOM API를 사용하여 `id` 속성이 `info`인 HTML 요소의 표시 텍스트를 바꾸는 `renderer.js` 스크립트를 만드세요.
+
+```js title="renderer.js"
+const information = document.getElementById('info');
+information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
+```
+
+그런 다음 `index.html`에서 `id` 속성이 `info`인 새 요소를 추가하고 `renderer.js` 스크립트를 첨부합니다.
+
+```html title="index.html" {17,19}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Hello from Electron renderer!</title>
+  </head>
+  <body>
+    <h1>Hello from Electron renderer!</h1>
+    <p>👋</p>
+    <p id="info"></p>
+  </body>
+  <script src="./renderer.js"></script>
+</html>
+```
+
+위의 단계를 수행하면 앱이 다음과 같이 표시됩니다.
+
+<Image
+  img={require('/img/docs/electron/using-preload-scripts/preload-example.png')}
+  alt={`'This app is using Chrome (v102.0.5005.63), Node.js (v16.14.2), and Electron (v19.0.3)'을 보여주는 일렉트론 앱입니다.`}
+  maxWidth="800px"
+/>
+
+전체 코드는 다음과 같습니다.
+
+<Button href="https://fiddle.electronjs.org/launch?target=electron/v25.0.1/docs/fiddles/tutorial-preload" />
+
+## 프로세스 간 통신하기
+
+위에서 언급한 바와 같이 일렉트론의 주 프로세스와 렌더러 프로세스는 서로 다른 역할을 하며 상호 대체가 불가능합니다. 즉, 렌더러 프로세스에서 직접 노드 API에 접근하거나 주 프로세스에서 HTML DOM(문서 객체 모델)에 접근할 수 없습니다.
+
+이 문제에 대한 해결책은 프로세스 간 통신(IPC)을 위해 일렉트론의 `ipcMain` 모듈과 `ipcRenderer` 모듈을 사용하는 것입니다. 웹 페이지에서 주 프로세스로 메시지를 보내려면 `ipcMain.handle`을 사용하여 주 프로세스 처리기를 설정한 다음, `ipcRenderer.invoke`를 호출하는 함수를 노출하여 사전 로드 스크립트에서 처리기를 트리거할 수 있습니다.
+
+설명을 위해 주 프로세스에서 문자열을 반환하는 `ping()`이라는 렌더러에 전역 함수를 추가하겠습니다.
+
+먼저 사전 로드 스크립트에서 `invoke` 호출을 설정합니다.
+
+```js title="preload.js" {0,6}
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('versions', {
+  node: () => process.versions.node,
+  chrome: () => process.versions.chrome,
+  electron: () => process.versions.electron,
+  ping: () => ipcRenderer.invoke('ping'),
+  // 함수뿐만 아니라 변수도 노출할 수 있습니다.
+});
+```
+
+:::caution IPC 보안
+
+컨텍스트 브리지를 통해 직접 `ipcRenderer` 모듈을 노출하는 대신, 도우미 함수에서 `ipcRenderer.invoke('ping')` 호출을 래핑한다는 점에 주목하세요. 사전 로드 스크립트에서 전체 `ipcRenderer` 모듈을 직접 노출하는 것은 **절대** 원하지 않습니다. 전체 모듈을 직접 노출한다면 렌더러는 임의의 IPC 메시지를 주 프로세스로 보낼 수 있게 됩니다. 이는 악성 코드의 강력한 공격 매개체가 됩니다.
+
+:::
+
+이제 주 프로세스에서 `handle` 수신기를 설정합니다. 렌더러에서 `invoke` 호출을 보내기 전에 처리기가 준비되도록, HTML 파일을 로드하기 **전에** 이 작업을 수행합니다.
+
+```js title="main.js" {0,14}
+const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path');
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  });
+  win.loadFile('index.html');
+};
+app.whenReady().then(() => {
+  ipcMain.handle('ping', () => 'pong');
+  createWindow();
+});
+```
+
+송신자와 수신자를 설정했으면 이제 방금 정의한 `'ping'` 채널을 통해 렌더러에서 주 프로세스로 메시지를 보낼 수 있습니다.
+
+```js title="renderer.js"
+const func = async () => {
+  const response = await window.versions.ping();
+  console.log(response); // 'pong'을 출력합니다.
+};
+
+func();
+```
+
+:::info
+
+`ipcRenderer` 및 `ipcMain` 모듈 사용에 대한 자세한 설명은 [프로세스 간 통신](https://www.electronjs.org/docs/latest/tutorial/ipc) 안내서를 확인하세요.
+
+:::
+
+## 요약
+
+사전 로드 스크립트에는 웹 페이지가 브라우저 창에 로드되기 전에 실행되는 코드가 포함되어 있습니다. DOM API와 노드 환경 모두에 접근할 수 있으며, 종종 `contextBridge` API를 통해 권한 있는 API를 렌더러에 노출하는 데 사용됩니다.
+
+메인 프로세스와 렌더러 프로세스는 책임이 매우 다릅니다. 따라서 일렉트론 앱은 사전 로드 스크립트를 사용하여 프로세스 간 통신(IPC) 인터페이스를 설정하여 두 종류의 프로세스 간에 임의의 메시지를 전달합니다.
+
+다음 장에서는 앱에 더 많은 기능을 추가하는 방법과 사용자에게 앱을 배포하는 방법에 대해 설명합니다.
