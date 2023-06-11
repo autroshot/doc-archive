@@ -65,6 +65,8 @@ export default MyComponent;
 ```
 ````
 
+[Shiki Twoslash](https://www.npmjs.com/package/docusaurus-preset-shiki-twoslash)에서는 줄 번호가 1부터 시작합니다.
+
 ## 준수 사항
 
 ```mdx
@@ -106,6 +108,14 @@ import Image from '@theme/IdealImage';
 import compiling from '/img/docs/next-js/how-next-js-works/compiling.png';
 
 <Image img={compiling} alt='컴파일' />
+```
+
+인라인에서 커먼JS를 사용하는 것도 가능합니다.
+
+```mdx
+import Image from '@theme/IdealImage';
+
+<Image img={require(/img/docs/next-js/how-next-js-works/compiling.png)} alt='컴파일' />
 ```
 
 ## 마크다운 링크
