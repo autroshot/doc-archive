@@ -135,7 +135,7 @@ console.log('Hello from Electron 👋');
 
 일렉트론의 주 프로세스는 노드 런타임이므로, `electron` 명령으로 임의의 노드 코드를 실행할 수 있습니다([REPL](https://www.electronjs.org/docs/latest/tutorial/repl)로도 가능함). 이 스크립트를 실행하려면, `package.json`의 [`scripts`](https://docs.npmjs.com/cli/v7/using-npm/scripts) 필드에 있는 `start` 명령에 `electron .`을 추가하세요. 이 명령은 일렉트론 실행 파일이 현재 디렉터리에서 기본 스크립트를 찾고 개발 모드로 실행하도록 지시합니다.
 
-```json title="package.json"
+```json title="package.json" {6}
 {
   "name": "my-electron-app",
   "version": "1.0.0",
