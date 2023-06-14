@@ -38,7 +38,7 @@ printName({ first: "Alice", last: "Alisson" });
 자바스크립트에서 존재하지 않는 프로퍼티에 접근하면, 런타임 오류가 발생하는 것이 아니라 `undefined` 값을 얻게 됩니다. 따라서 선택적 프로퍼티에서 **읽기**를 할 때는 `undefined`를 먼저 확인해야 합니다.
 
 ```ts twoslash
-// @errors: 2532
+// @errors: 2532 18048
 function printName(obj: { first: string; last?: string }) {
   // 오류 - 'obj.last'가 제공되지 않으면 충돌이 발생할 수 있습니다!
   console.log(obj.last.toUpperCase());
