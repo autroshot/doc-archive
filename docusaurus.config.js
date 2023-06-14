@@ -119,17 +119,17 @@ const config = {
             items: [
               {
                 type: 'doc',
-                docId: 'test/jest/README',
+                docId: 'jest/README',
                 label: 'Jest',
               },
               {
                 type: 'doc',
-                docId: 'test/cypress/README',
+                docId: 'cypress/README',
                 label: 'Cypress',
               },
               {
                 type: 'doc',
-                docId: 'test/playwright/README',
+                docId: 'playwright/README',
                 label: 'Playwright',
               },
             ],
@@ -242,15 +242,15 @@ const config = {
               },
               {
                 label: 'Jest',
-                to: '/docs/test/jest',
+                to: '/docs/jest',
               },
               {
                 label: 'Cypress',
-                to: '/docs/test/cypress',
+                to: '/docs/cypress',
               },
               {
                 label: 'Playwright',
-                to: '/docs/test/playwright',
+                to: '/docs/playwright',
               },
               {
                 label: 'Zustand',
