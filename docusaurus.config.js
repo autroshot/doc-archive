@@ -136,6 +136,18 @@ const config = {
           },
           {
             type: 'dropdown',
+            label: '상태관리',
+            position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'state-management/zustand/README',
+                label: 'Zustand',
+              },
+            ],
+          },
+          {
+            type: 'dropdown',
             label: '기타',
             position: 'left',
             items: [
@@ -239,6 +251,10 @@ const config = {
               {
                 label: 'Playwright',
                 to: '/docs/test/playwright',
+              },
+              {
+                label: 'Zustand',
+                to: '/docs/state-management/zustand',
               },
               {
                 label: 'TanStack Query',
