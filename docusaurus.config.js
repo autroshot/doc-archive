@@ -144,6 +144,11 @@ const config = {
                 docId: 'zustand/README',
                 label: 'Zustand',
               },
+              {
+                type: 'doc',
+                docId: 'tanstack-query/README',
+                label: 'TanStack Query',
+              },
             ],
           },
           {
@@ -151,11 +156,6 @@ const config = {
             label: '기타',
             position: 'left',
             items: [
-              {
-                type: 'doc',
-                docId: 'tanstack-query/README',
-                label: 'TanStack Query',
-              },
               {
                 type: 'doc',
                 docId: 'nextauthjs/README',
