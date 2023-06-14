@@ -102,12 +102,12 @@ const config = {
             items: [
               {
                 type: 'doc',
-                docId: 'frameworks/nextjs/README',
+                docId: 'nextjs/README',
                 label: 'Next.js',
               },
               {
                 type: 'doc',
-                docId: 'frameworks/electron/README',
+                docId: 'electron/README',
                 label: 'Electron',
               },
             ],
@@ -119,17 +119,17 @@ const config = {
             items: [
               {
                 type: 'doc',
-                docId: 'test/jest/README',
+                docId: 'jest/README',
                 label: 'Jest',
               },
               {
                 type: 'doc',
-                docId: 'test/cypress/README',
+                docId: 'cypress/README',
                 label: 'Cypress',
               },
               {
                 type: 'doc',
-                docId: 'test/playwright/README',
+                docId: 'playwright/README',
                 label: 'Playwright',
               },
             ],
@@ -141,7 +141,7 @@ const config = {
             items: [
               {
                 type: 'doc',
-                docId: 'state-management/zustand/README',
+                docId: 'zustand/README',
                 label: 'Zustand',
               },
             ],
@@ -153,38 +153,38 @@ const config = {
             items: [
               {
                 type: 'doc',
-                docId: 'miscellaneous/tanstack-query/README',
+                docId: 'tanstack-query/README',
                 label: 'TanStack Query',
               },
               {
                 type: 'doc',
-                docId: 'miscellaneous/nextauthjs/README',
+                docId: 'nextauthjs/README',
                 label: 'NextAuth.js',
               },
               {
                 type: 'doc',
-                docId: 'miscellaneous/chakra-ui/README',
+                docId: 'chakra-ui/README',
                 label: 'Chakra UI',
               },
               {
                 type: 'doc',
-                docId: 'miscellaneous/prisma/README',
+                docId: 'prisma/README',
                 label: 'Prisma',
               },
               {
                 type: 'doc',
-                docId: 'miscellaneous/docusaurus/README',
+                docId: 'docusaurus/README',
                 label: 'Docusaurus',
               },
               {
                 type: 'doc',
-                docId: 'miscellaneous/emmet/README',
+                docId: 'emmet/README',
                 label: 'Emmet',
               },
-              { type: 'doc', docId: 'miscellaneous/yup/README', label: 'Yup' },
+              { type: 'doc', docId: 'yup/README', label: 'Yup' },
               {
                 type: 'doc',
-                docId: 'miscellaneous/regular-expression/README',
+                docId: 'regular-expression/README',
                 label: '정규 표현식',
               },
             ],
@@ -234,59 +234,59 @@ const config = {
               },
               {
                 label: 'Next.js',
-                to: '/docs/frameworks/nextjs',
+                to: '/docs/nextjs',
               },
               {
                 label: 'Electron',
-                to: '/docs/frameworks/electron',
+                to: '/docs/electron',
               },
               {
                 label: 'Jest',
-                to: '/docs/test/jest',
+                to: '/docs/jest',
               },
               {
                 label: 'Cypress',
-                to: '/docs/test/cypress',
+                to: '/docs/cypress',
               },
               {
                 label: 'Playwright',
-                to: '/docs/test/playwright',
+                to: '/docs/playwright',
               },
               {
                 label: 'Zustand',
-                to: '/docs/state-management/zustand',
+                to: '/docs/zustand',
               },
               {
                 label: 'TanStack Query',
-                to: '/docs/miscellaneous/tanstack-query',
+                to: '/docs/tanstack-query',
               },
               {
                 label: 'NextAuth.js',
-                to: '/docs/miscellaneous/nextauthjs',
+                to: '/docs/nextauthjs',
               },
               {
                 label: 'Chakra UI',
-                to: '/docs/miscellaneous/chakra-ui',
+                to: '/docs/chakra-ui',
               },
               {
                 label: 'Prisma',
-                to: '/docs/miscellaneous/prisma',
+                to: '/docs/prisma',
               },
               {
                 label: 'Docusaurus',
-                to: '/docs/miscellaneous/docusaurus',
+                to: '/docs/docusaurus',
               },
               {
                 label: 'Emmet',
-                to: '/docs/miscellaneous/emmet',
+                to: '/docs/emmet',
               },
               {
                 label: 'Yup',
-                to: '/docs/miscellaneous/yup',
+                to: '/docs/yup',
               },
               {
                 label: '정규 표현식',
-                to: '/docs/miscellaneous/regular-expression',
+                to: '/docs/regular-expression',
               },
             ],
           },
