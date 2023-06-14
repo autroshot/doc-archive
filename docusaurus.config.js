@@ -80,13 +80,13 @@ const config = {
           {
             type: 'doc',
             docId: 'javascript/keyboard-keydown-and-keyup',
-            label: 'JavaScript',
+            label: 'JS',
             position: 'left',
           },
           {
             type: 'doc',
             docId: 'typescript/README',
-            label: 'TypeScript',
+            label: 'TS',
             position: 'left',
           },
           {
@@ -131,6 +131,18 @@ const config = {
                 type: 'doc',
                 docId: 'test/playwright/README',
                 label: 'Playwright',
+              },
+            ],
+          },
+          {
+            type: 'dropdown',
+            label: '상태 관리',
+            position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'state-management/zustand/README',
+                label: 'Zustand',
               },
             ],
           },
@@ -239,6 +251,10 @@ const config = {
               {
                 label: 'Playwright',
                 to: '/docs/test/playwright',
+              },
+              {
+                label: 'Zustand',
+                to: '/docs/state-management/zustand',
               },
               {
                 label: 'TanStack Query',
