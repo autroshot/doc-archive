@@ -141,7 +141,7 @@ const config = {
             items: [
               {
                 type: 'doc',
-                docId: 'state-management/zustand/README',
+                docId: 'zustand/README',
                 label: 'Zustand',
               },
             ],
@@ -254,7 +254,7 @@ const config = {
               },
               {
                 label: 'Zustand',
-                to: '/docs/state-management/zustand',
+                to: '/docs/zustand',
               },
               {
                 label: 'TanStack Query',
