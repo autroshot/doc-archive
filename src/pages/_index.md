@@ -6,7 +6,7 @@
 - [TypeScript](https://autroshot.github.io/doc-archive/docs/typescript)
 - [React](https://autroshot.github.io/doc-archive/docs/react/keeping-components-pure)
 - [Next.js](https://autroshot.github.io/doc-archive/docs/nextjs)
-- [Electron](https://autroshot.github.io/doc-archive/docs/frameworks/electron)
+- [Electron](https://autroshot.github.io/doc-archive/docs/electron)
 - [Jest](https://autroshot.github.io/doc-archive/docs/jest)
 - [Cypress](https://autroshot.github.io/doc-archive/docs/cypress)
 - [Playwright](https://autroshot.github.io/doc-archive/docs/playwright)

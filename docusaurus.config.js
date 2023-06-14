@@ -102,12 +102,12 @@ const config = {
             items: [
               {
                 type: 'doc',
-                docId: 'frameworks/nextjs/README',
+                docId: 'nextjs/README',
                 label: 'Next.js',
               },
               {
                 type: 'doc',
-                docId: 'frameworks/electron/README',
+                docId: 'electron/README',
                 label: 'Electron',
               },
             ],
@@ -234,11 +234,11 @@ const config = {
               },
               {
                 label: 'Next.js',
-                to: '/docs/frameworks/nextjs',
+                to: '/docs/nextjs',
               },
               {
                 label: 'Electron',
-                to: '/docs/frameworks/electron',
+                to: '/docs/electron',
               },
               {
                 label: 'Jest',
