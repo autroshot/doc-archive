@@ -1,0 +1,56 @@
+---
+sidebar_position: 1
+description: 트슈탄트 사용법
+---
+
+# 소개
+
+![img](https://github.com/pmndrs/zustand/raw/main/bear.jpg)
+
+작고, 빠르고, 확장 가능한 베어본(bearbone) 상태 관리 솔루션입니다. 트슈탄트(Zustand, 독일어로 상태라는 뜻)에는 훅 기반의 편안한 API가 있습니다. API에는 진부하거나 독단적이지 않으면서도, 충분히 명시적이고 유동적인 규칙이 있습니다.
+
+귀엽다고 무시하지 마세요, 발톱이 있거든요! 무서운 [좀비 자식 문제](https://react-redux.js.org/api/hooks#stale-props-and-zombie-children), [리액트 동시성](https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md), 혼합 렌더러 간의 [컨텍스트 손실](https://github.com/facebook/react/issues/13332)과 같은 일반적인 함정을 처리하는 데 많은 시간이 소요되었습니다. 트슈탄트는 리액트 세계에서 이 모든 것을 올바르게 처리하는 하나의 상태 관리자일 수 있습니다.
+
+[여기](https://codesandbox.io/s/dazzling-moon-itop4)에서 라이브 데모를 사용해 볼 수 있습니다.
+
+## 설치
+
+트슈탄트는 다음과 같이 NPM에서 패키지로 사용할 수 있습니다.
+
+```bash
+# NPM
+npm install zustand
+
+# Yarn
+yarn add zustand
+```
+
+## 먼저 저장소 생성하기
+
+저장소는 훅입니다! 원시값, 객체, 함수 등 무엇이든 넣을 수 있습니다. `set` 함수는 상태를 **병합합니다**.
+
+```js
+import { create } from 'zustand'
+
+const useStore = create((set) => ({
+  bears: 0,
+  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 }),
+}))
+```
+
+## 이제 컴포넌트에 바인딩하면 끝!
+
+공급자(provider)가 없어도 어디에서나 훅을 사용할 수 있습니다. 상태를 선택하면 해당 상태가 변경될 때 소비 컴포넌트가 다시 렌더링됩니다.
+
+```jsx
+function BearCounter() {
+  const bears = useStore((state) => state.bears)
+  return <h1>{bears} around here...</h1>
+}
+
+function Controls() {
+  const increasePopulation = useStore((state) => state.increasePopulation)
+  return <button onClick={increasePopulation}>one up</button>
+}
+```
