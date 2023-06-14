@@ -3,9 +3,17 @@ sidebar_position: 1
 description: 트슈탄트 사용법
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # 소개
 
-![img](https://github.com/pmndrs/zustand/raw/main/bear.jpg)
+<div style={{ marginBottom: '10px' }}>
+  <Image
+    img={require('/img/docs/zustand/bear.jpg')}
+    alt="곰이 나무 그루터기에 앉아서 통기타를 치며 트슈탄트라고 말합니다."
+  />
+</div>
 
 작고, 빠르고, 확장 가능한 베어본(bearbone) 상태 관리 솔루션입니다. 트슈탄트(Zustand, 독일어로 상태라는 뜻)에는 훅 기반의 편안한 API가 있습니다. API에는 진부하거나 독단적이지 않으면서도, 충분히 명시적이고 유동적인 규칙이 있습니다.
 
@@ -17,40 +25,56 @@ description: 트슈탄트 사용법
 
 트슈탄트는 다음과 같이 NPM에서 패키지로 사용할 수 있습니다.
 
-```bash
-# NPM
-npm install zustand
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
 
-# Yarn
+```sh
+npm install zustand
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
 yarn add zustand
 ```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add zustand
+```
+
+  </TabItem>
+</Tabs>
 
 ## 먼저 저장소 생성하기
 
 저장소는 훅입니다! 원시값, 객체, 함수 등 무엇이든 넣을 수 있습니다. `set` 함수는 상태를 **병합합니다**.
 
 ```js
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 const useStore = create((set) => ({
   bears: 0,
   increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
   removeAllBears: () => set({ bears: 0 }),
-}))
+}));
 ```
 
 ## 이제 컴포넌트에 바인딩하면 끝!
 
-공급자(provider)가 없어도 어디에서나 훅을 사용할 수 있습니다. 상태를 선택하면 해당 상태가 변경될 때 소비 컴포넌트가 다시 렌더링됩니다.
+제공자(provider)가 없어도 어디에서나 훅을 사용할 수 있습니다. 상태를 선택하면 해당 상태가 변경될 때 소비 컴포넌트가 다시 렌더링됩니다.
 
 ```jsx
 function BearCounter() {
-  const bears = useStore((state) => state.bears)
-  return <h1>{bears} around here...</h1>
+  const bears = useStore((state) => state.bears);
+  return <h1>{bears} around here...</h1>;
 }
 
 function Controls() {
-  const increasePopulation = useStore((state) => state.increasePopulation)
-  return <button onClick={increasePopulation}>one up</button>
+  const increasePopulation = useStore((state) => state.increasePopulation);
+  return <button onClick={increasePopulation}>one up</button>;
 }
 ```
