@@ -80,13 +80,13 @@ const config = {
           {
             type: 'doc',
             docId: 'javascript/keyboard-keydown-and-keyup',
-            label: 'JavaScript',
+            label: 'JS',
             position: 'left',
           },
           {
             type: 'doc',
             docId: 'typescript/README',
-            label: 'TypeScript',
+            label: 'TS',
             position: 'left',
           },
           {
@@ -136,7 +136,7 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: '상태관리',
+            label: '상태 관리',
             position: 'left',
             items: [
               {
