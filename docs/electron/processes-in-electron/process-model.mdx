@@ -16,13 +16,11 @@ sidebar_position: 1
 
 이 문제를 해결하기 위해, 크롬 팀은 각 탭이 자체 프로세스에서 렌더링되어 웹 페이지의 버그 또는 악성 코드가 앱 전체에 미칠 수 있는 피해를 제한하기로 결정했습니다. 그리고 단일 브라우저 프로세스가 이러한 프로세스들과 전체 앱의 수명 주기를 제어합니다. 이 모델을 시각화한 것이 다음 [ 크롬 만화](https://www.google.com/googlebooks/chrome/)의 다이어그램입니다.
 
-<div style={{ marginBottom: '15px' }}>
-  <Image
-    img={require('/img/docs/electron/process-model/chrome-processes.png')}
-    alt="크롬의 다중 프로세스 아키텍처"
-    maxWidth="593px"
-  />
-</div>
+<Image
+  img={require('/img/docs/electron/process-model/chrome-processes.png')}
+  alt="크롬의 다중 프로세스 아키텍처"
+  maxWidth="593px"
+/>
 
 일렉트론 앱은 매우 유사한 구조를 가집니다. 앱 개발자는 [주 프로세스](https://www.electronjs.org/docs/latest/tutorial/process-model#the-main-process)과 [렌더러 프로세스](https://www.electronjs.org/docs/latest/tutorial/process-model#the-renderer-process)라는 두 개의 프로세스를 제어합니다. 렌더러 프로세스는 앞에서 설명한 크롬의 브라우저 자체 프로세스와 유사합니다.
 
