@@ -6,9 +6,11 @@
 | TypeScript     | https://www.typescriptlang.org/                              | 4.8    |
 | React          | https://react.dev/                                           | 18.2.0 |
 | Next.js        | https://nextjs.org/                                          | 12.2   |
+| Electron       | https://www.electronjs.org/                                  | 25.1.1 |
 | Jest           | https://jestjs.io/                                           | 29.3   |
 | Cypress        | https://docs.cypress.io/                                     | 10.6   |
 | Playwright     | https://playwright.dev/                                      | 1.31   |
+| Zustand        | https://zustand-demo.pmnd.rs/                                | 4.3.8  |
 | TanStack Query | https://tanstack.com/query                                   | 4      |
 | NextAuth.js    | https://next-auth.js.org/                                    | 4      |
 | Chakra UI      | https://chakra-ui.com/                                       | 2.3    |
