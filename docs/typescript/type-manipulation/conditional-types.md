@@ -212,7 +212,7 @@ type T1 = ReturnType<typeof stringOrNum>;
 type ToArray<Type> = Type extends any ? Type[] : never;
 ```
 
-합집합 타입을 `ToArray`에 연결하면, 합집합의 각 구성원에 조건부 타입이 적용됩니다.
+합집합 타입을 `ToArray`에 연결하면, 합집합의 각 멤버에 조건부 타입이 적용됩니다.
 
 ```ts twoslash
 type ToArray<Type> = Type extends any ? Type[] : never;
@@ -229,7 +229,7 @@ type StrArrOrNumArr =
   string | number;
 ```
 
-합집합의 각 구성원 타입에 다음과 같이 효과적으로 매핑합니다.
+합집합의 각 멤버 타입에 다음과 같이 효과적으로 매핑합니다.
 
 ```ts twoslash
 type ToArray<Type> = Type extends any ? Type[] : never;

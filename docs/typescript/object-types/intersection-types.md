@@ -19,7 +19,7 @@ interface Circle {
 type ColorfulCircle = Colorful & Circle;
 ```
 
-여기서는 `Colorful`과 `Circle`을 교차시켜 `Colorful`과 `Circle`의 모든 구성원이 포함된 새로운 타입을 만듭니다.
+여기서는 `Colorful`과 `Circle`을 교차시켜 `Colorful`과 `Circle`의 모든 멤버가 포함된 새로운 타입을 만듭니다.
 
 ```ts twoslash
 // @errors: 2345
