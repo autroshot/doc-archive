@@ -10,6 +10,7 @@
 - [Jest](https://autroshot.github.io/doc-archive/docs/jest)
 - [Cypress](https://autroshot.github.io/doc-archive/docs/cypress)
 - [Playwright](https://autroshot.github.io/doc-archive/docs/playwright)
+- [Zustand](https://autroshot.github.io/doc-archive/docs/zustand)
 - [TanStack Query](https://autroshot.github.io/doc-archive/docs/tanstack-query)
 - [NextAuth.js](https://autroshot.github.io/doc-archive/docs/nextauthjs)
 - [Chakra UI](https://autroshot.github.io/doc-archive/docs/chakra-ui)
