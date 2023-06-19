@@ -351,6 +351,6 @@ export default function App() {
 
 또한 질의와 변형을 모두 다루는 광범위한 [오프라인 예시](https://tanstack.com/query/latest/docs/react/examples/react/offline)도 있습니다.
 
-## 더 읽을거리
+## 더 읽을 거리
 
 변형에 대한 자세한 내용은 커뮤니티 자원에서 [#12: 리액트 쿼리의 변형 정복하기](https://tanstack.com/query/latest/docs/react/community/tkdodos-blog#12-mastering-mutations-in-react-query)를 참고하세요.

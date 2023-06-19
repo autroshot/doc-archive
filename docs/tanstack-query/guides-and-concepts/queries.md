@@ -124,6 +124,6 @@ function Todos() {
 - `status`는 `data`에 대한 정보(데이터의 유무)를 제공
 - `fetchStatus`는 `queryFn`에 대한 정보(실행 여부)를 제공
 
-## 더 읽을거리
+## 더 읽을 거리
 
 상태 확인을 수행하는 다른 방법은 [커뮤니티 자원](https://tanstack.com/query/latest/docs/react/community/tkdodos-blog#4-status-checks-in-react-query)을 참고하세요.

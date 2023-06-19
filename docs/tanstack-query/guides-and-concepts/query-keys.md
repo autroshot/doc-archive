@@ -74,6 +74,6 @@ function Todos({ todoId }) {
 }
 ```
 
-## 더 읽을거리
+## 더 읽을 거리
 
 더 큰 애플리케이션에서 질의 키를 구성하는 방법에 대한 팁은 [효과적인 리액트 질의 키](https://tanstack.com/query/latest/docs/react/community/tkdodos-blog#8-effective-react-query-keys)를 살펴보고 커뮤니티 자원에서 [질의 키 팩토리 패키지](https://tanstack.com/query/latest/docs/react/community/lukemorales-query-key-factory)를 확인하세요.
