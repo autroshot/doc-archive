@@ -163,6 +163,11 @@ const config = {
               },
               {
                 type: 'doc',
+                docId: 'vanilla-extract/README',
+                label: 'Vanilla Extract',
+              },
+              {
+                type: 'doc',
                 docId: 'chakra-ui/README',
                 label: 'Chakra UI',
               },
@@ -263,6 +268,10 @@ const config = {
               {
                 label: 'NextAuth.js',
                 to: '/docs/nextauthjs',
+              },
+              {
+                label: 'Vanilla Extract',
+                to: '/docs/vanilla-extract',
               },
               {
                 label: 'Chakra UI',
