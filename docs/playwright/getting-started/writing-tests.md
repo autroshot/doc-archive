@@ -85,7 +85,7 @@ await page.getByRole('link', { name: 'Get started' }).click();
 
 ### 기본 동작
 
-가장 많이 사용하는 플레이라이트 동작 목록입니다. [탐지기 API](https://playwright.dev/docs/api/class-locator) 섹션에서 더 많은 동작을 확인하세요.
+가장 많이 사용하는 플레이라이트 동작 목록입니다. [탐지기 API](https://playwright.dev/docs/api/class-locator)에서 더 많은 동작을 확인하세요.
 
 | 동작 | 설명 |
 | ------------------------------------------------------------ | --------------------------------------- |

@@ -61,5 +61,5 @@ mysql://USER:PASSWORD@HOST:PORT/DATABASE
 DATABASE_URL="mysql://myusername:mypassword@server.us-east-2.psdb.cloud/mydb?sslaccept=strict"
 ```
 
-지정된 데이터베이스 브랜치에 대한 연결 URL은 플래닛스케일 계정에서 브랜치에 대한 개요 페이지로 이동하여 `Connect` 버튼을 클릭하면 확인할 수 있습니다. `Passwords` 섹션에서 새 비밀번호를 생성하고 `Prisma`를 선택하여 연결 URL에 대한 프리즈마 형식을 가져옵니다.
+지정된 데이터베이스 브랜치에 대한 연결 URL은 플래닛스케일 계정에서 브랜치에 대한 개요 페이지로 이동하여 `Connect` 버튼을 클릭하면 확인할 수 있습니다. `Passwords`에서 새 비밀번호를 생성하고 `Prisma`를 선택하여 연결 URL에 대한 프리즈마 형식을 가져옵니다.
 

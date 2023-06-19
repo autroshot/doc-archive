@@ -41,7 +41,7 @@ npm install --save-dev cypress
 npm run cypress
 ```
 
-생성된 예시와 사이프러스 문서의 [첫 번째 테스트 작성하기](https://docs.cypress.io/guides/getting-started/writing-your-first-test) 섹션을 살펴보며 사이프러스에 익숙해질 수 있습니다.
+생성된 예시와 사이프러스 문서의 [첫 번째 테스트 작성하기](https://docs.cypress.io/guides/getting-started/writing-your-first-test)를 살펴보며 사이프러스에 익숙해질 수 있습니다.
 
 테스트 파일의 끝에 `export {}`를 추가해 모듈로 만들어 오류를 막습니다.
 
