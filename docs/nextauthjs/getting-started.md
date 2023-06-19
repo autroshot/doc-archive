@@ -177,7 +177,7 @@ export default function Component() {
 
 ## 콜백 URL 설정하기 (OAuth만 해당)
 
-OAuth 제공자를 기본 제공자 중 하나 또는 커스텀 제공자를 통해 사용하는 경우, 제공자의 설정에서 콜백 URL을 지정해야 합니다. 각 제공자에는 수행 방법에 대한 포인터를 제공하는 '설정' 섹션이 있습니다.
+OAuth 제공자를 기본 제공자 중 하나 또는 커스텀 제공자를 통해 사용하는 경우, 제공자의 설정에서 콜백 URL을 지정해야 합니다. 각 제공자에는 수행 방법에 대한 포인터를 제공하는 '설정' 부분이 있습니다.
 
 [이 단계](https://next-auth.js.org/configuration/providers/oauth#how-to)에 따라 OAuth 제공자와 통합하는 방법을 배울 수 있습니다.
 
