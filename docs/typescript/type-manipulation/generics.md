@@ -348,3 +348,39 @@ createInstance(Bee).keeper.hasMask;
 ```
 
 이 패턴은 [믹스인](https://www.typescriptlang.org/docs/handbook/mixins.html) 디자인 패턴을 강화하는 데 사용됩니다.
+
+## 제네릭 매개변수 기본값
+
+새로운 `HTMLElement`를 생성하는 함수가 있다고 가정해 보겠습니다. 인수 없이 함수를 호출하면 `Div`가 생성됩니다. 그리고 요소를 첫 번째 인수로 사용하여 호출하면 인수 타입의 요소가 생성됩니다. 선택적으로 하위 목록을 전달할 수도 있습니다. 이전에는 다음과 같이 정의해야 했습니다.
+
+```ts twoslash
+type Container<T, U> = HTMLElement;
+// ---cut---
+declare function create(): Container<HTMLDivElement, HTMLDivElement[]>;
+declare function create<T extends HTMLElement>(element: T): Container<T, T[]>;
+declare function create<T extends HTMLElement, U extends HTMLElement>(
+  element: T,
+  children: U[]
+): Container<T, U[]>;
+```
+
+제네릭 매개변수 기본값을 사용하면 다음과 같이 줄일 수 있습니다.
+
+```ts twoslash
+type Container<T, U> = HTMLElement;
+// ---cut---
+declare function create<T extends HTMLElement = HTMLDivElement, U = T[]>(
+  element?: T,
+  children?: U
+): Container<T, U>;
+```
+
+제네릭 매개변수 기본값은 다음 규칙을 따릅니다.
+
+- 기본값이 있다면 타입 매개변수는 선택 사항으로 간주됩니다.
+- 필수 타입 매개변수는 선택적 타입 매개변수를 따르지 않아야 합니다.
+- 타입 매개변수의 기본 타입은 타입 매개변수에 대한 제약 조건이 있다면 이를 충족해야 합니다.
+- 타입 인수를 지정할 때 필수 타입 매개변수에 대한 타입 인수만 지정하면 됩니다. 지정되지 않은 타입 매개변수는 기본 타입으로 해석됩니다.
+- 기본 타입이 지정되고 추론이 후보를 선택할 수 없다면 기본 타입으로 추론됩니다.
+- 기존 클래스 또는 인터페이스 선언과 병합되는 클래스 또는 인터페이스 선언은 기존 타입 매개변수에 대한 기본값을 도입할 수 있습니다.
+- 기존 클래스 또는 인터페이스 선언과 병합되는 클래스 또는 인터페이스 선언은 기본값을 지정하는 한 새로운 타입 매개변수를 도입할 수 있습니다.
