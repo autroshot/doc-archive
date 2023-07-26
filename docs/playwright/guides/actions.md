@@ -78,7 +78,7 @@ await page.getByText('Item').hover();
 await page.getByText('Item').click({ position: { x: 0, y: 0} });
 ```
 
-위의 메서드를 비롯한 포인터 관련 메서드는 장막 뒤에서 다음을 수행합니다.
+위의 메서드를 비롯한 포인터 관련 메서드는 내부적으로 다음을 수행합니다.
 
 - 지정된 선택자가 있는 요소가 DOM에 존재할 때까지 대기함
 - 표시될 때까지 대기함 (비어 있지 않음. `display:none`이 아님. `visibility:hidden`이 아님)

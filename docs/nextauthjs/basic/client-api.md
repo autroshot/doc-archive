@@ -422,7 +422,7 @@ URL은 [리디렉션 콜백 핸들러](https://next-auth.js.org/configuration/ca
 
 ## `SessionProvider`
 
-제공된 `<SessionProvider>`를 사용하면 `useSession()`의 인스턴스가 장막 뒤에서 [리액트 컨텍스트](https://reactjs.org/docs/context.html)를 사용해 컴포넌트 간에 세션 객체를 공유합니다. 또한 탭·창 간에 세션을 갱신하고 동기화되게 관리합니다.
+제공된 `<SessionProvider>`를 사용하면 `useSession()`의 인스턴스가 내부적으로 [리액트 컨텍스트](https://reactjs.org/docs/context.html)를 사용해 컴포넌트 간에 세션 객체를 공유합니다. 또한 탭·창 간에 세션을 갱신하고 동기화되게 관리합니다.
 
 ```jsx title="pages/_app.js"
 import { SessionProvider } from "next-auth/react"
