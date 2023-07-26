@@ -240,7 +240,7 @@ export default async (req, res) => {
 
 :::note 참고
 
-`getCsrfToken()`와 달리, 서버 측에서 `getProviders()`를 호출할 때 클라이언트 측에서 호출하는 것처럼 아무 것도 건네줄 필요가 없습니다.
+`getCsrfToken()`와 달리, 서버 측에서 `getProviders()`를 호출할 때 클라이언트 측에서 호출하는 것처럼 아무것도 건네줄 필요가 없습니다.
 
 :::
 

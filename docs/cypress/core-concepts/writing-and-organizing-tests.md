@@ -601,7 +601,7 @@ beforeEach(() => {
 
 :::caution
 
-`cypress run`에서는 아무 것도 감시되지 않습니다.
+`cypress run`에서는 아무것도 감시되지 않습니다.
 
 `watchForFileChanges` 프로퍼티는 `cypress open`을 이용해 사이프러스를 실행할 때만 적용됩니다.
 
