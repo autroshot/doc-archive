@@ -42,7 +42,7 @@ yarn add next-auth
 
 ### API 경로 추가하기
 
-프로젝트에 넥스트인증을 추가하려면 `pages/api/auth`에 `[...nextauth].js`라는 파일을 만듭니다. 이 파일에는 모든 전역 넥스트인증 설정과 동적 경로 핸들러가 포함됩니다.
+프로젝트에 넥스트인증을 추가하려면 `pages/api/auth`에 `[...nextauth].js`라는 파일을 만듭니다. 이 파일에는 모든 전역 넥스트인증 설정과 동적 경로 처리기가 포함됩니다.
 
 ```js title="pages/api/auth/[...nextauth].js"
 import NextAuth from "next-auth"
