@@ -23,12 +23,12 @@ API 경로는 `next.config.js`의 [`pageExtensions`설정](../../api-reference/n
 
 :::
 
-API 경로가 작동하려면 함수를 `default`로 내보내서 **요청 핸들러**로 만들어야 합니다. 그러면 핸들러는 다음 매개변수를 받습니다.
+API 경로가 작동하려면 함수를 `default`로 내보내서 **요청 처리기**로 만들어야 합니다. 그러면 처리기는 다음 매개변수를 받습니다.
 
 - `req` - [http.IncomingMessage](https://nodejs.org/api/http.html#class-httpincomingmessage) 인스턴스와 미리 빌드된 [미들웨어](https://nextjs.org/docs/api-routes/api-middlewares)
 - `res` - [http.ServerResponse](https://nodejs.org/api/http.html#class-httpserverresponse) 인스턴스와 [도우미 함수](../api-routes/response-helpers.md)
 
-API 경로에서 다른 HTTP 메서드를 처리하기 위해 다음과 같이 요청 핸들러에서 `req.method`를 사용할 수 있습니다.
+API 경로에서 다른 HTTP 메서드를 처리하기 위해 다음과 같이 요청 처리기에서 `req.method`를 사용할 수 있습니다.
 
 ```js
 export default function handler(req, res) {
@@ -51,5 +51,5 @@ export default function handler(req, res) {
 
 ## 주의 사항
 
-- API 경로는 [CORS 헤더를 지정하지 않습니다](https://developer.mozilla.org/ko/docs/Web/HTTP/CORS). 즉 기본값이 `same-origin only`입니다. 요청 핸들러를 [CORS 미들웨어](https://nextjs.org/docs/api-routes/api-middlewares#connectexpress-middleware-support)로 래핑하여 이 작동을 사용자 정의하는 것이 가능합니다.
+- API 경로는 [CORS 헤더를 지정하지 않습니다](https://developer.mozilla.org/ko/docs/Web/HTTP/CORS). 즉 기본값이 `same-origin only`입니다. 요청 처리기를 [CORS 미들웨어](https://nextjs.org/docs/api-routes/api-middlewares#connectexpress-middleware-support)로 래핑하여 이 작동을 사용자 정의하는 것이 가능합니다.
 - API 경로는 [`next export`](https://nextjs.org/docs/advanced-features/static-html-export)와 함께 사용할 수 없습니다.

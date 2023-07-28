@@ -80,7 +80,7 @@ export default async function handler(req, res) {
 
 ## 타입스크립트의 타입 추가하기
 
-`next`에서 `NextApiRequest`와 `NextApiResponse` 타입을 가져와 응답 핸들러를 보다 타입에 안전하게 만들 수 있습니다. 또한 응답 데이터의 타입을 지정할 수도 있습니다.
+`next`에서 `NextApiRequest`와 `NextApiResponse` 타입을 가져와 응답 처리기를 보다 타입에 안전하게 만들 수 있습니다. 또한 응답 데이터의 타입을 지정할 수도 있습니다.
 
 ```ts
 import type { NextApiRequest, NextApiResponse } from 'next';

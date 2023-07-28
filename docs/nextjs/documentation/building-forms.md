@@ -286,7 +286,7 @@ export default function PageWithoutJSbasedForm() {
 
 자바스크립트가 비활성화된 상태에서 제출 버튼을 누르면 이벤트가 트리거되어 양식 데이터를 수집하고 `POST` HTTP `method`를 사용하여 `action` 속성에 정의된 양식 API 엔드포인트로 데이터를 전송합니다. 양식의 `action`에 의해 `/api/form` 엔드포인트로 리디렉션됩니다.
 
-양식 데이터는 앞에서 작성한 양식 핸들러 함수에 `req` 요청으로 서버에 제출됩니다. 핸들러 함수는 데이터를 처리하고 `res` 응답을 반환하는데, 이는 제출한 이름이 포함된 JSON 문자열입니다.
+양식 데이터는 앞에서 작성한 양식 처리기 함수에 `req` 요청으로 서버에 제출됩니다. 처리기 함수는 데이터를 처리하고 `res` 응답을 반환하는데, 이는 제출한 이름이 포함된 JSON 문자열입니다.
 
 :::note 참고
 
@@ -356,7 +356,7 @@ export default function PageWithJSbasedForm() {
 }
 ```
 
-JSX로 작성된 `<form>` 요소가 포함된 리액트 함수 컴포넌트 `PageWithJSbasedForm`가 있는 넥스트 페이지입니다. `<form>` 요소에는 `action` 속성이 없습니다. 대신 `onSubmit` 이벤트 핸들러를 사용하여 `{handleSubmit}` 함수에 데이터를 전송합니다.
+JSX로 작성된 `<form>` 요소가 포함된 리액트 함수 컴포넌트 `PageWithJSbasedForm`가 있는 넥스트 페이지입니다. `<form>` 요소에는 `action` 속성이 없습니다. 대신 `onSubmit` 이벤트 처리기를 사용하여 `{handleSubmit}` 함수에 데이터를 전송합니다.
 
 `handleSubmit()` 함수는 일련의 단계를 통해 양식 데이터를 처리합니다.
 

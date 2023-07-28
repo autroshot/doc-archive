@@ -307,7 +307,7 @@ signIn('google', { callbackUrl: 'http://localhost:3000/bar' })
 signIn('email', { email, callbackUrl: 'http://localhost:3000/foo' })
 ```
 
-URL은 [리디렉션 콜백 핸들러](https://next-auth.js.org/configuration/callbacks#redirect-callback)에서 유효한 것이어야 합니다. 기본적으로 URL은 동일한 호스트 이름의 절대 URL이거나 `/`로 시작하는 상대 URL이어야 합니다. 일치하지 않으면 홈페이지로 리디렉션됩니다. 다른 URL을 허용하도록 고유한 [리디렉션 콜백](https://next-auth.js.org/configuration/callbacks#redirect-callback)을 정의하는 것도 가능합니다.
+URL은 [리디렉션 콜백 처리기](https://next-auth.js.org/configuration/callbacks#redirect-callback)에서 유효한 것이어야 합니다. 기본적으로 URL은 동일한 호스트 이름의 절대 URL이거나 `/`로 시작하는 상대 URL이어야 합니다. 일치하지 않으면 홈페이지로 리디렉션됩니다. 다른 URL을 허용하도록 고유한 [리디렉션 콜백](https://next-auth.js.org/configuration/callbacks#redirect-callback)을 정의하는 것도 가능합니다.
 
 ### `redirect: false` 옵션 사용하기
 
@@ -408,7 +408,7 @@ export default () => <button onClick={() => signOut()}>Sign out</button>
 signOut({ callbackUrl: 'http://localhost:3000/foo' })
 ```
 
-URL은 [리디렉션 콜백 핸들러](https://next-auth.js.org/configuration/callbacks#redirect-callback)에서 유효한 것이어야 합니다. 기본적으로 URL은 동일한 호스트 이름의 절대 URL이거나 `/`로 시작하는 상대 URL이어야 합니다. 일치하지 않으면 홈페이지로 리디렉션됩니다. 다른 URL을 허용하도록 고유한 리디렉션 콜백을 정의하는 것도 가능합니다.
+URL은 [리디렉션 콜백 처리기](https://next-auth.js.org/configuration/callbacks#redirect-callback)에서 유효한 것이어야 합니다. 기본적으로 URL은 동일한 호스트 이름의 절대 URL이거나 `/`로 시작하는 상대 URL이어야 합니다. 일치하지 않으면 홈페이지로 리디렉션됩니다. 다른 URL을 허용하도록 고유한 리디렉션 콜백을 정의하는 것도 가능합니다.
 
 ### `redirect: false` 옵션 사용하기
 
