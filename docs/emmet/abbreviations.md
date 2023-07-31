@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 약어
 
-약어(abbreviation)은 에밋의 핵심으로 CSS 선택자와 구문이 비슷합니다.
+약어(abbreviation)은 에밋의 핵심으로 CSS 선택기와 구문이 비슷합니다.
 
 ## 구문
 

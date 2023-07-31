@@ -164,13 +164,13 @@ const myStyle = style({
 
 :::note 참고
 
-일부 선택기는 `globalStyle`에서 사용할 수 없습니다. 이 API는 선택기를 첫 번째 매개변수로 받으며(예: `ul li:first-of-type, a > span`), 선택자를 병합하면 예상치 못한 결과가 발생할 수 있습니다.
+일부 선택기는 `globalStyle`에서 사용할 수 없습니다. 이 API는 선택기를 첫 번째 매개변수로 받으며(예: `ul li:first-of-type, a > span`), 선택기를 병합하면 예상치 못한 결과가 발생할 수 있습니다.
 
 :::
 
 ### 간단한 의사 선택기
 
-간단한 의사 선택자는 매개변수를 사용하지 않으므로 감지가 쉽고 정적 타입이 됩니다. 다른 [CSS 프로퍼티](https://vanilla-extract.style/documentation/styling/#css-properties)와 함께 최상위 수준에서 사용할 수 있으며 [CSS 프로퍼티](https://vanilla-extract.style/documentation/styling/#css-properties)와 [CSS 변수](https://vanilla-extract.style/documentation/styling/#css-variables)만 포함할 수 있습니다.
+간단한 의사 선택기는 매개변수를 사용하지 않으므로 감지가 쉽고 정적 타입이 됩니다. 다른 [CSS 프로퍼티](https://vanilla-extract.style/documentation/styling/#css-properties)와 함께 최상위 수준에서 사용할 수 있으며 [CSS 프로퍼티](https://vanilla-extract.style/documentation/styling/#css-properties)와 [CSS 변수](https://vanilla-extract.style/documentation/styling/#css-variables)만 포함할 수 있습니다.
 
 ```tsx title="styles.css.ts"
 import { style } from '@vanilla-extract/css';
@@ -311,7 +311,7 @@ globalStyle(`${parent} a[href]`, {
 
 ### 순환 선택기
 
-선택자가 서로 종속된 경우, [획득자](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)를 사용하여 선택자를 정의할 수 있습니다.
+선택기가 서로 종속된 경우, [획득자](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)를 사용하여 선택기를 정의할 수 있습니다.
 
 ```tsx title="styles.css.ts"
 import { style } from '@vanilla-extract/css';
