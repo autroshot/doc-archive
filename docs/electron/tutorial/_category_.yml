@@ -1,2 +1,6 @@
 position: 3
 label: 자습서
+link:
+  type: generated-index
+  description: 자습서는 다음의 순서로 진행됩니다.
+  slug: /electron/tutorial
