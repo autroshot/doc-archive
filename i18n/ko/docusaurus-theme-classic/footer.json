@@ -1,0 +1,98 @@
+{
+  "link.title.Docs": {
+    "message": "Docs",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.More": {
+    "message": "More",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.JavaScript": {
+    "message": "JavaScript",
+    "description": "The label of footer link with label=JavaScript linking to /docs/javascript/keyboard-keydown-and-keyup"
+  },
+  "link.item.label.TypeScript": {
+    "message": "TypeScript",
+    "description": "The label of footer link with label=TypeScript linking to /docs/typescript"
+  },
+  "link.item.label.React": {
+    "message": "React",
+    "description": "The label of footer link with label=React linking to /docs/react"
+  },
+  "link.item.label.Next.js": {
+    "message": "Next.js",
+    "description": "The label of footer link with label=Next.js linking to /docs/nextjs"
+  },
+  "link.item.label.Electron": {
+    "message": "Electron",
+    "description": "The label of footer link with label=Electron linking to /docs/electron"
+  },
+  "link.item.label.Jest": {
+    "message": "Jest",
+    "description": "The label of footer link with label=Jest linking to /docs/jest"
+  },
+  "link.item.label.Cypress": {
+    "message": "Cypress",
+    "description": "The label of footer link with label=Cypress linking to /docs/cypress"
+  },
+  "link.item.label.Playwright": {
+    "message": "Playwright",
+    "description": "The label of footer link with label=Playwright linking to /docs/playwright"
+  },
+  "link.item.label.Zustand": {
+    "message": "Zustand",
+    "description": "The label of footer link with label=Zustand linking to /docs/zustand"
+  },
+  "link.item.label.TanStack Query": {
+    "message": "TanStack Query",
+    "description": "The label of footer link with label=TanStack Query linking to /docs/tanstack-query"
+  },
+  "link.item.label.NextAuth.js": {
+    "message": "NextAuth.js",
+    "description": "The label of footer link with label=NextAuth.js linking to /docs/nextauthjs"
+  },
+  "link.item.label.Vanilla Extract": {
+    "message": "Vanilla Extract",
+    "description": "The label of footer link with label=Vanilla Extract linking to /docs/vanilla-extract"
+  },
+  "link.item.label.Chakra UI": {
+    "message": "Chakra UI",
+    "description": "The label of footer link with label=Chakra UI linking to /docs/chakra-ui"
+  },
+  "link.item.label.Prisma": {
+    "message": "Prisma",
+    "description": "The label of footer link with label=Prisma linking to /docs/prisma"
+  },
+  "link.item.label.Docusaurus": {
+    "message": "Docusaurus",
+    "description": "The label of footer link with label=Docusaurus linking to /docs/docusaurus"
+  },
+  "link.item.label.Emmet": {
+    "message": "Emmet",
+    "description": "The label of footer link with label=Emmet linking to /docs/emmet"
+  },
+  "link.item.label.Yup": {
+    "message": "Yup",
+    "description": "The label of footer link with label=Yup linking to /docs/yup"
+  },
+  "link.item.label.정규 표현식": {
+    "message": "정규 표현식",
+    "description": "The label of footer link with label=정규 표현식 linking to /docs/regular-expression"
+  },
+  "link.item.label.출처": {
+    "message": "출처",
+    "description": "The label of footer link with label=출처 linking to /source"
+  },
+  "link.item.label.용어집": {
+    "message": "용어집",
+    "description": "The label of footer link with label=용어집 linking to https://docs-glossary.vercel.app/"
+  },
+  "link.item.label.깃허브": {
+    "message": "깃허브",
+    "description": "The label of footer link with label=깃허브 linking to https://github.com/autroshot/doc-archive"
+  },
+  "copyright": {
+    "message": "Built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}

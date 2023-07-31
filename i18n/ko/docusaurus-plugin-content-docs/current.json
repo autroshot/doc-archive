@@ -1,0 +1,182 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.javascriptSidebar.category.치트 시트": {
+    "message": "치트 시트",
+    "description": "The label for category 치트 시트 in sidebar javascriptSidebar"
+  },
+  "sidebar.typescriptSidebar.category.일상적인 타입": {
+    "message": "일상적인 타입",
+    "description": "The label for category 일상적인 타입 in sidebar typescriptSidebar"
+  },
+  "sidebar.typescriptSidebar.category.좁히기": {
+    "message": "좁히기",
+    "description": "The label for category 좁히기 in sidebar typescriptSidebar"
+  },
+  "sidebar.typescriptSidebar.category.객체 타입": {
+    "message": "객체 타입",
+    "description": "The label for category 객체 타입 in sidebar typescriptSidebar"
+  },
+  "sidebar.typescriptSidebar.category.함수": {
+    "message": "함수",
+    "description": "The label for category 함수 in sidebar typescriptSidebar"
+  },
+  "sidebar.typescriptSidebar.category.타입 조작하기": {
+    "message": "타입 조작하기",
+    "description": "The label for category 타입 조작하기 in sidebar typescriptSidebar"
+  },
+  "sidebar.typescriptSidebar.category.클래스": {
+    "message": "클래스",
+    "description": "The label for category 클래스 in sidebar typescriptSidebar"
+  },
+  "sidebar.typescriptSidebar.category.치트 시트": {
+    "message": "치트 시트",
+    "description": "The label for category 치트 시트 in sidebar typescriptSidebar"
+  },
+  "sidebar.reactSidebar.category.UI 묘사하기": {
+    "message": "UI 묘사하기",
+    "description": "The label for category UI 묘사하기 in sidebar reactSidebar"
+  },
+  "sidebar.reactSidebar.category.상호 작용 추가하기": {
+    "message": "상호 작용 추가하기",
+    "description": "The label for category 상호 작용 추가하기 in sidebar reactSidebar"
+  },
+  "sidebar.reactSidebar.category.상태 관리하기": {
+    "message": "상태 관리하기",
+    "description": "The label for category 상태 관리하기 in sidebar reactSidebar"
+  },
+  "sidebar.nextJsSidebar.category.문서": {
+    "message": "문서",
+    "description": "The label for category 문서 in sidebar nextJsSidebar"
+  },
+  "sidebar.nextJsSidebar.category.기본 개념": {
+    "message": "기본 개념",
+    "description": "The label for category 기본 개념 in sidebar nextJsSidebar"
+  },
+  "sidebar.nextJsSidebar.category.기본 기능": {
+    "message": "기본 기능",
+    "description": "The label for category 기본 기능 in sidebar nextJsSidebar"
+  },
+  "sidebar.nextJsSidebar.category.데이터 가져오기": {
+    "message": "데이터 가져오기",
+    "description": "The label for category 데이터 가져오기 in sidebar nextJsSidebar"
+  },
+  "sidebar.nextJsSidebar.category.라우팅": {
+    "message": "라우팅",
+    "description": "The label for category 라우팅 in sidebar nextJsSidebar"
+  },
+  "sidebar.nextJsSidebar.category.API 경로": {
+    "message": "API 경로",
+    "description": "The label for category API 경로 in sidebar nextJsSidebar"
+  },
+  "sidebar.nextJsSidebar.category.API 참고": {
+    "message": "API 참고",
+    "description": "The label for category API 참고 in sidebar nextJsSidebar"
+  },
+  "sidebar.nextJsSidebar.category.next.config.js": {
+    "message": "next.config.js",
+    "description": "The label for category next.config.js in sidebar nextJsSidebar"
+  },
+  "sidebar.electronSidebar.category.시작하기": {
+    "message": "시작하기",
+    "description": "The label for category 시작하기 in sidebar electronSidebar"
+  },
+  "sidebar.electronSidebar.category.자습서": {
+    "message": "자습서",
+    "description": "The label for category 자습서 in sidebar electronSidebar"
+  },
+  "sidebar.electronSidebar.category.일렉트론의 프로세스": {
+    "message": "일렉트론의 프로세스",
+    "description": "The label for category 일렉트론의 프로세스 in sidebar electronSidebar"
+  },
+  "sidebar.cypressSidebar.category.핵심 개념": {
+    "message": "핵심 개념",
+    "description": "The label for category 핵심 개념 in sidebar cypressSidebar"
+  },
+  "sidebar.cypressSidebar.category.소개": {
+    "message": "소개",
+    "description": "The label for category 소개 in sidebar cypressSidebar"
+  },
+  "sidebar.cypressSidebar.category.참고": {
+    "message": "참고",
+    "description": "The label for category 참고 in sidebar cypressSidebar"
+  },
+  "sidebar.playwrightSidebar.category.시작하기": {
+    "message": "시작하기",
+    "description": "The label for category 시작하기 in sidebar playwrightSidebar"
+  },
+  "sidebar.playwrightSidebar.category.플레이라이트 테스트": {
+    "message": "플레이라이트 테스트",
+    "description": "The label for category 플레이라이트 테스트 in sidebar playwrightSidebar"
+  },
+  "sidebar.playwrightSidebar.category.안내서": {
+    "message": "안내서",
+    "description": "The label for category 안내서 in sidebar playwrightSidebar"
+  },
+  "sidebar.zustandSidebar.category.안내서": {
+    "message": "안내서",
+    "description": "The label for category 안내서 in sidebar zustandSidebar"
+  },
+  "sidebar.tanstackQuerySidebar.category.시작하기": {
+    "message": "시작하기",
+    "description": "The label for category 시작하기 in sidebar tanstackQuerySidebar"
+  },
+  "sidebar.tanstackQuerySidebar.category.안내서 및 개념": {
+    "message": "안내서 및 개념",
+    "description": "The label for category 안내서 및 개념 in sidebar tanstackQuerySidebar"
+  },
+  "sidebar.nextAuthJsSidebar.category.기본": {
+    "message": "기본",
+    "description": "The label for category 기본 in sidebar nextAuthJsSidebar"
+  },
+  "sidebar.nextAuthJsSidebar.category.설정": {
+    "message": "설정",
+    "description": "The label for category 설정 in sidebar nextAuthJsSidebar"
+  },
+  "sidebar.nextAuthJsSidebar.category.제공자": {
+    "message": "제공자",
+    "description": "The label for category 제공자 in sidebar nextAuthJsSidebar"
+  },
+  "sidebar.vanillaExtractSidebar.category.개요": {
+    "message": "개요",
+    "description": "The label for category 개요 in sidebar vanillaExtractSidebar"
+  },
+  "sidebar.prismaSidebar.category.개요": {
+    "message": "개요",
+    "description": "The label for category 개요 in sidebar prismaSidebar"
+  },
+  "sidebar.prismaSidebar.category.시작하기": {
+    "message": "시작하기",
+    "description": "The label for category 시작하기 in sidebar prismaSidebar"
+  },
+  "sidebar.prismaSidebar.category.구성 요소": {
+    "message": "구성 요소",
+    "description": "The label for category 구성 요소 in sidebar prismaSidebar"
+  },
+  "sidebar.prismaSidebar.category.스키마": {
+    "message": "스키마",
+    "description": "The label for category 스키마 in sidebar prismaSidebar"
+  },
+  "sidebar.prismaSidebar.category.관계": {
+    "message": "관계",
+    "description": "The label for category 관계 in sidebar prismaSidebar"
+  },
+  "sidebar.prismaSidebar.category.클라이언트": {
+    "message": "클라이언트",
+    "description": "The label for category 클라이언트 in sidebar prismaSidebar"
+  },
+  "sidebar.prismaSidebar.category.CRUD": {
+    "message": "CRUD",
+    "description": "The label for category CRUD in sidebar prismaSidebar"
+  },
+  "sidebar.prismaSidebar.category.관계 질의": {
+    "message": "관계 질의",
+    "description": "The label for category 관계 질의 in sidebar prismaSidebar"
+  },
+  "sidebar.prismaSidebar.category.안내서": {
+    "message": "안내서",
+    "description": "The label for category 안내서 in sidebar prismaSidebar"
+  }
+}
