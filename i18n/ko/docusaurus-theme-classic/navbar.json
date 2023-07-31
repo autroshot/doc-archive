@@ -1,0 +1,110 @@
+{
+  "title": {
+    "message": "문서 보관소",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "사이트 로고",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.JS": {
+    "message": "JS",
+    "description": "Navbar item with label JS"
+  },
+  "item.label.TS": {
+    "message": "TS",
+    "description": "Navbar item with label TS"
+  },
+  "item.label.React": {
+    "message": "React",
+    "description": "Navbar item with label React"
+  },
+  "item.label.프레임워크": {
+    "message": "프레임워크",
+    "description": "Navbar item with label 프레임워크"
+  },
+  "item.label.테스트": {
+    "message": "테스트",
+    "description": "Navbar item with label 테스트"
+  },
+  "item.label.상태 관리": {
+    "message": "상태 관리",
+    "description": "Navbar item with label 상태 관리"
+  },
+  "item.label.기타": {
+    "message": "기타",
+    "description": "Navbar item with label 기타"
+  },
+  "item.label.개념": {
+    "message": "개념",
+    "description": "Navbar item with label 개념"
+  },
+  "item.label.출처": {
+    "message": "출처",
+    "description": "Navbar item with label 출처"
+  },
+  "item.label.용어집": {
+    "message": "용어집",
+    "description": "Navbar item with label 용어집"
+  },
+  "item.label.Next.js": {
+    "message": "Next.js",
+    "description": "Navbar item with label Next.js"
+  },
+  "item.label.Electron": {
+    "message": "Electron",
+    "description": "Navbar item with label Electron"
+  },
+  "item.label.Jest": {
+    "message": "Jest",
+    "description": "Navbar item with label Jest"
+  },
+  "item.label.Cypress": {
+    "message": "Cypress",
+    "description": "Navbar item with label Cypress"
+  },
+  "item.label.Playwright": {
+    "message": "Playwright",
+    "description": "Navbar item with label Playwright"
+  },
+  "item.label.Zustand": {
+    "message": "Zustand",
+    "description": "Navbar item with label Zustand"
+  },
+  "item.label.TanStack Query": {
+    "message": "TanStack Query",
+    "description": "Navbar item with label TanStack Query"
+  },
+  "item.label.NextAuth.js": {
+    "message": "NextAuth.js",
+    "description": "Navbar item with label NextAuth.js"
+  },
+  "item.label.Vanilla Extract": {
+    "message": "Vanilla Extract",
+    "description": "Navbar item with label Vanilla Extract"
+  },
+  "item.label.Chakra UI": {
+    "message": "Chakra UI",
+    "description": "Navbar item with label Chakra UI"
+  },
+  "item.label.Prisma": {
+    "message": "Prisma",
+    "description": "Navbar item with label Prisma"
+  },
+  "item.label.Docusaurus": {
+    "message": "Docusaurus",
+    "description": "Navbar item with label Docusaurus"
+  },
+  "item.label.Emmet": {
+    "message": "Emmet",
+    "description": "Navbar item with label Emmet"
+  },
+  "item.label.Yup": {
+    "message": "Yup",
+    "description": "Navbar item with label Yup"
+  },
+  "item.label.정규 표현식": {
+    "message": "정규 표현식",
+    "description": "Navbar item with label 정규 표현식"
+  }
+}
