@@ -103,19 +103,21 @@ Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
 
 ## 이미지
 
+[plugin-ideal-image](https://docusaurus.io/ko/docs/api/plugins/@docusaurus/plugin-ideal-image)를 사용한다고 가정합니다.
+
+```mdx
+import Image from '@theme/IdealImage';
+
+<Image img={require('/img/docs/next-js/how-next-js-works/compiling.png)'} alt='컴파일' />
+```
+
+커먼JS 대신 ESM을 사용할 수도 있습니다.
+
 ```mdx
 import Image from '@theme/IdealImage';
 import compiling from '/img/docs/next-js/how-next-js-works/compiling.png';
 
 <Image img={compiling} alt='컴파일' />
-```
-
-인라인에서 커먼JS를 사용하는 것도 가능합니다.
-
-```mdx
-import Image from '@theme/IdealImage';
-
-<Image img={require(/img/docs/next-js/how-next-js-works/compiling.png)} alt='컴파일' />
 ```
 
 ## 마크다운 링크
