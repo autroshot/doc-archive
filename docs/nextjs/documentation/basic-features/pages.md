@@ -184,7 +184,7 @@ export default Post;
 
 :::note 참고
 
-정적 생성을 언제 사용해야 할지 궁금하다면 [사전 렌더링과 데이터 가져오기](../basic-concepts/pre-rendering-and-data-fetching.md#정적-생성과-ssr은-언제-사용해야-하나요)를 확인하세요.
+정적 생성을 언제 사용해야 할지 궁금하다면 [사전 렌더링과 데이터 가져오기](../basic-concepts/pre-rendering-and-data-fetching.mdx#정적-생성과-ssr은-언제-사용해야-하나요)를 확인하세요.
 
 :::
 
