@@ -88,7 +88,7 @@ const timePeriod = await prisma.timePeriod.findUnique({
 const users = await prisma.user.findMany()
 ```
 
-결과에 [페이지를 매길](../pagination.md) 수도 있습니다.
+결과에 [페이지를 매길](../pagination.mdx) 수도 있습니다.
 
 ## 특정 기준과 일치하는 첫 번째 레코드 가져오기
 
