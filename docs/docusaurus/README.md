@@ -111,7 +111,7 @@ import Image from '@theme/IdealImage';
 <Image img={require('/img/docs/next-js/how-next-js-works/compiling.png)'} alt='컴파일' />
 ```
 
-커먼JS 대신 ESM을 사용할 수도 있습니다.
+코먼JS 대신 ESM을 사용할 수도 있습니다.
 
 ```mdx
 import Image from '@theme/IdealImage';
