@@ -2,8 +2,6 @@
 sidebar_position: 1
 ---
 
-import htmlReporter from '/img/docs/playwright/html-reporter.png';
-
 # 설치
 
 플레이라이트 테스트는 종단 간 테스트의 요구를 수용하기 위해 특별히 만들어졌습니다. 플레이라이트는 크로미움, 웹킷, 파이어폭스를 비롯한 모든 모던 렌더링 엔진을 지원합니다. 안드로이드용 구글 크롬과 모바일 사파리의 네이티브 모바일 에뮬레이션을 사용하여, 헤드리스 또는 헤드가 있는 윈도우, 리눅스, 맥OS에서 로컬 또는 CI에서 테스트합니다.
@@ -66,4 +64,7 @@ npx playwright test
 npx playwright show-report
 ```
 
-<Image img={htmlReporter} alt="HTML 보고서" />
+<Image
+  img={require('/img/docs/playwright/html-reporter.png')}
+  alt="HTML 보고서"
+/>
