@@ -2,8 +2,6 @@
 sidebar_position: 1
 ---
 
-import puriteaRecipe from '/img/docs/react/keeping-components-pure/puritea-recipe.png';
-
 # 컴포넌트를 순수하게 유지하기
 
 일부 자바스크립트 함수는 **순수**합니다. 순수 함수는 계산만 수행하며 그 이상은 수행하지 않습니다. 컴포넌트를 순수한 함수로만 엄격하게 작성하면, 코드베이스가 커질 때 발생하는 당황스러운 버그와 예측 불가능한 동작을 방지할 수 있습니다. 그러나 이러한 이점을 얻으려면 몇 가지 규칙을 따라야 합니다.
@@ -82,7 +80,7 @@ export default function App() {
 컴포넌트를 조리법에 비유할 수 있습니다. 조리법을 따르고 요리 과정에서 새로운 재료를 도입하지 않으면 매번 같은 요리를 얻을 수 있습니다. 여기서 JSX가 **접시**입니다. 컴포넌트는 [렌더링](../adding-interactivity/render-and-commit.mdx)될 것을 리액트에 JSX로 제공합니다.
 
 <Image
-  img={puriteaRecipe}
+  img={require('/img/docs/react/keeping-components-pure/puritea-recipe.png')}
   alt="x명을 위한 차 조리법: 물 x컵, 차 x스푼, 향신료 0.5스푼, 우유 0.5x컵"
 />
 

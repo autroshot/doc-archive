@@ -2,13 +2,6 @@
 sidebar_position: 2
 ---
 
-import render1 from '/img/docs/react/state-as-a-snapshot/render-1.png';
-import render2 from '/img/docs/react/state-as-a-snapshot/render-2.png';
-import render3 from '/img/docs/react/state-as-a-snapshot/render-3.png';
-import stateSnapshot1 from '/img/docs/react/state-as-a-snapshot/state-snapshot-1.png';
-import stateSnapshot2 from '/img/docs/react/state-as-a-snapshot/state-snapshot-2.png';
-import stateSnapshot3 from '/img/docs/react/state-as-a-snapshot/state-snapshot-3.png';
-
 # 스냅숏으로의 상태
 
 상태 변수는 읽고 쓸 수 있는 일반적인 자바스크립트 변수처럼 보일 수 있습니다. 그러나 상태는 스냅숏처럼 작동합니다. 상태를 설정해도 이미 가지고 있는 상태 변수는 변경되지 않지만 대신 리렌더링을 트리거합니다.
@@ -54,29 +47,47 @@ import stateSnapshot3 from '/img/docs/react/state-as-a-snapshot/state-snapshot-3
 
 1. 리액트가 함수를 실행
 
-   <Image img={render1} maxWidth="14rem" />
+   <Image
+     img={require('/img/docs/react/state-as-a-snapshot/render-1.png')}
+     maxWidth="14rem"
+   />
 
 2. 스냅숏을 계산
 
-   <Image img={render2} maxWidth="14rem" />
+   <Image
+     img={require('/img/docs/react/state-as-a-snapshot/render-2.png')}
+     maxWidth="14rem"
+   />
 
 3. DOM 트리를 갱신
 
-   <Image img={render3} maxWidth="14rem" />
+   <Image
+     img={require('/img/docs/react/state-as-a-snapshot/render-3.png')}
+     maxWidth="14rem"
+   />
 
 컴포넌트의 메모리로서 상태는 함수가 반환된 후에 사라지는 일반적인 변수와 다릅니다. 상태는 실제로 선반에 있는 것처럼, 리액트 자체에, 함수 외부에 **존재합니다**. 리액트가 컴포넌트를 호출하면, 컴포넌트는 해당 렌더링에 대한 상태의 스냅숏을 제공합니다. 컴포넌트는 JSX에서 **해당 렌더링의 상태 값을 사용하여** 계산된 새로운 프롭 및 이벤트 처리기 세트와 함께 UI의 스냅숏을 반환합니다!
 
 1. 리액트에게 상태를 갱신하라고 지시합니다.
 
-   <Image img={stateSnapshot1} maxWidth="14rem" />
+   <Image
+     img={require('/img/docs/react/state-as-a-snapshot/state-snapshot-1.png')}
+     maxWidth="14rem"
+   />
 
 2. 리액트는 상태 값을 갱신합니다.
 
-   <Image img={stateSnapshot2} maxWidth="14rem" />
+   <Image
+     img={require('/img/docs/react/state-as-a-snapshot/state-snapshot-2.png')}
+     maxWidth="14rem"
+   />
 
 3. 리액트는 상태 값의 스냅숏을 컴포넌트에 전달합니다.
 
-   <Image img={stateSnapshot3} maxWidth="14rem" />
+   <Image
+     img={require('/img/docs/react/state-as-a-snapshot/state-snapshot-3.png')}
+     maxWidth="14rem"
+   />
 
 작은 실험을 통해 이것이 어떻게 작동하는지 알아보겠습니다. 다음 예시에서 `+3` 버튼을 클릭하면 `setNumber(number + 1)`가 세 번 호출되므로 카운터가 세 번 증가할 것이라고 예상할 수 있습니다.
 

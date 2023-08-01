@@ -2,20 +2,6 @@
 sidebar_position: 2
 ---
 
-import preservingStateDomTree from '/img/docs/react/preserving-and-resetting-state/preserving-state-dom-tree.png';
-import preservingStateTree from '/img/docs/react/preserving-and-resetting-state/preserving-state-tree.png';
-import preservingStateIncrement from '/img/docs/react/preserving-and-resetting-state/preserving-state-increment.png';
-import preservingStateRemoveComponent from '/img/docs/react/preserving-and-resetting-state/preserving-state-remove-component.png';
-import preservingStateAddComponent from '/img/docs/react/preserving-and-resetting-state/preserving-state-add-component.png';
-import preservingStateSameComponent from '/img/docs/react/preserving-and-resetting-state/preserving-state-same-component.png';
-import preservingStateDiff1 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-1.png';
-import preservingStateDiff2 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-2.png';
-import preservingStateDiffSame1 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-same-1.png';
-import preservingStateDiffSame2 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-same-2.png';
-import preservingStateDiffPosition1 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-position-1.png';
-import preservingStateDiffPosition2 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-position-2.png';
-import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetting-state/preserving-state-diff-position-3.png';
-
 # 상태 보존과 재설정
 
 상태는 컴포넌트 간에 격리됩니다. 리액트는 UI 트리에서의 위치를 기준으로 어떤 상태가 어떤 컴포넌트에 속하는지 추적합니다. 리렌더링 간에 상태를 보존할 시기와 상태를 재설정할 시기를 제어할 수 있습니다.
@@ -36,7 +22,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 리액트 또한 트리 구조를 사용하여 여러분이 만든 UI를 관리하고 모델링합니다. 리액트는 JSX에서 **UI 트리**를 만듭니다. 그런 다음 리액트 DOM은 해당 UI 트리와 일치하도록 브라우저 DOM 요소를 갱신합니다. (리액트 네이티브는 이 트리를 모바일 플랫폼에 특화된 요소로 변환합니다.)
 
 <Image
-  img={preservingStateDomTree}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-dom-tree.png')}
   alt="세 개의 부분이 수평으로 배열된 다이어그램입니다. 첫 번째 부분에는 '컴포넌트 A', '컴포넌트 B', '컴포넌트 C'라는 레이블이 있는 세 개의 직사각형이 수직으로 쌓여 있습니다. 다음 창으로 향하는 화살표에는 리액트 로고가 있습니다. 중간 부분에는 'A'라는 루트와 'B'와 'C'라는 두 자식이 있는 컴포넌트 트리가 있습니다. 다음 부분으로 향하는 화살표에는 리액트 로고가 있습니다. 세 번째이자 마지막 부분은 8개 노드의 트리를 포함하는 브라우저의 와이어프레임으로, 하위 집합만 강조 표시됩니다(중간 부분의 하위 트리를 가리킴)."
 />
 
@@ -53,7 +39,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 트리의 모습은 다음과 같습니다.
 
 <Image
-  img={preservingStateTree}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-tree.png')}
   alt="리액트 컴포넌트의 트리 그림입니다. 루트 노드의 레이블은 'div'이며 두 개의 자식을 가집니다. 각 자식은 'Counter'이며, 둘 다 값이 0인 'count' 상태 방울이 포함되어 있습니다."
   maxWidth="24rem"
 />
@@ -69,7 +55,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 보시다시피 하나의 카운터가 갱신되면 해당 컴포넌트의 상태만 갱신됩니다.
 
 <Image
-  img={preservingStateIncrement}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-increment.png')}
   alt="리액트 컴포넌트의 트리 그림입니다. 루트 노드의 레이블은 'div'이며 두 개의 자식을 가집니다. 왼쪽 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식은 'Counter'이며, 값이 1인 'count' 상태 방울이 포함됩니다. 오른쪽 자식의 상태 방울이 노란색으로 강조 표시되어 해당 값이 갱신되었음을 나타냅니다."
   maxWidth="24rem"
 />
@@ -81,7 +67,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 두 번째 카운터의 렌더링을 중지하는 순간, 해당 상태가 완전히 사라지는 것을 확인하세요. 이는 리액트가 컴포넌트를 제거하면 해당 컴포넌트의 상태가 파괴되기 때문입니다.
 
 <Image
-  img={preservingStateRemoveComponent}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-remove-component.png')}
   alt="리액트 컴포넌트의 트리 그림입니다. 루트 노드의 레이블은 'div'이며 두 개의 자식을 가집니다. 왼쪽 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식이 사라지고 그 자리에 노란색 '펑' 이미지가 표시되어, 트리에서 컴포넌트가 삭제되었음을 강조 표시합니다."
   maxWidth="24rem"
 />
@@ -89,7 +75,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 `Render the second counter`을 선택하면, 두 번째 `Counter`와 해당 컴포넌트의 상태가 초기화되고(`score = 0`) DOM에 추가됩니다.
 
 <Image
-  img={preservingStateAddComponent}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-add-component.png')}
   alt="리액트 컴포넌트의 트리 그림입니다. 루트 노드의 레이블은 'div'이며 두 개의 자식을 가집니다. 왼쪽 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식 노드 전체가 노란색으로 강조 표시되어 방금 트리에 추가되었음을 나타냅니다."
   maxWidth="31rem"
 />
@@ -107,7 +93,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 `Counter`는 동일한 위치에 있기 때문에 `App` 상태를 갱신해도 `Counter`가 재설정되지 않습니다.
 
 <Image
-  img={preservingStateSameComponent}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-same-component.png')}
   alt="두 부분 사이를 전환하는 화살표로 구분된 두 부분이 있는 그림입니다. 각 부분에는 'isFancy'라는 상태 방울이 포함된 'App'이라는 부모가 있는 컴포넌트 레이아웃이 포함되어 있습니다. 이 컴포넌트에는 'div'라는 하나의 자식이 있으며, 이는 유일한 자식에게 전달되는 'isFancy'(보라색으로 강조 표시됨)가 포함된 프롭 방울로 연결됩니다. 마지막 자식은 'Counter'이며, 두 그림 모두에 값이 3인 'count' 상태 방울이 포함됩니다. 그림의 왼쪽 부분에서는 아무것도 강조 표시되지 않으며 'isFancy' 부모의 상태 값이 'false'입니다. 그림의 오른쪽 부분에서 'isFancy' 부모의 상태 값이 'true'로 변경되고 노란색으로 강조 표시됩니다. 하단의 프롭 방울의 'isFancy' 값도 'true'로 변경됩니다."
   maxWidth="37.5rem"
 />
@@ -137,7 +123,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 `Counter`가 `p`로 변경되면, `Counter`가 삭제되고 `p`가 추가됩니다.
 
 <Image
-  img={preservingStateDiff1}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-diff-1.png')}
   alt="세 개의 부분이 있는 그림입니다. 각 부분 사이를 전환하는 화살표가 있습니다. 첫 번째 부분에는 'div'라는 리액트 컴포넌트와 'Counter'라는 단일 자식 컴포넌트가 포함되어 있습니다. 'Counter' 컴포넌트에는 값이 3인 'count' 상태 방울이 포함됩니다. 가운데 부분에는 동일한 'div' 부모가 있지만, 이제 자식 컴포넌트가 삭제되어 노란색 '펑' 이미지로 표시됩니다. 세 번째 부분에는 다시 동일한 'div' 부모가 있습니다. 이제 밑에는 'p'라는 새로운 자식 컴포넌트가 있으며 노란색으로 강조 표시됩니다."
   maxWidth="47rem"
 />
@@ -145,7 +131,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 다시 전환하면 `p`가 삭제되고 `Counter`가 추가됩니다.
 
 <Image
-  img={preservingStateDiff2}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-diff-2.png')}
   alt="세 개의 부분이 있는 그림입니다. 각 부분 사이를 전환하는 화살표가 있습니다. 첫 번째 부분에는 'p'라는 리액트 컴포넌트가 포함됩니다. 가운데 부분에는 동일한 'div' 부모가 있지만, 이제 자식 컴포넌트가 삭제되어 노란색 '펑' 이미지로 표시됩니다. 세 번째 부분에는 다시 동일한 'div' 부모가 있습니다. 이제 밑에는 'Counter'라는 새로운 자식이 노란색으로 강조 표시됩니다. 자식 컴포넌트에는 값이 0인 'count' 상태 방울이 포함됩니다."
   maxWidth="47rem"
 />
@@ -159,7 +145,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 `section`이 `div`로 변경되면, `section`이 삭제되고 새로운 `div`가 추가됩니다.
 
 <Image
-  img={preservingStateDiffSame1}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-diff-same-1.png')}
   alt="세 개의 부분이 있는 그림입니다. 각 부분 사이를 전환하는 화살표가 있습니다. 첫 번째 부분에는 'div'라는 리액트 컴포넌트가 있습니다. 그 아래에는 'section'이라는 단일 자식이 있습니다. 그 아래에는 값이 3인 'count' 상태 방울이 포함된 'Counter'라는 단일 자식이 있습니다. 가운데 부분에는 동일한 'div' 부모가 있지만, 이제 자식 컴포넌트들이 삭제되어 노란색 '펑' 이미지로 표시됩니다. 세 번째 부분에는 다시 동일한 'div' 부모가 있습니다. 이제 그 아래에는 노란색으로 강조 표시되며 'div'라는 새로운 자식이 있습니다. 그 아래에는 모두 노란색으로 강조 표시되며, 값이 0인 'count' 상태 방울이 포함된 'Counter'라는 새로운 자식이 있습니다."
   maxWidth="49.5rem"
 />
@@ -167,7 +153,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 다시 전환하면 `div`가 삭제되고 새로운 `section`이 추가됩니다.
 
 <Image
-  img={preservingStateDiffSame2}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-diff-same-2.png')}
   alt="세 개의 부분이 있는 그림입니다. 각 부분 사이를 전환하는 화살표가 있습니다. 첫 번째 부분에는 'div'라는 리액트 컴포넌트가 있습니다. 그 아래에는 'div'라는 단일 자식이 있습니다. 그 아래에는 값이 0인 'count' 상태 방울이 포함된 'Counter'라는 단일 자식이 있습니다. 가운데 부분에는 동일한 'div' 부모가 있지만, 이제 자식 컴포넌트들이 삭제되어 노란색 '펑' 이미지로 표시됩니다. 세 번째 부분에는 다시 동일한 'div' 부모가 있습니다. 이제 그 아래에는 'section'이라는 새로운 자식이 있으며 노란색으로 강조 표시됩니다. 그 아래에는 모두 노란색으로 강조 표시되며, 값이 0인 'count' 상태 방울이 포함된 'Counter'라는 새로운 자식이 있습니다."
   maxWidth="49.5rem"
 />
@@ -215,7 +201,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 초기 상태
 
 <Image
-  img={preservingStateDiffPosition1}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-diff-position-1.png')}
   alt="리액트 컴포넌트의 트리가 있는 그림입니다. 부모는 값이 'true'인 'isPlayerA' 상태 방울을 가진 'Scoreboard'입니다. 왼쪽으로 정렬된 유일한 자식은 값이 0인 'count' 상태 방울을 가진 'Counter'입니다. 왼쪽 자식은 모두 노란색으로 강조 표시되어 추가되었음을 나타냅니다."
   maxWidth="24rem"
 />
@@ -223,7 +209,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 `next`를 클릭
 
 <Image
-  img={preservingStateDiffPosition2}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-diff-position-2.png')}
   alt="리액트 컴포넌트의 트리가 있는 그림입니다. 부모는 값이 'false'인 'isPlayerA' 상태 방울을 가진 'Scoreboard'입니다. 상태 방울이 노란색으로 강조 표시되어 변경되었음을 나타냅니다. 왼쪽 자식은 삭제되었음을 나타내는 노란색 '펑' 이미지로 대체되고, 오른쪽에는 추가되었음을 나타내는 노란색으로 강조 표시된 새 자식이 있습니다. 새로운 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다."
   maxWidth="24rem"
 />
@@ -231,7 +217,7 @@ import preservingStateDiffPosition3 from '/img/docs/react/preserving-and-resetti
 다시 `next` 를 클릭
 
 <Image
-  img={preservingStateDiffPosition3}
+  img={require('/img/docs/react/preserving-and-resetting-state/preserving-state-diff-position-3.png')}
   alt="리액트 컴포넌트의 트리가 있는 그림입니다. 부모는 값이 'true'인 'isPlayerA' 상태 방울을 가진 'Scoreboard'입니다. 상태 방울이 노란색으로 강조 표시되어 변경되었음을 나타냅니다. 왼쪽에는 새 자식이 있으며 노란색으로 강조 표시되어 추가되었음을 나타냅니다. 새로운 자식은 'Counter'이며, 값이 0인 'count' 상태 방울이 포함됩니다. 오른쪽 자식은 삭제되었음을 나타내는 노란색 '펑' 이미지로 대체됩니다."
   maxWidth="24rem"
 />
