@@ -5,7 +5,6 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/electronFiddleButton.tsx';
-import simplestElectronApp from '/img/docs/electron/quick-start/simplest-electron-app.png';
 
 # 빠른 시작
 
@@ -369,7 +368,10 @@ const createWindow = () => {
 
 위의 단계를 따른 후에는 일렉트론 애플리케이션이 다음과 같이 완전히 작동해야 합니다.
 
-<Image img={simplestElectronApp} alt="가장 간단한 일렉트론 앱" />
+<Image
+  img={require('/img/docs/electron/quick-start/simplest-electron-app.png')}
+  alt="가장 간단한 일렉트론 앱"
+/>
 
 전체 코드는 다음과 같습니다.
 
