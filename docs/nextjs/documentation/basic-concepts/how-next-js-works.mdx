@@ -2,15 +2,6 @@
 sidebar_position: 1
 ---
 
-import compiling from '/img/docs/nextjs/how-next-js-works/compiling.png';
-import minifying from '/img/docs/nextjs/how-next-js-works/minifying.png';
-import bundling from '/img/docs/nextjs/how-next-js-works/bundling.png';
-import codeSplitting from '/img/docs/nextjs/how-next-js-works/code-splitting.png';
-import clientServer from '/img/docs/nextjs/how-next-js-works/client-server.png';
-import clientSideRendering from '/img/docs/nextjs/how-next-js-works/client-side-rendering.png';
-import preRendering from '/img/docs/nextjs/how-next-js-works/pre-rendering.png';
-import cdn from '/img/docs/nextjs/how-next-js-works/cdn.png';
-
 # 넥스트의 작동 방식
 
 ## 개발과 프로덕션 환경
@@ -32,7 +23,10 @@ import cdn from '/img/docs/nextjs/how-next-js-works/cdn.png';
 
 **컴파일(Compiling)은 한 언어로 된 코드를 다른 언어 또는 해당 언어의 다른 버전으로 출력하는 과정을 의미합니다.**
 
-<Image img={compiling} alt='컴파일' />
+<Image
+  img={require('/img/docs/nextjs/how-next-js-works/compiling.png')}
+  alt="컴파일"
+/>
 
 넥스트에서 컴파일은 코드를 편집할 때 개발 단계에서 발생합니다. 그리고 프로덕션을 위해 앱을 준비하는 빌드 단계에서도 발생합니다.
 
@@ -42,7 +36,10 @@ import cdn from '/img/docs/nextjs/how-next-js-works/cdn.png';
 
 **축소(Minifying)는 코드의 기능을 변경하지 않고 불필요한 코드 서식과 주석을 제거하는 과정입니다.** 목표는 파일 크기를 줄여 응용 프로그램의 성능을 향상시키는 것입니다.
 
-<Image img={minifying} alt='축소' />
+<Image
+  img={require('/img/docs/nextjs/how-next-js-works/minifying.png')}
+  alt="축소"
+/>
 
 넥스트에서 자바스크립트와 CSS 파일은 프로덕션을 위해 자동으로 축소됩니다.
 
@@ -52,7 +49,10 @@ import cdn from '/img/docs/nextjs/how-next-js-works/cdn.png';
 
 **번들링(Bundling)은 웹 종속성을 해결하고 파일(또는 모듈)을 브라우저에 최적화된 번들로 병합(패키징)하는 과정입니다.** 이를 통해 사용자가 웹 페이지를 방문할 때 요청하는 파일의 수를 줄일 수 있습니다.
 
-<Image img={bundling} alt='번들링' />
+<Image
+  img={require('/img/docs/nextjs/how-next-js-works/bundling.png')}
+  alt="번들링"
+/>
 
 ## 코드 분할
 
@@ -60,7 +60,10 @@ import cdn from '/img/docs/nextjs/how-next-js-works/cdn.png';
 
 **코드 분할(Code Splitting)은 앱 번들을 각 진입점에 필요한 더 작은 청크(chunk)로 분할하는 과정입니다.** 이를 통해 해당 페이지를 실행하는 데 필요한 코드만 로드하여 앱의 초기 로드 시간을 개선합니다.
 
-<Image img={codeSplitting} alt='코드 분할' />
+<Image
+  img={require('/img/docs/nextjs/how-next-js-works/code-splitting.png')}
+  alt="코드 분할"
+/>
 
 넥스트는 코드 분할을 기본적으로 지원합니다. 디렉터리 내의 각 파일 `pages/`는 빌드 단계에서 자동으로 자체 자바스크립트 번들로 코드 분할됩니다.
 
@@ -89,7 +92,10 @@ import cdn from '/img/docs/nextjs/how-next-js-works/cdn.png';
 
 **서버**는 앱 코드를 저장하고, 클라이언트로부터 요청을 수신하고, 일부 계산을 수행하고, 적절한 응답을 다시 보내는 데이터 센터의 컴퓨터를 의미합니다.
 
-<Image img={clientServer} alt='클라이언트와 서버' />
+<Image
+  img={require('/img/docs/nextjs/how-next-js-works/client-server.png')}
+  alt="클라이언트와 서버"
+/>
 
 ## 렌더링
 
@@ -107,7 +113,10 @@ SSR과 SSG은 결과가 클라이언트로 전송되기 전에 외부 데이터�
 
 표준 리액트 앱에서 브라우저는 서버로부터 UI를 만드는 자바스크립트의 지시와 빈 HTML 껍데기를 받습니다. 초기 렌더링 작업이 사용자의 장치에서 발생하기 때문에 이것을 CSR이라고 합니다.
 
-<Image img={clientSideRendering} alt='클라이언트 측 렌더링' />
+<Image
+  img={require('/img/docs/nextjs/how-next-js-works/client-side-rendering.png')}
+  alt="클라이언트 측 렌더링"
+/>
 
 :::note 참고
 
@@ -121,7 +130,10 @@ SSR과 SSG은 결과가 클라이언트로 전송되기 전에 외부 데이터�
 
 반면 사전 렌더링된 앱에서는 사용자가 다음과 같이 만들어진 HTML을 볼 수 있습니다.
 
-<Image img={preRendering} alt='사전 렌더링' />
+<Image
+  img={require('/img/docs/nextjs/how-next-js-works/pre-rendering.png')}
+  alt="사전 렌더링"
+/>
 
 사전 렌더링은 SSR와 SSG라는 두 가지 유형으로 나뉩니다.
 
@@ -165,7 +177,7 @@ CDN 서버나 에지 서버와 같이 앱 코드가 배포될 수 있는 다른 
 
 CDN은 전 세계 여러 위치에 정적 콘텐츠(예: HTML 및 이미지 파일)를 저장하고 클라이언트와 원본 서버 사이에 배치됩니다. 새 요청이 들어오면 사용자와 가장 가까운 CDN 위치에서 캐시된 결과로 응답할 수 있습니다.
 
-<Image img={cdn} alt='CDN' />
+<Image img={require('/img/docs/nextjs/how-next-js-works/cdn.png')} alt="CDN" />
 
 이렇게 하면 각 요청에 대해 계산을 수행할 필요가 없기 때문에 오리진의 부하가 줄어듭니다. 또한 응답이 지리적으로 더 가까운 위치에서 제공되기 때문에 사용자가 더 빠르게 작업할 수 있습니다.
 

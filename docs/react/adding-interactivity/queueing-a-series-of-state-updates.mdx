@@ -2,8 +2,6 @@
 sidebar_position: 3
 ---
 
-import reactBatching from '/img/docs/react/queueing-a-series-of-state-updates/react-batching.png';
-
 # 일련의 상태 갱신 대기열
 
 상태 변수를 설정하면 다른 렌더링이 대기열에 추가됩니다. 그러나 때로는 다음 렌더링을 대기열에 넣기 전에 값에 대해 여러 작업을 수행해야 할 수도 있습니다. 이렇게 하려면 리액트가 상태 갱신을 일괄 처리(batch)하는 방법을 이해하는 것이 좋습니다.
@@ -34,7 +32,7 @@ setNumber(0 + 1);
 이는 레스토랑에서 주문을 받는 웨이터를 생각나게 합니다. 웨이터는 여러분이 첫 번째 요리를 말할 때 바로 부엌으로 달려가지 않습니다! 대신 여러분의 주문이 끝날 때까지 기다리고, 주문이 바뀔수도 있으며, 테이블에 있는 다른 사람의 주문도 받을 수 있습니다.
 
 <Image
-  img={reactBatching}
+  img={require('/img/docs/react/queueing-a-series-of-state-updates/react-batching.png')}
   alt="레스토랑에서 우아한 커서가 웨이터 역할을 하는 리액트에게 여러 번 주문합니다. 그녀가 setState()를 여러 번 호출한 후에, 웨이터는 그녀의 마지막 주문을 최종 주문으로 기록합니다."
   maxWidth="24rem"
 />

@@ -2,9 +2,6 @@
 sidebar_position: 1
 ---
 
-import structure from '/img/docs/concepts/domain-name/structure.png';
-import DNSRequest from '/img/docs/concepts/domain-name/dns-request.png';
-
 # 도메인 이름
 
 > 원문 - [MDN](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name)
@@ -25,7 +22,11 @@ import DNSRequest from '/img/docs/concepts/domain-name/dns-request.png';
 
 도메인 이름은 여러 부분으로 구성된 단순한 구조를 가지고 있습니다. 이는 점으로 구분되며 **오른쪽에서 왼쪽으로** 읽습니다.
 
-<Image img={structure} alt="MDN 도메인 이름의 구조" maxWidth="15.75rem" />
+<Image
+  img={require('/img/docs/concepts/domain-name/structure.png')}
+  alt="MDN 도메인 이름의 구조"
+  maxWidth="15.75rem"
+/>
 
 각 부분은 전체 도메인 이름에 대한 특정 정보를 제공합니다.
 
@@ -144,7 +145,7 @@ DNS 요청 과정은 다음과 같습니다.
 4. 이제 컴퓨터가 요청된 IP 주소를 알고 있으므로 브라우저가 웹 서버와 콘텐츠를 협상할 수 있습니다.
 
 <Image
-  img={DNSRequest}
+  img={require('/img/docs/concepts/domain-name/dns-request.png')}
   alt="DNS 요청에 대한 결과를 얻는 데 필요한 단계에 대한 설명"
   maxWidth="34rem"
 />

@@ -2,13 +2,14 @@
 sidebar_position: 1
 ---
 
-import restApisWithPrismaClient from '/img/docs/prisma/rest-apis-with-prisma-client.png';
-
 # REST
 
 REST API를 구축할 때 프리즈마 클라이언트를 경로 컨트롤러 내에서 사용하여 데이터베이스 질의를 보낼 수 있습니다.
 
-<Image img={restApisWithPrismaClient} alt='프리즈마 클라이언트와 REST API' />
+<Image
+  img={require('/img/docs/prisma/rest-apis-with-prisma-client.png')}
+  alt="프리즈마 클라이언트와 REST API"
+/>
 
 ## 지원되는 라이브러리
 
@@ -72,9 +73,9 @@ app.get('/feed', async (req, res) => {
   const posts = await prisma.post.findMany({
     where: { published: true },
     include: { author: true },
-  })
-  res.json(posts)
-})
+  });
+  res.json(posts);
+});
 ```
 
 이 경우 `feed` 엔드포인트는 중첩된 JSON 응답, `author` 객체가 포함된 `Post` 객체를 반환합니다. 샘플 응답은 다음과 같습니다.
@@ -100,7 +101,7 @@ app.get('/feed', async (req, res) => {
 
 ```js
 app.post(`/post`, async (req, res) => {
-  const { title, content, authorEmail } = req.body
+  const { title, content, authorEmail } = req.body;
   const result = await prisma.post.create({
     data: {
       title,
@@ -108,35 +109,34 @@ app.post(`/post`, async (req, res) => {
       published: false,
       author: { connect: { email: authorEmail } },
     },
-  })
-  res.json(result)
-})
+  });
+  res.json(result);
+});
 ```
 
 #### PUT
 
 ```js
 app.put('/publish/:id', async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
   const post = await prisma.post.update({
     where: { id: Number(id) },
     data: { published: true },
-  })
-  res.json(post)
-})
+  });
+  res.json(post);
+});
 ```
 
 #### DELETE
 
 ```js
 app.delete(`/post/:id`, async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
   const post = await prisma.post.delete({
     where: {
       id: Number(id),
     },
-  })
-  res.json(post)
-})
+  });
+  res.json(post);
+});
 ```
-

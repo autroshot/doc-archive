@@ -2,11 +2,6 @@
 sidebar_position: 6
 ---
 
-import offsetSkipTake from '/img/docs/prisma/pagination/offset-skip-take.png';
-import cursor1 from '/img/docs/prisma/pagination/cursor-1.png';
-import cursor2 from '/img/docs/prisma/pagination/cursor-2.png';
-import cursor3 from '/img/docs/prisma/pagination/cursor-3.png';
-
 # 페이지 매김
 
 프리즈마 클라이언트는 오프셋 페이지 매김과 커서 기반 페이지 매김을 모두 지원합니다.
@@ -21,10 +16,13 @@ import cursor3 from '/img/docs/prisma/pagination/cursor-3.png';
 const results = await prisma.post.findMany({
   skip: 3,
   take: 4,
-})
+});
 ```
 
-<Image img={offsetSkipTake} alt='오프셋의 skip과 take' />
+<Image
+  img={require('/img/docs/prisma/pagination/offset-skip-take.png')}
+  alt="오프셋의 skip과 take"
+/>
 
 결과 페이지를 구현하려면 페이지 수에 페이지당 표시할 결과 수를 곱한 값을 `skip`하면 됩니다.
 
@@ -32,7 +30,7 @@ const results = await prisma.post.findMany({
 
 - 모든 페이지로 즉시 이동할 수 있습니다.
 
-  예를 들어 200개의 레코드를 `skip`하고  10개의 레코드를 `take`할 수 있으며 결과 집합의 21페이지로 바로 이동하는 것을 시뮬레이트합니다. (기반 SQL은 `OFFSET`을 사용) 커서 기반 페이지 매김에서는 불가능합니다.
+  예를 들어 200개의 레코드를 `skip`하고 10개의 레코드를 `take`할 수 있으며 결과 집합의 21페이지로 바로 이동하는 것을 시뮬레이트합니다. (기반 SQL은 `OFFSET`을 사용) 커서 기반 페이지 매김에서는 불가능합니다.
 
 - 동일한 결과 집합에 원하는 정렬 순서로 페이지를 매길 수 있습니다.
 
@@ -63,7 +61,7 @@ const results = await prisma.post.findMany({
       contains: 'prisma.io',
     },
   },
-})
+});
 ```
 
 #### 예시: 정렬 및 오프셋 페이지 매김
@@ -82,7 +80,7 @@ const results = await prisma.post.findMany({
   orderBy: {
     title: 'desc',
   },
-})
+});
 ```
 
 ## 커서 기반 페이지 매김
@@ -108,18 +106,18 @@ const firstQueryResults = await prisma.post.findMany({
   orderBy: {
     id: 'asc',
   },
-})
+});
 
 // 결과 집합에서의 위치를 책갈피로 지정합니다.
 // 이 경우에는 4개의 목록에서 마지막 게시물의 ID입니다.
 
-const lastPostInResults = firstQueryResults[3] // 기반이 없는 색인입니다. 기억하세요!
-const myCursor = lastPostInResults.id // 예시: 29
+const lastPostInResults = firstQueryResults[3]; // 기반이 없는 색인입니다. 기억하세요!
+const myCursor = lastPostInResults.id; // 예시: 29
 ```
 
 다음 다이어그램은 처음 4개 결과들의 ID 또는 1 페이지를 보여줍니다. 다음 질의의 커서는 **29**입니다.
 
-<Image img={cursor1} alt='커서 1' />
+<Image img={require('/img/docs/prisma/pagination/cursor-1.png')} alt="커서 1" />
 
 두 번째 질의는 **전달된 커서 다음에서**(즉, **29**보다 큰 ID를 가진) `"Prisma"`라는 단어가 포함된 처음 4개의 `Post` 레코드를 반환합니다.
 
@@ -138,15 +136,15 @@ const secondQueryResults = await prisma.post.findMany({
   orderBy: {
     id: 'asc',
   },
-})
+});
 
-const lastPostInResults = secondQueryResults[3] // 기반이 없는 색인입니다. 기억하세요!
-const myCursor = lastPostInResults.id // 예시: 52
+const lastPostInResults = secondQueryResults[3]; // 기반이 없는 색인입니다. 기억하세요!
+const myCursor = lastPostInResults.id; // 예시: 52
 ```
 
 다음 다이어그램은 ID가 **29**인 레코드 **다음**에 있는 처음 4개의 `Post` 레코드를 보여줍니다. 이 예시에서 새로운 커서는 **52**입니다.
 
-<Image img={cursor2} alt='커서 2' />
+<Image img={require('/img/docs/prisma/pagination/cursor-2.png')} alt="커서 2" />
 
 ### 자주 묻는 질문
 
@@ -156,15 +154,15 @@ const myCursor = lastPostInResults.id // 예시: 52
 
 첫 번째 질의는 4개의 결과를 반환하고 커서는 **29**입니다.
 
-<Image img={cursor1} alt='커서 1' />
+<Image img={require('/img/docs/prisma/pagination/cursor-1.png')} alt="커서 1" />
 
 `skip: 1`이 없으면 두 번째 질의는 커서를 포함한 4개의 결과를 반환합니다.
 
-<Image img={cursor3} alt='커서 3' />
+<Image img={require('/img/docs/prisma/pagination/cursor-3.png')} alt="커서 3" />
 
 `skip: 1`이 있으면 커서가 포함되지 않습니다.
 
-<Image img={cursor2} alt='커서 2' />
+<Image img={require('/img/docs/prisma/pagination/cursor-2.png')} alt="커서 2" />
 
 원하는 페이지 매김 동작에 따라 `skip: 1`을 선택하거나 선택하지 않을 수 있습니다.
 
@@ -209,7 +207,7 @@ const secondQuery = await prisma.post.findMany({
   orderBy: {
     id: 'asc',
   },
-})
+});
 ```
 
 #### 정렬 및 커서 기반 페이지 매김
@@ -223,7 +221,7 @@ const secondQuery = await prisma.post.findMany({
 다음 질의는 커서를 제외하고 `id`가 200보다 작은 `Post` 레코드 4개를 반환합니다.
 
 ```ts
-const myOldCursor = 200
+const myOldCursor = 200;
 
 const firstQueryResults = await prisma.post.findMany({
   take: -4,
@@ -237,8 +235,7 @@ const firstQueryResults = await prisma.post.findMany({
     },
   },
   orderBy: {
-    id: 'asc'
-  }
-})
+    id: 'asc',
+  },
+});
 ```
-
