@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 컨텍스트 격리
 
-컨텍스트 격리는 `preload` 스크립트와 일렉트론의 내부 로직이 [`webContents`](https://www.electronjs.org/docs/latest/api/web-contents)에서 로드하는 웹사이트와 별도의 컨텍스트에서 실행되도록 하는 기능입니다. 이는 일렉트론 내부 또는 사전 로드 스크립트가 접근할 수 있는 강력한 API에 웹사이트가 접근하는 것을 방지하는 데 도움이 되므로 보안 목적으로 중요합니다.
+컨텍스트 격리는 `preload` 스크립트와 일렉트론의 내부 로직이 [`webContents`](https://www.electronjs.org/docs/latest/api/web-contents)에서 로드하는 웹사이트와 별도의 컨텍스트에서 실행되도록 하는 기능입니다. 이는 일렉트론 내부 또는 사전 로드 스크립트가 접근할 수 있는 강력한 API에 웹사이트가 접근하는 것을 방지하므로 보안에 중요한 역할을 합니다.
 
 즉, 사전 로드 스크립트가 접근할 수 있는 `window` 객체가 실제로는 웹사이트가 접근할 수 있는 객체와 **다른** 객체라는 의미입니다. 예를 들어 사전 로드 스크립트에서 `window.hello = 'wave'`를 설정하고 컨텍스트 격리가 활성화된 경우, 웹사이트에서 `window.hello`에 접근하면 `undefined`가 출력됩니다.
 

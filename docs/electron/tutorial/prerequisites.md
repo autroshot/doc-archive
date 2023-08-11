@@ -21,7 +21,7 @@ sidebar_position: 1
 - [웹 시작하기 (MDN 웹 문서)](https://developer.mozilla.org/ko/docs/Learn)
 - [노드 소개](https://nodejs.dev/en/learn/)
 
-## 필수 도구
+## 필요한 도구
 
 ### 코드 편집기
 
