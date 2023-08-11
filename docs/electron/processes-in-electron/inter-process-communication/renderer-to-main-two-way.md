@@ -1,0 +1,189 @@
+---
+sidebar_position: 2
+---
+
+# 렌더러에서 주로 (양방향)
+
+양방향 IPC의 일반적인 예시는 렌더러 프로세스 코드에서 주 프로세스 모듈을 호출하고 결과를 기다리는 것입니다. 이는 [`ipcMain.handle`](https://www.electronjs.org/docs/latest/api/ipc-main#ipcmainhandlechannel-listener)과 쌍을 이루는 [`ipcRenderer.invoke`](https://www.electronjs.org/docs/latest/api/ipc-renderer#ipcrendererinvokechannel-args)를 사용하여 수행할 수 있습니다.
+
+다음 예시에서는 렌더러 프로세스에서 네이티브 파일 대화 상자를 열고 선택한 파일의 경로를 반환합니다.
+
+이 데모에서는 주 프로세스, 렌더러 프로세스, 사전 로드 스크립트에 코드를 추가해야 합니다. 전체 코드는 피들에서 확인할 수 있으며, 각 파일을 개별적으로 설명할 것입니다.
+
+[DOCS/FIDDLES/IPC/PATTERN-2 (25.5.0)](https://github.com/electron/electron/tree/v25.5.0/docs/fiddles/ipc/pattern-2)[Open in Fiddle](https://fiddle.electronjs.org/launch?target=electron/v25.5.0/docs/fiddles/ipc/pattern-2)
+
+## 1. `ipcMain.handle`로 이벤트 수신하기
+
+주 프로세스에서는 `dialog.showOpenDialog`를 호출하고 사용자가 선택한 파일 경로의 값을 반환하는 `handleFileOpen()` 함수를 만들 것입니다. 이 함수는 렌더러 프로세스에서 `dialog:openFile` 채널로 `ipcRender.invoke` 메시지가 전송될 때마다 콜백으로 사용됩니다. 그런 다음 기존 `invoke` 호출에 대해 프라미스가 반환됩니다.
+
+오류 처리에 대한 설명
+
+주 프로세스에서 `handle`을 통해 발생한 오류는 직렬화되며 기존 오류의 `message` 프로퍼티만 렌더러 프로세스에 제공되므로 투명하지 않습니다. 자세한 내용은 [#24427](https://github.com/electron/electron/issues/24427)을 참고하세요.
+
+main.js (Main Process)
+
+```javascript
+const { app, BrowserWindow, dialog, ipcMain } = require('electron')
+const path = require('path')
+
+// ...
+
+async function handleFileOpen () {
+  const { canceled, filePaths } = await dialog.showOpenDialog({})
+  if (!canceled) {
+    return filePaths[0]
+  }
+}
+
+function createWindow () {
+  const mainWindow = new BrowserWindow({
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+  mainWindow.loadFile('index.html')
+}
+
+app.whenReady().then(() => {
+  ipcMain.handle('dialog:openFile', handleFileOpen)
+  createWindow()
+})
+// ...
+```
+
+채널 이름
+
+IPC 채널 이름의 `dialog:` 접두사는 코드에 영향을 미치지 않습니다. 코드 가독성에 도움이 되는 이름공간 역할만 합니다.
+
+INFO
+
+다음 단계를 위해 `index.html`과 `preload.js` 진입점을 로드하고 있는지 확인하세요!
+
+## 2. 사전 로드를 통해 `ipcRenderer.invoke` 노출하기
+
+사전 로드 스크립트에서는 `ipcRenderer.invoke('dialog:openFile')`의 값을 호출하고 반환하는 한 줄짜리 `openFile` 함수를 노출합니다. 다음 단계에서는 이 API를 사용하여 렌더러의 사용자 인터페이스에서 네이티브 대화 상자를 호출할 것입니다.
+
+preload.js (Preload Script)
+
+```javascript
+const { contextBridge, ipcRenderer } = require('electron')
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  openFile: () => ipcRenderer.invoke('dialog:openFile')
+})
+```
+
+보안 경고
+
+[보안상의 이유](https://www.electronjs.org/docs/latest/tutorial/context-isolation#security-considerations)로 `ipcRenderer.invoke` API 전체를 직접 노출하지 않습니다. 일렉트론 API에 대한 렌더러의 접근을 최대한 제한하세요.
+
+## 3. 렌더러 프로세스 UI 구축하기
+
+마지막으로 BrowserWindow에 로드할 HTML 파일을 구축해 보겠습니다.
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Dialog</title>
+  </head>
+  <body>
+    <button type="button" id="btn">Open a File</button>
+    File path: <strong id="filePath"></strong>
+    <script src='./renderer.js'></script>
+  </body>
+</html>
+```
+
+UI는 사전 로드 API를 트리거하는 데 사용되는 `#btn` 버튼 요소 하나와 선택한 파일의 경로를 표시하는 데 사용되는 `#filePath` 요소로 구성됩니다. 이것들을 작동시키려면 렌더러 프로세스 스크립트에 몇 줄의 코드가 필요합니다.
+
+renderer.js (Renderer Process)
+
+```javascript
+const btn = document.getElementById('btn')
+const filePathElement = document.getElementById('filePath')
+
+btn.addEventListener('click', async () => {
+  const filePath = await window.electronAPI.openFile()
+  filePathElement.innerText = filePath
+})
+```
+
+위 코드에서는 `#btn` 버튼의 클릭을 수신하고 `window.electronAPI.openFile()` API를 호출하여 네이티브 파일 열기 대화 상자를 활성화합니다. 그런 다음 선택한 파일 경로를 `#filePath` 요소에 표시합니다.
+
+## 참고: 레거시 접근 방식
+
+`ipcRenderer.invoke` API는 렌더러 프로세스에서 양방향 IPC를 처리하기 위한 개발자 친화적인 방법으로 일렉트론 7에 추가되었습니다. 그러나 이 IPC 패턴에 대한 대안적인 접근 방식이 몇 가지 있습니다.
+
+가능하다면 레거시 접근 방식을 피하세요.
+
+가능하면 `ipcRenderer.invoke`를 사용하는 것이 좋습니다. 다음의 양방향(렌더러에서 메인으로) 패턴은 기록용으로 문서화되어 있습니다.
+
+INFO
+
+다음 예시에서는 코드 샘플을 작게 유지하기 위해 사전 로드 스크립트에서 직접 `ipcRenderer`를 호출합니다.
+
+### `ipcRenderer.send` 사용하기
+
+단방향 통신에 사용했던 `ipcRenderer.send` API를 활용하여 양방향 통신도 수행할 수 있습니다. 이는 일렉트론 7 이전에 IPC를 통한 비동기 양방향 통신에 권장되는 방법이었습니다.
+
+preload.js (Preload Script)
+
+```javascript
+// `contextBridge` API를 사용하여 이 코드를
+// 렌더러 프로세스에 노출할 수도 있습니다.
+const { ipcRenderer } = require('electron')
+
+ipcRenderer.on('asynchronous-reply', (_event, arg) => {
+  console.log(arg) // 개발자 도구 콘솔에 "pong"을 출력합니다.
+})
+ipcRenderer.send('asynchronous-message', 'ping')
+```
+
+main.js (Main Process)
+
+```javascript
+ipcMain.on('asynchronous-message', (event, arg) => {
+  console.log(arg) // 노드 콘솔에 "ping"을 출력합니다.
+  // `send`처럼 작동하지만 원래 메시지를 보낸 렌더러에
+  // 다시 메시지를 반환합니다.
+  event.reply('asynchronous-reply', 'pong')
+})
+```
+
+이 접근 방식에는 몇 가지 단점이 있습니다.
+
+- 렌더러 프로세스에서 응답을 처리하려면 두 번째 `ipcRenderer.on` 수신기를 설정해야 합니다. `invoke`를 사용하면 원래 API 호출에 대한 프라미스로 반환된 응답 값을 받습니다.
+- `asynchronous-reply` 메시지를 원래의 `asynchronous-message` 메시지와 연동하는 확실한 방법은 없습니다. 이러한 채널을 통해 주고받는 메시지가 매우 빈번하다면, 각 호출과 응답을 개별적으로 추적하기 위해 추가 앱 코드를 작성해야 합니다.
+
+### `ipcRenderer.sendSync` 사용하기
+
+`ipcRenderer.sendSync` API는 주 프로세스에 메시지를 보내고 *동기적*으로 응답을 기다립니다.
+
+main.js (Main Process)
+
+```javascript
+const { ipcMain } = require('electron')
+ipcMain.on('synchronous-message', (event, arg) => {
+  console.log(arg) // 노드 콘솔에 "ping"을 출력합니다.
+  event.returnValue = 'pong'
+})
+```
+
+preload.js (Preload Script)
+
+```javascript
+// `contextBridge` API를 사용하여 이 코드를
+// 렌더러 프로세스에 노출할 수도 있습니다.
+const { ipcRenderer } = require('electron')
+
+const result = ipcRenderer.sendSync('synchronous-message', 'ping')
+console.log(result) // 개발자 도구 콘솔에 "pong"을 출력합니다.
+```
+
+이 코드의 구조는 `invoke` 모델과 매우 유사하지만 성능상의 이유로 **이 API를 피하는 것**이 좋습니다. 동기적 특성은 응답을 받을 때까지 렌더러 프로세스를 차단한다는 것을 의미합니다.
