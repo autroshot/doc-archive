@@ -79,7 +79,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
 보안 경고
 
-[보안상의 이유](https://www.electronjs.org/docs/latest/tutorial/context-isolation#security-considerations)로 `ipcRenderer.on` API 전체를 직접 노출하지 않습니다. 일렉트론 API에 대한 렌더러의 접근을 최대한 제한하세요.
+[보안상의 이유](../context-isolation.md#보안-고려-사항)로 `ipcRenderer.on` API 전체를 직접 노출하지 않습니다. 일렉트론 API에 대한 렌더러의 접근을 최대한 제한하세요.
 
 INFO
 
