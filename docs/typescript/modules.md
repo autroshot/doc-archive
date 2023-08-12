@@ -8,7 +8,7 @@ sidebar_position: 9
 
 ES 모듈은 2015년에 자바스크립트 명세서에 추가되었으며, 2020년까지 대부분의 웹 브라우저와 자바스크립트 런타임에서 광범위하게 지원되었습니다.
 
-이 안내서에서는 ES 모듈과 널리 사용되는 선구자인 코먼JS의 `module.exports =` 구문을 모두 다룹니다. 참고 부분의 [모듈](https://github.com/microsoft/TypeScript-Website/blob/v2/docs/handbook/modules.html)에서 다른 모듈 패턴에 대한 정보를 찾을 수 있습니다.
+이 안내서에서는 ES 모듈과 널리 사용되는 선구자인 코먼JS의 `module.exports =` 구문을 모두 다룹니다. 참고 부분의 [모듈](https://www.typescriptlang.org/docs/handbook/modules.html)에서 다른 모듈 패턴에 대한 정보를 찾을 수 있습니다.
 
 ## 자바스크립트 모듈의 정의 방법
 
@@ -22,7 +22,7 @@ ES 모듈은 2015년에 자바스크립트 명세서에 추가되었으며, 2020
 
 시작하기 전에 타입스크립트에서 모듈로 간주하는 것이 무엇인지 알아야 합니다. 자바스크립트 명세서는 `import`, `export`, 최상위 `await`가 없는 모든 자바스크립트 파일을 모듈이 아닌 스크립트로 간주해야 한다고 선언합니다.
 
-스크립트 파일 내부에서 변수와 타입은 공유 전역 범위에 있는 것으로 선언됩니다. [`outFile`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#outFile) 컴파일러 옵션을 사용하여 여러 입력 파일을 하나의 출력 파일로 합치거나 HTML에서 여러 `<script>` 태그를 사용하여 이러한 파일을 (올바른 순서로!) 로드할 수 있습니다.
+스크립트 파일 내부에서 변수와 타입은 공유 전역 범위에 있는 것으로 선언됩니다. [`outFile`](https://www.typescriptlang.org/tsconfig#outFile) 컴파일러 옵션을 사용하여 여러 입력 파일을 하나의 출력 파일로 합치거나 HTML에서 여러 `<script>` 태그를 사용하여 이러한 파일을 (올바른 순서로!) 로드할 수 있습니다.
 
 현재 파일에 `import` 또는 `export`가 없지만 모듈로 취급하고 싶다면 다음 코드를 추가하세요.
 
@@ -246,7 +246,7 @@ import fs = require("fs");
 const code = fs.readFileSync("hello.ts", "utf8");
 ```
 
-[모듈 참고 페이지](https://github.com/microsoft/TypeScript-Website/blob/v2/docs/handbook/modules.html#export--and-import--require)에서 이 구문에 대해 자세히 알아볼 수 있습니다.
+[모듈 참고 페이지](https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require)에서 이 구문에 대해 자세히 알아볼 수 있습니다.
 
 ## 코먼JS 구문
 
@@ -322,30 +322,30 @@ squareTwo;
 
 ### 코먼JS 및 ES 모듈의 상호 운용
 
-기본 가져오기와 모듈 이름공간 객체 가져오기 간의 구분과 관련하여 코먼JS 와 ES 모듈 간에 기능이 일치하지 않습니다. 타입스크립트에는 [`esModuleInterop`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#esModuleInterop)를 사용하여 서로 다른 두 제약 조건 집합 간의 마찰을 줄이기 위한 컴파일러 플래그가 있습니다.
+기본 가져오기와 모듈 이름공간 객체 가져오기 간의 구분과 관련하여 코먼JS 와 ES 모듈 간에 기능이 일치하지 않습니다. 타입스크립트에는 [`esModuleInterop`](https://www.typescriptlang.org/tsconfig#esModuleInterop)를 사용하여 서로 다른 두 제약 조건 집합 간의 마찰을 줄이기 위한 컴파일러 플래그가 있습니다.
 
 ## 타입스크립트의 모듈 확인 옵션
 
 모듈 확인은 `import` 또는 `require` 문에서 문자열을 가져오고 해당 문자열이 참조하는 파일을 결정하는 과정입니다.
 
-타입스크립트에는 클래식과 노드라는 두 가지 확인 전략이 있습니다. 컴파일러 옵션 [`module`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#module)이 `commonjs`가 아닌 경우에 기본값인 클래식은 이전 버전과의 호환성을 위해 포함됩니다. 노드 전략은 `.ts` 및 `.d.ts`에 대한 추가 확인과 함께 노드가 코먼JS 모드에서 작동하는 방식을 복제합니다.
+타입스크립트에는 클래식과 노드라는 두 가지 확인 전략이 있습니다. 컴파일러 옵션 [`module`](https://www.typescriptlang.org/tsconfig#module)이 `commonjs`가 아닌 경우에 기본값인 클래식은 이전 버전과의 호환성을 위해 포함됩니다. 노드 전략은 `.ts` 및 `.d.ts`에 대한 추가 확인과 함께 노드가 코먼JS 모드에서 작동하는 방식을 복제합니다.
 
-타입스크립트에는 모듈 전략에 영향을 미치는 많은 TSConfig 플래그가 있습니다: [`moduleResolution`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#moduleResolution), [`baseUrl`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#baseUrl), [`paths`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#paths), [`rootDirs`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#rootDirs).
+타입스크립트에는 모듈 전략에 영향을 미치는 많은 TSConfig 플래그가 있습니다: [`moduleResolution`](https://www.typescriptlang.org/tsconfig#moduleResolution), [`baseUrl`](https://www.typescriptlang.org/tsconfig#baseUrl), [`paths`](https://www.typescriptlang.org/tsconfig#paths), [`rootDirs`](https://www.typescriptlang.org/tsconfig#rootDirs).
 
-이러한 전략의 작동 방식에 대한 자세한 내용은 [모듈 확인](https://github.com/microsoft/TypeScript-Website/blob/v2/docs/handbook/module-resolution.html)을 참고하세요.
+이러한 전략의 작동 방식에 대한 자세한 내용은 [모듈 확인](https://www.typescriptlang.org/docs/handbook/module-resolution.html)을 참고하세요.
 
 ## 타입스크립트의 모듈 출력 옵션
 
 내보낸 자바스크립트 출력에 영향을 미치는 두 가지 옵션이 있습니다.
 
-- [`target`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#target)은 어떤 JS 기능이 다운레벨(이전 자바스크립트 런타임에서 실행되도록 변환)되고 어떤 기능이 그대로 남아 있을지 결정합니다.
-- [`module`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#module)은 모듈이 서로 상호 작용하는 데 사용되는 코드를 결정합니다.
+- [`target`](https://www.typescriptlang.org/tsconfig#target)은 어떤 JS 기능이 다운레벨(이전 자바스크립트 런타임에서 실행되도록 변환)되고 어떤 기능이 그대로 남아 있을지 결정합니다.
+- [`module`](https://www.typescriptlang.org/tsconfig#module)은 모듈이 서로 상호 작용하는 데 사용되는 코드를 결정합니다.
 
-사용할 [`target`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#target)은 타입스크립트 코드를 실행할 자바스크립트 런타임에서 사용할 수 있는 기능에 따라 결정됩니다. 지원하는 가장 오래된 웹 브라우저, 실행할 것으로 예상되는 노드의 가장 낮은 버전, 런타임(예: 일렉트론)의 고유한 제약 조건에 따라 결정될 수 있습니다.
+사용할 [`target`](https://www.typescriptlang.org/tsconfig#target)은 타입스크립트 코드를 실행할 자바스크립트 런타임에서 사용할 수 있는 기능에 따라 결정됩니다. 지원하는 가장 오래된 웹 브라우저, 실행할 것으로 예상되는 노드의 가장 낮은 버전, 런타임(예: 일렉트론)의 고유한 제약 조건에 따라 결정될 수 있습니다.
 
-모듈 간의 모든 통신은 모듈 로더를 통해 이루어지며, 컴파일러 옵션 [`module`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#module)은 어느 것을 사용할지를 결정합니다. 런타임에 모듈 로더는 모듈을 실행하기 전에 모듈의 모든 종속성을 찾아 실행하는 역할을 합니다.
+모듈 간의 모든 통신은 모듈 로더를 통해 이루어지며, 컴파일러 옵션 [`module`](https://www.typescriptlang.org/tsconfig#module)은 어느 것을 사용할지를 결정합니다. 런타임에 모듈 로더는 모듈을 실행하기 전에 모듈의 모든 종속성을 찾아 실행하는 역할을 합니다.
 
-예를 들어 다음은 ES 모듈 구문을 사용하는 타입스크립트 파일로, [`module`](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#module)에 대한 몇 가지 옵션을 보여줍니다.
+예를 들어 다음은 ES 모듈 구문을 사용하는 타입스크립트 파일로, [`module`](https://www.typescriptlang.org/tsconfig#module)에 대한 몇 가지 옵션을 보여줍니다.
 
 ```ts twoslash
 // @filename: constants.ts
@@ -396,8 +396,8 @@ ES2020은 원래 `index.ts`와 실질적으로 동일합니다.
 
 :::
 
-[`module`에 대한 TSConfig 참고](https://github.com/microsoft/TypeScript-Website/blob/v2/tsconfig#module)에서 사용 가능한 모든 옵션과 내보낸 자바스크립트 코드가 어떻게 보이는지 확인할 수 있습니다.
+[`module`에 대한 TSConfig 참고](https://www.typescriptlang.org/tsconfig#module)에서 사용 가능한 모든 옵션과 내보낸 자바스크립트 코드가 어떻게 보이는지 확인할 수 있습니다.
 
 ## 타입스크립트 이름공간
 
-타입스크립트에는 ES 모듈 표준 이전의 `namespaces`라는 자체 모듈 형식이 있습니다. 이 구문에는 복잡한 정의 파일을 만드는 데 유용한 기능이 많이 있으며 여전히 [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)에서 적극적으로 사용됩니다. 더 이상 사용되지 않지만 이름공간의 기능 대부분은 ES 모듈에 존재하며 자바스크립트의 방향에 맞춰 이를 사용하는 것이 좋습니다. 이름공간에 대한 자세한 내용은 [이름공간 참고 페이지](https://github.com/microsoft/TypeScript-Website/blob/v2/docs/handbook/namespaces.html)에서 확인할 수 있습니다.
+타입스크립트에는 ES 모듈 표준 이전의 `namespaces`라는 자체 모듈 형식이 있습니다. 이 구문에는 복잡한 정의 파일을 만드는 데 유용한 기능이 많이 있으며 여전히 [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)에서 적극적으로 사용됩니다. 더 이상 사용되지 않지만 이름공간의 기능 대부분은 ES 모듈에 존재하며 자바스크립트의 방향에 맞춰 이를 사용하는 것이 좋습니다. 이름공간에 대한 자세한 내용은 [이름공간 참고 페이지](https://www.typescriptlang.org/docs/handbook/namespaces.html)에서 확인할 수 있습니다.
