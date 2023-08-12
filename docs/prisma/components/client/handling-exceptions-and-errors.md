@@ -22,7 +22,7 @@ model User {
 }
 ```
 
-`Prisma` 네임스페이스를 사용하여 오류 유형에 접근합니다. 그런 다음 [오류 코드](https://www.prisma.io/docs/reference/api-reference/error-reference#error-codes)를 확인하고 메시지를 출력할 수 있습니다.
+`Prisma` 이름공간을 사용하여 오류 유형에 접근합니다. 그런 다음 [오류 코드](https://www.prisma.io/docs/reference/api-reference/error-reference#error-codes)를 확인하고 메시지를 출력할 수 있습니다.
 
 ```ts
 import { PrismaClient, Prisma } from '@prisma/client'
