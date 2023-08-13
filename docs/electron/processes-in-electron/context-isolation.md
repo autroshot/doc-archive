@@ -74,7 +74,7 @@ contextBridge.exposeInMainWorld('myAPI', {
 
 ## 타입스크립트와 함께 사용하기
 
-타입스크립트로 일렉트론 앱을 구축하는 경우, 컨텍스트 브리지를 통해 노출된 API에 타입을 추가하고 싶을 것입니다. [선언 파일](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html)로 타입을 확장하지 않으면 렌더러의 `window` 객체에 올바른 타입이 지정되지 않습니다.
+타입스크립트로 일렉트론 앱을 구축하는 경우, 컨텍스트 브리지를 통해 노출된 API에 타입을 추가하고 싶을 것입니다. [선언 파일](docs/typescript/declaration-files/introduction.md)로 타입을 확장하지 않으면 렌더러의 `window` 객체에 올바른 타입이 지정되지 않습니다.
 
 예를 들어 다음과 같은 `preload.ts` 스크립트가 있다고 가정해 보겠습니다.
 
