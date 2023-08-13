@@ -62,9 +62,7 @@ declare function getWidget(s: string): Widget[];
 인사말을 지정할 때 `GreetingSettings` 객체를 전달해야 합니다. 이 객체에는 다음과 같은 프로퍼티가 있습니다.
 
 1. 인사말 - 필수 문자열
-
 2. 기간 - 선택적 시간 길이 (밀리초)
-
 3. 색상 - 선택적 문자열 (예: '#ff00ff')
 
 **코드**
