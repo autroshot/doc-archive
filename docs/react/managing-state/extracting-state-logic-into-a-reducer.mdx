@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 상태 논리를 변환기로 추출하기
 
-많은 상태 갱신이 많은 이벤트 처리기에 분산된 컴포넌트가 압도적일 수 있습니다. 이러한 경우 컴포넌트 외부의 모든 상태 갱신 논리를 **변환기(reducer)**라는 단일 함수로 통합할 수 있습니다.
+상태 갱신이 여러 이벤트 처리기에 흩어져 있는 컴포넌트는 부담스러울 수 있습니다. 이러한 경우 컴포넌트 외부의 모든 상태 갱신 논리를 **변환기(reducer)**라는 단일 함수로 통합할 수 있습니다.
 
 :::note 학습 내용
 
@@ -31,7 +31,7 @@ sidebar_position: 3
 2. 변환기 함수를 **작성합니다**.
 3. 컴포넌트에서 변환기를 **사용합니다**.
 
-### 1단계: 상태 설정에서 작업 발송으로 전환한다
+### 1단계: 상태 설정에서 작업 발송으로 전환하기
 
 이벤트 처리기는 현재 상태를 설정하여 **할 일**을 지정합니다.
 
@@ -144,7 +144,7 @@ function yourReducer(state, action) {
 
 1. 현재 상태(`tasks`)를 첫 번째 인수로 선언합니다.
 2. `action` 객체를 두 번째 인수로 선언합니다.
-3. 변환기에서 **다음** 상태를 반환합니다. (리액트가 이 값을 상태를 설정함)
+3. 변환기에서 **다음** 상태를 반환합니다. (리액트는 상태를 이 값으로 설정함)
 
 변환기 함수로 마이그레이션된 모든 상태 설정 논리는 다음과 같습니다.
 
@@ -179,7 +179,7 @@ function tasksReducer(tasks, action) {
 
 :::note 참고
 
-위의 코드는 `if/else` 문을 사용하지만 변환기 내부에 [`switch` 문](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch)을 사용하는 것이 관례입니다. 결과는 동일하지만 `switch` 문을 한 눈에 읽는 것이 더 쉬울 수 있습니다.
+위의 코드는 `if/else` 문을 사용하지만 변환기 내부에 [`switch` 문](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch)을 사용하는 것이 관례입니다. 결과는 동일하지만 `switch` 문이 한 눈에 읽기에 더 쉬울 수 있습니다.
 
 이 문서의 나머지 부분에서 다음을 사용할 것입니다.
 
@@ -244,7 +244,7 @@ const sum = arr.reduce((result, number) => result + number); // 1 + 2 + 3 + 4 + 
 
 :::
 
-### 3단계: 컴포넌트에서 변환기를 사용한다
+### 3단계: 컴포넌트에서 변환기 사용하기
 
 마지막으로 `tasksReducer`를 컴포넌트에 연결해야 합니다. 리액트에서 `useReducer` 훅을 가져옵니다.
 
@@ -264,7 +264,7 @@ const [tasks, setTasks] = useState(initialTasks);
 const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 ```
 
-`useReducer` 훅은 `useState`와 유사합니다. 초기 상태를 전달해야 하며 유상태 값과 상태를 설정하는 방법(발송 함수)을 반환합니다. 하지만 조금 다릅니다.
+`useReducer` 훅은 `useState`와 비슷합니다. 초기 상태를 전달해야 하며 유상태 값과 상태를 설정하는 방법(발송 함수)을 반환합니다. 하지만 조금 다릅니다.
 
 `useReducer` 훅은 두 가지 인수를 사용합니다.
 
