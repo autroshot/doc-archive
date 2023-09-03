@@ -38,6 +38,13 @@ body {
   background-color: rgb(40, 40, 40) !important;
 }
 
+[data-theme='light'] .shiki.dark-plus:nth-of-type(odd) {
+  display: none;
+}
+[data-theme='dark'] .shiki.dark-plus:nth-of-type(odd) {
+  display: none;
+}
+
 .markdown a {
   text-decoration: underline;
 }
