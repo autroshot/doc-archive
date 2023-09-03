@@ -26,9 +26,7 @@ npx tailwindcss init
 
 `tailwind.config.js` 파일에 모든 템플릿 파일에 대한 경로를 추가합니다.
 
-title="tailwind.config.js"
-
-```js
+```js title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,js}"],
@@ -43,9 +41,7 @@ module.exports = {
 
 테일윈드의 각 계층에 대한 `@tailwind` 지시문을 기본 CSS 파일에 추가합니다.
 
-title="src/input.css"
-
-```css
+```css title="src/input.css"
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,9 +59,7 @@ npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 
 컴파일된 CSS 파일을 `<head>`에 추가하고 테일윈드의 유틸리티 클래스를 사용하여 콘텐츠 스타일을 지정하세요.
 
-title="src/index.html"
-
-```html
+```html title="src/index.html"
 <!doctype html>
 <html>
 <head>
