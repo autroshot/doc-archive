@@ -31,7 +31,18 @@
 
 html,
 body {
-  font-family: 'Malgun Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  text-underline-position: under;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html,
+  body {
+    font-family: 'Nanum Gothic', sans-serif;
+    text-underline-position: under;
+    font-size: 17px;
+  }
 }
 
 [data-theme='dark'] .shiki.dark-plus {
