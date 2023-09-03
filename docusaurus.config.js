@@ -1,5 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+const codeInlineHighlight = require('./src/remark/code-inline-highlight');
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
@@ -35,6 +36,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          remarkPlugins: [[codeInlineHighlight, ['tailwind-css\\']]],
           sidebarPath: require.resolve('./sidebars.js'),
         },
         blog: false,
@@ -56,7 +58,7 @@ const config = {
     [
       'docusaurus-preset-shiki-twoslash',
       {
-        themes: ['min-light', 'nord'],
+        themes: ['dark-plus', 'dark-plus'],
       },
     ],
   ],
@@ -168,6 +170,11 @@ const config = {
               },
               {
                 type: 'doc',
+                docId: 'tailwind-css/README',
+                label: 'Tailwind CSS',
+              },
+              {
+                type: 'doc',
                 docId: 'chakra-ui/README',
                 label: 'Chakra UI',
               },
@@ -272,6 +279,10 @@ const config = {
               {
                 label: 'Vanilla Extract',
                 to: '/docs/vanilla-extract',
+              },
+              {
+                label: 'Tailwind CSS',
+                to: '/docs/tailwind-css',
               },
               {
                 label: 'Chakra UI',

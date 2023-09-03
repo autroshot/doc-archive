@@ -34,11 +34,14 @@ body {
   font-family: 'Malgun Gothic', sans-serif;
 }
 
-[data-theme='light'] .shiki.nord {
-  display: none;
+[data-theme='dark'] .shiki.dark-plus {
+  background-color: rgb(40, 40, 40) !important;
 }
 
-[data-theme='dark'] .shiki.min-light {
+[data-theme='light'] .shiki.dark-plus:nth-of-type(odd) {
+  display: none;
+}
+[data-theme='dark'] .shiki.dark-plus:nth-of-type(odd) {
   display: none;
 }
 
@@ -77,4 +80,15 @@ pre.shiki div.dim {
   opacity: 1 !important;
   filter: none !important;
   transition: opacity 0s !important;
+}
+
+.code-inline-highlight {
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.1875rem;
+  margin: 0 -0.1875rem;
+  background-color: #a3a3a31f;
+}
+
+.code-title {
+  color: rgb(245, 246, 247) !important;
 }
