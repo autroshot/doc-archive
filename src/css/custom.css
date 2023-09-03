@@ -88,3 +88,7 @@ pre.shiki div.dim {
   margin: 0 -0.1875rem;
   background-color: #a3a3a31f;
 }
+
+.code-title {
+  color: rgb(245, 246, 247) !important;
+}
