@@ -2,9 +2,6 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 const codeInlineHighlight = require('./src/remark/code-inline-highlight');
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: '문서 보관소',
@@ -329,10 +326,6 @@ const config = {
           },
         ],
         copyright: `Built with Docusaurus.`,
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
       },
     }),
   plugins: [['@docusaurus/plugin-ideal-image', { disableInDev: false }]],
