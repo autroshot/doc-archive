@@ -34,12 +34,8 @@ body {
   font-family: 'Malgun Gothic', sans-serif;
 }
 
-[data-theme='light'] .shiki.nord {
-  display: none;
-}
-
-[data-theme='dark'] .shiki.min-light {
-  display: none;
+[data-theme='dark'] .shiki.dark-plus {
+  background-color: rgb(40, 40, 40) !important;
 }
 
 .markdown a {
