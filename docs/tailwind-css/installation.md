@@ -77,11 +77,11 @@ npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 
 ## 다음으로 읽을 내용
 
-테일윈드 CSS를 기존 CSS 작성과 다르게 만드는 몇 가지 핵심 개념에 대해 알아보세요.
+테일윈드 CSS가 전통적인 CSS 작성과 차별화되는 몇 가지 핵심 개념에 대해 알아보세요.
 
 - [유틸리티 우선](https://tailwindcss.com/docs/utility-first) - 유틸리티 우선 워크플로를 사용하여 제한된 기본 유틸리티 집합에서 복잡한 컴포넌트를 구축합니다.
 - [반응형 디자인](https://tailwindcss.com/docs/responsive-design) - 반응형 수정자를 사용하여 모든 화면 크기에 맞게 조정되는 완전 반응형 사용자 인터페이스를 구축합니다.
 - [호버, 초점, 기타 상태](https://tailwindcss.com/docs/hover-focus-and-other-states) - 조건부 수정자를 사용하여 호버, 초점 등과 같은 대화형 상태의 요소에 스타일을 지정합니다.
 - [어두운 모드](https://tailwindcss.com/docs/dark-mode) - 어두운 모드 수정자를 사용하여 HTML에서 직접 사이트를 다크 모드에 맞게 최적화합니다.
 - [스타일 재사용](https://tailwindcss.com/docs/reusing-styles) - 재사용 가능한 추상화를 생성하여 중복을 관리하고 프로젝트를 유지 관리할 수 있습니다.
-- [프레임워크 커스터마이징](https://tailwindcss.com/docs/adding-custom-styles) - 브랜드에 맞게 프레임워크를 사용자 정의하고 고유한 커스텀 스타일로 확장할 수 있습니다.
+- [프레임워크 커스터마이징](https://tailwindcss.com/docs/adding-custom-styles) - 브랜드에 맞게 프레임워크를 사용자 지정하고 고유한 커스텀 스타일로 확장할 수 있습니다.
