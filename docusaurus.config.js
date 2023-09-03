@@ -1,5 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+const codeInlineHighlight = require('./src/remark/code-inline-highlight');
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
@@ -35,6 +36,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          remarkPlugins: [codeInlineHighlight],
           sidebarPath: require.resolve('./sidebars.js'),
         },
         blog: false,

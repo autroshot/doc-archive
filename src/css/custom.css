@@ -78,3 +78,10 @@ pre.shiki div.dim {
   filter: none !important;
   transition: opacity 0s !important;
 }
+
+.code-inline-highlight {
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.1875rem;
+  margin: 0 -0.1875rem;
+  background-color: #1670991c;
+}
