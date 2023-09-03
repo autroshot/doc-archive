@@ -36,7 +36,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          remarkPlugins: [codeInlineHighlight],
+          remarkPlugins: [[codeInlineHighlight, ['tailwind-css\\']]],
           sidebarPath: require.resolve('./sidebars.js'),
         },
         blog: false,
