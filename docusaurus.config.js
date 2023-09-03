@@ -38,7 +38,10 @@ const config = {
         },
         blog: false,
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [
+            require.resolve('@fontsource/nanum-gothic'),
+            require.resolve('./src/css/custom.css'),
+          ],
         },
         sitemap: {
           changefreq: 'daily',

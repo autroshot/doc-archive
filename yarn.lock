@@ -1744,6 +1744,11 @@
   resolved "https://registry.yarnpkg.com/@endiliey/react-ideal-image/-/react-ideal-image-0.0.11.tgz#dc3803d04e1409cf88efa4bba0f67667807bdf27"
   integrity sha512-QxMjt/Gvur/gLxSoCy7VIyGGGrGmDN+VHcXkN3R2ApoWX0EYUE+hMgPHSW/PV6VVebZ1Nd4t2UnGRBDihu16JQ==
 
+"@fontsource/nanum-gothic@^5.0.10":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/nanum-gothic/-/nanum-gothic-5.0.10.tgz#71c701bb65496e26fb6c0ce7d294aac37d46e214"
+  integrity sha512-piSuxXHp3EtIT9OnaDBjB/4rHSEb0mJfW0l0uAYML1pAatXZNxR4bvoqv5DSgLc7iXbNOafpBS1hKCp9TV0umg==
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
