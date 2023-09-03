@@ -14,6 +14,7 @@
 | TanStack Query  | https://tanstack.com/query                                   | 4      |
 | NextAuth.js     | https://next-auth.js.org/                                    | 4      |
 | Vanilla Extract | https://vanilla-extract.style/                               | 1.11.1 |
+| Tailwind CSS    | https://tailwindcss.com/                                     | 3.3.3  |
 | Chakra UI       | https://chakra-ui.com/                                       | 2.3    |
 | Prisma          | https://www.prisma.io/                                       | 4.2.1  |
 | Docusaurus      | https://docusaurus.io/ko/                                    | 2.3.1  |

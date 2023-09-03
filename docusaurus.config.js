@@ -168,6 +168,11 @@ const config = {
               },
               {
                 type: 'doc',
+                docId: 'tailwind-css/README',
+                label: 'Tailwind CSS',
+              },
+              {
+                type: 'doc',
                 docId: 'chakra-ui/README',
                 label: 'Chakra UI',
               },
@@ -272,6 +277,10 @@ const config = {
               {
                 label: 'Vanilla Extract',
                 to: '/docs/vanilla-extract',
+              },
+              {
+                label: 'Tailwind CSS',
+                to: '/docs/tailwind-css',
               },
               {
                 label: 'Chakra UI',

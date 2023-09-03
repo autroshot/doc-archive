@@ -14,6 +14,7 @@
 - [TanStack Query](https://autroshot.github.io/doc-archive/docs/tanstack-query)
 - [NextAuth.js](https://autroshot.github.io/doc-archive/docs/nextauthjs)
 - [Vanilla Extract](https://autroshot.github.io/doc-archive/docs/vanilla-extract)
+- [Tailwind CSS](https://autroshot.github.io/doc-archive/docs/tailwind-css)
 - [Chakra UI](https://autroshot.github.io/doc-archive/docs/chakra-ui)
 - [Prisma](https://autroshot.github.io/doc-archive/docs/prisma)
 - [Docusaurus](https://autroshot.github.io/doc-archive/docs/docusaurus)
