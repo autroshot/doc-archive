@@ -200,7 +200,7 @@ ERB나 트위그와 같은 전통적인 템플릿 언어를 사용하는 경우,
 }
 ```
 
-[함수와 지시문](/docs/functions-and-directives#layer) 문서에서 `@apply`와 `@layer`에 대해 자세히 알아보세요.
+[함수와 지시문](https://tailwindcss.com/docs/functions-and-directives#layer) 문서에서 `@apply`와 `@layer`에 대해 자세히 알아보세요.
 
 ### 성급한 추상화 피하기
 
