@@ -1,0 +1,174 @@
+---
+sidebar_position: 6
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 커스텀 수정자
+
+## 임의 변형 사용하기
+
+[임의 값](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)을 사용하면 유틸리티 클래스에 커스텀 값을 사용할 수 있는 것처럼, 임의 변형을 사용하면 HTML에서 직접 커스텀 선택기 수정자를 작성할 수 있습니다.
+
+임의 변형은 선택기를 나타내는 형식 문자열을 대괄호로 묶은 것입니다. 예를 들어 다음의 임의 수정자는 요소가 세 번째 자식인 경우에만 요소를 선택합니다.
+
+<Tabs>
+  <TabItem value="html" label="HTML" default>
+
+```html
+<ul role="list">
+  {#each items as item}
+  <li class="**[&:nth-child(3)]:underline**">{item}</li>
+  {/each}
+</ul>
+```
+
+  </TabItem>
+  <TabItem value="generated-css" label="Generated CSS">
+
+```css
+/* https://media.giphy.com/media/uPnKU86sFa2fm/giphy.gif */
+.\[\&\:nth-child\(3\)\]\:underline:nth-child(3) {
+  text-decoration-style: underline;
+}
+```
+
+  </TabItem>
+</Tabs>
+
+형식 문자열은 [`addVariant` 플러그인 API](https://tailwindcss.com/docs/plugins#adding-variants)에서 사용하는 것과 동일하며, `&`는 수정되는 선택기를 나타냅니다.
+
+임의 변형은 테일윈드의 나머지 수정자와 마찬가지로 내장된 수정자와 함께 쌓을 수 있습니다.
+
+<Tabs>
+  <TabItem value="html" label="HTML" default>
+
+```html
+<ul role="list">
+  {#each items as item}
+  <li class="**lg:[&:nth-child(3)]:hover:underline**">{item}</li>
+  {/each}
+</ul>
+```
+
+  </TabItem>
+  <TabItem value="generated-css" label="Generated CSS">
+
+```css
+/* https://media.giphy.com/media/Sd3cd0SrUKZEyWmAlM/giphy.gif */
+@media (min-width: 1024px) {
+  .lg\:\[\&\:nth-child\(3\)\]\:hover\:underline:hover:nth-child(3) {
+    text-decoration-line: underline;
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+
+선택기에 공백이 필요하다면 밑줄을 사용할 수 있습니다. 예를 들어 다음의 임의 수정자는 클래스를 추가한 요소 내의 모든 `p` 요소를 선택합니다.
+
+<Tabs>
+  <TabItem value="html" label="HTML" default>
+
+```html
+<div class="**[&_p]:mt-4**">
+  <p>Lorem ipsum...</p>
+  <ul>
+    <li>
+      <p>Lorem ipsum...</p>
+    </li>
+    <!-- ... -->
+  </ul>
+</div>
+```
+
+  </TabItem>
+  <TabItem value="generated-css" label="Generated CSS">
+
+```css
+.\[\&_p\]\:mt-4 p {
+  margin-top: 1rem;
+}
+```
+
+  </TabItem>
+</Tabs>
+
+임의 변형에서 `@media` 또는 `@supports`와 같은 @ 규칙을 사용할 수도 있습니다.
+
+<Tabs>
+  <TabItem value="html" label="HTML" default>
+
+```html
+<div class="flex **[@supports(display:grid)]:grid**">
+  <!-- ... -->
+</div>
+```
+
+  </TabItem>
+  <TabItem value="generated-css" label="Generated CSS">
+
+```css
+/* https://media.giphy.com/media/sEms56zTGDx96/giphy.gif */
+@supports (display: grid) {
+  .\[\@supports\(display\:grid\)\]\:grid {
+    display: grid;
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+
+@ 규칙 커스텀 수정자를 사용하면 전처리기로 중첩할 때와 마찬가지로 `&` 자리 표시자가 필요하지 않습니다.
+
+@ 규칙 뒤의 중괄호 안에 선택자 수정자를 포함하여 @ 규칙과 일반 선택자 수정자를 결합할 수도 있습니다.
+
+<Tabs>
+  <TabItem value="html" label="HTML" default>
+
+```html
+<button
+  type="button"
+  class="**[@media(any-hover:hover){&:hover}]:opacity-100**"
+>
+  <!-- ... -->
+</button>
+```
+
+  </TabItem>
+  <TabItem value="generated-css" label="Generated CSS">
+
+```css
+/* https://media.giphy.com/media/l0IypeKl9NJhPFMrK/giphy.gif */
+@media (any-hover: hover) {
+  .\[\@media\(any-hover\:hover\)\{\&\:hover\}\]\:opacity-100:hover {
+    opacity: 1;
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## 플러그인 만들기
+
+프로젝트에서 동일한 임의 수정자를 여러 번 사용한다면, `addVariant` API를 사용하여 플러그인으로 추출하는 것이 좋습니다.
+
+```js title="tailwind.config.js"
+let plugin = require('tailwindcss/plugin');
+
+module.exports = {
+  // ...
+  plugins: [
+    plugin(function ({ addVariant }) {
+      // `third` 변형을 추가합니다. 예: `third:pb-0`
+      addVariant('third', '&:nth-child(3)');
+    }),
+  ],
+};
+```
+
+[변형 플러그인 추가하기](https://tailwindcss.com/docs/plugins#adding-variants) 문서에서 자세히 알아보세요.
