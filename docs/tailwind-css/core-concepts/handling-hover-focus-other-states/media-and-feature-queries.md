@@ -16,7 +16,7 @@ sidebar_position: 4
 </div>
 ```
 
-이러한 기능이 어떻게 작동하는지 자세히 알아보려면 [반응형 디자인](/docs/responsive-design) 문서를 확인하세요.
+이러한 기능이 어떻게 작동하는지 자세히 알아보려면 [반응형 디자인](https://tailwindcss.com/docs/responsive-design) 문서를 확인하세요.
 
 ## 선호 색상 스키마
 
@@ -56,7 +56,7 @@ sidebar_position: 4
 </div>
 ```
 
-이 기능의 작동 방식에 대한 자세한 내용은 [어두운 모드](/docs/dark-mode) 설명서를 참고하세요.
+이 기능의 작동 방식에 대한 자세한 내용은 [어두운 모드](https://tailwindcss.com/docs/dark-mode) 설명서를 참고하세요.
 
 ## 선호 동작 감소
 
