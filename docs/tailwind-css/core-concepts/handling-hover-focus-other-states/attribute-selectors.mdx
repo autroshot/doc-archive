@@ -1,0 +1,240 @@
+---
+sidebar_position: 5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 속성 선택기
+
+## ARIA 상태
+
+`aria-*` 수정자를 사용하여 [ARIA 속성](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)을 기반으로 조건부 스타일을 지정할 수 있습니다.
+
+예를 들어 `aria-checked` 속성이 `true`로 설정된 경우 `bg-sky-700` 클래스를 적용하려면 `aria-checked:bg-sky-700` 클래스를 사용하면 됩니다.
+
+```html
+<div aria-checked="true" class="bg-gray-600 **aria-checked:bg-sky-700**">
+  <!-- ... -->
+</div>
+```
+
+기본적으로 가장 일반적인 불 ARIA 속성에 대한 수정자가 포함되어 있습니다.
+
+| Modifier                                                                      | CSS                                                                                                                                               |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code className="before:content-none after:content-none">aria-checked</code>  | <code className="whitespace-nowrap before:content-none after:content-none"><span className="text-slate-400">&</span>[aria-checked="true"]</code>  |
+| <code className="before:content-none after:content-none">aria-disabled</code> | <code className="whitespace-nowrap before:content-none after:content-none"><span className="text-slate-400">&</span>[aria-disabled="true"]</code> |
+| <code className="before:content-none after:content-none">aria-expanded</code> | <code className="whitespace-nowrap before:content-none after:content-none"><span className="text-slate-400">&</span>[aria-expanded="true"]</code> |
+| <code className="before:content-none after:content-none">aria-hidden</code>   | <code className="whitespace-nowrap before:content-none after:content-none"><span className="text-slate-400">&</span>[aria-hidden="true"]</code>   |
+| <code className="before:content-none after:content-none">aria-pressed</code>  | <code className="whitespace-nowrap before:content-none after:content-none"><span className="text-slate-400">&</span>[aria-pressed="true"]</code>  |
+| <code className="before:content-none after:content-none">aria-readonly</code> | <code className="whitespace-nowrap before:content-none after:content-none"><span className="text-slate-400">&</span>[aria-readonly="true"]</code> |
+| <code className="before:content-none after:content-none">aria-required</code> | <code className="whitespace-nowrap before:content-none after:content-none"><span className="text-slate-400">&</span>[aria-required="true"]</code> |
+| <code className="before:content-none after:content-none">aria-selected</code> | <code className="whitespace-nowrap before:content-none after:content-none"><span className="text-slate-400">&</span>[aria-selected="true"]</code> |
+
+`tailwind.config.js` 파일에서 `theme.aria` 또는 `theme.extend.aria`를 편집하여 사용할 수 있는 `aria-*` 수정자를 사용자 지정할 수 있습니다.
+
+```js title="tailwind.config.js"
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    extend: {
+      aria: {
+        asc: 'sort="ascending"',
+        desc: 'sort="descending"',
+      },
+    },
+  },
+};
+```
+
+테마에 포함하기에는 적합하지 않은 일회성 `aria` 수정자를 사용하거나 특정 값을 사용하는 복잡한 아리아 속성을 사용해야 하는 경우, 대괄호로 임의의 값을 사용하여 속성을 즉석에서 생성합니다.
+
+<Tabs>
+  <TabItem value="html" label="HTML" default>
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th
+        aria-sort="ascending"
+        class="**aria-[sort=ascending]:bg-[url('/img/down-arrow.svg')]** **aria-[sort=descending]:bg-[url('/img/up-arrow.svg')]**"
+      >
+        Invoice #
+      </th>
+      <!-- ... -->
+    </tr>
+  </thead>
+  <!-- ... -->
+</table>
+```
+
+  </TabItem>
+  <TabItem value="generated-css" label="Generated CSS">
+
+```css
+.aria-\[sort\=ascending\]\:bg-\[url\(\'\/img\/down-arrow\.svg\'\)\][aria-sort='ascending'] {
+  background-image: url('/img/down-arrow.svg');
+}
+
+.aria-\[sort\=descending\]\:bg-\[url\(\'\/img\/up-arrow\.svg\'\)\][aria-sort='descending'] {
+  background-image: url('/img/up-arrow.svg');
+}
+```
+
+  </TabItem>
+</Tabs>
+
+ARIA 상태 수정자는 `group-aria-*`, `peer-aria-*` 수정자를 사용하여 부모 및 형제 요소를 대상으로 지정할 수도 있습니다.
+
+<Tabs>
+  <TabItem value="html" label="HTML" default>
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th aria-sort="ascending" class="group">
+        Invoice #
+        <svg
+          class="**group-aria-[sort=ascending]:rotate-0** **group-aria-[sort=descending]:rotate-180**"
+        >
+          <!-- ... -->
+        </svg>
+      </th>
+      <!-- ... -->
+    </tr>
+  </thead>
+  <!-- ... -->
+</table>
+```
+
+  </TabItem>
+  <TabItem value="generated-css" label="Generated CSS">
+
+```css
+.group[aria-sort='ascending'] .group-aria-\[sort\=ascending\]\:rotate-0 {
+  --tw-rotate: 0deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(
+      var(--tw-rotate)
+    )
+    skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(
+      var(--tw-scale-y)
+    );
+}
+
+.group[aria-sort='descending'] .group-aria-\[sort\=descending\]\:rotate-180 {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(
+      var(--tw-rotate)
+    )
+    skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(
+      var(--tw-scale-y)
+    );
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## 데이터 속성
+
+[데이터 속성](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes)을 기반으로 스타일을 조건부로 적용하려면 `data-*` 수정자를 사용하세요.
+
+정의에 따라 표준 `data-*` 속성이 없기 때문에 기본적으로 임의의 값만 지원합니다.
+
+```html
+<!-- 적용됩니다. -->
+<div data-size="large" class="**data-[size=large]:p-8**">
+  <!-- ... -->
+</div>
+
+<!-- 적용되지 않습니다. -->
+<div data-size="medium" class="**data-[size=large]:p-8**">
+  <!-- ... -->
+</div>
+```
+
+프로젝트에서 사용 중인 일반적인 데이터 속성 선택기에 대한 바로 가기를 `tailwind.config.js` 파일의 `theme.data`에서 설정할 수 있습니다.
+
+```js title="tailwind.config.js"
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    data: {
+      checked: 'ui~="checked"',
+    },
+  },
+};
+```
+
+그런 다음 프로젝트에서 설정한 커스텀 `data-*` 수정자를 사용할 수 있습니다.
+
+```html
+<div data-ui="checked active" class="**data-checked:underline**">
+  <!-- ... -->
+</div>
+```
+
+## RTL 지원
+
+다방향 레이아웃을 구축할 때 오른쪽에서 왼쪽, 왼쪽에서 오른쪽 모드에서 스타일을 조건부로 추가하려면 `rtl` 및 `ltr` 수정자를 사용합니다.
+
+```html
+<div class="group flex items-center">
+  <img class="shrink-0 h-12 w-12 rounded-full" src="..." alt="" />
+  <div class="ltr:ml-3 rtl:mr-3">
+    <p
+      class="text-sm font-medium text-slate-700 group-hover:text-slate-900"
+      dark-class="text-sm font-medium text-slate-300 group-hover:text-white"
+    >
+      ...
+    </p>
+    <p
+      class="text-sm font-medium text-slate-500 group-hover:text-slate-700"
+      dark-class="text-sm font-medium text-slate-500 group-hover:text-slate-300"
+    >
+      ...
+    </p>
+  </div>
+</div>
+```
+
+`dir` 속성이 명시적으로 `ltr`로 설정되어 있지 않으면 `ltr` 수정자가 적용되지 않습니다. 따라서 다방향 사이트를 구축하는 경우 `rtl` 모드뿐만 아니라 항상 방향을 설정해야 합니다.
+
+:::note 참고
+
+왼쪽에서 오른쪽이 기본값이더라도 항상 방향을 설정하세요.
+
+```html
+<html dir="ltr">
+  <!-- ... -->
+</html>
+```
+
+:::
+
+이러한 수정자는 왼쪽에서 오른쪽, 오른쪽에서 왼쪽 레이아웃을 **모두** 지원해야 하는 사이트를 구축하는 경우에만 유용합니다. 단일 방향만 지원해야 하는 사이트를 구축하는 경우에는 이러한 수정자가 필요하지 않습니다. 콘텐츠에 적합한 스타일을 적용하기만 하면 됩니다.
+
+## 열림/닫힘 상태
+
+`<details>` 또는 `<dialog>` 요소가 열린 상태일 때 조건부로 스타일을 추가하려면 `open` 수정자를 사용하세요.
+
+```html
+<div class="max-w-lg mx-auto p-8">
+  <details
+    class="open:bg-white dark:open:bg-slate-900 open:ring-1 open:ring-black/5 dark:open:ring-white/10 open:shadow-lg p-6 rounded-lg"
+    open
+  >
+    <summary
+      class="text-sm leading-6 text-slate-900 dark:text-white font-semibold select-none"
+    >
+      Why do they call it Ovaltine?
+    </summary>
+    <div class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+      <p>The mug is round. The jar is round. They should call it Roundtine.</p>
+    </div>
+  </details>
+</div>
+```
