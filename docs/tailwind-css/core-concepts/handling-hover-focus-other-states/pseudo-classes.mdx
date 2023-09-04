@@ -12,7 +12,9 @@ import TabItem from '@theme/TabItem';
 `hover`, `focus`, `active` 수정자를 사용하여 호버, 초점, 활성화 요소에 스타일을 지정합니다.
 
 ```html
-<button class="bg-violet-500 **hover:bg-violet-600** **active:bg-violet-700** **focus:outline-none focus:ring focus:ring-violet-300** ...">
+<button
+  class="bg-violet-500 **hover:bg-violet-600** **active:bg-violet-700** **focus:outline-none focus:ring focus:ring-violet-300** ..."
+>
   Save changes
 </button>
 ```
@@ -28,14 +30,14 @@ import TabItem from '@theme/TabItem';
 ```html
 <ul role="list" class="p-6 divide-y divide-slate-200">
   {#each people as person}
-    <!-- 첫 번째/마지막 자식인 경우 위/아래 패딩을 제거합니다. -->
-    <li class="flex py-4 **first:pt-0** **last:pb-0**">
-      <img class="h-10 w-10 rounded-full" src="{person.imageUrl}" alt="" />
-      <div class="ml-3 overflow-hidden">
-        <p class="text-sm font-medium text-slate-900">{person.name}</p>
-        <p class="text-sm text-slate-500 truncate">{person.email}</p>
-      </div>
-    </li>
+  <!-- 첫 번째/마지막 자식인 경우 위/아래 패딩을 제거합니다. -->
+  <li class="flex py-4 **first:pt-0** **last:pb-0**">
+    <img class="h-10 w-10 rounded-full" src="{person.imageUrl}" alt="" />
+    <div class="ml-3 overflow-hidden">
+      <p class="text-sm font-medium text-slate-900">{person.name}</p>
+      <p class="text-sm text-slate-500 truncate">{person.email}</p>
+    </div>
+  </li>
   {/each}
 </ul>
 ```
@@ -47,12 +49,12 @@ import TabItem from '@theme/TabItem';
   <!-- ... -->
   <tbody>
     {#each people as person}
-      <!-- 홀수 행에는 흰색 배경을 사용하고 짝수 행에는 `slate-50`을 사용합니다. -->
-      <tr class="**odd:bg-white** **even:bg-slate-50**">
-        <td>{person.name}</td>
-        <td>{person.title}</td>
-        <td>{person.email}</td>
-      </tr>
+    <!-- 홀수 행에는 흰색 배경을 사용하고 짝수 행에는 `slate-50`을 사용합니다. -->
+    <tr class="**odd:bg-white** **even:bg-slate-50**">
+      <td>{person.name}</td>
+      <td>{person.title}</td>
+      <td>{person.email}</td>
+    </tr>
     {/each}
   </tbody>
 </table>
@@ -71,12 +73,17 @@ import TabItem from '@theme/TabItem';
   <label class="block">
     <span class="block text-sm font-medium text-slate-700">Username</span>
     <!-- 양식 상태 수정자를 사용하면 클래스가 모든 입력에 대해 동일할 수 있습니다. -->
-    <input type="text" value="tbone" disabled class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+    <input
+      type="text"
+      value="tbone"
+      disabled
+      class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
       **disabled:bg-slate-50** **disabled:text-slate-500** **disabled:border-slate-200** **disabled:shadow-none**
       **invalid:border-pink-500** **invalid:text-pink-600**
       **focus:invalid:border-pink-500** **focus:invalid:ring-pink-500**
-    "/>
+    "
+    />
   </label>
   <!-- ... -->
 </form>
@@ -86,19 +93,32 @@ import TabItem from '@theme/TabItem';
 
 테일윈드에는 `:read-only`, `:indeterminate`, `:checked` 등과 같은 다른 양식 상태에 대한 수정자도 포함되어 있습니다.
 
-사용 가능한 의사 클래스 수정자의 전체 목록은 [의사 클래스 참고](#disabled)를 확인하세요.
+사용 가능한 의사 클래스 수정자의 전체 목록은 [의사 클래스 참고](https://tailwindcss.com/docs/hover-focus-and-other-states#disabled)를 확인하세요.
 
 ## 부모 상태에 기반한 스타일 지정 <small>(group-{modifier})</small>
 
 일부 **부모** 요소의 상태에 따라 요소의 스타일을 지정해야 하는 경우, 부모 요소에 `group` 클래스를 표시하고 `group-*` 수정자(예: `group-hover`)를 사용하여 대상 요소에 스타일을 지정합니다.
 
 ```html
-<a href="#" class="**group** block max-w-xs mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-sky-500 hover:ring-sky-500">
+<a
+  href="#"
+  class="**group** block max-w-xs mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-sky-500 hover:ring-sky-500"
+>
   <div class="flex items-center space-x-3">
-    <svg class="h-6 w-6 stroke-sky-500 **group-hover:stroke-white**" fill="none" viewBox="0 0 24 24"><!-- ... --></svg>
-    <h3 class="text-slate-900 **group-hover:text-white** text-sm font-semibold">New project</h3>
+    <svg
+      class="h-6 w-6 stroke-sky-500 **group-hover:stroke-white**"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <!-- ... -->
+    </svg>
+    <h3 class="text-slate-900 **group-hover:text-white** text-sm font-semibold">
+      New project
+    </h3>
   </div>
-  <p class="text-slate-500 **group-hover:text-white** text-sm">Create a new project from a variety of starting templates.</p>
+  <p class="text-slate-500 **group-hover:text-white** text-sm">
+    Create a new project from a variety of starting templates.
+  </p>
 </a>
 ```
 
@@ -111,19 +131,24 @@ import TabItem from '@theme/TabItem';
 ```html
 <ul role="list">
   {#each people as person}
-    <li class="**group/item** hover:bg-slate-100 ...">
-      <img src="{person.imageUrl}" alt="" />
-      <div>
-        <a href="{person.url}">{person.name}</a>
-        <p>{person.title}</p>
-      </div>
-      <a class="**group/edit** invisible hover:bg-slate-200 **group-hover/item:visible** ..." href="tel:{person.phone}">
-        <span class="**group-hover/edit:text-gray-700** ...">Call</span>
-        <svg class="**group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500** ...">
-          <!-- ... -->
-        </svg>
-      </a>
-    </li>
+  <li class="**group/item** hover:bg-slate-100 ...">
+    <img src="{person.imageUrl}" alt="" />
+    <div>
+      <a href="{person.url}">{person.name}</a>
+      <p>{person.title}</p>
+    </div>
+    <a
+      class="**group/edit** invisible hover:bg-slate-200 **group-hover/item:visible** ..."
+      href="tel:{person.phone}"
+    >
+      <span class="**group-hover/edit:text-gray-700** ...">Call</span>
+      <svg
+        class="**group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500** ..."
+      >
+        <!-- ... -->
+      </svg>
+    </a>
+  </li>
   {/each}
 </ul>
 ```
@@ -139,9 +164,7 @@ import TabItem from '@theme/TabItem';
 
 ```html
 <div class="group is-published">
-  <div class="hidden **group-[.is-published]:block**">
-    Published
-  </div>
+  <div class="hidden **group-[.is-published]:block**">Published</div>
 </div>
 ```
 
@@ -190,7 +213,7 @@ import TabItem from '@theme/TabItem';
 <form>
   <label class="block">
     <span class="block text-sm font-medium text-slate-700">Email</span>
-    <input type="email" class="**peer** ..."/>
+    <input type="email" class="**peer** ..." />
     <p class="mt-2 invisible **peer-invalid:visible** text-pink-600 text-sm">
       Please provide a valid email address.
     </p>
@@ -209,7 +232,7 @@ import TabItem from '@theme/TabItem';
 ```html
 <label>
   <span class="**peer-invalid:text-red-500** ...">Email</span>
-  <input type="email" class="**peer** ..."/>
+  <input type="email" class="**peer** ..." />
 </label>
 ```
 
@@ -225,10 +248,16 @@ import TabItem from '@theme/TabItem';
   <label for="draft" class="**peer-checked/draft:text-sky-500**">Draft</label>
 
   <input id="published" class="**peer/published**" type="radio" name="status" />
-  <label for="published" class="**peer-checked/published:text-sky-500**">Published</label>
+  <label for="published" class="**peer-checked/published:text-sky-500**"
+    >Published</label
+  >
 
-  <div class="hidden **peer-checked/draft:block**">Drafts are only visible to administrators.</div>
-  <div class="hidden **peer-checked/published:block**">Your post will be publicly visible on your site.</div>
+  <div class="hidden **peer-checked/draft:block**">
+    Drafts are only visible to administrators.
+  </div>
+  <div class="hidden **peer-checked/published:block**">
+    Your post will be publicly visible on your site.
+  </div>
 </fieldset>
 ```
 
@@ -236,7 +265,7 @@ import TabItem from '@theme/TabItem';
 
 ### 임의 동료
 
-대괄호 사이의 [임의의 값](/docs/adding-custom-styles#using-arbitrary-values)에 자체 선택기를 제공하여 일회성 `peer-*` 수정자를 즉석에서 생성할 수 있습니다.
+대괄호 사이의 [임의의 값](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)에 자체 선택기를 제공하여 일회성 `peer-*` 수정자를 즉석에서 생성할 수 있습니다.
 
 <Tabs>
   <TabItem value="html" label="HTML" default>
@@ -245,7 +274,9 @@ import TabItem from '@theme/TabItem';
 <form>
   <label for="email">Email:</label>
   <input id="email" name="email" type="email" class="is-dirty peer" required />
-  <div class="**peer-[.is-dirty]**:peer-required:block hidden">This field is required.</div>
+  <div class="**peer-[.is-dirty]**:peer-required:block hidden">
+    This field is required.
+  </div>
   <!-- ... -->
 </form>
 ```
