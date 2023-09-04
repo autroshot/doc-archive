@@ -1,289 +1,212 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+# 의사 요소
 
-# 의사 클래스
+## 이전과 이후
 
-## 호버, 초점, 활성화
-
-`hover`, `focus`, `active` 수정자를 사용하여 호버, 초점, 활성화 요소에 스타일을 지정합니다.
+`before` 및 `after` 수정자를 사용하여 `::before` 및 `::after` 의사 요소의 스타일을 지정합니다.
 
 ```html
-<button class="bg-violet-500 **hover:bg-violet-600** **active:bg-violet-700** **focus:outline-none focus:ring focus:ring-violet-300** ...">
-  Save changes
-</button>
-```
-
-테일윈드에는 `:visited`, `:focus-within`, `:focus-visible` 등과 같은 다른 대화형 상태에 대한 수정자도 포함되어 있습니다.
-
-사용 가능한 의사 클래스 수정자의 전체 목록은 [의사 클래스 참고](https://tailwindcss.com/docs/hover-focus-and-other-states#pseudo-class-reference)를 확인하세요.
-
-## 처음, 마지막, 홀수, 짝수
-
-첫 번째 자식 또는 마지막 자식인 요소는 `first` 및 `last` 수정자를 사용하여 스타일을 지정합니다.
-
-```html
-<ul role="list" class="p-6 divide-y divide-slate-200">
-  {#each people as person}
-    <!-- 첫 번째/마지막 자식인 경우 위/아래 패딩을 제거합니다. -->
-    <li class="flex py-4 **first:pt-0** **last:pb-0**">
-      <img class="h-10 w-10 rounded-full" src="{person.imageUrl}" alt="" />
-      <div class="ml-3 overflow-hidden">
-        <p class="text-sm font-medium text-slate-900">{person.name}</p>
-        <p class="text-sm text-slate-500 truncate">{person.email}</p>
-      </div>
-    </li>
-  {/each}
-</ul>
-```
-
-`odd` 및 `even` 수정자를 사용하여 홀수 또는 짝수 번째인 자식 요소의 스타일을 지정할 수 있습니다.
-
-```html
-<table>
-  <!-- ... -->
-  <tbody>
-    {#each people as person}
-      <!-- 홀수 행에는 흰색 배경을 사용하고 짝수 행에는 `slate-50`을 사용합니다. -->
-      <tr class="**odd:bg-white** **even:bg-slate-50**">
-        <td>{person.name}</td>
-        <td>{person.title}</td>
-        <td>{person.email}</td>
-      </tr>
-    {/each}
-  </tbody>
-</table>
-```
-
-테일윈드에는 `:only-child`, `:first-of-type`, `:empty` 등과 같은 다른 구조적 의사 클래스에 대한 수정자도 포함되어 있습니다.
-
-사용 가능한 의사 클래스 수정자의 전체 목록은 [의사 클래스 참고](https://tailwindcss.com/docs/hover-focus-and-other-states#pseudo-class-reference)를 확인하세요.
-
-## 양식 상태
-
-`required`, `invalid`, `disabled`과 같은 수정자를 사용하여 다양한 상태의 양식 요소에 스타일을 지정합니다.
-
-```html
-<form>
-  <label class="block">
-    <span class="block text-sm font-medium text-slate-700">Username</span>
-    <!-- 양식 상태 수정자를 사용하면 클래스가 모든 입력에 대해 동일할 수 있습니다. -->
-    <input type="text" value="tbone" disabled class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-      **disabled:bg-slate-50** **disabled:text-slate-500** **disabled:border-slate-200** **disabled:shadow-none**
-      **invalid:border-pink-500** **invalid:text-pink-600**
-      **focus:invalid:border-pink-500** **focus:invalid:ring-pink-500**
-    "/>
-  </label>
-  <!-- ... -->
-</form>
-```
-
-이러한 종류의 수정자를 사용하면 템플릿에서 조건부 로직의 양을 줄일 수 있습니다. 따라서 입력의 상태에 관계없이 동일한 클래스 집합을 사용할 수 있고 브라우저에서 올바른 스타일을 적용할 수 있습니다.
-
-테일윈드에는 `:read-only`, `:indeterminate`, `:checked` 등과 같은 다른 양식 상태에 대한 수정자도 포함되어 있습니다.
-
-사용 가능한 의사 클래스 수정자의 전체 목록은 [의사 클래스 참고](#disabled)를 확인하세요.
-
-## 부모 상태에 기반한 스타일 지정 <small>(group-{modifier})</small>
-
-일부 **부모** 요소의 상태에 따라 요소의 스타일을 지정해야 하는 경우, 부모 요소에 `group` 클래스를 표시하고 `group-*` 수정자(예: `group-hover`)를 사용하여 대상 요소에 스타일을 지정합니다.
-
-```html
-<a href="#" class="**group** block max-w-xs mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-sky-500 hover:ring-sky-500">
-  <div class="flex items-center space-x-3">
-    <svg class="h-6 w-6 stroke-sky-500 **group-hover:stroke-white**" fill="none" viewBox="0 0 24 24"><!-- ... --></svg>
-    <h3 class="text-slate-900 **group-hover:text-white** text-sm font-semibold">New project</h3>
-  </div>
-  <p class="text-slate-500 **group-hover:text-white** text-sm">Create a new project from a variety of starting templates.</p>
-</a>
-```
-
-이 패턴은 `group-focus`, `group-active`, 심지어 `group-odd`와 같은 모든 의사 클래스 수정자에서도 작동합니다.
-
-### 중첩된 그룹 구별하기
-
-그룹을 중첩할 때 `group/{name}` 클래스를 사용하여 해당 부모 그룹에 고유한 그룹 이름을 지정하고 `group-hover/{name}`과 같은 클래스를 사용하여 수정자에 해당 이름을 포함하면, **특정** 부모 그룹의 상태에 따라 스타일을 지정할 수 있습니다.
-
-```html
-<ul role="list">
-  {#each people as person}
-    <li class="**group/item** hover:bg-slate-100 ...">
-      <img src="{person.imageUrl}" alt="" />
-      <div>
-        <a href="{person.url}">{person.name}</a>
-        <p>{person.title}</p>
-      </div>
-      <a class="**group/edit** invisible hover:bg-slate-200 **group-hover/item:visible** ..." href="tel:{person.phone}">
-        <span class="**group-hover/edit:text-gray-700** ...">Call</span>
-        <svg class="**group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500** ...">
-          <!-- ... -->
-        </svg>
-      </a>
-    </li>
-  {/each}
-</ul>
-```
-
-그룹 이름은 원하는 대로 지정할 수 있으며 별도의 설정이 필요 없습니다. 마크업에서 직접 그룹 이름을 지정하기만 하면 테일윈드가 필요한 CSS를 자동으로 생성합니다.
-
-### 임의 그룹
-
-대괄호 사이의 [임의의 값](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)에 자체 선택기를 제공하여 일회성 `group-*` 수정자를 즉석에서 생성할 수 있습니다.
-
-<Tabs>
-  <TabItem value="html" label="HTML" default>
-
-```html
-<div class="group is-published">
-  <div class="hidden **group-[.is-published]:block**">
-    Published
-  </div>
-</div>
-```
-
-  </TabItem>
-  <TabItem value="generated-css" label="Generated CSS">
-
-```css
-.group.is-published .group-\[\.is-published\]\:block {
-  display: block;
-}
-```
-
-  </TabItem>
-</Tabs>
-
-보다 자세한 제어를 위해 `&` 문자를 사용하여 전달하려는 선택기를 기준으로 최종 선택기에서 `.group`이 끝나야 하는 위치를 표시할 수 있습니다.
-
-<Tabs>
-  <TabItem value="html" label="HTML" default>
-
-```html
-<div class="group">
-  <div class="group-[:nth-of-type(3)_&]:block">
-    <!-- ... -->
-  </div>
-</div>
-```
-
-  </TabItem>
-  <TabItem value="generated-css" label="Generated CSS">
-
-```css
-:nth-of-type(3) .group .group-\[\:nth-of-type\(3\)_\&\]\:block {
-  display: block;
-}
-```
-
-  </TabItem>
-</Tabs>
-
-## 형제 상태에 따른 스타일 지정 <small>(peer-{modifier})</small>
-
-**형제** 요소의 상태에 따라 요소의 스타일을 지정해야 하는 경우, 형제 요소에 `peer` 클래스를 표시하고 `peer-*` 수정자(예: `peer-invalid`)를 사용하여 대상 요소에 스타일을 지정합니다.
-
-```html
-<form>
-  <label class="block">
-    <span class="block text-sm font-medium text-slate-700">Email</span>
-    <input type="email" class="**peer** ..."/>
-    <p class="mt-2 invisible **peer-invalid:visible** text-pink-600 text-sm">
-      Please provide a valid email address.
-    </p>
-  </label>
-</form>
-```
-
-이를 통해 JS 없이도 [떠 있는 레이블](https://www.youtube.com/watch?v=nJzKi6oIvBA)과 같은 모든 종류의 깔끔한 수법을 수행할 수 있습니다.
-
-이 패턴은 `peer-focus`, `peer-required`, `peer-disabled`과 같은 모든 의사 클래스 수정자에서 작동합니다.
-
-`peer` 마커는 CSS에서 [일반적인 형제 결합기](https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_combinator)가 작동하는 방식 때문에 **이전** 형제에만 사용할 수 있다는 점에 유의해야 합니다.
-
-❌ 작동하지 않음, 이전 형제만 동료로 표시할 수 있음
-
-```html
-<label>
-  <span class="**peer-invalid:text-red-500** ...">Email</span>
-  <input type="email" class="**peer** ..."/>
+<label class="block">
+  <span
+    class="**after:content-['*']** **after:ml-0.5** **after:text-red-500** block text-sm font-medium text-slate-700"
+  >
+    Email
+  </span>
+  <input
+    type="email"
+    name="email"
+    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+    placeholder="you@example.com"
+  />
 </label>
 ```
 
-### 동료 구별하기
-
-여러 피어를 사용하는 경우, `peer/{name}` 클래스를 사용하여 해당 동료에 고유한 이름을 지정하고 `peer-checked/{name}`과 같이 수정자에 해당 이름을 포함시켜 **특정** 동료의 상태에 어떤 스타일을 지정할 수 있습니다.
+이러한 수정자를 사용할 때 테일윈드는 기본적으로 `content: ''`를 추가하므로, 다른 값을 원하지 않는 한 이를 지정할 필요가 없습니다.
 
 ```html
-<fieldset>
-  <legend>Published status</legend>
-
-  <input id="draft" class="**peer/draft**" type="radio" name="status" checked />
-  <label for="draft" class="**peer-checked/draft:text-sky-500**">Draft</label>
-
-  <input id="published" class="**peer/published**" type="radio" name="status" />
-  <label for="published" class="**peer-checked/published:text-sky-500**">Published</label>
-
-  <div class="hidden **peer-checked/draft:block**">Drafts are only visible to administrators.</div>
-  <div class="hidden **peer-checked/published:block**">Your post will be publicly visible on your site.</div>
-</fieldset>
+<blockquote class="text-2xl font-semibold italic text-center text-slate-900">
+  When you look
+  <span
+    class="**before:block** **before:absolute** **before:-inset-1** **before:-skew-y-3** **before:bg-pink-500** relative inline-block"
+  >
+    <span class="relative text-white">annoyed</span>
+  </span>
+  all the time, people think that you're busy.
+</blockquote>
 ```
 
-동료 이름은 원하는 대로 지정할 수 있으며 별도의 설정이 필요 없습니다. 마크업에서 직접 동료 이름을 지정하기만 하면 테일윈드가 필요한 CSS를 자동으로 생성합니다.
+테일윈드 프로젝트에서 대부분의 경우 `::before` 및 `::after` 의사 요소가 필요하지 않습니다. 일반적으로 실제 HTML 요소를 사용하는 것이 더 간단합니다.
 
-### 임의 동료
+다음 예시는 위와 동일한 디자인이지만 의사 요소 `::before` 대신 `<span>`을 사용합니다. 좀 더 읽기 쉬워지고 코드가 실제로 줄어듭니다.
 
-대괄호 사이의 [임의의 값](/docs/adding-custom-styles#using-arbitrary-values)에 자체 선택기를 제공하여 일회성 `peer-*` 수정자를 즉석에서 생성할 수 있습니다.
+```html {4-7}
+<blockquote class="text-2xl font-semibold italic text-center text-slate-900">
+  When you look
+  <span class="relative">
+    >
+    <span
+      class="block absolute -inset-1 -skew-y-3 bg-pink-500"
+      aria-hidden="true"
+    ></span>
+    <span class="relative text-white">annoyed</span>
+  </span>
+  all the time, people think that you're busy.
+</blockquote>
+```
 
-<Tabs>
-  <TabItem value="html" label="HTML" default>
+`before`과 `after`는 의사 요소의 내용이 실제로 DOM에 없고 사용자가 선택할 수 없는 상황에만 사용하세요.
+
+[사전 기본 스타일](/docs/preflight)을 비활성화한 경우 콘텐츠 속성은 기본적으로 빈 문자열로 설정되지 않으며, `before` 및 `after` 수정자를 사용할 때마다 `content-['']`를 포함해야 한다는 점을 유의하세요.
+
+:::note 참고
+
+사전 기본 스타일을 비활성화한 경우 콘텐츠를 수동으로 설정해야 합니다.
 
 ```html
-<form>
-  <label for="email">Email:</label>
-  <input id="email" name="email" type="email" class="is-dirty peer" required />
-  <div class="**peer-[.is-dirty]**:peer-required:block hidden">This field is required.</div>
+<div class="**before:content-['']** before:block ...">
   <!-- ... -->
-</form>
-```
-
-  </TabItem>
-  <TabItem value="generated-css" label="Generated CSS">
-
-```css
-.peer.is-dirty:required ~ .peer-\[\.is-dirty\]\:peer-required\:block {
-  display: block;
-}
-```
-
-  </TabItem>
-</Tabs>
-
-보다 자세한 제어를 위해 `&` 문자를 사용하여 전달하려는 선택기를 기준으로 최종 선택기에서 `.peer`가 끝나야 하는 위치를 표시할 수 있습니다.
-
-<Tabs>
-  <TabItem value="html" label="HTML" default>
-
-```html
-<div>
-  <input type="text" class="peer" />
-  <div class="hidden **peer-[:nth-of-type(3)_&]:block**">
-    <!-- ... -->
-  </div>
 </div>
 ```
 
-  </TabItem>
-  <TabItem value="generated-css" label="Generated CSS">
+:::
 
-```css
-:nth-of-type(3) .peer ~ .peer-\[\:nth-of-type\(3\)_\&\]\:block {
-  display: block;
-}
+## 자리 표시자 텍스트
+
+`placeholder` 수정자를 사용하여 `input` 또는 `textarea`의 자리 표시자 텍스트에 스타일을 지정합니다.
+
+```html
+<label class="relative block">
+  <span class="sr-only">Search</span>
+  <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+    <svg class="h-5 w-5 fill-slate-300" viewBox="0 0 20 20"><!-- ... --></svg>
+  </span>
+  <input
+    class="**placeholder:italic** **placeholder:text-slate-400** block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+    placeholder="Search for anything..."
+    type="text"
+    name="search"
+  />
+</label>
 ```
 
-  </TabItem>
-</Tabs>
+## 파일 입력 버튼
+
+`file` 수정자를 사용하여 파일 입력 버튼에 스타일을 지정합니다.
+
+```html
+<form class="flex items-center space-x-6">
+  <div class="shrink-0">
+    <img
+      class="h-16 w-16 object-cover rounded-full"
+      src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"
+      alt="Current profile photo"
+    />
+  </div>
+  <label class="block">
+    <span class="sr-only">Choose profile photo</span>
+    <input
+      type="file"
+      class="block w-full text-sm text-slate-500
+      **file:mr-4** **file:py-2** **file:px-4**
+      **file:rounded-full** **file:border-0**
+      **file:text-sm** **file:font-semibold**
+      **file:bg-violet-50** **file:text-violet-700**
+      **hover:file:bg-violet-100**
+    "
+    />
+  </label>
+</form>
+```
+
+테일윈드의 [테두리 재설정](/docs/preflight#border-styles-are-reset-globally)은 파일 입력 버튼에는 적용되지 않습니다. 즉, 파일 입력 버튼에 테두리를 추가하려면 [테두리 너비](/docs/border-width) 유틸리티와 함께 `file:border-solid`와 같은 클래스를 사용하여 [테두리 스타일](/docs/border-style)을 명시적으로 설정해야 합니다.
+
+```html
+<input type="file" class="file:border **file:border-solid** ..." />
+```
+
+## 목록 표시
+
+`marker` 수정자를 사용하여 목록의 카운터 또는 글머리 기호에 스타일을 지정합니다.
+
+```html
+<ul
+  role="list"
+  class="**marker:text-sky-400** list-disc pl-5 space-y-3 text-slate-500"
+  dark-class="**marker:text-sky-400** list-disc pl-5 space-y-3 text-slate-400"
+>
+  <li>5 cups chopped Porcini mushrooms</li>
+  <li>1/2 cup of olive oil</li>
+  <li>3lb of celery</li>
+</ul>
+```
+
+`marker` 수정자는 상속 가능하도록 설계되었습니다. 따라서 `<li>` 요소에 직접 사용할 수도 있지만, 반복을 피하기 위해 부모 요소에 사용할 수도 있습니다.
+
+## 강조 표시된 텍스트
+
+`selection` 수정자를 사용하여 활성 텍스트 선택에 스타일을 지정합니다.
+
+```html
+<div class="**selection:bg-fuchsia-300** **selection:text-fuchsia-900**">
+  <p>
+    So I started to walk into the water. I won't lie to you boys, I was
+    terrified. But I pressed on, and as I made my way past the breakers a
+    strange calm came over me. I don't know if it was divine intervention or the
+    kinship of all living things but I tell you Jerry at that moment, I
+    <em>was</em> a marine biologist.
+  </p>
+</div>
+```
+
+`selection` 수정자는 상속이 가능하도록 설계되었으므로 트리의 어느 곳에나 추가할 수 있으며 모든 하위 요소에 적용됩니다.
+
+이렇게 하면 사이트 전체에서 브랜드에 맞게 선택 색상을 쉽게 설정할 수 있습니다.
+
+```html
+<html>
+  <head>
+    <!-- ... -->
+  </head>
+  <body class="**selection:bg-pink-300**">
+    <!-- ... -->
+  </body>
+</html>
+```
+
+## 첫 줄과 첫 글자
+
+콘텐츠 블록의 첫 줄은 `first-line` 수정자를 사용하여 스타일을 지정하고, 첫 글자는 `first-letter` 수정자를 사용하여 스타일을 지정합니다.
+
+```html
+<p
+  class="**first-line:uppercase** **first-line:tracking-widest**
+  **first-letter:text-7xl** **first-letter:font-bold** **first-letter:text-slate-900**
+  **first-letter:mr-3** **first-letter:float-left**
+"
+  dark-class="**first-line:uppercase** **first-line:tracking-widest**
+  **first-letter:text-7xl** **first-letter:font-bold** **first-letter:text-white**
+  **first-letter:mr-3** **first-letter:float-left**
+"
+>
+  Well, let me tell you something, funny boy. Y'know that little stamp, the one
+  that says "New York Public Library"? Well that may not mean anything to you,
+  but that means a lot to me. One whole hell of a lot.
+</p>
+```
+
+## 대화 배경
+
+`backdrop` 수정자를 사용하여 [기본 `<dialog>` 요소](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)의 배경에 스타일을 지정합니다.
+
+```html
+<dialog class="**backdrop:bg-gray-50**">
+  <form method="dialog">
+    <!-- ... -->
+  </form>
+</dialog>
+```
+
+프로젝트에서 기본 `<dialog>` 요소를 사용한다면, `open` 수정자를 사용하는 [열기/닫기 상태에 스타일 지정하기](/docs/hover-focus-and-other-states#open-closed-state)를 읽어 보는 것도 좋습니다.
