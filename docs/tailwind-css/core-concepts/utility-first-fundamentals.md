@@ -99,8 +99,8 @@ sidebar_position: 1
 하지만 유틸리티 클래스를 사용하면 인라인 스타일에 비해 몇 가지 중요한 이점이 있습니다.
 
 - **제약 조건으로 디자인하기.** 인라인 스타일을 사용하면 모든 값이 마법의 숫자(magic number)가 됩니다. 유틸리티를 사용하면 미리 정의된 [디자인 시스템](https://tailwindcss.com/docs/theme)에서 스타일을 선택할 수 있으므로 시각적으로 일관된 UI를 훨씬 쉽게 구축할 수 있습니다.
-- **반응형 디자인.** 인라인 스타일에서는 미디어 쿼리를 사용할 수 없지만, 테일윈드의 [반응형 유틸리티](https://tailwindcss.com/docs/responsive-design)를 사용하면 완전 반응형 인터페이스를 쉽게 구축할 수 있습니다.
-- **호버, 초점, 기타 상태.** 인라인 스타일은 호버나 초점과 같은 상태를 대상으로 할 수 없지만, 테일윈드의 [상태 변형](https://tailwindcss.com/docs/hover-focus-and-other-states)은 유틸리티 클래스를 사용하여 이러한 상태를 쉽게 스타일링할 수 있습니다.
+- **반응형 디자인.** 인라인 스타일에서는 미디어 쿼리를 사용할 수 없지만, 테일윈드의 [반응형 유틸리티](./responsive-design.md)를 사용하면 완전 반응형 인터페이스를 쉽게 구축할 수 있습니다.
+- **호버, 초점, 기타 상태.** 인라인 스타일은 호버나 초점과 같은 상태를 대상으로 할 수 없지만, 테일윈드의 [상태 변형](./handling-hover-focus-other-states/index.md)은 유틸리티 클래스를 사용하여 이러한 상태를 쉽게 스타일링할 수 있습니다.
 
 이 컴포넌트는 완전 반응형이며 호버 및 초점 스타일이 있는 버튼이 포함되어 있고 유틸리티 클래스로만 구축되었습니다.
 
@@ -125,7 +125,7 @@ sidebar_position: 1
 
 유틸리티 우선 접근법을 사용할 때 가장 큰 유지 관리 문제는 일반적으로 반복되는 유틸리티 조합을 관리하는 것입니다.
 
-이 문제는 [컴포넌트와 부분을 추출](https://tailwindcss.com/docs/reusing-styles#extracting-components-and-partials)하고 다중 커서 편집 및 간단한 루프와 같은 [편집기 및 언어 기능](https://tailwindcss.com/docs/reusing-styles#using-editor-and-language-features)을 사용하면 쉽게 해결할 수 있습니다.
+이 문제는 [컴포넌트와 부분을 추출](./reusing-styles.md#컴포넌트-및-부분-추출하기)하고 다중 커서 편집 및 간단한 루프와 같은 [편집기 및 언어의 기능](./reusing-styles.md#편집기-및-언어의-기능-사용하기)을 사용하면 쉽게 해결할 수 있습니다.
 
 ```vue title="PrimaryButton.vue"
 <template>
@@ -140,7 +140,7 @@ sidebar_position: 1
 이 접근 방식에 대한 다른 사람들의 경험을 듣고 싶다면 다음을 확인하세요.
 
 - 존 폴라섹의 [수치로 살펴보기: 원자 CSS를 사용한 1년 반](https://medium.com/@johnpolacek/by-the-numbers-a-year-and-half-with-atomic-css-39d75b1263b4)
-- 알골리아의 사라 데이얀의 [아니요, 유틸리티 클래스와 인라인 스타일은 동일하지 않습니다](https://frontstuff.io/no-utility-classes-arent-the-same-as-inline-styles)
+- 알골리아의 사라 데이얀의 [아니요, 유틸리티 클래스는 인라인 스타일과 동일하지 않습니다](https://frontstuff.io/no-utility-classes-arent-the-same-as-inline-styles)
 - 팟캐스트 인터뷰, [깃허브에서 유틸리티 클래스를 사용하는 다이애나 마운터](http://www.fullstackradio.com/75)
 
 더 자세한 내용은 [존 폴라섹](https://twitter.com/johnpolacek)이 선별한 [원자/유틸리티 우선 CSS 사례](https://johnpolacek.github.io/the-case-for-atomic-css/)를 확인하세요.

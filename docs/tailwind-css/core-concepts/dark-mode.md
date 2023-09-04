@@ -24,7 +24,7 @@ sidebar_position: 4
 </div>
 ```
 
-기본적으로 이는 `prefers-color-scheme` CSS 미디어 기능을 사용하지만, [`class` 전략](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually)을 사용하여 수동으로 어두운 모드 전환을 지원하는 사이트를 구축할 수도 있습니다.
+기본적으로 이는 `prefers-color-scheme` CSS 미디어 기능을 사용하지만, [`class` 전략](#수동으로-어두운-모드-전환하기)을 사용하여 수동으로 어두운 모드 전환을 지원하는 사이트를 구축할 수도 있습니다.
 
 ## 수동으로 어두운 모드 전환하기
 

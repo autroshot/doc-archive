@@ -110,7 +110,7 @@ sidebar_position: 3
 </div>
 ```
 
-자세한 내용은 [중단점 범위를 대상으로 하기](https://tailwindcss.com/docs/responsive-design#targeting-a-breakpoint-range)에서 확인할 수 있습니다.
+자세한 내용은 [중단점 범위를 대상으로 하기](#중단점-범위를-대상으로-하기)에서 확인할 수 있습니다.
 
 ## 커스텀 중단점 사용하기
 

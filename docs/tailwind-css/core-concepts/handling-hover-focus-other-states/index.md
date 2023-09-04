@@ -51,12 +51,12 @@ sidebar_position: 1
 
 테일윈드에는 다음과 같이 필요한 거의 모든 것에 대한 수정자가 포함되어 있습니다.
 
-- [의사 클래스](https://tailwindcss.com/docs/hover-focus-and-other-states#pseudo-classes) - `:hover`, `:focus`, `:first-child`, `:required`
-- [의사 요소](https://tailwindcss.com/docs/hover-focus-and-other-states#pseudo-elements) - `::before`, `::after`, `::placeholder`, `::selection`
-- [미디어 및 기능 질의](https://tailwindcss.com/docs/hover-focus-and-other-states#media-and-feature-queries) - 반응형 중단점, 어두운 모드, `prefers-reduced-motion`
-- [속성 선택기](https://tailwindcss.com/docs/hover-focus-and-other-states#attribute-selectors) - `[dir="rtl"]`, `[open]`
+- [의사 클래스](./pseudo-classes.mdx) - `:hover`, `:focus`, `:first-child`, `:required`
+- [의사 요소](./pseudo-elements.mdx) - `::before`, `::after`, `::placeholder`, `::selection`
+- [미디어 및 기능 질의](./media-and-feature-queries.md) - 반응형 중단점, 어두운 모드, `prefers-reduced-motion`
+- [속성 선택기](./attribute-selectors.mdx) - `[dir="rtl"]`, `[open]`
 
-이러한 수정자를 [쌓아서](https://tailwindcss.com/docs/hover-focus-and-other-states#ordering-stacked-modifiers) 보다 구체적인 상황을 대상으로 지정할 수도 있습니다. 예를 들어 다음과 같이 어두운 모드, 중간 중단점, 호버 시 배경색을 변경할 수 있습니다.
+이러한 수정자를 [쌓아서](./advanced-topics.md#쌓인-수정자-정렬하기) 보다 구체적인 상황을 대상으로 지정할 수도 있습니다. 예를 들어 다음과 같이 어두운 모드, 중간 중단점, 호버 시 배경색을 변경할 수 있습니다.
 
 ```html
 <button class="**dark:md:hover:bg-fuchsia-600** ...">
