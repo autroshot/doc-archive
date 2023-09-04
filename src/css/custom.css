@@ -14,7 +14,7 @@
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-hover-overlay: rgba(255, 255, 255, 0.05);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -26,7 +26,7 @@
   --ifm-color-primary-light: #29d5b0;
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-hover-overlay: rgba(255, 255, 255, 0.04);
 }
 
 html,
@@ -83,8 +83,7 @@ body {
 
 pre.shiki div.highlight {
   background-color: var(--ifm-hover-overlay);
-  border-left: 2px solid var(--ifm-color-primary) !important;
-  width: 100%;
+  border-left: 3px solid #25c2a0 !important;
 }
 
 pre.shiki div.dim {
