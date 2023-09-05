@@ -1,13 +1,14 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+require('dotenv').config();
 const codeInlineHighlight = require('./src/remark/code-inline-highlight');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: '문서 보관소',
   tagline: '공식 문서는 가장 좋은 설명서입니다.',
-  url: 'https://autroshot.github.io/',
-  baseUrl: '/doc-archive/',
+  url: process.env.URL,
+  baseUrl: process.env.BASE_URL,
   staticDirectories: ['static'],
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -15,9 +16,11 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'autroshot', // Usually your GitHub org/user name.
-  projectName: 'doc-archive', // Usually your repo name.
-  trailingSlash: false,
+  organizationName: process.env.ORGANIZATION_NAME, // Usually your GitHub org/user name.
+  projectName: process.env.PROJECT_NAME, // Usually your repo name.
+  trailingSlash: process.env.TRAILING_SLASH
+    ? Boolean(process.env.TRAILING_SLASH)
+    : undefined,
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
