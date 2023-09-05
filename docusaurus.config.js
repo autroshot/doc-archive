@@ -3,6 +3,17 @@
 require('dotenv').config();
 const codeInlineHighlight = require('./src/remark/code-inline-highlight');
 
+let trailingSlash = process.env.TRAILING_SLASH;
+if (trailingSlash) {
+  if (trailingSlash === 'true') {
+    // @ts-ignore
+    trailingSlash = true;
+  } else {
+    // @ts-ignore
+    trailingSlash = false;
+  }
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: '문서 보관소',
@@ -18,9 +29,8 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: process.env.ORGANIZATION_NAME, // Usually your GitHub org/user name.
   projectName: process.env.PROJECT_NAME, // Usually your repo name.
-  trailingSlash: process.env.TRAILING_SLASH
-    ? Boolean(process.env.TRAILING_SLASH)
-    : undefined,
+  // @ts-ignore
+  trailingSlash: trailingSlash,
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
