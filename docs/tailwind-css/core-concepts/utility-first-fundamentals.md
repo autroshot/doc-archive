@@ -74,7 +74,7 @@ sidebar_position: 1
 위의 예시에서 사용한 것은 다음과 같습니다.
 
 - 전체 카드 레이아웃을 제어하는 테일윈드의 [플렉스 박스](https://tailwindcss.com/docs/display#flex), [패딩](https://tailwindcss.com/docs/padding) 유틸리티 (`flex`, `shrink-0`, `p-6`)
-- 카드 너비를 제한하고 가로의 중앙에 배치하는 [최대 너비](https://tailwindcss.com/docs/max-width), [마진](https://tailwindcss.com/docs/margin) 유틸리티 (`max-w-sm`, `mx-auto`)
+- 카드 너비를 제한하고 가로의 중앙에 배치하는 [최대 너비](https://tailwindcss.com/docs/max-width), [여백](https://tailwindcss.com/docs/margin) 유틸리티 (`max-w-sm`, `mx-auto`)
 - 카드의 모양을 지정하는 [배경색](https://tailwindcss.com/docs/background-color), [테두리 반경](https://tailwindcss.com/docs/border-radius), [박스 그림자](https://tailwindcss.com/docs/box-shadow) 유틸리티 (`bg-white`, `rounded-xl`, `shadow-lg`)
 - 로고 이미지 크기를 조정하는 [너비](https://tailwindcss.com/docs/width), [높이](https://tailwindcss.com/docs/height) 유틸리티 (`w-12`, `h-12`)
 - 로고와 텍스트 사이의 간격을 처리하는 [간격](https://tailwindcss.com/docs/space) 유틸리티 (`space-x-4`)
@@ -82,7 +82,7 @@ sidebar_position: 1
 
 이 접근 방식을 사용하면 커스텀 CSS를 한 줄도 작성하지 않고도 완전한 커스텀 컴포넌트 디자인을 구현할 수 있습니다.
 
-"이건 정말 끔찍해!"라고 생각하시는 분들이 있을 것이며, 그 말이 맞습니다. 좀 못생겼지요. 사실 처음 봤을 때 좋은 아이디어라고 생각하기란 거의 불가능합니다. **실제로 사용해 봐야 합니다.**
+"정말 끔찍해!"라고 생각하시는 분들이 있을 것이며, 그 말이 맞습니다. 좀 못생겼지요. 사실 처음 봤을 때 좋은 아이디어라고 생각하기란 거의 불가능합니다. **실제로 사용해 봐야 합니다.**
 
 실제로 이를 사용해 무언가를 구축해 보면 정말 중요한 몇 가지 이점을 금방 알게 될 것입니다.
 
@@ -94,7 +94,7 @@ sidebar_position: 1
 
 ## 인라인 스타일을 사용하지 않는 이유는 무엇인가요?
 
-이 접근 방식에 대한 일반적인 반응은 "이거 그냥 인라인 스타일 아닌가요?"라는 의문입니다. 요소에 클래스 이름을 지정하여 해당 클래스의 스타일을 지정하는 대신 스타일을 요소에 직접 적용하는 것이기 때문에 어떤 면에서는 맞습니다.
+이 접근 방식에 대한 일반적인 반응은 "그냥 인라인 스타일 아닌가요?"라는 의문입니다. 요소에 클래스 이름을 지정하여 해당 클래스의 스타일을 지정하는 대신 스타일을 요소에 직접 적용하는 것이기 때문에 어떤 면에서는 맞습니다.
 
 하지만 유틸리티 클래스를 사용하면 인라인 스타일에 비해 몇 가지 중요한 이점이 있습니다.
 
