@@ -29,12 +29,6 @@ const config = {
 
   presets: [
     [
-      'docusaurus-preset-shiki-twoslash',
-      {
-        themes: ['dark-plus', 'dark-plus'],
-      },
-    ],
-    [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
@@ -60,6 +54,12 @@ const config = {
           anonymizeIP: true,
         },
       }),
+    ],
+    [
+      'docusaurus-preset-shiki-twoslash',
+      {
+        themes: ['dark-plus', 'dark-plus'],
+      },
     ],
   ],
 
