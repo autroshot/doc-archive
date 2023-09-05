@@ -22,6 +22,12 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build website
         run: yarn build
+        env:
+          URL: ${{ vars.URL }}
+          BASE_URL: ${{ vars.BASE_URL }}
+          ORGANIZATION_NAME: ${{ vars.ORGANIZATION_NAME }}
+          PROJECT_NAME: ${{ vars.PROJECT_NAME }}
+          TRAILING_SLASH: ${{ vars.TRAILING_SLASH }}
 
       # 깃허브 페이지에 배포하기 위한 일반적인 액션
       # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
