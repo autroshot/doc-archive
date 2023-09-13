@@ -100,7 +100,7 @@ ul {
 
 ### 접근성 고려 사항
 
-스타일이 제거된 목록은 [화면 낭독기에서 목록으로 인식되지 않습니다](https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/). 콘텐츠가 실제로 목록이지만 스타일을 지정하지 않은 상태로 유지하려면 요소에 ['목록' 역할을 추가하세요](https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html).
+스타일이 제거된 목록은 [스크린 리더에서 목록으로 인식되지 않습니다](https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/). 콘텐츠가 실제로 목록이지만 스타일을 지정하지 않은 상태로 유지하려면 요소에 ['목록' 역할을 추가하세요](https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html).
 
 ```html
 <ul role="list">
