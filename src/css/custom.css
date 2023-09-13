@@ -92,6 +92,14 @@ pre.shiki div.dim {
   transition: opacity 0s !important;
 }
 
+pre.shiki span.popover {
+  color: #404040;
+}
+
+pre.shiki button.copy-button {
+  background-color: #404040;
+}
+
 .code-inline-highlight {
   border-radius: 0.25rem;
   padding: 0.125rem 0.1875rem;
