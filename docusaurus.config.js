@@ -215,12 +215,6 @@ const config = {
             ],
           },
           {
-            type: 'doc',
-            docId: 'concepts/domain-name',
-            label: '개념',
-            position: 'left',
-          },
-          {
             to: '/source',
             label: '출처',
             position: 'right',
