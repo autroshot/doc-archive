@@ -29,7 +29,7 @@ type OptionsFlags<Type> = {
 };
 ```
 
-이 예시에서 `OptionsFlags`는 `Type` 타입에서 모든 프로퍼티를 가져오고 해당 값을 불린으로 변경합니다.
+이 예시에서 `OptionsFlags`는 `Type` 타입에서 모든 프로퍼티를 가져오고 해당 값을 불으로 변경합니다.
 
 ```ts twoslash
 type OptionsFlags<Type> = {

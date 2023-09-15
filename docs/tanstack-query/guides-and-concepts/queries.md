@@ -70,7 +70,7 @@ function Todos() {
 }
 ```
 
-불린이 마음에 들지 않으면 항상 `status`도 사용할 수 있습니다.
+불이 마음에 들지 않으면 항상 `status`도 사용할 수 있습니다.
 
 ```tsx
 function Todos() {

@@ -49,7 +49,7 @@ const useCountStore = create((set) => ({
 
 ## 플래그 바꾸기
 
-병합 동작을 비활성화하려면, 다음과 같이 `set`에 `replace` 불린 값을 지정할 수 있습니다.
+병합 동작을 비활성화하려면, 다음과 같이 `set`에 `replace` 불 값을 지정할 수 있습니다.
 
 ```js
 set((state) => newState, true)
