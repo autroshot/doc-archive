@@ -21,4 +21,3 @@
 - [Emmet](https://autroshot.github.io/doc-archive/docs/emmet)
 - [Yup](https://autroshot.github.io/doc-archive/docs/yup)
 - [정규 표현식](https://autroshot.github.io/doc-archive/docs/regular-expression)
-- [개념](https://autroshot.github.io/doc-archive/docs/concepts/domain-name)

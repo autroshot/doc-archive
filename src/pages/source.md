@@ -21,4 +21,3 @@
 | Emmet           | https://docs.emmet.io/                                       |        |
 | Yup             | https://github.com/jquense/yup                               | 0.32   |
 | 정규 표현식     | 손에 잡히는 10분 정규 표현식, 벤 포터, 인사이트              | 초판   |
-| 개념            | 각 문서에 표시                                               |        |
