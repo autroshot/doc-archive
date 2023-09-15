@@ -245,7 +245,7 @@ model Post {
 
 [스칼라 타입 및 제공자별 원시 데이터베이스 타입 속성의 전체 목록](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#model-field-scalar-types)을 참고하세요.
 
-#### 이점과 워크플로
+#### 이점과 작업 흐름
 
 - 프리즈마 마이그레이트가 데이터베이스에서 생성하는 정확한 원시 타입을 제어합니다. 예를 들어 `String`은 `@db.VarChar(200)`이나 `@db.Char(50)`가 될 수 있습니다.
 - 분석할 때 풍부한 스키마를 볼 수 있습니다.

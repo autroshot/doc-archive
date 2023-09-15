@@ -79,7 +79,7 @@ model User {
 
 #### 데이터 모델 가져오기
 
-데이터 모델을 프리즈마 스키마로 가져오기 위한 두 가지 주요 워크플로가 있습니다.
+데이터 모델을 프리즈마 스키마로 가져오기 위한 두 가지 주요 작업 흐름이 있습니다.
 
 - 데이터 모델을 직접 작성하고 [프리즈마 마이그레이트](https://www.prisma.io/docs/concepts/components/prisma-migrate)를 사용하여 데이터베이스에 매핑함
 - 데이터베이스를 [분석](https://www.prisma.io/docs/concepts/components/introspection)하여 데이터 모델 생성함
