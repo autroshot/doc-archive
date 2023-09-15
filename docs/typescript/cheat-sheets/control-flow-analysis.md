@@ -10,7 +10,7 @@ CFA(Control Flow Analysis, 제어 흐름 분석)는 대부분 합집합을 사�
 
 ## `if`문
 
-대부분의 좁히기는 `if`문 내부의 표현식을 사용합니다. 표현식에서 여러 타입 연산자는 새 스코프 내에서 좁힙니다.
+대부분의 좁히기는 `if`문 내부의 표현식을 사용합니다. 표현식에서 여러 타입 연산자는 새 범위 내에서 좁힙니다.
 
 #### 원시값을 위한 `typeof`
 
@@ -133,7 +133,7 @@ switch (res.status) {
 
 ## 타입 가드
 
-`true`이면 새 스코프에 대한 CFA 변경을 설명하는 반환 타입을 가진 함수입니다.
+`true`이면 새 범위에 대한 CFA 변경을 설명하는 반환 타입을 가진 함수입니다.
 
 ```ts twoslash
 interface ErrorResponse { status: 400, error: Error };
@@ -174,7 +174,7 @@ if (isErrorResponse(res)) {
 
 ## 단언 함수
 
-CFA를 묘사하는 함수는 `false`를 반환하는 대신 오류를 던지기 때문에 현재 스코프에 영향을 줍니다.
+CFA를 묘사하는 함수는 `false`를 반환하는 대신 오류를 던지기 때문에 현재 범위에 영향을 줍니다.
 
 ```ts
 function assertResponse(obj: any): asserts obj is SuccessResponse {
@@ -194,7 +194,7 @@ assertResponse(res);
 // res: SuccessResponse
 ```
 
-단언 함수는 **현재** 스코프를 변경하거나 오류를 던집니다.
+단언 함수는 **현재** 범위를 변경하거나 오류를 던집니다.
 
 ## 할당
 

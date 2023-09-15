@@ -193,7 +193,7 @@ export default function Home() {
 
 또는 [전역 스타일시트](./built-in-css-support#전역-스타일시트-추가하기)를 가져와서, `className` props을 전역 스타일시트에서 사용된 이름으로 설정할 수 있습니다.
 
-[styled-jsx](https://nextjs.org/docs/basic-features/built-in-css-support#css-in-js)는 현재 컴포넌트로 스코프가 제한되므로 사용할 수 없습니다.
+[styled-jsx](https://nextjs.org/docs/basic-features/built-in-css-support#css-in-js)는 현재 컴포넌트로 범위가 제한되므로 사용할 수 없습니다.
 
 **`layout='fill'`을 사용할 때 상위 요소에는 `position: relative`가 있어야 합니다**.
 

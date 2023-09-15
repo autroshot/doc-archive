@@ -62,7 +62,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
 
 :::
 
-이 방법으로 만든 변수는 같은 스코프에 있으므로 `NextAuth` 옵션에서도 사용할 수 있습니다.
+이 방법으로 만든 변수는 같은 범위에 있으므로 `NextAuth` 옵션에서도 사용할 수 있습니다.
 
 ```ts title="/pages/api/auth/[...nextauth].ts"
 import type { NextApiRequest, NextApiResponse } from "next"

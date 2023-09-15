@@ -64,7 +64,7 @@ test('city database has San Juan', () => {
 });
 ```
 
-## 스코프 지정하기
+## 범위 지정하기
 
 기본적으로 `beforeAll`과 `afterAll` 블록은 파일의 모든 테스트에 적용됩니다. `describe` 블록을 사용하여 테스트와 함께 그룹화할 수도 있습니다. `beforeAll`과 `afterAll`은 `describe` 블록 안에 있으면 해당 `describe` 블록 내의 테스트에만 적용됩니다.
 
@@ -172,7 +172,7 @@ describe('describe outer', () => {
 // test 3
 ```
 
-`describe`와 `test` 블록처럼 제스트는 선언 순서대로 `before*`과 `after*` 훅을 호출합니다. 내부 스코프의 `after*` 훅이 먼저 호출됩니다.
+`describe`와 `test` 블록처럼 제스트는 선언 순서대로 `before*`과 `after*` 훅을 호출합니다. 내부 범위의 `after*` 훅이 먼저 호출됩니다.
 
 다음은 서로 종속되는 자원을 설정하고 해제하는 예시입니다.
 
